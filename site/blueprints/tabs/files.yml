@@ -1,0 +1,8 @@
+label: Dateien
+icon: import
+sections:
+  files:
+    type: files
+    headline: Dateien
+    template: default
+    empty: Noch keine Dateien

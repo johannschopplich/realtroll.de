@@ -1,0 +1,13 @@
+label: Bilder
+icon: image
+sections:
+  images:
+    type: files
+    headline: Bilder
+    template: image
+    empty: Noch keine Bilder
+    layout: cards
+    size: small
+    image:
+      ratio: 4/3
+      cover: true

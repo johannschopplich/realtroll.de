@@ -1,0 +1,11 @@
+type: pages
+headline: Spiele
+parent: kirby.page("spiele")
+template: game
+empty: Keine Spiele
+layout: cards
+image:
+  query: page.thumbnail.toFile
+  cover: true
+  ratio: 1/1
+  back: white

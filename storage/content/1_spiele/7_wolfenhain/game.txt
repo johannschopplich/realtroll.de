@@ -1,0 +1,348 @@
+Title: Wolfenhain
+
+----
+
+Downloadlink: https://1drv.ms/u/s!AsXYTwQvPrp-d1kPTTnF0vQIcaI
+
+----
+
+Published: 2017-09-13
+
+----
+
+Text:
+
+[
+    {
+        "attrs": [],
+        "content": "Wolfenhain versetzt den Spieler in ein Reich der Zauberkraft, des Mutes und der Gefahr. Nur wer Kampkraft mit Geschick zu verbinden weiß und den Rätseln der Welt mit Gewitztheit begegnet, kann das Abenteuer bestehen. Wer es etwas genauer als im ersten schwammigen Satz wissen möchte, klickt einfach auf die entsprechenden Rubriken.",
+        "id": "_CeelvIkdT",
+        "type": "paragraph"
+    },
+    {
+        "attrs": [],
+        "content": "Den ganz Eiligen, die sich mal eben schnell auf einen Blick informieren wollen, biete ich das A und O einer jeden Rollenspielauskunft an, die \"Herr der Ringe\"-Prüfliste. Hier ist sie.",
+        "id": "_dPGag9y6g",
+        "type": "paragraph"
+    },
+    {
+        "attrs": [],
+        "content": "Die \"Herr der Ringe\"-Prüfliste",
+        "id": "_w5ur2potn",
+        "type": "h2"
+    },
+    {
+        "attrs": [],
+        "content": "Was gibt es",
+        "id": "_wv0by57ig",
+        "type": "h3"
+    },
+    {
+        "attrs": [],
+        "content": "Magie",
+        "id": "_OC3KYlFS2",
+        "type": "ul"
+    },
+    {
+        "attrs": [],
+        "content": "deftige Gegner",
+        "id": "_3k7pCSKFG",
+        "type": "ul"
+    },
+    {
+        "attrs": [],
+        "content": "Rätsel",
+        "id": "_TkXuYKwbD",
+        "type": "ul"
+    },
+    {
+        "attrs": [],
+        "content": "Gewölbe, Höhlen und Katakomben",
+        "id": "_65cduj0hY",
+        "type": "ul"
+    },
+    {
+        "attrs": [],
+        "content": "mehr Minispiele als in Mittelerde",
+        "id": "_mM43uMtcS",
+        "type": "ul"
+    },
+    {
+        "attrs": [],
+        "content": "gelegentlichen Humor",
+        "id": "_ZxJ1GIKKP",
+        "type": "ul"
+    },
+    {
+        "attrs": [],
+        "content": "einen Vulkan",
+        "id": "_FnttyKCGb",
+        "type": "ul"
+    },
+    {
+        "attrs": {
+            "indent": 0
+        },
+        "content": "Was gibt es nicht",
+        "id": "_ln4t6k7m8",
+        "type": "h3"
+    },
+    {
+        "attrs": [],
+        "content": "Orks",
+        "id": "_auK2yRsM3",
+        "type": "ul"
+    },
+    {
+        "attrs": [],
+        "content": "Elfen",
+        "id": "_0bT33A4dq",
+        "type": "ul"
+    },
+    {
+        "attrs": [],
+        "content": "Halblinge (Niemand mag kleine, hilflose Wesen als Helden, die zu häufig weinen.)",
+        "id": "_VTUoEg7uM",
+        "type": "ul"
+    },
+    {
+        "attrs": [],
+        "content": "Gandalf",
+        "id": "_NUBdXv739",
+        "type": "ul"
+    },
+    {
+        "attrs": [],
+        "content": "lange Abschiedsszenen",
+        "id": "_zaS8oZjga",
+        "type": "ul"
+    },
+    {
+        "attrs": [],
+        "content": "komische Namen",
+        "id": "_wdUovdpq4",
+        "type": "ul"
+    },
+    {
+        "attrs": {
+            "indent": 0
+        },
+        "content": "Was dich erwartet",
+        "id": "_6zh76n4yf",
+        "type": "h2"
+    },
+    {
+        "attrs": [],
+        "content": "Und die etwas Langsameren können in aller Gemütlichkeit versuchen, sich unter den folgenden Spielbestandteilen etwas vorzustellen:",
+        "id": "_pf8wtnzfl",
+        "type": "paragraph"
+    },
+    {
+        "attrs": [],
+        "content": "taktische Abwägungen durch unterschiedliche Waffenarten",
+        "id": "_BEjGXegiC",
+        "type": "ul"
+    },
+    {
+        "attrs": [],
+        "content": "Zauber und Talente auf der Grundlage eines Elementsystems",
+        "id": "_B3iqMxtSx",
+        "type": "ul"
+    },
+    {
+        "attrs": [],
+        "content": "Sonderfähigkeiten, die außerhalb des Kampfes zum Einsatz kommen",
+        "id": "_gtsLmIDOr",
+        "type": "ul"
+    },
+    {
+        "attrs": [],
+        "content": "gelegentliche Solomissionen der Helden mit Knobelanteil",
+        "id": "_EStECwJVW",
+        "type": "ul"
+    },
+    {
+        "attrs": [],
+        "content": "Welterkundung mit Belohnung",
+        "id": "_dbXauYkIy",
+        "type": "ul"
+    },
+    {
+        "attrs": [],
+        "content": "märchenhafte Nebenspieler",
+        "id": "_M1wU05Y9i",
+        "type": "ul"
+    },
+    {
+        "attrs": [],
+        "content": "Aufgabenbuch und Monsteralbum",
+        "id": "_avO3RsHF6",
+        "type": "ul"
+    },
+    {
+        "attrs": [],
+        "content": "allerlei Zerhackbares für Kurzweil und gelegentliche Überraschungen.",
+        "id": "_D5WUfuR8Z",
+        "type": "ul"
+    },
+    {
+        "attrs": [],
+        "content": "Buchstabieren.",
+        "id": "_WFLZNJ4S0",
+        "type": "ul"
+    },
+    {
+        "attrs": [],
+        "content": "viele eigene Pixeleien",
+        "id": "_2FJ9gvJoB",
+        "type": "ul"
+    },
+    {
+        "attrs": {
+            "indent": 0
+        },
+        "content": "Handlung",
+        "id": "_xbtw0oedp",
+        "type": "h2"
+    },
+    {
+        "attrs": [],
+        "content": "Ein Fluch geht um in Wolfenhain. Es scheint, als ob der Tod seinen alten Pakt mit den Lebenden gelöst hätte und die Verstorbenen nicht mehr in ihre Gräber zwingt. Von überall her dringen die Nachrichten, dass sich fahles Fleisch und bleiches Gebein sabbernd aus der kalten Erde erhebt. Und wie seit alten Zeiten erwählt der Orden des Güldenen einen Streiter, um ihn auf den Heiligen Zug zu schicken, das Dunkle zu bekämpfen. Die Wahl fällt auf Brun, den glaubensfestesten der strengen Krieger.",
+        "id": "_eXWaKuizc",
+        "type": "paragraph"
+    },
+    {
+        "attrs": [],
+        "content": "Doch just, als der lichtbringende Gott seinen Strahl auf den Helden senkt, bricht mit einem herzhaften \"Verdammt! Ich bin zu fett!\" der alternde Abenteurer Gisulf durch das Deckengebälk des Tempels, schleudert dabei den Erwählten zur Seite und wird so selbst das unfreiwillige Ziel des göttlichen Lichts. Das gibt Anlass zur Irritation.",
+        "id": "_R65SMPkQp",
+        "type": "paragraph"
+    },
+    {
+        "attrs": [],
+        "content": "Nur die unbedingte Gewissheit des Hochmeisters, ein Gott könne nicht irren, bewahrt den Orden vor unheiligen Zweifeln. Und die lebenslustige, junge Hexe Waldrada, die Gisulf im Schlepptau hat, trägt auch nicht gerade dazu bei, den harten Paladinen die Situation zu versüßen. Besonders Brun, der beinahe Erwählte, wirkt reserviert.",
+        "id": "_2J341ZgSS",
+        "type": "paragraph"
+    },
+    {
+        "attrs": [],
+        "content": "Aber ein paar diplomatische Drahtseilakte später, inklusive des Versprechens, recht happige Belohnungsvorstellungen bedienen zu wollen und Brun wenigstens als Begleitung mit zu senden, bricht die Schar auf. Dieser Heilige Zug ist, selbst an der bemerkenswerten Geschichte des Ordens gemessen, eine erstaunliche Erscheinung.",
+        "id": "_dy4JcpluR",
+        "type": "paragraph"
+    },
+    {
+        "attrs": [],
+        "content": "Helden",
+        "id": "_7dszz13dv",
+        "type": "h2"
+    },
+    {
+        "attrs": [],
+        "content": "Gisulf (Abenteurer)",
+        "id": "_1anfdgq9k",
+        "type": "h3"
+    },
+    {
+        "attrs": [],
+        "content": "Mit dem Alter schwindet zwar das Haar, doch dafür wächst die Gewissheit, es einfach besser als all die jungen Grünschnäbel zu wissen. Ein reicher Fundus an Geschichten von früher ist allerdings kein Ersatz für wirkliche Heldenerfahrung und an genau der mangelt es Gisulf trotz seines Abenteurerdaseins doch beträchtlich. Er beherrscht die Grundlagen seines Handwerks, aber bislang bestand sein Leben daraus, immer wieder Schwung für den großen Wurf zu holen, der dann doch nie glückte.",
+        "id": "_l6z3foftb",
+        "type": "paragraph"
+    },
+    {
+        "attrs": [],
+        "content": "<strong>Fähigkeiten</strong>: Gisulf beherrscht den Kampf mit Axt und Keule, erkennt Fallen, kann diese eventuell entschärfen und nimmt es mit einfachen Schlössern auf.",
+        "id": "_AO1rT7eGz",
+        "type": "paragraph"
+    },
+    {
+        "attrs": [],
+        "content": "Waldrada (Hexe)",
+        "id": "_0iz5o0pxm",
+        "type": "h3"
+    },
+    {
+        "attrs": [],
+        "content": "Kräuterkundig ist auch nur ein anderer Ausdruck dafür, im Wald aufgewachsen zu sein und keine Ahnung von der Stadt zu haben. Waldrada steht noch ganz am Beginn eines möglicherweise langen Lebens der Suche nach dem Weg, in das Webmuster der Natur einsinken zu können. Ihr Freiheitsdrang ist unbändig und wem sie hilft, entscheidet sie nach ihren eigenen Gesetzen. Zumindest in ihrem Wald klappte das bislang ganz gut.",
+        "id": "_welLj3Cwh",
+        "type": "paragraph"
+    },
+    {
+        "attrs": [],
+        "content": "<strong>Fähigkeiten</strong>: Waldrada kann aus den Schätzen der Natur äußerst hilfreiche Mittelchen brauen. Zudem ist ihre Hexenkunst noch zu ganz anderem in der Lage, als zu bloßen Angriffszaubern im Kampf.",
+        "id": "_WZIw3nSKW",
+        "type": "paragraph"
+    },
+    {
+        "attrs": [],
+        "content": "Brun (Paladin)",
+        "id": "_0yzsy0lya",
+        "type": "h3"
+    },
+    {
+        "attrs": [],
+        "content": "Glaubensfest, streng und unerbittlich war seine Erziehung, und nach diesen Maßstäben ist er vortrefflich geraten. Er zieht als Jäger durch die güldenverlassenen Horte der Welt und treibt dem Orden die Verworfenen zur eindringlichen Befragung zu. Sein unbedingter Eifer ist nicht ganz zufällig, gilt es doch, die Ehre der Familie von einer dunklen Schande reinzuwaschen.",
+        "id": "_k8MQVH6JB",
+        "type": "paragraph"
+    },
+    {
+        "attrs": [],
+        "content": "<strong>Fähigkeiten</strong>: Brun kämpft nicht nur mit Schwert und Hammer, sondern betet auch heilsame Segen für die Gefährten herbei.",
+        "id": "_MEORZw64R",
+        "type": "paragraph"
+    }
+]
+
+----
+
+Logo:
+
+- wolfenhain.gif
+
+----
+
+Cursor:
+
+- gisulf.png
+
+----
+
+Screenshots:
+
+- seefahrt2.png
+- wolfenhain_muehle.png
+- wolfenhain_kampf_gisulf.png
+- wolfenhain_kampf.png
+- wolfenhain_hoehle.png
+- wolfenhain_hausvariante.png
+- wolfenhain_hausansicht.png
+- wolfenhain_gewoelbe.png
+- wolfenhain_falle.png
+- wolfenhain_druide2.png
+- wolfenhain_berghang.png
+- wolfenhain__miene.png
+- wolfenhain_berge.png
+- wolfenhain_rindvieh.gif
+- wolfenhain_schildfurten.png
+- wolfenhain_schnickschnackschnuck.png
+- wolfenhain_stadtszene2.png
+- wolfenhain_stadtszene3.png
+- wolfenhain_szenenbild.png
+- wolfenhain_tempel.png
+- wolfenhain_waldbruecke.png
+
+----
+
+Customtitle: 
+
+----
+
+Description: Wolfenhain versetzt den Spieler in ein Reich der Zauberkraft, des Mutes und der Gefahr. Nur wer Kampkraft mit Geschick zu verbinden weiß und den Rätseln der Welt mit Gewitztheit begegnet, kann das Abenteuer bestehen.
+
+----
+
+Thumbnail:
+
+- wolfenhain_stadtszene3.png
+
+----
+
+Package: 

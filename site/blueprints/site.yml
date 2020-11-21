@@ -1,0 +1,32 @@
+title: Seite
+
+tabs:
+  content:
+    label: Dashboard
+    icon: dashboard
+    sections:
+      games: sections/games
+
+  pages:
+    label: Einstellungen
+    icon: settings
+    columns:
+      - width: 1/2
+        sections:
+          pages:
+            type: pages
+            headline: Seiten
+            create: default
+            image:
+              back: white
+
+      - width: 1/2
+        sections:
+          meta:
+            extends: sections/meta
+            type: fields
+            fields:
+              thumbnail:
+                query: site.files.filterBy('template', 'image')
+
+  images: tabs/images

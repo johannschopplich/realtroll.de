@@ -1,0 +1,127 @@
+:root {
+  --color-primary: hsl(24, 62%, 17%);
+  --color-primary-hover:hsl(24, 62%, 27%);
+  --color-primary-active:hsl(24, 62%, 27%);
+  --color-primary-lucent:hsla(24, 62%, 17%, 0.35);
+  --font-family-base: "Space Mono", monospace;
+  --font-family-heading: "Space Mono", monospace;
+  --radius: 0;
+}
+
+html {
+  background-color: hsl(38, 24%, 96%);
+  background-image: radial-gradient(var(--color-primary-lucent) 1px, hsl(38, 24%, 96%) 1px);
+  background-size: 50px 50px;
+}
+
+.button,
+.control {
+  border-width: 2px;
+  position: static;
+}
+
+.pixelated {
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+
+.hyphenated {
+  overflow-wrap: break-word;
+
+  -webkit-hyphens: auto;
+  -webkit-hyphenate-limit-before: 3;
+  -webkit-hyphenate-limit-after: 3;
+  -webkit-hyphenate-limit-chars: 6 3 3;
+  -webkit-hyphenate-limit-lines: 2;
+  -webkit-hyphenate-limit-last: always;
+  -webkit-hyphenate-limit-zone: 8%;
+
+  hyphens: auto;
+  hyphenate-limit-chars: 6 3 3;
+  hyphenate-limit-lines: 2;
+  hyphenate-limit-last: always;
+  hyphenate-limit-zone: 8%;
+}
+
+.editorial {
+  border-bottom: 2px solid;
+  background:
+    url(/assets/img/editorial-gesichter.png) center bottom no-repeat,
+    url(/assets/img/bg-pattern.svg) center repeat fixed hsl(38, 24%, 96%);
+  background-size: auto 84px, auto;
+  padding-top: 8rem;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+
+.editorial.is-homepage {
+  padding-bottom: 12rem;
+}
+
+.editorial-title {
+  color: var(--color-contrast-higher);
+  font-size: clamp(var(--text-1), 5vw, 3rem);
+  font-family: var(--font-family-heading);
+  font-weight: 600;
+  line-height: 1.1;
+}
+
+.editorial-image {
+  transform: scale(2);
+}
+
+#custom-cursor {
+  position: fixed;
+  top: -120px;
+  left: 1rem;
+  transition: transform 50ms ease;
+  transform: translate(var(--mouseX), var(--mouseY));
+  pointer-events: none;
+  z-index: 10;
+}
+
+.games-grid {
+  display: grid;
+}
+
+.game-card {
+  background: #000;
+  margin-top: -2px;
+}
+
+.game-card-inner {
+  display: grid;
+  grid-template-rows: 1fr auto;
+  height: 100%;
+  background-color: #fff;
+  border: 2px solid #000;
+  padding: var(--space-xl);
+  transition: transform 200ms;
+}
+
+@media (min-width: 640px) {
+  .games-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .game-card:nth-child(2n+1) .game-card-inner {
+    margin-right: -2px;
+  }
+
+  .game-card-inner:hover {
+    transform: translate(-4px,-4px);
+  }
+}
+
+.game-images {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(320px, 1fr)
+  );
+  gap: var(--space-m)
+}
+
+.game-images figure {
+  text-align: center;
+}

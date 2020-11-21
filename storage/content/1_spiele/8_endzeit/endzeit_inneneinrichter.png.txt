@@ -1,0 +1,9 @@
+Caption: Mit diesem Zimmer ist er fertig.
+
+----
+
+Alt: 
+
+----
+
+Template: image

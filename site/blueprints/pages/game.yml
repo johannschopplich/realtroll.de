@@ -1,0 +1,51 @@
+title: Spiel
+
+icon: 🕹
+
+tabs:
+  content:
+    label: Seite
+    icon: page
+    columns:
+      main:
+        width: 2/3
+        fields:
+          downloadLink:
+            label: Downloadlink
+            type: url
+            width: 1/2
+          published:
+            label: Spieldatei hochgeladen am
+            type: date
+            width: 1/2
+          text:
+            label: Text
+            type: editor
+
+      sidebar:
+        width: 1/3
+        sections:
+          sidebar:
+            type: fields
+            fields:
+              logo:
+                label: Logo
+                type: files
+                multiple: false
+                query: page.files.filterBy('template', 'image')
+                uploads: image
+              cursor:
+                label: Cursor
+                type: files
+                multiple: false
+                query: page.files.filterBy('template', 'image')
+                uploads: image
+              screenshots:
+                label: Screeshots
+                type: files
+                query: page.files.filterBy('template', 'image')
+                uploads: image
+
+          meta: sections/meta
+
+  images: tabs/images

@@ -1,0 +1,125 @@
+Title: Moloch City
+
+----
+
+Downloadlink: http://share.cherrytree.at/showfile-8468/moloch_city.zip
+
+----
+
+Published: 2012-12-27
+
+----
+
+Text:
+
+[
+    {
+        "attrs": [],
+        "content": "<strong>Die Stadt</strong> Nirgendwo knallt der Regen niederschmetternder auf den erbarmungslosen Asphalt als in Moloch City. Die Stadt der grauen Herzen kennt weder Vogelsang noch heiteres Glück. Sie zerkaut die Träume und spuckt sie einem ins Gesicht. Das Verbrechen regiert. Blei ist die schwerste Währung. Vertrauen steht nicht mal im Fremdwörterbuch. Moloch City ist das Revier der ganz Harten.",
+        "id": "_7Fn0rG9oS",
+        "type": "paragraph"
+    },
+    {
+        "attrs": [],
+        "content": "<strong>Der Mann </strong>Brick Dynamite ist der knallhärteste Detektiv der Stadt.",
+        "id": "_Npl22kSdS",
+        "type": "paragraph"
+    },
+    {
+        "attrs": [],
+        "content": "<strong>Der Fall </strong>Der Ventilator ächzt schwer gegen den muffigen Rauch ungezählter Zigaretten an. Draußen lässt Moloch City den Regen gegen beide Fenster knallen, drinnen sitzt der Mann mit dem Hut. Alltag in der Detektei Dynamite. Hier klopfen nur die Verzweifelten. Eine geheimnisvolle Fremde mit vollen Brüsten wird sich in Kürze an den härtesten Specht im Wald des Verbrechens wenden. Der Fall wird Wendungen nehmen, denen auch ein abgebrühtes Publikum nicht vorbehaltlos ausgesetzt werden sollte. Autos werden dahinjagen. Eine Mauer des Schweigens muss zertrümmert werden. Es wird Blut fließen. Noch geht Brick Dynamite in Vorbereitung auf den nächsten Scrabble-Abend im Kopf das Alphabet durch. Aber gleich ist jemand an der Tür.",
+        "id": "_lhkaq81tz",
+        "type": "paragraph"
+    },
+    {
+        "attrs": [],
+        "content": "Eigenheiten",
+        "id": "_l5w5fyon7",
+        "type": "h2"
+    },
+    {
+        "attrs": [],
+        "content": "Detektivfilmszenario",
+        "id": "_wm6i1w46b",
+        "type": "ul"
+    },
+    {
+        "attrs": [],
+        "content": "schnelles Kampfsystem",
+        "id": "_pbjflfzrm",
+        "type": "ul"
+    },
+    {
+        "attrs": [],
+        "content": "unerbittliche Dialoge",
+        "id": "_mjla1h656",
+        "type": "ul"
+    },
+    {
+        "attrs": [],
+        "content": "Fährtenschnüffeln und andere Rätsel",
+        "id": "_1kcz05y6e",
+        "type": "ul"
+    },
+    {
+        "attrs": [],
+        "content": "spielfilmlange Spielzeit",
+        "id": "_k9mf2cact",
+        "type": "ul"
+    },
+    {
+        "attrs": {
+            "indent": 0
+        },
+        "content": "Randinformationen",
+        "id": "_8xe74yreb",
+        "type": "h2"
+    },
+    {
+        "attrs": {
+            "indent": 0
+        },
+        "content": "Dieses Spiel entstand im Rahmen des forenübergreifenden Städtewettbewerbs in der deutschen Makerszene und belegte den 1. Platz.",
+        "id": "_yus5ujlw7",
+        "type": "paragraph"
+    }
+]
+
+----
+
+Logo:
+
+- moloch_city_titel.png
+
+----
+
+Cursor:
+
+- brick-dynamite.gif
+
+----
+
+Screenshots:
+
+- mc_intro.png
+- mc_stadt.png
+- mc_strasse.png
+- mc_kampf.png
+
+----
+
+Customtitle: 
+
+----
+
+Description: Dieses Spiel entstand im Rahmen des forenübergreifenden Städtewettbewerbs in der deutschen Makerszene und belegte den 1. Platz.
+
+----
+
+Thumbnail:
+
+- mc_stadt.png
+
+----
+
+Package: - moloch-city.zip

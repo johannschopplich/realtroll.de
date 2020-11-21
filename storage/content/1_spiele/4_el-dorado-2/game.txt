@@ -1,0 +1,134 @@
+Title: El Dorado 2
+
+----
+
+Downloadlink: http://share.cherrytree.at/showfile-9388/el_dorado_2__v11_.zip
+
+----
+
+Published: 2013-03-20
+
+----
+
+Text:
+
+[
+    {
+        "attrs": [],
+        "content": "Spanien im 16. Jahrhundert! Ja, hier weht uns der Odem des großen Abenteuers an. Tollkühne Schiffer in ihren ächzenden Kästen brechen zu neuen Gestaden auf, entdecken heidnische Reiche voll barbarischer Pracht, mühen sich durch Dschungel und Gebirge und schlagen sich mit tückischen Eingeborenen herum. Eine ganze neue Welt wartet darauf, dass man ihr das Heil bringe. Außerdem gibt es dort Gold. Eine ganze Menge sogar.",
+        "id": "_xlllTBXkH",
+        "type": "paragraph"
+    },
+    {
+        "attrs": [],
+        "content": "Das bringt auch weniger episch aufgelegte Charaktere auf den Gedanken, in der edelmetallglänzenden Ferne ihr Glück zu versuchen, vor allem wenn es in der Heimat ohnehin gerade nicht sonderlich doll läuft. Dies ist die Geschichte zweier dieser Abenteurer.",
+        "id": "_qYGOjPv1s",
+        "type": "paragraph"
+    },
+    {
+        "attrs": [],
+        "content": "Charaktere",
+        "id": "_4dpbyy2q8",
+        "type": "h2"
+    },
+    {
+        "attrs": [],
+        "content": "Hernando",
+        "id": "_c6zw727en",
+        "type": "h3"
+    },
+    {
+        "attrs": [],
+        "content": "H wie goldgierig, E wie goldgierig, R wie goldgierig, N wie goldgierig, A wie goldgierig, N wie ... ach so, das hatten wir schon, D wie goldgierig, O wie goldgierig. So buchstabiert man Don Hernando. Er ist der Spross einer stolzen Hidalgofamilie, liebt das Gold und hat doch so wenig. Das verhalf ihm zu einem der beachtlichsten Schuldenberge ganz Spaniens und zu wutschnaubenden Gläubigern, die ihm nun nach dem Leben trachten.",
+        "id": "_I8K5kHBwP",
+        "type": "paragraph"
+    },
+    {
+        "attrs": [],
+        "content": "Hernando kann sich mit seiner Waffe einen Weg durch Gegner und andere Hindernisse bahnen.",
+        "id": "_B6qH0zgGU",
+        "type": "paragraph"
+    },
+    {
+        "attrs": [],
+        "content": "Pedro",
+        "id": "_td5h6nab4",
+        "type": "h3"
+    },
+    {
+        "attrs": [],
+        "content": "Der treue Knecht bewirtschaftet das verfallene Anwesen und folgt seinem Herrn brav aufs Wort. Als Produkt generationenlanger Dienerschaft ist ihm schon von Geburt an der Gedanke an Aufsässigkeit unmöglich. Eigentlich ist jemand wie er für ein unauffälliges und eintöniges Leben vorgesehen, wären da nicht die Umtriebe des Dons, die Pedro ins Abenteuer trudeln lassen.",
+        "id": "_WCiWq3Z2b",
+        "type": "paragraph"
+    },
+    {
+        "attrs": [],
+        "content": "Pedro kann springen und lernt recht schnell neue Fähigkeiten, um in Bereiche der Spielwelt zu gelangen, die dem Don verwehrt sind. Außerdem unterstützt er seinen Herrn im Kampf, sofern es ihm denn gelingt, auf dem Kampffeld die richtigen Dinge zusammenzuknobeln.",
+        "id": "_bpQ6BwqV7",
+        "type": "paragraph"
+    },
+    {
+        "attrs": [],
+        "content": "Spielbestandteile",
+        "id": "_xs33x5fz3",
+        "type": "h2"
+    },
+    {
+        "attrs": [],
+        "content": "Das Kampfsystem",
+        "id": "_yhrzyre8y",
+        "type": "h3"
+    },
+    {
+        "attrs": [],
+        "content": "Es wird rundenweise gekämpft. Hernando schwingt den Degen und versucht, die gegnerische Parade zu überwinden und im folgenden Zug nicht in den Schlag des Feindes zu laufen. Zudem kann er spezielle Angriffsmanöver ausführen (Combos), die allerdings etwas Geschick verlangen und daher nicht ganz ohne Risiko für den Anwender sind. Pedro schaut entweder bewundernd/verängstigt zu oder greift selbst ein. Auf dem Kampffeld liegen verschiedene Dinge herum. In der richtigen Kombination angewendet, können sie zum sofortigen Tod eines normalen Gegners führen. In der falschen Kombination hingegen sieht man eine lustige Animation, die zeigt, was Hernando alles zustoßen kann. Bossgegner erfordern verstärkten Knobeleinsatz.",
+        "id": "_J2CbjOzcB",
+        "type": "paragraph"
+    },
+    {
+        "attrs": [],
+        "content": "Das Spiel richtet sich an Erkunder, Knobler und Kämpfer. Zuweilen müssen die Fähigkeiten beider Helden kombiniert werden, um weiter zu kommen, beispielsweise <strong>Zerschmettern</strong>, <strong>Springen</strong> und <strong>Schwimmen</strong>. Wer gerne sucht, wird einige Extras entdecken können. Der Schwierigkeitsgrad ist im Vergleich zum Vorgänger deutlich moderater. Es gibt keinen Zeitdruck mehr, man kann außerhalb der Kämpfe jederzeit speichern und der Heldentod wird ein seltenes Ereignis sein - es sei denn, man legt es darauf an.",
+        "id": "_iv3mfS2lK",
+        "type": "paragraph"
+    }
+]
+
+----
+
+Logo:
+
+- el-dorado-2.gif
+
+----
+
+Cursor: 
+
+----
+
+Screenshots:
+
+- el_dorado_2_anwesen.png
+- el_dorado_2_graben.png
+- el_dorado_2_gras.gif
+- el_dorado_2_kampf.png
+- el_dorado_2_schiff.png
+- el_dorado_2_schiffanimation.gif
+- el_dorado_2_strand.gif
+
+----
+
+Customtitle: 
+
+----
+
+Description: Spanien im 16. Jahrhundert! Ja, hier weht uns der Odem des großen Abenteuers an.
+
+----
+
+Thumbnail:
+
+- titel.png
+
+----
+
+Package: - el-dorado-2-v1.1.zip

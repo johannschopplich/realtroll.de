@@ -1,0 +1,14 @@
+.DS_Store
+/.env
+
+# Kirby
+.lock
+/public/media/*
+!/public/media/index.html
+/storage/accounts/*
+!/storage/accounts/.gitkeep
+/storage/cache/*
+!/storage/cache/.gitkeep
+/storage/sessions/*
+!/storage/sessions/.gitkeep
+/site/config/.license

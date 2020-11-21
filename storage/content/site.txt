@@ -1,0 +1,13 @@
+Title: Trollspiele
+
+----
+
+Customtitle: 
+
+----
+
+Description: Real Troll erstellt Spiele mit dem RPG Maker. Sein aktuelles Projekt ist „Endzeit“.
+
+----
+
+Thumbnail: 

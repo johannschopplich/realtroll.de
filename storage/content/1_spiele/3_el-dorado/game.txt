@@ -1,0 +1,90 @@
+Title: El Dorado
+
+----
+
+Downloadlink: http://share.cherrytree.at/showfile-9287/el_dorado_14_.zip
+
+----
+
+Published: 2013-03-12
+
+----
+
+Text:
+
+[
+    {
+        "attrs": [],
+        "content": "Hernando will ans Gold und hat nur eine Minute Zeit. Das ist das Grundprinzip jedes der zehn Levels. Und in jedem Level liegen Dinge bereit, mit denen Hernando sich seinen Weg bahnen kann. Allerdings auch Fallen – tödliche Fallen, denn El Dorado winkt nur dem mutigen Abenteurer.",
+        "id": "_yzpvnkp1z",
+        "type": "paragraph"
+    },
+    {
+        "attrs": [],
+        "content": "Wer einen pfiffigen Knobelkopf obenauf trägt, hat es leichter. Aber gelegentlich wird auch dem nur das gute, alte Versuch&amp;Irrtum helfen. Und über allem tickt unbarmherzig die Uhr.",
+        "id": "_051j6ljch",
+        "type": "paragraph"
+    },
+    {
+        "attrs": [],
+        "content": "Steuerung",
+        "id": "_geqc089qk",
+        "type": "h2"
+    },
+    {
+        "attrs": [],
+        "content": "Pfeiltasten: Heldenlenkung<br>Enter: Aktion<br>F12: Spiel beenden<br>(Zu Anfang darf der Schwierigkeitsgrad eingestellt werden. Wähle weise, Wanderer.)",
+        "id": "_yfO7A30DQ",
+        "type": "paragraph"
+    },
+    {
+        "attrs": [],
+        "content": "Bildbeschreibung",
+        "id": "_62xpuz96i",
+        "type": "h2"
+    },
+    {
+        "attrs": [],
+        "content": "Ein Intro nach allen Regeln packender Dramatik führt Hernando in die Spielwelt, die ebenso teuflisch verzwickt wie opulent gestaltet wurde. Nie war der Dschungel tödlich schöner. Jawohl, ja.",
+        "id": "_gwf5lcrn4",
+        "type": "paragraph"
+    }
+]
+
+----
+
+Logo:
+
+- eldorado.png
+
+----
+
+Cursor:
+
+- hernando.gif
+
+----
+
+Screenshots:
+
+- eldorado1.png
+- eldorado2.png
+- eldorado3.gif
+
+----
+
+Customtitle: 
+
+----
+
+Description: Hernando will ans Gold und hat nur eine Minute Zeit. Das ist das Grundprinzip jedes der zehn Levels.
+
+----
+
+Thumbnail:
+
+- eldorado3.gif
+
+----
+
+Package: - el-dorado-1.4.zip
