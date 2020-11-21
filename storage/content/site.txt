@@ -10,4 +10,6 @@ Description: Real Troll erstellt Spiele mit dem RPG Maker. Sein aktuelles Projek
 
 ----
 
-Thumbnail: 
+Thumbnail:
+
+- pdm_jan11_1p.png

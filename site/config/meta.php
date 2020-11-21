@@ -14,15 +14,14 @@ return function ($page, $site) {
         'title' => $title,
         'meta' => [
             'description' => $description,
-            'theme-color' => '#462610',
-            'apple-mobile-web-app-capable' => 'yes',
-            'apple-mobile-web-app-status-bar-style' => 'default',
-            'apple-mobile-web-app-title' => $site->title()->value()
+            'theme-color' => '#462610'
         ],
         'link' => [
             'canonical' => $page->url(),
-            'apple-touch-icon' => ['href' => '/img/apple-touch-icon.png', 'sizes' => '180x180'],
-            'icon' => ['href' => '/img/favicon.svg', 'type' =>'image/svg+xml']
+            'icon' => [
+                ['href' => '/assets/img/icons/favicon-32x32.png', 'sizes' => '32x32', 'type' =>'image/png'],
+                ['href' => '/assets/img/icons/favicon-16x16.png', 'sizes' => '16x16', 'type' =>'image/png']
+            ]
         ],
         'og' => [
             'type' => 'website',
