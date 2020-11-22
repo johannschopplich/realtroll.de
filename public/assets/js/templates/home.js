@@ -20,6 +20,7 @@ const cursorImg = document.querySelector('#custom-cursor')
 
 function main () {
   if (!cursorImg) return
+  if (!window.matchMedia('(hover: hover)').matches) return
 
   let lastElement
   let lastTimerId
