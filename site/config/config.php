@@ -8,7 +8,9 @@ return [
     'debug' => env('KIRBY_DEBUG', false),
 
     'panel' => [
-        'install' => env('KIRBY_PANEL_INSTALL', false)
+        'install' => env('KIRBY_PANEL_INSTALL', false),
+        'slug' => env('KIRBY_PANEL_SLUG', 'panel'),
+        'css' => 'assets/css/custom-panel.css'
     ],
 
     'cache' => [

@@ -1,7 +1,12 @@
 <?php snippet('header') ?>
 
 <div class="container is-lg text-center">
-  <h1 class="editorial-title hyphenated"><?= $page->title()->html() ?></h1>
+  <h1 class="editorial-title hyphenated">
+    <?= $page->title()->html() ?>
+  </h1>
+  (<a href="#screenshots" class="button is-text">
+    Direkt zu den Screenshots
+  </a>)
 </div>
 
 <div class="section">
@@ -18,7 +23,7 @@
   </div>
 </div>
 
-<div class="section">
+<div id="screenshots" class="section">
   <div class="container is-lg">
     <div class="game-images">
       <?php foreach ($page->screenshots()->toFiles() as $file): ?>

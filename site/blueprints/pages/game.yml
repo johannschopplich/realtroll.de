@@ -15,7 +15,7 @@ tabs:
             type: url
             width: 1/2
           published:
-            label: Spieldatei hochgeladen am
+            label: Erstveröffentlichung
             type: date
             width: 1/2
           text:
@@ -34,17 +34,19 @@ tabs:
                 multiple: false
                 query: page.files.filterBy('template', 'image')
                 uploads: image
+              screenshots:
+                label: Screeshots
+                type: files
+                query: page.files.filterBy('template', 'image')
+                uploads: image
               cursor:
                 label: Cursor
                 type: files
                 multiple: false
                 query: page.files.filterBy('template', 'image')
                 uploads: image
-              screenshots:
-                label: Screeshots
-                type: files
-                query: page.files.filterBy('template', 'image')
-                uploads: image
+                help: >
+                  Derzeit ungenutze Spielerei.
 
           meta: sections/meta
 
