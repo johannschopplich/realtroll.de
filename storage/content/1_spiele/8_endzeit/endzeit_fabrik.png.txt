@@ -1,9 +1,0 @@
-Caption: Eine Fabrik für Fabrikrohre, derzeit außer Betrieb.
-
-----
-
-Alt: 
-
-----
-
-Template: image

@@ -109,7 +109,11 @@ html {
   }
 
   .game-card-inner:hover {
-    transform: translate(-4px,-4px);
+    transform: translate(-4px, -4px);
+  }
+
+  .game-card-inner:hover:active {
+    transform: translate(0, 0);
   }
 }
 

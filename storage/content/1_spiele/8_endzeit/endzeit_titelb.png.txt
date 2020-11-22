@@ -1,9 +1,0 @@
-Caption: Das Menü ist eröffnet.
-
-----
-
-Alt: 
-
-----
-
-Template: image
