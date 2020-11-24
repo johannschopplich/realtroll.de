@@ -1,24 +1,30 @@
 <?php snippet('header') ?>
 
 <div class="container is-lg text-center">
-  <h1 class="editorial-title hyphenated">
+  <h1 class="editorial-title hyphenated mb-xl">
     <?= $page->title()->html() ?>
   </h1>
-  (<a href="#screenshots" class="button is-text">
-    Direkt zu den Screenshots
-  </a>)
+
+  <div class="columns is-centered has-gap-m">
+    <?php if ($page->gameFolder()->isNotEmpty()): ?>
+      <div class="column is-narrow">
+        <a href="/player/?game=<?= $page->gameFolder() ?>" class="button is-primary is-m" target="_blank">
+          Online spielen!
+        </a>
+      </div>
+    <?php endif ?>
+    <div class="column is-narrow">
+      <a href="<?= $page->downloadLink() ?>" class="button is-primary is-m<?php e($page->gameFolder()->isNotEmpty(), ' is-outlined') ?>">
+        Download (Windows)
+      </a>
+    </div>
+  </div>
 </div>
 
 <div class="section">
   <div class="container for-content">
-    <div class="content mb-xl">
-      <?= $page->text()->blocks() ?>
-    </div>
-
-    <div class="text-center">
-      <a href="<?= $page->downloadLink() ?>" class="button is-primary is-outlined is-l">
-        Downloadlink her!
-      </a>
+    <div class="content">
+      <?= $page->intro()->blocks() ?>
     </div>
   </div>
 </div>
@@ -36,6 +42,14 @@
           <?php endif ?>
         </figure>
       <?php endforeach ?>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="container for-content">
+    <div class="content">
+      <?= $page->text()->blocks() ?>
     </div>
   </div>
 </div>

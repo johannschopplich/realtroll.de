@@ -9,6 +9,7 @@
 }
 
 html {
+  height: 100%;
   background-color: hsl(38, 24%, 96%);
   background-image: radial-gradient(var(--color-primary-lucent) 1px, hsl(38, 24%, 96%) 1px);
   background-size: 50px 50px;
@@ -18,6 +19,12 @@ html {
   html {
     scroll-behavior: smooth;
   }
+}
+
+body {
+  height: 100%;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
 }
 
 .button,

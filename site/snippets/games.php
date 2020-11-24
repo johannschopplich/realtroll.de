@@ -25,7 +25,7 @@
             <p class="text-4 mb-m"><?= $game->description() ?></p>
 
             <a href="<?= $game->url() ?>" class="button is-primary text-4 stretched-link">
-              Mehr & Download…
+              Mehr zum Spiel…
             </a>
           </div>
         </div>

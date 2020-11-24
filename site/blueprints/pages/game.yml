@@ -18,6 +18,19 @@ tabs:
             label: Erstveröffentlichung
             type: date
             width: 1/2
+          intro:
+            label: Intro
+            type: editor
+            allowed:
+              - h2
+              - h3
+              - hr
+              - paragraph
+              - blockquote
+              - ol
+              - ul
+              - image
+              - video
           text:
             label: Text
             type: editor
@@ -45,10 +58,17 @@ tabs:
                 query: page.files.filterBy('template', 'image')
                 uploads: image
               screenshots:
-                label: Screeshots
+                label: Screenshots
                 type: files
                 query: page.files.filterBy('template', 'image')
                 uploads: image
+              gameFolder:
+                label: Ordnername fürs Onlinespielen
+                type: text
+                text:
+                  - Nein
+                  - Ja
+                help: Nur ausfüllen, wenn das Spiel hochgeladen, entpackt, und die `index.json` für den EasyRPG Player generiert wurde. Nicht vom Redaktionsbereich aus handhabbar.
               cursor:
                 label: Cursor
                 type: files
