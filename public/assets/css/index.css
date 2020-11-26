@@ -142,3 +142,7 @@ body {
 .game-images figure {
   text-align: center;
 }
+
+.footer nav a:hover {
+  text-decoration: underline;
+}
