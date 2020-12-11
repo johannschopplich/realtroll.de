@@ -40,12 +40,16 @@ function main () {
       clearInterval(lastTimerId)
 
       const sources = element.dataset.screenshots.split('|')
+      const preloadImg = new Image()
+
+      cursorImg.src = sources[0]
+      preloadImg.src = sources[1]
 
       let index = 1
-      cursorImg.src = sources[0]
       lastTimerId = setInterval(() => {
         if (index === sources.length) index = 0
         cursorImg.src = sources[index]
+        preloadImg.src = sources[index + 1]
         index++
       }, 1000)
 
