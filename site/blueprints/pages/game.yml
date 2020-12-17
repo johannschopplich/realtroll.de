@@ -20,30 +20,10 @@ tabs:
             width: 1/2
           intro:
             label: Intro
-            type: editor
-            allowed:
-              - h2
-              - h3
-              - hr
-              - paragraph
-              - blockquote
-              - ol
-              - ul
-              - image
-              - video
+            type: blocks
           text:
             label: Text
-            type: editor
-            allowed:
-              - h2
-              - h3
-              - hr
-              - paragraph
-              - blockquote
-              - ol
-              - ul
-              - image
-              - video
+            type: blocks
 
       sidebar:
         width: 1/3

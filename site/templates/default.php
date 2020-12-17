@@ -7,7 +7,7 @@
 <div class="section">
   <div class="container for-content">
     <div class="content">
-      <?= $page->text()->blocks() ?>
+      <?= $page->text()->toBlocks() ?>
     </div>
   </div>
 </div>

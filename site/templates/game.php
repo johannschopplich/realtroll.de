@@ -8,7 +8,7 @@
   <div class="columns is-centered has-gap-m">
     <?php if ($page->gameFolder()->isNotEmpty()): ?>
       <div class="column is-narrow">
-        <a href="/player/?game=<?= $page->gameFolder() ?>" class="button is-primary is-m" target="_blank">
+        <a href="/play/?game=<?= $page->gameFolder() ?>" class="button is-primary is-m" target="_blank">
           Online spielen!
         </a>
       </div>
@@ -24,7 +24,7 @@
 <div class="section">
   <div class="container for-content">
     <div class="content">
-      <?= $page->intro()->blocks() ?>
+      <?= $page->intro()->toBlocks() ?>
     </div>
   </div>
 </div>
@@ -50,7 +50,7 @@
   <div class="section">
     <div class="container for-content">
       <div class="content">
-        <?= $page->text()->blocks() ?>
+        <?= $page->text()->toBlocks() ?>
       </div>
     </div>
   </div>

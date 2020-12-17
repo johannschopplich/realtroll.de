@@ -8,7 +8,7 @@ columns:
     fields:
       text:
         label: Text
-        type: editor
+        type: blocks
 
   sidebar:
     width: 1/3

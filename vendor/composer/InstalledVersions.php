@@ -1,5 +1,15 @@
 <?php
 
+
+
+
+
+
+
+
+
+
+
 namespace Composer;
 
 use Composer\Semver\VersionParser;
@@ -19,7 +29,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => 'a6f2dcc8f8278b4ee3768387d162856b0c8187c0',
+    'reference' => '6486e38897861f0076ca32d940bd22029c0781f8',
     'name' => '__root__',
   ),
   'versions' => 
@@ -31,34 +41,43 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => 'a6f2dcc8f8278b4ee3768387d162856b0c8187c0',
+      'reference' => '6486e38897861f0076ca32d940bd22029c0781f8',
     ),
     'claviska/simpleimage' => 
     array (
-      'pretty_version' => '3.3.4',
-      'version' => '3.3.4.0',
+      'pretty_version' => '3.5.1',
+      'version' => '3.5.1.0',
       'aliases' => 
       array (
       ),
-      'reference' => '3786d80af8e6d05e5e42f0350e5e5da5b92041a0',
+      'reference' => 'ab2ab8a4672738ab77b39b00922ee4e79aeadb11',
+    ),
+    'distantnative/retour-for-kirby' => 
+    array (
+      'pretty_version' => '3.0.0',
+      'version' => '3.0.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'e9409cfca31e30d15409d5e8bf1ea481436883ce',
     ),
     'filp/whoops' => 
     array (
-      'pretty_version' => '2.7.2',
-      'version' => '2.7.2.0',
+      'pretty_version' => '2.9.1',
+      'version' => '2.9.1.0',
       'aliases' => 
       array (
       ),
-      'reference' => '17d0d3f266c8f925ebd035cd36f83cf802b47d4a',
+      'reference' => '307fb34a5ab697461ec4c9db865b20ff2fd40771',
     ),
     'getkirby/cms' => 
     array (
-      'pretty_version' => '3.4.4',
-      'version' => '3.4.4.0',
+      'pretty_version' => '3.5.0',
+      'version' => '3.5.0.0',
       'aliases' => 
       array (
       ),
-      'reference' => '6112f1cb8ebf9c36e8a9f97ae08acc910ddbc792',
+      'reference' => '0d2751af7cb478df14f30fac47fe9a2cd3b38114',
     ),
     'getkirby/composer-installer' => 
     array (
@@ -68,15 +87,6 @@ private static $installed = array (
       array (
       ),
       'reference' => '240a8b2c275d61b66601feb58222b7d34bc6cf1e',
-    ),
-    'getkirby/editor' => 
-    array (
-      'pretty_version' => '1.0.4',
-      'version' => '1.0.4.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => '1d19e9c8acad5125ddb6208ba109f7e2f0510eb9',
     ),
     'graham-campbell/result-type' => 
     array (
@@ -89,21 +99,21 @@ private static $installed = array (
     ),
     'johannschopplich/kirby-extended' => 
     array (
-      'pretty_version' => 'v1.1.0',
-      'version' => '1.1.0.0',
+      'pretty_version' => 'v1.1.1',
+      'version' => '1.1.1.0',
       'aliases' => 
       array (
       ),
-      'reference' => '4ad146ff29e79b80a184ed3aa43bac6d8037b68f',
+      'reference' => 'b22b810dee3873320de86d8fc1cb7a625b279c21',
     ),
     'laminas/laminas-escaper' => 
     array (
-      'pretty_version' => '2.6.1',
-      'version' => '2.6.1.0',
+      'pretty_version' => '2.7.0',
+      'version' => '2.7.0.0',
       'aliases' => 
       array (
       ),
-      'reference' => '25f2a053eadfa92ddacb609dcbbc39362610da70',
+      'reference' => '5e04bc5ae5990b17159d79d331055e2c645e5cc5',
     ),
     'laminas/laminas-zendframework-bridge' => 
     array (
@@ -148,32 +158,14 @@ private static $installed = array (
       ),
       'reference' => '4627c838b16550b666d15aeae1e5289dd5b77da0',
     ),
-    'paquettg/php-html-parser' => 
-    array (
-      'pretty_version' => '2.2.1',
-      'version' => '2.2.1.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => '668c770fc5724ea3f15b8791435f054835be8d5e',
-    ),
-    'paquettg/string-encode' => 
-    array (
-      'pretty_version' => '1.0.1',
-      'version' => '1.0.1.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => 'a8708e9fac9d5ddfc8fc2aac6004e2cd05d80fee',
-    ),
     'phpmailer/phpmailer' => 
     array (
-      'pretty_version' => 'v6.1.6',
-      'version' => '6.1.6.0',
+      'pretty_version' => 'v6.2.0',
+      'version' => '6.2.0.0',
       'aliases' => 
       array (
       ),
-      'reference' => 'c2796cb1cb99d7717290b48c4e6f32cb6c60b7b3',
+      'reference' => 'e38888a75c070304ca5514197d4847a59a5c853f',
     ),
     'phpoption/phpoption' => 
     array (
@@ -242,7 +234,7 @@ private static $installed = array (
     array (
       'replaced' => 
       array (
-        0 => '2.6.1',
+        0 => '^2.6.1',
       ),
     ),
   ),
