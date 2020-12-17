@@ -17,10 +17,6 @@ class ComposerStaticInited365dbf95655c135f6b4cd3d44ac96d
     );
 
     public static $prefixLengthsPsr4 = array (
-        'd' => 
-        array (
-            'distantnative\\Retour\\' => 21,
-        ),
         'W' => 
         array (
             'Whoops\\' => 7,
@@ -62,10 +58,6 @@ class ComposerStaticInited365dbf95655c135f6b4cd3d44ac96d
     );
 
     public static $prefixDirsPsr4 = array (
-        'distantnative\\Retour\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/site/plugins/retour-for-kirby/models',
-        ),
         'Whoops\\' => 
         array (
             0 => __DIR__ . '/..' . '/filp/whoops/src/Whoops',
@@ -108,8 +100,8 @@ class ComposerStaticInited365dbf95655c135f6b4cd3d44ac96d
         ),
         'Kirby\\' => 
         array (
-            0 => __DIR__ . '/..' . '/getkirby/composer-installer/src',
-            1 => __DIR__ . '/..' . '/getkirby/cms/src',
+            0 => __DIR__ . '/..' . '/getkirby/cms/src',
+            1 => __DIR__ . '/..' . '/getkirby/composer-installer/src',
         ),
         'KirbyExtended\\' => 
         array (
@@ -493,11 +485,6 @@ class ComposerStaticInited365dbf95655c135f6b4cd3d44ac96d
         'Whoops\\Util\\SystemFacade' => __DIR__ . '/..' . '/filp/whoops/src/Whoops/Util/SystemFacade.php',
         'Whoops\\Util\\TemplateHelper' => __DIR__ . '/..' . '/filp/whoops/src/Whoops/Util/TemplateHelper.php',
         'claviska\\SimpleImage' => __DIR__ . '/..' . '/claviska/simpleimage/src/claviska/SimpleImage.php',
-        'distantnative\\Retour\\Log' => __DIR__ . '/../..' . '/site/plugins/retour-for-kirby/models/Log.php',
-        'distantnative\\Retour\\Retour' => __DIR__ . '/../..' . '/site/plugins/retour-for-kirby/models/Retour.php',
-        'distantnative\\Retour\\Route' => __DIR__ . '/../..' . '/site/plugins/retour-for-kirby/models/Route.php',
-        'distantnative\\Retour\\Routes' => __DIR__ . '/../..' . '/site/plugins/retour-for-kirby/models/Routes.php',
-        'distantnative\\Retour\\Upgrades' => __DIR__ . '/../..' . '/site/plugins/retour-for-kirby/models/Upgrades.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

@@ -29,7 +29,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => '6486e38897861f0076ca32d940bd22029c0781f8',
+    'reference' => 'ac553cc52e69e8bc97d303a6a7627ba27b0cd11d',
     'name' => '__root__',
   ),
   'versions' => 
@@ -41,7 +41,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => '6486e38897861f0076ca32d940bd22029c0781f8',
+      'reference' => 'ac553cc52e69e8bc97d303a6a7627ba27b0cd11d',
     ),
     'claviska/simpleimage' => 
     array (
@@ -51,15 +51,6 @@ private static $installed = array (
       array (
       ),
       'reference' => 'ab2ab8a4672738ab77b39b00922ee4e79aeadb11',
-    ),
-    'distantnative/retour-for-kirby' => 
-    array (
-      'pretty_version' => '3.0.0',
-      'version' => '3.0.0.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => 'e9409cfca31e30d15409d5e8bf1ea481436883ce',
     ),
     'filp/whoops' => 
     array (

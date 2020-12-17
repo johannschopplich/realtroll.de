@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f2e4a550e2df630b10c28bc483460d8f",
+    "content-hash": "2318cafcf758db2ae711667830de6d4b",
     "packages": [
         {
             "name": "claviska/simpleimage",
@@ -54,60 +54,6 @@
                 }
             ],
             "time": "2020-10-30T20:47:26+00:00"
-        },
-        {
-            "name": "distantnative/retour-for-kirby",
-            "version": "3.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/distantnative/retour-for-kirby.git",
-                "reference": "e9409cfca31e30d15409d5e8bf1ea481436883ce"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/distantnative/retour-for-kirby/zipball/e9409cfca31e30d15409d5e8bf1ea481436883ce",
-                "reference": "e9409cfca31e30d15409d5e8bf1ea481436883ce",
-                "shasum": ""
-            },
-            "require": {
-                "getkirby/composer-installer": "^1.2"
-            },
-            "type": "kirby-plugin",
-            "autoload": {
-                "psr-4": {
-                    "distantnative\\Retour\\": "models/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Nico Hoffmann",
-                    "email": "on-github@nhoffmann.com"
-                }
-            ],
-            "description": "Redirects and error tracking for Kirby",
-            "keywords": [
-                "errors",
-                "kirby3",
-                "kirby3-cms",
-                "kirby3-plugin",
-                "redirects",
-                "routing"
-            ],
-            "support": {
-                "issues": "https://github.com/distantnative/retour-for-kirby/issues",
-                "source": "https://github.com/distantnative/retour-for-kirby/tree/3.0.0"
-            },
-            "funding": [
-                {
-                    "url": "https://paypal.me/distantnative",
-                    "type": "custom"
-                }
-            ],
-            "time": "2020-12-13T15:34:47+00:00"
         },
         {
             "name": "filp/whoops",

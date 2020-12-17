@@ -14,6 +14,8 @@ return [
         'css' => 'assets/css/custom-panel.css'
     ],
 
+    'routes' => require __DIR__ . '/routes.php',
+
     'cache' => [
         'pages' => [
             'active' => env('KIRBY_CACHE', false),

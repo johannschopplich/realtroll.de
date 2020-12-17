@@ -352,9 +352,4 @@ return array(
     'Whoops\\Util\\SystemFacade' => $vendorDir . '/filp/whoops/src/Whoops/Util/SystemFacade.php',
     'Whoops\\Util\\TemplateHelper' => $vendorDir . '/filp/whoops/src/Whoops/Util/TemplateHelper.php',
     'claviska\\SimpleImage' => $vendorDir . '/claviska/simpleimage/src/claviska/SimpleImage.php',
-    'distantnative\\Retour\\Log' => $baseDir . '/site/plugins/retour-for-kirby/models/Log.php',
-    'distantnative\\Retour\\Retour' => $baseDir . '/site/plugins/retour-for-kirby/models/Retour.php',
-    'distantnative\\Retour\\Route' => $baseDir . '/site/plugins/retour-for-kirby/models/Route.php',
-    'distantnative\\Retour\\Routes' => $baseDir . '/site/plugins/retour-for-kirby/models/Routes.php',
-    'distantnative\\Retour\\Upgrades' => $baseDir . '/site/plugins/retour-for-kirby/models/Upgrades.php',
 );

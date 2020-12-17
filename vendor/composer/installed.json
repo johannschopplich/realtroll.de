@@ -53,63 +53,6 @@
             "install-path": "../claviska/simpleimage"
         },
         {
-            "name": "distantnative/retour-for-kirby",
-            "version": "3.0.0",
-            "version_normalized": "3.0.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/distantnative/retour-for-kirby.git",
-                "reference": "e9409cfca31e30d15409d5e8bf1ea481436883ce"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/distantnative/retour-for-kirby/zipball/e9409cfca31e30d15409d5e8bf1ea481436883ce",
-                "reference": "e9409cfca31e30d15409d5e8bf1ea481436883ce",
-                "shasum": ""
-            },
-            "require": {
-                "getkirby/composer-installer": "^1.2"
-            },
-            "time": "2020-12-13T15:34:47+00:00",
-            "type": "kirby-plugin",
-            "installation-source": "dist",
-            "autoload": {
-                "psr-4": {
-                    "distantnative\\Retour\\": "models/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Nico Hoffmann",
-                    "email": "on-github@nhoffmann.com"
-                }
-            ],
-            "description": "Redirects and error tracking for Kirby",
-            "keywords": [
-                "errors",
-                "kirby3",
-                "kirby3-cms",
-                "kirby3-plugin",
-                "redirects",
-                "routing"
-            ],
-            "support": {
-                "issues": "https://github.com/distantnative/retour-for-kirby/issues",
-                "source": "https://github.com/distantnative/retour-for-kirby/tree/3.0.0"
-            },
-            "funding": [
-                {
-                    "url": "https://paypal.me/distantnative",
-                    "type": "custom"
-                }
-            ],
-            "install-path": "../../site/plugins/retour-for-kirby"
-        },
-        {
             "name": "filp/whoops",
             "version": "2.9.1",
             "version_normalized": "2.9.1.0",
