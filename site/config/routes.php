@@ -9,7 +9,7 @@ return [
             'player/(:all)'
         ],
         'action' => function () {
-            go('play?' . Url::query());
+            go('play/?' . Url::query());
         }
     ]
 ];
