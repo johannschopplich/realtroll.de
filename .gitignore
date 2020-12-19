@@ -14,3 +14,7 @@
 /storage/sessions/*
 !/storage/sessions/.gitkeep
 /site/config/.license
+
+# Site-specific
+!/public/play/games/.gitkeep
+/public/play/games/*
