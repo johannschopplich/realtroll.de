@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2318cafcf758db2ae711667830de6d4b",
+    "content-hash": "d104bfcf24ef04b07e8124e7a6fc3965",
     "packages": [
         {
             "name": "claviska/simpleimage",
@@ -193,24 +193,23 @@
         },
         {
             "name": "getkirby/composer-installer",
-            "version": "1.2.0",
+            "version": "1.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/getkirby/composer-installer.git",
-                "reference": "240a8b2c275d61b66601feb58222b7d34bc6cf1e"
+                "reference": "c98ece30bfba45be7ce457e1102d1b169d922f3d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getkirby/composer-installer/zipball/240a8b2c275d61b66601feb58222b7d34bc6cf1e",
-                "reference": "240a8b2c275d61b66601feb58222b7d34bc6cf1e",
+                "url": "https://api.github.com/repos/getkirby/composer-installer/zipball/c98ece30bfba45be7ce457e1102d1b169d922f3d",
+                "reference": "c98ece30bfba45be7ce457e1102d1b169d922f3d",
                 "shasum": ""
             },
             "require": {
                 "composer-plugin-api": "^1.0 || ^2.0"
             },
             "require-dev": {
-                "composer/composer": "^1.8 || 2.0.*@dev",
-                "phpunit/phpunit": "^7.0"
+                "composer/composer": "^1.8 || ^2.0"
             },
             "type": "composer-plugin",
             "extra": {
@@ -229,9 +228,15 @@
             "homepage": "https://getkirby.com",
             "support": {
                 "issues": "https://github.com/getkirby/composer-installer/issues",
-                "source": "https://github.com/getkirby/composer-installer/tree/1.2.0"
+                "source": "https://github.com/getkirby/composer-installer/tree/1.2.1"
             },
-            "time": "2020-09-13T14:43:34+00:00"
+            "funding": [
+                {
+                    "url": "https://getkirby.com/buy",
+                    "type": "custom"
+                }
+            ],
+            "time": "2020-12-28T12:54:39+00:00"
         },
         {
             "name": "graham-campbell/result-type",
@@ -301,28 +306,26 @@
         },
         {
             "name": "johannschopplich/kirby-extended",
-            "version": "v1.2.2",
+            "version": "v2.5.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/johannschopplich/kirby-extended.git",
-                "reference": "d02b2b1cdac4038ea54f51ed4621f8561c71fbc5"
+                "reference": "b7e264590fd20af290330480d5f301eceb5f5c4b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/johannschopplich/kirby-extended/zipball/d02b2b1cdac4038ea54f51ed4621f8561c71fbc5",
-                "reference": "d02b2b1cdac4038ea54f51ed4621f8561c71fbc5",
+                "url": "https://api.github.com/repos/johannschopplich/kirby-extended/zipball/b7e264590fd20af290330480d5f301eceb5f5c4b",
+                "reference": "b7e264590fd20af290330480d5f301eceb5f5c4b",
                 "shasum": ""
             },
             "require": {
                 "getkirby/composer-installer": "^1.2",
                 "php": ">=7.4.0",
-                "phpoption/phpoption": "^1.7",
                 "vlucas/phpdotenv": "^5.0",
                 "voku/html-min": "^4.4"
             },
             "require-dev": {
-                "getkirby/cms": "^3.0",
-                "phpunit/phpunit": "^9.0"
+                "getkirby/cms": "^3.0"
             },
             "type": "kirby-plugin",
             "extra": {
@@ -358,9 +361,9 @@
             ],
             "support": {
                 "issues": "https://github.com/johannschopplich/kirby-extended/issues",
-                "source": "https://github.com/johannschopplich/kirby-extended/tree/v1.2.2"
+                "source": "https://github.com/johannschopplich/kirby-extended/tree/v2.5.1"
             },
-            "time": "2020-12-27T17:18:43+00:00"
+            "time": "2021-01-04T15:44:46+00:00"
         },
         {
             "name": "laminas/laminas-escaper",

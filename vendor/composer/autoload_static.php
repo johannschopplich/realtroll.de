@@ -4,14 +4,14 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInited365dbf95655c135f6b4cd3d44ac96d
+class ComposerStaticInitad2546446699c6009919f2b16aca3d91
 {
     public static $files = array (
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
         '7e9bd612cc444b3eed788ebbe46263a0' => __DIR__ . '/..' . '/laminas/laminas-zendframework-bridge/src/autoload.php',
         '04c6c5c2f7095ccf6c481d3e53e1776f' => __DIR__ . '/..' . '/mustangostang/spyc/Spyc.php',
-        '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
         'a4a119a56e50fbb293281d9a48007e0e' => __DIR__ . '/..' . '/symfony/polyfill-php80/bootstrap.php',
+        '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
         'f864ae44e8154e5ff6f4eec32f46d37f' => __DIR__ . '/..' . '/getkirby/cms/config/setup.php',
         '7f15a39b34659ec7c61fd4bc2f79c539' => __DIR__ . '/../..' . '/site/plugins/kirby-extended/helpers.php',
     );
@@ -118,8 +118,8 @@ class ComposerStaticInited365dbf95655c135f6b4cd3d44ac96d
         ),
         'Kirby\\' => 
         array (
-            0 => __DIR__ . '/..' . '/getkirby/cms/src',
-            1 => __DIR__ . '/..' . '/getkirby/composer-installer/src',
+            0 => __DIR__ . '/..' . '/getkirby/composer-installer/src',
+            1 => __DIR__ . '/..' . '/getkirby/cms/src',
         ),
         'KirbyExtended\\' => 
         array (
@@ -204,11 +204,10 @@ class ComposerStaticInited365dbf95655c135f6b4cd3d44ac96d
         'GrahamCampbell\\ResultType\\Result' => __DIR__ . '/..' . '/graham-campbell/result-type/src/Result.php',
         'GrahamCampbell\\ResultType\\Success' => __DIR__ . '/..' . '/graham-campbell/result-type/src/Success.php',
         'KirbyExtended\\Env' => __DIR__ . '/../..' . '/site/plugins/kirby-extended/classes/KirbyExtended/Env.php',
-        'KirbyExtended\\EnvAdapter' => __DIR__ . '/../..' . '/site/plugins/kirby-extended/classes/KirbyExtended/EnvAdapter.php',
         'KirbyExtended\\HigherOrderTapProxy' => __DIR__ . '/../..' . '/site/plugins/kirby-extended/classes/KirbyExtended/HigherOrderTapProxy.php',
         'KirbyExtended\\HtmlMinTemplate' => __DIR__ . '/../..' . '/site/plugins/kirby-extended/classes/KirbyExtended/HtmlMinTemplate.php',
-        'KirbyExtended\\MetaTags' => __DIR__ . '/../..' . '/site/plugins/kirby-extended/classes/KirbyExtended/MetaTags.php',
-        'KirbyExtended\\MetaTagsAdapter' => __DIR__ . '/../..' . '/site/plugins/kirby-extended/classes/KirbyExtended/MetaTagsAdapter.php',
+        'KirbyExtended\\PageMeta' => __DIR__ . '/../..' . '/site/plugins/kirby-extended/classes/KirbyExtended/PageMeta.php',
+        'KirbyExtended\\SiteMeta' => __DIR__ . '/../..' . '/site/plugins/kirby-extended/classes/KirbyExtended/SiteMeta.php',
         'Kirby\\Api\\Api' => __DIR__ . '/..' . '/getkirby/cms/src/Api/Api.php',
         'Kirby\\Api\\Collection' => __DIR__ . '/..' . '/getkirby/cms/src/Api/Collection.php',
         'Kirby\\Api\\Model' => __DIR__ . '/..' . '/getkirby/cms/src/Api/Model.php',
@@ -584,11 +583,11 @@ class ComposerStaticInited365dbf95655c135f6b4cd3d44ac96d
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInited365dbf95655c135f6b4cd3d44ac96d::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInited365dbf95655c135f6b4cd3d44ac96d::$prefixDirsPsr4;
-            $loader->fallbackDirsPsr4 = ComposerStaticInited365dbf95655c135f6b4cd3d44ac96d::$fallbackDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInited365dbf95655c135f6b4cd3d44ac96d::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInited365dbf95655c135f6b4cd3d44ac96d::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInitad2546446699c6009919f2b16aca3d91::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitad2546446699c6009919f2b16aca3d91::$prefixDirsPsr4;
+            $loader->fallbackDirsPsr4 = ComposerStaticInitad2546446699c6009919f2b16aca3d91::$fallbackDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInitad2546446699c6009919f2b16aca3d91::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInitad2546446699c6009919f2b16aca3d91::$classMap;
 
         }, null, ClassLoader::class);
     }

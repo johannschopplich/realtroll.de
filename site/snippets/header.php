@@ -5,7 +5,15 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <?= $page->metaTags() ?>
+  <title><?= $page->customTitle()->or($page->title() . ' – ' . $site->title()) ?></title>
+
+  <?php $meta = $page->meta() ?>
+  <?= $meta->robots() ?>
+  <?= $meta->jsonld() ?>
+  <?= $meta->social() ?>
+
+  <link rel="icon" href="/assets/img/icons/favicon-32x32.png" sizes="32x32" type="image/png">
+  <link rel="icon" href="/assets/img/icons/favicon-16x16.png" sizes="16x16" type="image/png">
 
   <?= css([
     'https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap',

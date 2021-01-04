@@ -1,7 +1,7 @@
 <?php
 
 $base = dirname(__DIR__, 2);
-\KirbyExtended\EnvAdapter::load($base);
+\KirbyExtended\Env::load($base);
 
 return [
 
@@ -25,10 +25,6 @@ return [
                 return isset($options['cache']) ? !$options['cache'] : false;
             }
         ]
-    ],
-
-    'kirby-extended.meta-tags' => [
-        'default' => require __DIR__ . '/meta.php'
     ]
 
 ];
