@@ -29,7 +29,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => '9c549e5f7d88202db216f963e5979c309ca7d494',
+    'reference' => '80894e9a8d0e388e86b5c14e962ecacb7cf01484',
     'name' => '__root__',
   ),
   'versions' => 
@@ -41,7 +41,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => '9c549e5f7d88202db216f963e5979c309ca7d494',
+      'reference' => '80894e9a8d0e388e86b5c14e962ecacb7cf01484',
     ),
     'claviska/simpleimage' => 
     array (
@@ -63,12 +63,12 @@ private static $installed = array (
     ),
     'getkirby/cms' => 
     array (
-      'pretty_version' => '3.5.0',
-      'version' => '3.5.0.0',
+      'pretty_version' => '3.5.1',
+      'version' => '3.5.1.0',
       'aliases' => 
       array (
       ),
-      'reference' => '0d2751af7cb478df14f30fac47fe9a2cd3b38114',
+      'reference' => '551e2f427eaf18e471df1c304552ab3de35e37c6',
     ),
     'getkirby/composer-installer' => 
     array (
@@ -90,12 +90,12 @@ private static $installed = array (
     ),
     'johannschopplich/kirby-extended' => 
     array (
-      'pretty_version' => 'v2.5.7',
-      'version' => '2.5.7.0',
+      'pretty_version' => 'v2.7.2',
+      'version' => '2.7.2.0',
       'aliases' => 
       array (
       ),
-      'reference' => '24d80fa3ff1e479613f3b0924dfd7b33e6c5b879',
+      'reference' => 'a6c167f724b8ee813b071f30a3f3a88636695cfe',
     ),
     'laminas/laminas-escaper' => 
     array (
@@ -223,12 +223,12 @@ private static $installed = array (
     ),
     'vlucas/phpdotenv' => 
     array (
-      'pretty_version' => 'v5.2.0',
-      'version' => '5.2.0.0',
+      'pretty_version' => 'v5.3.0',
+      'version' => '5.3.0.0',
       'aliases' => 
       array (
       ),
-      'reference' => 'fba64139db67123c7a57072e5f8d3db10d160b66',
+      'reference' => 'b3eac5c7ac896e52deab4a99068e3f4ab12d9e56',
     ),
     'voku/html-min' => 
     array (
