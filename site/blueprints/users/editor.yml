@@ -1,12 +1,6 @@
-extends: layouts/users/base
+title: Redakteur
 
-title:
-  de: Redakteur
-  en: Editor
-
-description:
-  de: Hat Zugriff auf alle Artikel, Themenseiten sowie allen anderen Seiten.
-  en: Has access to all articles, topic pages as well as all other pages.
+description: Kann Beiträge veröffentlichen und verwalten.
 
 permissions:
   access:
@@ -20,3 +14,7 @@ permissions:
     changePassword: false
     delete: false
     update: false
+
+sections:
+  info:
+    text: Keine Felder zu bearbeiten.

@@ -1,7 +1,7 @@
-extends: layouts/users/base
-
 title: Administrator
 
-description:
-  de: Es gibt keine Grenzen.
-  en: Nothing is off limits.
+description: Es gibt keine Grenzen.
+
+sections:
+  info:
+    text: Keine Felder zu bearbeiten.

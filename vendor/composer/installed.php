@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => '80894e9a8d0e388e86b5c14e962ecacb7cf01484',
+    'reference' => '613a54823d0b33ba6eea6445c0e57cc2d4c5b7ae',
     'name' => '__root__',
   ),
   'versions' => 
@@ -18,7 +18,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => '80894e9a8d0e388e86b5c14e962ecacb7cf01484',
+      'reference' => '613a54823d0b33ba6eea6445c0e57cc2d4c5b7ae',
     ),
     'claviska/simpleimage' => 
     array (
@@ -40,12 +40,12 @@
     ),
     'getkirby/cms' => 
     array (
-      'pretty_version' => '3.5.1',
-      'version' => '3.5.1.0',
+      'pretty_version' => '3.5.3',
+      'version' => '3.5.3.0',
       'aliases' => 
       array (
       ),
-      'reference' => '551e2f427eaf18e471df1c304552ab3de35e37c6',
+      'reference' => '317f494ee5166f36e32f9acf286f69786de30512',
     ),
     'getkirby/composer-installer' => 
     array (
@@ -67,12 +67,12 @@
     ),
     'johannschopplich/kirby-extended' => 
     array (
-      'pretty_version' => 'v2.7.2',
-      'version' => '2.7.2.0',
+      'pretty_version' => 'v2.7.6',
+      'version' => '2.7.6.0',
       'aliases' => 
       array (
       ),
-      'reference' => 'a6c167f724b8ee813b071f30a3f3a88636695cfe',
+      'reference' => 'a1f9a0d6c4e9c02dc12c9ff8fd70d4a88965278f',
     ),
     'laminas/laminas-escaper' => 
     array (
@@ -155,17 +155,17 @@
     ),
     'symfony/css-selector' => 
     array (
-      'pretty_version' => 'v5.2.1',
-      'version' => '5.2.1.0',
+      'pretty_version' => 'v5.2.3',
+      'version' => '5.2.3.0',
       'aliases' => 
       array (
       ),
-      'reference' => 'f789e7ead4c79e04ca9a6d6162fc629c89bd8054',
+      'reference' => 'f65f217b3314504a1ec99c2d6ef69016bb13490f',
     ),
     'symfony/polyfill-ctype' => 
     array (
-      'pretty_version' => 'v1.22.0',
-      'version' => '1.22.0.0',
+      'pretty_version' => 'v1.22.1',
+      'version' => '1.22.1.0',
       'aliases' => 
       array (
       ),
@@ -173,17 +173,17 @@
     ),
     'symfony/polyfill-mbstring' => 
     array (
-      'pretty_version' => 'v1.22.0',
-      'version' => '1.22.0.0',
+      'pretty_version' => 'v1.22.1',
+      'version' => '1.22.1.0',
       'aliases' => 
       array (
       ),
-      'reference' => 'f377a3dd1fde44d37b9831d68dc8dea3ffd28e13',
+      'reference' => '5232de97ee3b75b0360528dae24e73db49566ab1',
     ),
     'symfony/polyfill-php80' => 
     array (
-      'pretty_version' => 'v1.22.0',
-      'version' => '1.22.0.0',
+      'pretty_version' => 'v1.22.1',
+      'version' => '1.22.1.0',
       'aliases' => 
       array (
       ),

@@ -1,22 +1,22 @@
 title: Bild
 
 accept:
-  mime: image/*
+  type: image
 
 columns:
   - width: 1/2
     sections:
-      content:
+      caption:
         type: fields
         fields:
           caption:
             label: Bildunterschrift
-            type: textarea
-            buttons: false
+            type: writer
+            inline: true
 
   - width: 1/2
     sections:
-      meta:
+      alt:
         type: fields
         fields:
           alt:
