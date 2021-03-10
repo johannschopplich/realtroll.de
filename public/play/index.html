@@ -222,23 +222,23 @@ function simulateKeyboardInput(key, keyCode) {
 }
 
 /**
- * Bind a node by a specific key to simulate on touch
+ * Bind an element by a specific key to simulate on touch
  *
- * @param {*} node The node to bind a key to
+ * @param {HTMLElement} element The element to bind a key to
  * @param {string} key Key to simulate
  * @param {number} keyCode Key code to simulate (deprecated)
  */
-function bindKey(node, key, keyCode) {
-  keys.set(node.id, { key, keyCode });
+function bindKey(element, key, keyCode) {
+  keys.set(element.id, { key, keyCode });
 
-  node.addEventListener('touchstart', event => {
+  element.addEventListener('touchstart', event => {
     event.preventDefault();
     simulateKeyboardEvent('keydown', key, keyCode);
-    keysDown.set(event.target.id, node.id);
-    node.classList.add('active');
+    keysDown.set(event.target.id, element.id);
+    element.classList.add('active');
   });
 
-  node.addEventListener('touchend', event => {
+  element.addEventListener('touchend', event => {
     event.preventDefault();
 
     const pressedKey = keysDown.get(event.target.id);
@@ -248,7 +248,7 @@ function bindKey(node, key, keyCode) {
     }
 
     keysDown.delete(event.target.id);
-    node.classList.remove('active');
+    element.classList.remove('active');
 
     if (lastTouchedId) {
       document.getElementById(lastTouchedId).classList.remove('active');
@@ -256,7 +256,7 @@ function bindKey(node, key, keyCode) {
   });
 
   // Inspired by https://github.com/pulsejet/mkxp-web/blob/262a2254b684567311c9f0e135ee29f6e8c3613e/extra/js/dpad.js
-  node.addEventListener('touchmove', event => {
+  element.addEventListener('touchmove', event => {
     const { target, clientX, clientY } = event.changedTouches[0];
     const origTargetId = keysDown.get(target.id);
     const nextTargetId = document.elementFromPoint(clientX, clientY).id;
