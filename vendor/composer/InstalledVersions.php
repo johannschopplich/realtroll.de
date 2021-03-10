@@ -30,7 +30,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => '613a54823d0b33ba6eea6445c0e57cc2d4c5b7ae',
+    'reference' => '80ef1cdb021d30253cd6279490254f6934a9dc00',
     'name' => '__root__',
   ),
   'versions' => 
@@ -42,7 +42,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => '613a54823d0b33ba6eea6445c0e57cc2d4c5b7ae',
+      'reference' => '80ef1cdb021d30253cd6279490254f6934a9dc00',
     ),
     'claviska/simpleimage' => 
     array (
@@ -64,12 +64,12 @@ private static $installed = array (
     ),
     'getkirby/cms' => 
     array (
-      'pretty_version' => '3.5.3',
-      'version' => '3.5.3.0',
+      'pretty_version' => '3.5.3.1',
+      'version' => '3.5.3.1',
       'aliases' => 
       array (
       ),
-      'reference' => '317f494ee5166f36e32f9acf286f69786de30512',
+      'reference' => '38afb2d650f3764d23d732b23ae8f04ab9ffba69',
     ),
     'getkirby/composer-installer' => 
     array (
@@ -109,12 +109,12 @@ private static $installed = array (
     ),
     'laminas/laminas-zendframework-bridge' => 
     array (
-      'pretty_version' => '1.1.1',
-      'version' => '1.1.1.0',
+      'pretty_version' => '1.2.0',
+      'version' => '1.2.0.0',
       'aliases' => 
       array (
       ),
-      'reference' => '6ede70583e101030bcace4dcddd648f760ddf642',
+      'reference' => '6cccbddfcfc742eb02158d6137ca5687d92cee32',
     ),
     'league/color-extractor' => 
     array (
@@ -179,8 +179,8 @@ private static $installed = array (
     ),
     'symfony/css-selector' => 
     array (
-      'pretty_version' => 'v5.2.3',
-      'version' => '5.2.3.0',
+      'pretty_version' => 'v5.2.4',
+      'version' => '5.2.4.0',
       'aliases' => 
       array (
       ),
@@ -479,7 +479,6 @@ self::$canGetVendors = method_exists('Composer\Autoload\ClassLoader', 'getRegist
 $installed = array();
 
 if (self::$canGetVendors) {
-
 foreach (ClassLoader::getRegisteredLoaders() as $vendorDir => $loader) {
 if (isset(self::$installedByVendor[$vendorDir])) {
 $installed[] = self::$installedByVendor[$vendorDir];

@@ -10,8 +10,7 @@ return [
     'panel' => [
         'install' => env('KIRBY_PANEL_INSTALL', false),
         'slug' => env('KIRBY_PANEL_SLUG', 'panel'),
-        'language' => 'de',
-        'css' => 'assets/css/custom-panel.css'
+        'language' => 'de'
     ],
 
     'cache' => [
