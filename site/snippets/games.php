@@ -22,9 +22,9 @@
           <?php endif ?>
 
           <div class="content">
-            <p class="text-4 mb-m"><?= $game->description() ?></p>
+            <p class="text-5 mb-m"><?= $game->description() ?></p>
 
-            <a href="<?= $game->url() ?>" class="button is-primary text-4 stretched-link">
+            <a href="<?= $game->url() ?>" class="button is-primary text-5 stretched-link">
               Mehr zum Spiel…
             </a>
           </div>
