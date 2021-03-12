@@ -36,7 +36,7 @@
         <figure>
           <img src="<?= $file->url() ?>" alt="<?= $file->caption()->or($file->alt())->html() ?>">
           <?php if ($file->caption()->isNotEmpty()): ?>
-            <figcaption class="mt-xs">
+            <figcaption class="mt-xs text-7 lh-base">
               <p class="text-s"><?= $file->caption()->html() ?></p>
             </figcaption>
           <?php endif ?>
