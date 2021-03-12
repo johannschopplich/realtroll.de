@@ -2,7 +2,7 @@ title: Seite
 
 tabs:
   content:
-    label: Dashboard
+    label: Spiele
     icon: dashboard
     sections:
       games: sections/games
