@@ -31,7 +31,7 @@
 
 <div id="screenshots" class="section">
   <div class="container is-lg">
-    <div class="game-images">
+    <div class="game-screenshots">
       <?php foreach ($page->screenshots()->toFiles() as $file): ?>
         <figure>
           <img src="<?= $file->url() ?>" alt="<?= $file->caption()->or($file->alt())->html() ?>">

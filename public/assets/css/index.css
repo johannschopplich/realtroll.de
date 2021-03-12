@@ -130,16 +130,17 @@ body {
   }
 }
 
-.game-images {
+.game-screenshots {
   display: grid;
   grid-template-columns: repeat(
     auto-fit,
     minmax(320px, 1fr)
   );
-  gap: var(--space-m)
+  column-gap: var(--space-m);
+  row-gap: var(--space-l);
 }
 
-.game-images figure {
+.game-screenshots figure {
   text-align: center;
 }
 
