@@ -25,24 +25,24 @@ class InstalledVersions
 private static $installed = array (
   'root' => 
   array (
-    'pretty_version' => 'dev-master',
-    'version' => 'dev-master',
+    'pretty_version' => 'dev-main',
+    'version' => 'dev-main',
     'aliases' => 
     array (
     ),
-    'reference' => '80ef1cdb021d30253cd6279490254f6934a9dc00',
+    'reference' => '704713347e6f606349225ee9b30672562b1b4ae1',
     'name' => '__root__',
   ),
   'versions' => 
   array (
     '__root__' => 
     array (
-      'pretty_version' => 'dev-master',
-      'version' => 'dev-master',
+      'pretty_version' => 'dev-main',
+      'version' => 'dev-main',
       'aliases' => 
       array (
       ),
-      'reference' => '80ef1cdb021d30253cd6279490254f6934a9dc00',
+      'reference' => '704713347e6f606349225ee9b30672562b1b4ae1',
     ),
     'claviska/simpleimage' => 
     array (
