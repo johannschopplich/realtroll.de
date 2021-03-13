@@ -21,13 +21,7 @@
     'assets/css/index.css'
   ]) ?>
 
-  <script src="https://www.googletagmanager.com/gtag/js?id=G-VZ2F7SSQXF" async></script>
-  <script>
-    window.dataLayer = window.dataLayer || []
-    function gtag () { dataLayer.push(arguments) }
-    gtag('js', new Date())
-    gtag('config', 'G-VZ2F7SSQXF', { anonymize_ip: true, storage: 'none' })
-  </script>
+  <script async defer data-domain="realtroll.de" src="https://plausible.io/js/plausible.js"></script>
 
 </head>
 <body>
