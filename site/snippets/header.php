@@ -28,10 +28,18 @@
 
   <img id="custom-cursor" hidden>
 
-  <header class="editorial centered-content mb-xxl<?= r($page->isHomePage(), ' is-homepage') ?>" aria-hidden="true">
+  <header class="editorial centered-content <?= $page->isHomePage() ? 'is-homepage mb-xxl' : 'mb-s' ?>" aria-hidden="true">
     <?php if ($page->isHomePage()): ?>
-      <img class="editorial-image pixelated" src="<?= asset('assets/img/willkommen.gif')->url() ?>" alt="Willkommensgruß">
+      <img class="editorial-image pixelated" src="<?= asset('assets/img/willkommen.gif')->url() ?>" alt="Willkommen auf realtroll.de">
     <?php endif ?>
   </header>
 
   <main id="main">
+    <?php if (!$page->isHomePage()): ?>
+      <nav class="breadcrumb mb-xl">
+        <ul class="justify-content-center">
+          <li><a href="<?= $site->homePage()->url() ?>">Startseite</a></li>
+          <li><a href="<?= $page->url() ?>"><?= $page->title()->html() ?></a></li>
+        </ul>
+      </nav>
+    <?php endif ?>
