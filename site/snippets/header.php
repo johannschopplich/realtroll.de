@@ -28,7 +28,7 @@
 
   <img id="custom-cursor" hidden>
 
-  <header class="editorial centered-content mb-xxl<?= r($page->isHomePage(), ' is-homepage') ?>">
+  <header class="editorial centered-content mb-xxl<?= r($page->isHomePage(), ' is-homepage') ?>" aria-hidden="true">
     <?php if ($page->isHomePage()): ?>
       <img class="editorial-image pixelated" src="<?= asset('assets/img/willkommen.gif')->url() ?>" alt="Willkommensgruß">
     <?php endif ?>
