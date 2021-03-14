@@ -46,11 +46,12 @@
   </div>
 </div>
 
-<?php if ($page->text()->isNotEmpty()): ?>
+<?php $text = $page->text()->toBlocks() ?>
+<?php if ($text->isNotEmpty()): ?>
   <div class="section">
     <div class="container for-content">
       <div class="content">
-        <?= $page->text()->toBlocks() ?>
+        <?= $text ?>
       </div>
     </div>
   </div>
