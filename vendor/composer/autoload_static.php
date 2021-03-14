@@ -9,12 +9,13 @@ class ComposerStaticInitad2546446699c6009919f2b16aca3d91
     public static $files = array (
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
         '7e9bd612cc444b3eed788ebbe46263a0' => __DIR__ . '/..' . '/laminas/laminas-zendframework-bridge/src/autoload.php',
-        'a4a119a56e50fbb293281d9a48007e0e' => __DIR__ . '/..' . '/symfony/polyfill-php80/bootstrap.php',
         '04c6c5c2f7095ccf6c481d3e53e1776f' => __DIR__ . '/..' . '/mustangostang/spyc/Spyc.php',
-        '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
+        'a4a119a56e50fbb293281d9a48007e0e' => __DIR__ . '/..' . '/symfony/polyfill-php80/bootstrap.php',
         'f864ae44e8154e5ff6f4eec32f46d37f' => __DIR__ . '/..' . '/getkirby/cms/config/setup.php',
         '87988fc7b1c1f093da22a1a3de972f3a' => __DIR__ . '/..' . '/getkirby/cms/config/helpers.php',
+        '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
         '7f15a39b34659ec7c61fd4bc2f79c539' => __DIR__ . '/../..' . '/site/plugins/kirby-extended/helpers.php',
+        '7bf725901b12463ff2bf161bbe1670c1' => __DIR__ . '/../..' . '/site/plugins/kirby-hashed-assets/helpers.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -125,6 +126,7 @@ class ComposerStaticInitad2546446699c6009919f2b16aca3d91
         'KirbyExtended\\' => 
         array (
             0 => __DIR__ . '/../..' . '/site/plugins/kirby-extended/classes/KirbyExtended',
+            1 => __DIR__ . '/../..' . '/site/plugins/kirby-hashed-assets/classes/KirbyExtended',
         ),
         'GrahamCampbell\\ResultType\\' => 
         array (
@@ -204,6 +206,7 @@ class ComposerStaticInitad2546446699c6009919f2b16aca3d91
         'GrahamCampbell\\ResultType\\Error' => __DIR__ . '/..' . '/graham-campbell/result-type/src/Error.php',
         'GrahamCampbell\\ResultType\\Result' => __DIR__ . '/..' . '/graham-campbell/result-type/src/Result.php',
         'GrahamCampbell\\ResultType\\Success' => __DIR__ . '/..' . '/graham-campbell/result-type/src/Success.php',
+        'KirbyExtended\\AssetUrls' => __DIR__ . '/../..' . '/site/plugins/kirby-hashed-assets/classes/KirbyExtended/AssetUrls.php',
         'KirbyExtended\\Env' => __DIR__ . '/../..' . '/site/plugins/kirby-extended/classes/KirbyExtended/Env.php',
         'KirbyExtended\\HigherOrderTapProxy' => __DIR__ . '/../..' . '/site/plugins/kirby-extended/classes/KirbyExtended/HigherOrderTapProxy.php',
         'KirbyExtended\\HtmlMinTemplate' => __DIR__ . '/../..' . '/site/plugins/kirby-extended/classes/KirbyExtended/HtmlMinTemplate.php',

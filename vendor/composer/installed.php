@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => '704713347e6f606349225ee9b30672562b1b4ae1',
+    'reference' => '51eaf95153428c1171ccbc873d8077a726ab76e5',
     'name' => '__root__',
   ),
   'versions' => 
@@ -18,7 +18,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => '704713347e6f606349225ee9b30672562b1b4ae1',
+      'reference' => '51eaf95153428c1171ccbc873d8077a726ab76e5',
     ),
     'claviska/simpleimage' => 
     array (
@@ -73,6 +73,15 @@
       array (
       ),
       'reference' => 'a1f9a0d6c4e9c02dc12c9ff8fd70d4a88965278f',
+    ),
+    'johannschopplich/kirby-hashed-assets' => 
+    array (
+      'pretty_version' => 'v2.0.0',
+      'version' => '2.0.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'b4b0feb5b2a9820668dd9bccd3477070749fde65',
     ),
     'laminas/laminas-escaper' => 
     array (

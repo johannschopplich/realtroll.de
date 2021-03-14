@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d104bfcf24ef04b07e8124e7a6fc3965",
+    "content-hash": "dd56bfabff4c72564450a969f5c79b5d",
     "packages": [
         {
             "name": "claviska/simpleimage",
@@ -366,6 +366,68 @@
                 "source": "https://github.com/johannschopplich/kirby-extended/tree/v2.7.6"
             },
             "time": "2021-02-07T17:42:04+00:00"
+        },
+        {
+            "name": "johannschopplich/kirby-hashed-assets",
+            "version": "v2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/johannschopplich/kirby-hashed-assets.git",
+                "reference": "b4b0feb5b2a9820668dd9bccd3477070749fde65"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/johannschopplich/kirby-hashed-assets/zipball/b4b0feb5b2a9820668dd9bccd3477070749fde65",
+                "reference": "b4b0feb5b2a9820668dd9bccd3477070749fde65",
+                "shasum": ""
+            },
+            "require": {
+                "getkirby/composer-installer": "^1.2",
+                "php": ">=7.4.0"
+            },
+            "require-dev": {
+                "getkirby/cms": "^3.0",
+                "phpunit/phpunit": "^9.0"
+            },
+            "type": "kirby-plugin",
+            "extra": {
+                "kirby-cms-path": false
+            },
+            "autoload": {
+                "files": [
+                    "helpers.php"
+                ],
+                "psr-4": {
+                    "KirbyExtended\\": "classes/KirbyExtended/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Johann Schopplich",
+                    "email": "pkg@johannschopplich.com",
+                    "homepage": "https://johannschopplich.com"
+                }
+            ],
+            "description": "File name hashes support for css() and js() helpers",
+            "keywords": [
+                "JS",
+                "assets",
+                "components",
+                "css",
+                "helpers",
+                "kirby",
+                "laravel-mix",
+                "manifest"
+            ],
+            "support": {
+                "issues": "https://github.com/johannschopplich/kirby-hashed-assets/issues",
+                "source": "https://github.com/johannschopplich/kirby-hashed-assets/tree/v2.0.0"
+            },
+            "time": "2021-03-03T09:49:43+00:00"
         },
         {
             "name": "laminas/laminas-escaper",
