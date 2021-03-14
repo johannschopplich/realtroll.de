@@ -9,7 +9,9 @@
     </nav>
   </footer>
 
-<?= js(['@template'], ['type' => 'module']) ?>
+<?php if ($page->isHomePage()): ?>
+  <?= js(['@template'], ['type' => 'module']) ?>
+<?php endif ?>
 
 </body>
 </html>
