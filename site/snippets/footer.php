@@ -9,7 +9,7 @@
     </nav>
   </footer>
 
-<?= js(['@auto'], ['type' => 'module']) ?>
+<?= js(['@template'], ['type' => 'module']) ?>
 
 </body>
 </html>
