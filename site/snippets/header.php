@@ -36,10 +36,5 @@
 
   <main id="main">
     <?php if (!$page->isHomePage()): ?>
-      <nav class="breadcrumb mb-xl">
-        <ul class="justify-content-center">
-          <li><a href="<?= $site->homePage()->url() ?>">Startseite</a></li>
-          <li><a href="<?= $page->url() ?>"><?= $page->title()->html() ?></a></li>
-        </ul>
-      </nav>
+      <?php snippet('breadcrumb') ?>
     <?php endif ?>
