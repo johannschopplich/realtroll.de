@@ -18,7 +18,7 @@ const cursorElement = document.querySelector('#custom-cursor')
 let lastElement = null
 let lastTimerId = null
 
-function showScreenshot (event) {
+function handleScreenshots (event) {
   const element = event.target.closest('[data-screenshots]')
 
   if (!element) {
@@ -28,34 +28,37 @@ function showScreenshot (event) {
     return
   }
 
-  if (lastElement !== element) {
-    lastElement = element
-    clearInterval(lastTimerId)
+  if (lastElement === element) return
 
-    const sources = element.dataset.screenshots.split('|')
-    const preloadImg = new Image()
+  lastElement = element
+  clearInterval(lastTimerId)
 
-    cursorElement.src = sources[0]
-    preloadImg.src = sources[1]
+  const sources = element.dataset.screenshots.split('|')
+  const preloadImg = new Image()
 
-    let index = 1
-    lastTimerId = setInterval(() => {
-      if (index === sources.length) index = 0
-      cursorElement.src = sources[index]
+  cursorElement.src = sources[0]
+  preloadImg.src = sources[1]
+
+  let index = 1
+  lastTimerId = setInterval(() => {
+    if (index === sources.length) {
+      index = 0
+    }
+
+    if (index + 1 < sources.length) {
       preloadImg.src = sources[index + 1]
-      index++
-    }, 1000)
+    }
 
-    cursorElement.removeAttribute('hidden')
-  }
+    cursorElement.src = sources[index]
+    index++
+  }, 1000)
+
+  cursorElement.removeAttribute('hidden')
 }
 
 if (
   cursorElement &&
   window.matchMedia('(hover: hover)').matches
 ) {
-  document.addEventListener('mouseover', event => {
-    if (rafId !== null) return
-    showScreenshot(event)
-  }, { capture: true })
+  document.addEventListener('mouseover', handleScreenshots, { capture: true })
 }
