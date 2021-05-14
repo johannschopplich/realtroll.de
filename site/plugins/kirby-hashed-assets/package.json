@@ -1,0 +1,11 @@
+{
+  "name": "kirby-hashed-assets",
+  "main": "src/node/index.js",
+  "scripts": {
+    "build": "esbuild --bundle --minify --platform=node --target=node14 --outfile=scripts/hashAssets.cjs src/node/index.js"
+  },
+  "devDependencies": {
+    "esbuild": "^0.11.11",
+    "fast-glob": "^3.2.5"
+  }
+}
