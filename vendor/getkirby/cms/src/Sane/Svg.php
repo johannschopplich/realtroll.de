@@ -11,6 +11,7 @@ use Kirby\Toolkit\Str;
 
 /**
  * Sane handler for SVG files
+ * @since 3.5.4
  *
  * @package   Kirby Sane
  * @author    Bastian Allgeier <bastian@getkirby.com>,
@@ -285,7 +286,7 @@ class Svg extends Xml
         'feTurbulence',
     ];
 
-    protected static $allowedNamespaces = [
+    public static $allowedNamespaces = [
         'xmlns'       => 'http://www.w3.org/2000/svg',
         'xmlns:svg'   => 'http://www.w3.org/2000/svg',
         'xmlns:xlink' => 'http://www.w3.org/1999/xlink'

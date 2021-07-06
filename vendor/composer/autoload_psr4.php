@@ -17,7 +17,7 @@ return array(
     'Laminas\\ZendFrameworkBridge\\' => array($vendorDir . '/laminas/laminas-zendframework-bridge/src'),
     'Laminas\\Escaper\\' => array($vendorDir . '/laminas/laminas-escaper/src'),
     'Kirby\\' => array($vendorDir . '/getkirby/composer-installer/src', $vendorDir . '/getkirby/cms/src'),
-    'KirbyExtended\\' => array($baseDir . '/site/plugins/kirby-extended/classes/KirbyExtended', $baseDir . '/site/plugins/kirby-hashed-assets/classes/KirbyExtended'),
+    'KirbyExtended\\' => array($baseDir . '/site/plugins/kirby-hashed-assets/classes/KirbyExtended', $baseDir . '/site/plugins/kirby-extended/classes/KirbyExtended'),
     'GrahamCampbell\\ResultType\\' => array($vendorDir . '/graham-campbell/result-type/src'),
     'Dotenv\\' => array($vendorDir . '/vlucas/phpdotenv/src'),
     '' => array($vendorDir . '/league/color-extractor/src'),

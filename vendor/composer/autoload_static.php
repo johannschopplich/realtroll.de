@@ -14,8 +14,8 @@ class ComposerStaticInitad2546446699c6009919f2b16aca3d91
         '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
         'f864ae44e8154e5ff6f4eec32f46d37f' => __DIR__ . '/..' . '/getkirby/cms/config/setup.php',
         '87988fc7b1c1f093da22a1a3de972f3a' => __DIR__ . '/..' . '/getkirby/cms/config/helpers.php',
-        '7f15a39b34659ec7c61fd4bc2f79c539' => __DIR__ . '/../..' . '/site/plugins/kirby-extended/helpers.php',
         '7bf725901b12463ff2bf161bbe1670c1' => __DIR__ . '/../..' . '/site/plugins/kirby-hashed-assets/helpers.php',
+        '7f15a39b34659ec7c61fd4bc2f79c539' => __DIR__ . '/../..' . '/site/plugins/kirby-extended/helpers.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -107,8 +107,8 @@ class ComposerStaticInitad2546446699c6009919f2b16aca3d91
         ),
         'KirbyExtended\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/site/plugins/kirby-extended/classes/KirbyExtended',
-            1 => __DIR__ . '/../..' . '/site/plugins/kirby-hashed-assets/classes/KirbyExtended',
+            0 => __DIR__ . '/../..' . '/site/plugins/kirby-hashed-assets/classes/KirbyExtended',
+            1 => __DIR__ . '/../..' . '/site/plugins/kirby-extended/classes/KirbyExtended',
         ),
         'GrahamCampbell\\ResultType\\' => 
         array (
