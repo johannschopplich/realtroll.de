@@ -52,7 +52,6 @@ return array(
     'GrahamCampbell\\ResultType\\Error' => $vendorDir . '/graham-campbell/result-type/src/Error.php',
     'GrahamCampbell\\ResultType\\Result' => $vendorDir . '/graham-campbell/result-type/src/Result.php',
     'GrahamCampbell\\ResultType\\Success' => $vendorDir . '/graham-campbell/result-type/src/Success.php',
-    'KirbyExtended\\AssetUrls' => $baseDir . '/site/plugins/kirby-hashed-assets/classes/KirbyExtended/AssetUrls.php',
     'KirbyExtended\\Env' => $baseDir . '/site/plugins/kirby-extended/classes/KirbyExtended/Env.php',
     'KirbyExtended\\HigherOrderTapProxy' => $baseDir . '/site/plugins/kirby-extended/classes/KirbyExtended/HigherOrderTapProxy.php',
     'KirbyExtended\\PageMeta' => $baseDir . '/site/plugins/kirby-extended/classes/KirbyExtended/PageMeta.php',

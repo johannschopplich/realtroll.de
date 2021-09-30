@@ -3,7 +3,7 @@
     "php": ">=7.4.0",
     "getkirby/cms": "^3.0",
     "johannschopplich/kirby-extended": "^2.0",
-    "johannschopplich/kirby-hashed-assets": "^2.0"
+    "johannschopplich/kirby-hashed-assets": "^2.2"
   },
   "scripts": {
     "start": [
