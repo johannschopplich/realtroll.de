@@ -1,8 +1,8 @@
 :root {
   --color-primary: hsl(24, 62%, 17%);
-  --color-primary-hover:hsl(24, 62%, 27%);
-  --color-primary-active:hsl(24, 62%, 27%);
-  --color-primary-lucent:hsla(24, 62%, 17%, 0.35);
+  --color-primary-hover: hsl(24, 62%, 27%);
+  --color-primary-active: hsl(24, 62%, 27%);
+  --color-primary-lucent: hsla(24, 62%, 17%, 0.35);
   --font-family-base: "Space Mono", monospace;
   --font-family-heading: "Space Mono", monospace;
   --radius: 0;
@@ -11,7 +11,10 @@
 html {
   height: 100%;
   background-color: hsl(38, 24%, 96%);
-  background-image: radial-gradient(var(--color-primary-lucent) 1px, hsl(38, 24%, 96%) 1px);
+  background-image: radial-gradient(
+    var(--color-primary-lucent) 1px,
+    hsl(38, 24%, 96%) 1px
+  );
   background-size: 50px 50px;
 }
 
@@ -74,8 +77,7 @@ a:hover {
 
 .editorial {
   border-bottom: 2px solid;
-  background:
-    url(/assets/img/editorial-gesichter.png) center bottom no-repeat,
+  background: url(/assets/img/editorial-gesichter.png) center bottom no-repeat,
     url(/assets/img/bg-pattern.svg) center repeat fixed hsl(38, 24%, 96%);
   background-size: auto 84px, auto;
   padding-top: 8rem;
@@ -133,7 +135,7 @@ a:hover {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .game-card:nth-child(2n+1) .game-card-inner {
+  .game-card:nth-child(2n + 1) .game-card-inner {
     margin-right: -2px;
   }
 
@@ -148,10 +150,7 @@ a:hover {
 
 .game-screenshots {
   display: grid;
-  grid-template-columns: repeat(
-    auto-fit,
-    minmax(320px, 1fr)
-  );
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   column-gap: var(--space-m);
   row-gap: var(--space-l);
 }
