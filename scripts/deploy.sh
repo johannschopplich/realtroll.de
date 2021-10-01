@@ -1,10 +1,22 @@
-#!/bin/bash
+#!/bin/sh
+
+website="realtroll.de"
 host="russel.uberspace.de"
-echo $host
-echo -n "Enter username: "
-read username
-ssh -tt $username@$host "\
-  cd /var/www/virtual/$username/sites/realtroll.de; \
+read -p "Target host (default is \`$host\`): " h
+if [ "$h" != "" ]; then
+  user="$h"
+fi
+
+user=""
+read -p "Login user (default is \`$user\`): " u
+if [ "$u" != "" ]; then
+  user="$u"
+fi
+
+echo "--- Deploying latest changes…"
+ssh -tt $user@$host "\
+  cd /var/www/virtual/$user/sites/$website; \
   git pull; \
-  rm -rf storage/cache/realtroll.de; \
+  composer install; \
+  rm -rf storage/cache/$website; \
 "
