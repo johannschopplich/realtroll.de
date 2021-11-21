@@ -8,9 +8,9 @@
       <li class="game-card"<?= attr(['data-screenshots' => implode('|', $screenshots) ?? null], ' ') ?>>
         <div class="relative game-card-inner">
           <?php if ($logo = $game->logo()->toFile()): ?>
-            <figure class="game-logo text-center due-mb-l">
+            <figure class="game-logo due-mb-l">
               <img
-                class="pixelated"
+                class="pixelated mx-auto"
                 src="<?= $logo->url() ?>"
                 width="<?= $logo->width() * 2 ?>"
                 height="<?= $logo->height() * 2 ?>"
@@ -22,9 +22,9 @@
           <?php endif ?>
 
           <div class="content">
-            <p class="due-text-5 due-mb-m"><?= $game->description() ?></p>
+            <p class="md:due-text-5 due-mb-m"><?= $game->description() ?></p>
 
-            <a href="<?= $game->url() ?>" class="button-primary !due-text-5 stretched-link">
+            <a href="<?= $game->url() ?>" class="button-primary md:due-text-5 stretched-link">
               Mehr zum Spiel…
             </a>
           </div>
