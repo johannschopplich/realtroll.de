@@ -12,6 +12,6 @@ fields:
   thumbnail:
     label: Vorschaubild
     type: files
-    query: page.files.filterBy('template', 'image')
+    query: page.files.template('image')
     uploads: image
     multiple: false

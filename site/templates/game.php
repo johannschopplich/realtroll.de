@@ -1,42 +1,42 @@
 <?php snippet('header') ?>
 
-<div class="container is-lg text-center">
-  <h1 class="editorial-title hyphenated mb-xl">
+<div class="due-container-lg text-center">
+  <h1 class="editorial-title hyphenated due-mb-xl">
     <?= $page->title()->html() ?>
   </h1>
 
-  <div class="columns is-centered has-gap-m">
+  <div class="columns items-center justify-center gap-5">
     <?php if ($page->gameFolder()->isNotEmpty()): ?>
-      <div class="column is-narrow">
-        <a href="/play/?game=<?= $page->gameFolder() ?>" class="button is-primary is-m" target="_blank">
+      <div class="column-narrow">
+        <a href="/play/?game=<?= $page->gameFolder() ?>" class="button-primary" target="_blank">
           Online spielen!
         </a>
       </div>
     <?php endif ?>
-    <div class="column is-narrow">
-      <a href="<?= $page->downloadLink() ?>" class="button is-primary is-m<?php e($page->gameFolder()->isNotEmpty(), ' is-outlined') ?>">
+    <div class="column-narrow">
+      <a href="<?= $page->downloadLink() ?>" class="button-primary<?php e($page->gameFolder()->isNotEmpty(), '-outlined') ?>">
         Download (Windows)
       </a>
     </div>
   </div>
 </div>
 
-<div class="section">
-  <div class="container for-content">
+<div class="due-py-xl">
+  <div class="due-container max-w-prose">
     <div class="content">
       <?= $page->intro()->toBlocks() ?>
     </div>
   </div>
 </div>
 
-<div id="screenshots" class="section">
-  <div class="container is-lg">
+<div id="screenshots" class="due-py-xl">
+  <div class="due-container-lg">
     <div class="game-screenshots">
       <?php foreach ($page->screenshots()->toFiles() as $file): ?>
-        <figure>
+        <figure class="mx-auto">
           <img src="<?= $file->url() ?>" alt="<?= $file->caption()->or($file->alt())->html() ?>">
           <?php if ($file->caption()->isNotEmpty()): ?>
-            <figcaption class="mt-xs text-7 lh-base">
+            <figcaption class="due-mt-xs due-text-7 leading-normal">
               <p class="text-s"><?= $file->caption()->html() ?></p>
             </figcaption>
           <?php endif ?>
@@ -48,8 +48,8 @@
 
 <?php $text = $page->text()->toBlocks() ?>
 <?php if ($text->isNotEmpty()): ?>
-  <div class="section">
-    <div class="container for-content">
+  <div class="due-py-xl">
+    <div class="due-container max-w-prose">
       <div class="content">
         <?= $text ?>
       </div>
@@ -57,9 +57,9 @@
   </div>
 <?php endif ?>
 
-<div class="section">
+<div class="due-py-xl">
   <div class="text-center">
-    <a href="<?= url() ?>" class="button is-primary">
+    <a href="<?= url() ?>" class="button-primary">
       Zurück zur Spieleliste
     </a>
   </div>

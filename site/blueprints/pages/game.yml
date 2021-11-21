@@ -35,12 +35,12 @@ tabs:
                 label: Logo
                 type: files
                 multiple: false
-                query: page.files.filterBy('template', 'image')
+                query: page.files.template('image')
                 uploads: image
               screenshots:
                 label: Screenshots
                 type: files
-                query: page.files.filterBy('template', 'image')
+                query: page.files.template('image')
                 uploads: image
               gameFolder:
                 label: Ordnername fürs Onlinespielen
@@ -53,7 +53,7 @@ tabs:
                 label: Cursor
                 type: files
                 multiple: false
-                query: page.files.filterBy('template', 'image')
+                query: page.files.template('image')
                 uploads: image
                 help: >
                   Derzeit ungenutze Spielerei.

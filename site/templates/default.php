@@ -1,11 +1,11 @@
 <?php snippet('header') ?>
 
-<div class="container is-lg text-center">
+<div class="due-container-lg text-center">
   <h1 class="editorial-title"><?= $page->title()->html() ?></h1>
 </div>
 
-<div class="section">
-  <div class="container for-content">
+<div class="due-py-xl">
+  <div class="due-container max-w-prose">
     <div class="content">
       <?= $page->text()->toBlocks() ?>
     </div>

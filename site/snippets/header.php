@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="de">
+<html class="due-var-color-primary due-var-color-primary-400" lang="de">
 <head>
 
   <meta charset="utf-8">
@@ -17,8 +17,9 @@
 
   <?= css([
     'https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap',
-    'assets/css/buldy.min.css',
-    'assets/css/index.css'
+    'assets/css/due.css',
+    'assets/css/index.css',
+    'assets/css/uno.css'
   ]) ?>
 
   <script async defer data-domain="realtroll.de" src="https://plausible.io/js/plausible.js"></script>
@@ -28,7 +29,7 @@
 
   <img id="custom-cursor" hidden>
 
-  <header class="editorial centered-content <?= $page->isHomePage() ? 'is-homepage mb-xxl' : 'mb-s' ?>" aria-hidden="true">
+  <header class="editorial flex items-center justify-center <?= $page->isHomePage() ? 'is-homepage due-mb-2xl' : 'due-mb-s' ?>" aria-hidden="true">
     <?php if ($page->isHomePage()): ?>
       <img class="editorial-image pixelated" src="<?= asset('assets/img/willkommen.gif')->url() ?>" alt="Willkommen auf realtroll.de">
     <?php endif ?>

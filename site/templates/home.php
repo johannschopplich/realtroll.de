@@ -1,10 +1,10 @@
 <?php snippet('header') ?>
 
-<div class="container is-lg mb-xxl">
+<div class="due-container-lg due-mb-2xl">
   <h1 class="editorial-title"><?= $page->text()->kti() ?></h1>
 </div>
 
-<div class="container is-xl is-fullwidth">
+<div class="due-container-xl-full">
   <?php snippet('games') ?>
 </div>
 
