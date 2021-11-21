@@ -12,10 +12,15 @@ A powerful and performant integration of [Vite](https://vitejs.dev), [UnoCSS](ht
 cp .env.development.example .env
 ```
 
-1. Install the required dependencies:
+1. Install the required npm dependencies:
 
 ```bash
 pnpm install
+```
+
+1. Install the required Composer dependencies:
+
+```bash
 composer install
 ```
 
