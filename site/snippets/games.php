@@ -24,7 +24,7 @@
           <div class="content">
             <p class="md:due-text-5 due-mb-m"><?= $game->description() ?></p>
 
-            <a href="<?= $game->url() ?>" class="button-primary md:due-text-5 stretched-link">
+            <a href="<?= $game->url() ?>" class="due-button-primary md:due-text-5 stretched-link">
               Mehr zum Spiel…
             </a>
           </div>

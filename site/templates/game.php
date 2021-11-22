@@ -8,13 +8,13 @@
   <div class="columns items-center justify-center gap-5">
     <?php if ($page->gameFolder()->isNotEmpty()): ?>
       <div class="column-narrow">
-        <a href="/play/?game=<?= $page->gameFolder() ?>" class="button-primary" target="_blank">
+        <a href="/play/?game=<?= $page->gameFolder() ?>" class="due-button-primary" target="_blank">
           Online spielen!
         </a>
       </div>
     <?php endif ?>
     <div class="column-narrow">
-      <a href="<?= $page->downloadLink() ?>" class="button-primary<?php e($page->gameFolder()->isNotEmpty(), '-outlined') ?>">
+      <a href="<?= $page->downloadLink() ?>" class="due-button-primary<?php e($page->gameFolder()->isNotEmpty(), '-outlined') ?>">
         Download (Windows)
       </a>
     </div>
@@ -59,7 +59,7 @@
 
 <div class="due-py-xl">
   <div class="text-center">
-    <a href="<?= url() ?>" class="button-primary">
+    <a href="<?= url() ?>" class="due-button-primary">
       Zurück zur Spieleliste
     </a>
   </div>

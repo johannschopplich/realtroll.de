@@ -5,11 +5,11 @@
     "build": "unocss \"site/{layouts,snippets,templates}/**/*\" --out-file public/assets/css/uno.css"
   },
   "dependencies": {
-    "duecss": "^0.12.7"
+    "duecss": "^0.13.1"
   },
   "devDependencies": {
-    "@unocss/cli": "^0.11.4",
+    "@unocss/cli": "^0.12.1",
     "prettier": "^2.4.1",
-    "unocss": "^0.11.4"
+    "unocss": "^0.12.1"
   }
 }
