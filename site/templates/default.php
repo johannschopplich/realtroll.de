@@ -1,7 +1,7 @@
 <?php snippet('header') ?>
 
 <div class="due-container-lg text-center">
-  <h1 class="editorial-title"><?= $page->title()->html() ?></h1>
+  <h1 class="editorial-title"><?= $page->title()->escape() ?></h1>
 </div>
 
 <div class="due-py-xl">

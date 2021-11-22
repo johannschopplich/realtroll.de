@@ -14,7 +14,7 @@
                 src="<?= $logo->url() ?>"
                 width="<?= $logo->width() * 2 ?>"
                 height="<?= $logo->height() * 2 ?>"
-                alt=""
+                alt="<?= $game->title()->escape() ?>"
               >
             </figure>
           <?php else: ?>

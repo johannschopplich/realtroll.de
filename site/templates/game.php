@@ -2,7 +2,7 @@
 
 <div class="due-container-lg text-center">
   <h1 class="editorial-title hyphenated due-mb-xl">
-    <?= $page->title()->html() ?>
+    <?= $page->title()->escape() ?>
   </h1>
 
   <div class="columns items-center justify-center gap-5">
@@ -33,11 +33,11 @@
   <div class="due-container-lg">
     <div class="game-screenshots">
       <?php foreach ($page->screenshots()->toFiles() as $file): ?>
-        <figure class="mx-auto text-center">
-          <img src="<?= $file->url() ?>" alt="<?= $file->caption()->or($file->alt())->html() ?>">
+        <figure class="text-center">
+          <img class="mx-auto" src="<?= $file->url() ?>" alt="<?= $file->caption()->or($file->alt()) ?>">
           <?php if ($file->caption()->isNotEmpty()): ?>
             <figcaption class="due-mt-xs due-text-7 leading-normal">
-              <p class="due-text-s"><?= $file->caption()->html() ?></p>
+              <p class="due-text-s"><?= $file->caption() ?></p>
             </figcaption>
           <?php endif ?>
         </figure>
