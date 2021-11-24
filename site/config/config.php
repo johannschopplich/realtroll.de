@@ -19,6 +19,15 @@ return [
                 return isset($options['cache']) ? !$options['cache'] : false;
             }
         ]
+    ],
+
+    'kirby-extended' => [
+        'robots' => [
+            'enable' => true
+        ],
+        'sitemap' => [
+            'enable' => true
+        ]
     ]
 
 ];
