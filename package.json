@@ -5,7 +5,7 @@
     "uno": "unocss \"site/{layouts,snippets,templates}/**/*\" --out-file src/uno.css",
     "sass": "sass --style=compressed src/main.scss public/assets/css/main.css",
     "dev": "pnpm run clean && concurrently \"pnpm run uno -- --watch\" \"pnpm run sass -- --watch\"",
-    "build": "pnpm run clean && pnpm run uno && pnpm run sass -- --no-source-map && hashup --ext css"
+    "build": "pnpm run clean && pnpm run uno && pnpm run sass -- --no-source-map && hashup --ext css public/assets"
   },
   "dependencies": {
     "duecss": "^0.14.0"
@@ -13,7 +13,7 @@
   "devDependencies": {
     "@unocss/cli": "^0.12.4",
     "concurrently": "^6.4.0",
-    "hashup": "^0.2.4",
+    "hashup": "^0.3.0",
     "prettier": "^2.4.1",
     "sass": "^1.43.4",
     "unocss": "^0.12.4"
