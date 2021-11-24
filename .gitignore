@@ -19,8 +19,10 @@ storage/sessions/*
 !storage/sessions/.gitkeep
 site/config/.license
 
-# Build assets
-public/assets/css/uno.css
+# Frontend
+public/assets/manifest.json
+public/assets/css
+src/uno.css
 
 # Games
 !public/play/games/.gitkeep

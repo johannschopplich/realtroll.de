@@ -17,9 +17,7 @@
 
   <?= css([
     'https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap',
-    'assets/css/due.css',
-    'assets/css/index.css',
-    'assets/css/uno.css'
+    'assets/css/main.css'
   ]) ?>
 
   <script async defer data-domain="realtroll.de" src="https://plausible.io/js/plausible.js"></script>

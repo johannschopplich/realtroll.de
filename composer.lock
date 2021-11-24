@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2ab187d368d91ce3589732c3cec5719c",
+    "content-hash": "aad57aeeb5c92011a3c4355a22eeb744",
     "packages": [
         {
             "name": "claviska/simpleimage",
@@ -372,16 +372,16 @@
         },
         {
             "name": "johannschopplich/kirby-hashed-assets",
-            "version": "2.2.7",
+            "version": "3.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/johannschopplich/kirby-hashed-assets.git",
-                "reference": "b6456984cf8f2e83a7e79d54ba914e92e181ca9c"
+                "reference": "00433300931cbe54df507dbd1f4012f1a3b8ad45"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/johannschopplich/kirby-hashed-assets/zipball/b6456984cf8f2e83a7e79d54ba914e92e181ca9c",
-                "reference": "b6456984cf8f2e83a7e79d54ba914e92e181ca9c",
+                "url": "https://api.github.com/repos/johannschopplich/kirby-hashed-assets/zipball/00433300931cbe54df507dbd1f4012f1a3b8ad45",
+                "reference": "00433300931cbe54df507dbd1f4012f1a3b8ad45",
                 "shasum": ""
             },
             "require": {
@@ -421,9 +421,9 @@
             ],
             "support": {
                 "issues": "https://github.com/johannschopplich/kirby-hashed-assets/issues",
-                "source": "https://github.com/johannschopplich/kirby-hashed-assets/tree/v2.2.7"
+                "source": "https://github.com/johannschopplich/kirby-hashed-assets/tree/v3.0.1"
             },
-            "time": "2021-11-16T15:39:40+00:00"
+            "time": "2021-11-24T14:06:37+00:00"
         },
         {
             "name": "laminas/laminas-escaper",
