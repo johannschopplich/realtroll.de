@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="due-var-color-primary" lang="de">
+<html class="due-var-color-primary due-var-color-primary-100" lang="de">
 <head>
 
   <meta charset="utf-8">
@@ -27,7 +27,7 @@
 
   <img id="custom-cursor" hidden>
 
-  <header class="editorial flex items-center justify-center <?= $page->isHomePage() ? 'pb-48 due-mb-2xl' : 'due-mb-s' ?>" aria-hidden="true">
+  <header class="editorial pixelated flex items-center justify-center <?= $page->isHomePage() ? 'pb-48 due-mb-2xl' : 'due-mb-s' ?>" aria-hidden="true">
     <?php if ($page->isHomePage()): ?>
       <img class="pixelated transform scale-200" src="<?= asset('assets/img/willkommen.gif')->url() ?>" alt="Willkommen auf realtroll.de">
     <?php endif ?>

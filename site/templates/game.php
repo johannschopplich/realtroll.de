@@ -31,12 +31,12 @@
 
 <div id="screenshots" class="due-py-xl">
   <div class="due-container-lg">
-    <div class="game-screenshots">
+    <div class="grid grid-cols-minmax-320px gap-5">
       <?php foreach ($page->screenshots()->toFiles() as $file): ?>
         <figure class="text-center">
           <img class="mx-auto" src="<?= $file->url() ?>" alt="<?= $file->caption()->or($file->alt()) ?>">
           <?php if ($file->caption()->isNotEmpty()): ?>
-            <figcaption class="due-mt-xs due-text-7 leading-normal">
+            <figcaption class="due-my-xs due-text-7 leading-normal">
               <p class="due-text-s"><?= $file->caption() ?></p>
             </figcaption>
           <?php endif ?>

@@ -1,9 +1,15 @@
+:root {
+  --du-font-family-normal: "Space Mono", monospace;
+  --du-radius: 0;
+
+  --du-color-background: hsl(38, 24%, 96%);
+}
+
 html {
-  height: 100%;
-  background-color: hsl(38, 24%, 96%);
+  background-color: var(--du-color-background);
   background-image: radial-gradient(
-    var(--du-color-primary-lucent) 1px,
-    hsl(38, 24%, 96%) 1px
+    var(--du-color-primary-100) 1px,
+    var(--du-color-background) 1px
   );
   background-size: 50px 50px;
 

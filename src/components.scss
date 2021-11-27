@@ -6,11 +6,9 @@
 .editorial {
   border-bottom: 2px solid;
   background: url("/assets/img/editorial-gesichter.png") center bottom no-repeat,
-    url("/assets/img/bg-pattern.svg") center repeat fixed hsl(38, 24%, 96%);
+    url("/assets/img/bg-pattern.svg") center repeat fixed var(--du-color-background);
   background-size: auto 84px, auto;
   padding-top: 8rem;
-  image-rendering: pixelated;
-  image-rendering: crisp-edges;
 }
 
 .editorial-title {
@@ -58,13 +56,6 @@
       transform: translate(0, 0);
     }
   }
-}
-
-.game-screenshots {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  column-gap: var(--du-space-m);
-  row-gap: var(--du-space-l);
 }
 
 .breadcrumb li:not(:last-child)::after {
