@@ -16,7 +16,7 @@
   font-size: clamp(var(--du-text-1), 5vw, 3rem);
   font-family: var(--du-font-family-heading);
   font-weight: 600;
-  line-height: 1.1;
+  line-height: var(--du-line-height-heading);
 }
 
 #custom-cursor {
@@ -56,10 +56,4 @@
       transform: translate(0, 0);
     }
   }
-}
-
-.breadcrumb li:not(:last-child)::after {
-  content: "/";
-  color: var(--du-color-text);
-  padding: 0 var(--du-space-s);
 }

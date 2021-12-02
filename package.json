@@ -8,14 +8,14 @@
     "build": "pnpm run clean && pnpm run uno && pnpm run sass -- --no-source-map && hashup --ext css public/assets"
   },
   "dependencies": {
-    "duecss": "^0.15.1"
+    "duecss": "^0.15.3"
   },
   "devDependencies": {
-    "@unocss/cli": "^0.12.13",
+    "@unocss/cli": "^0.14.1",
     "concurrently": "^6.4.0",
     "hashup": "^0.3.0",
     "prettier": "^2.5.0",
-    "sass": "^1.43.5",
-    "unocss": "^0.12.13"
+    "sass": "^1.44.0",
+    "unocss": "^0.14.1"
   }
 }
