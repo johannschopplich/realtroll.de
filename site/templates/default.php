@@ -4,9 +4,9 @@
   <h1 class="editorial-title"><?= $page->title()->escape() ?></h1>
 </div>
 
-<div class="due-py-xl">
+<div class="py-5xl">
   <div class="due-container max-w-prose">
-    <div class="content">
+    <div class="prose">
       <?= $page->text()->toBlocks() ?>
     </div>
   </div>

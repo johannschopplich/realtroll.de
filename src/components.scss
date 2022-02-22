@@ -13,7 +13,7 @@
 
 .editorial-title {
   color: var(--du-color-contrast-higher);
-  font-size: clamp(var(--du-text-1), 5vw, 3rem);
+  font-size: clamp(var(--du-text-4xl), 5vw, 3rem);
   font-family: var(--du-font-family-heading);
   font-weight: 600;
   line-height: var(--du-line-height-heading);
@@ -40,7 +40,7 @@
   height: 100%;
   background-color: #fff;
   border: 2px solid #000;
-  padding: var(--du-space-xl);
+  padding: 3rem; // 5xl
   transition: transform 200ms;
 }
 

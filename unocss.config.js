@@ -18,6 +18,9 @@ export default defineConfig({
         900: "#000000",
       },
     },
+    borderRadius: {
+      DEFAULT: "0",
+    },
   },
 
   presets: [presetUno(), presetDue()],

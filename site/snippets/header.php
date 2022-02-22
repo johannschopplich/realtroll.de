@@ -27,7 +27,7 @@
 
   <img id="custom-cursor" hidden>
 
-  <header class="editorial pixelated flex items-center justify-center <?= $page->isHomePage() ? 'pb-48 due-mb-2xl' : 'due-mb-s' ?>" aria-hidden="true">
+  <header class="editorial pixelated flex items-center justify-center <?= $page->isHomePage() ? 'pb-48 mb-7xl' : 'mb-sm' ?>" aria-hidden="true">
     <?php if ($page->isHomePage()): ?>
       <img class="pixelated transform scale-200" src="<?= asset('assets/img/willkommen.gif')->url() ?>" alt="Willkommen auf realtroll.de">
     <?php endif ?>

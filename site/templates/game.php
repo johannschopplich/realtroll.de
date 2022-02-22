@@ -1,11 +1,11 @@
 <?php snippet('header') ?>
 
 <div class="due-container-lg text-center">
-  <h1 class="editorial-title hyphenated due-mb-xl">
+  <h1 class="editorial-title hyphenated mb-5xl">
     <?= $page->title()->escape() ?>
   </h1>
 
-  <div class="columns items-center justify-center gap-5">
+  <div class="columns items-center justify-center gap-lg">
     <?php if ($page->gameFolder()->isNotEmpty()): ?>
       <div class="column-narrow">
         <a href="/play/?game=<?= $page->gameFolder() ?>" class="due-button-primary" target="_blank">
@@ -21,23 +21,23 @@
   </div>
 </div>
 
-<div class="due-py-xl">
+<div class="py-5xl">
   <div class="due-container max-w-prose">
-    <div class="content">
+    <div class="prose">
       <?= $page->intro()->toBlocks() ?>
     </div>
   </div>
 </div>
 
-<div id="screenshots" class="due-py-xl">
+<div id="screenshots" class="py-5xl">
   <div class="due-container-lg">
-    <div class="grid grid-cols-minmax-320px gap-5">
+    <div class="grid grid-cols-minmax-320px gap-lg">
       <?php foreach ($page->screenshots()->toFiles() as $file): ?>
         <figure class="text-center">
           <img class="mx-auto" src="<?= $file->url() ?>" alt="<?= $file->caption()->or($file->alt()) ?>">
           <?php if ($file->caption()->isNotEmpty()): ?>
-            <figcaption class="due-my-xs due-text-7 leading-normal">
-              <p class="due-text-s"><?= $file->caption() ?></p>
+            <figcaption class="my-2 text-xs">
+              <p><?= $file->caption() ?></p>
             </figcaption>
           <?php endif ?>
         </figure>
@@ -48,16 +48,16 @@
 
 <?php $text = $page->text()->toBlocks() ?>
 <?php if ($text->isNotEmpty()): ?>
-  <div class="due-py-xl">
+  <div class="py-5xl">
     <div class="due-container max-w-prose">
-      <div class="content">
+      <div class="prose">
         <?= $text ?>
       </div>
     </div>
   </div>
 <?php endif ?>
 
-<div class="due-py-xl">
+<div class="py-5xl">
   <div class="text-center">
     <a href="<?= url() ?>" class="due-button-primary">
       Zurück zur Spieleliste
