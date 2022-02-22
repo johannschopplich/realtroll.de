@@ -3,14 +3,14 @@ lockfileVersion: 5.3
 specifiers:
   '@unocss/cli': ^0.26.2
   concurrently: ^7.0.0
-  duecss: ^0.19.4
+  duecss: ^0.20.5
   hashup: ^0.3.2
   prettier: ^2.5.1
   sass: ^1.49.8
   unocss: ^0.26.2
 
 dependencies:
-  duecss: 0.19.4
+  duecss: 0.20.5
 
 devDependencies:
   '@unocss/cli': 0.26.2_sass@1.49.8
@@ -423,8 +423,8 @@ packages:
     resolution: {integrity: sha512-EPS1carKg+dkEVy3qNTqIdp2qV7mUP08nIsupfwQpz++slCVRw7qbQyWvSTig+kFPwz2XXp5/kIIkH+CwrJKkQ==}
     dev: true
 
-  /duecss/0.19.4:
-    resolution: {integrity: sha512-jQiFk8t/TaqZEp4jOAjpr5UzoLpt+WPJJh1ICBfJ3rYRyk+lE4EWM0xIxDwjwGbrGMJVz4vDEI8iXcFeKKEIIw==}
+  /duecss/0.20.5:
+    resolution: {integrity: sha512-NHejjrDbmjDt3+AkZVqGgPtgLTI/MF3ZaRHGExCPdfrcMOM0Y4CCWRG0NAiJrfkbZAetzUv1qV4uar7MCHqDMg==}
     dependencies:
       '@unocss/core': 0.26.2
       '@unocss/preset-uno': 0.26.2
