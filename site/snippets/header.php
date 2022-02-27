@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="due-var-color-primary due-var-color-primary-100" lang="de">
+<html class="var-color-primary var-color-primary-100" lang="de">
 <head>
 
   <meta charset="utf-8">

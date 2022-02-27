@@ -24,7 +24,7 @@
           <div class="prose hyphenated">
             <p class="md:text-lg mb-lg"><?= $game->description() ?></p>
 
-            <a href="<?= $game->url() ?>" class="due-button-primary md:text-size-lg">
+            <a href="<?= $game->url() ?>" class="button-primary md:text-size-lg">
               <span class="absolute inset-0" aria-hidden="true"></span>
               Mehr zum Spiel…
             </a>

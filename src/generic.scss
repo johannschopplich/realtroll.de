@@ -1,6 +1,7 @@
 :root {
   --du-font-family-normal: "Space Mono", monospace;
   --du-color-background: hsl(38, 24%, 96%);
+  --du-decoration-width: max(2px, 0.1em);
 }
 
 html {
@@ -18,9 +19,9 @@ html {
 
 a {
   text-decoration-line: none;
-  text-decoration-color: currentcolor;
-  text-decoration-thickness: max(2px, 0.1em);
-  text-underline-offset: max(2px, 0.1em);
+  text-decoration-color: currentColor;
+  text-decoration-thickness: var(--du-decoration-width);
+  text-underline-offset: var(--du-decoration-width);
 
   &:hover {
     text-decoration-line: underline;
