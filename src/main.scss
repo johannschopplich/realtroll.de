@@ -1,4 +1,5 @@
-@use "../node_modules/duecss/styles/base/all";
+@use "../node_modules/duecss/styles/reset";
+@use "../node_modules/duecss/styles/base";
 @use "../node_modules/duecss/styles/plugins/typography";
 @use "generic";
 @use "components";
