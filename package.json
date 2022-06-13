@@ -3,19 +3,21 @@
   "scripts": {
     "clean": "rm -rf public/assets/css",
     "uno": "unocss \"site/{layouts,snippets,templates}/**/*\" --out-file src/uno.css",
-    "sass": "sass --style=compressed src/main.scss public/assets/css/main.css",
-    "dev": "pnpm run clean && concurrently \"pnpm run uno -- --watch\" \"pnpm run sass -- --watch\"",
-    "build": "pnpm run clean && pnpm run uno && pnpm run sass -- --no-source-map && hashup --ext css public/assets"
+    "sass": "sass --no-source-map --style=compressed src/main.scss public/assets/css/main.css",
+    "sass:watch": "sass --watch --style=compressed src/main.scss public/assets/css/main.css",
+    "dev": "pnpm run clean && concurrently \"pnpm run uno -- --watch\" \"pnpm run sass:watch\"",
+    "build": "pnpm run clean && pnpm run uno && pnpm run sass && hashup --ext css public/assets"
   },
   "dependencies": {
-    "duecss": "^0.25.7"
+    "duecss": "^0.26.0"
   },
   "devDependencies": {
-    "@unocss/cli": "^0.30.11",
-    "concurrently": "^7.1.0",
+    "@unocss/cli": "^0.39.0",
+    "@unocss/preset-wind": "^0.39.0",
+    "concurrently": "^7.2.1",
     "hashup": "^0.3.2",
     "prettier": "^2.6.2",
-    "sass": "^1.49.11",
-    "unocss": "^0.30.11"
+    "sass": "^1.52.3",
+    "unocss": "^0.39.0"
   }
 }

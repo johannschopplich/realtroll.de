@@ -57,6 +57,6 @@ function handleScreenshots({ target }) {
   cursorElement.removeAttribute("hidden");
 }
 
-if (cursorElement && window.matchMedia("(hover: hover)").matches) {
+if (cursorElement && matchMedia("(hover: hover)").matches) {
   document.addEventListener("mouseover", handleScreenshots, { capture: true });
 }

@@ -1,4 +1,5 @@
-import { defineConfig, presetUno } from "unocss";
+import { defineConfig } from "unocss";
+import { presetWind } from "@unocss/preset-wind";
 import { presetDue } from "duecss";
 
 export default defineConfig({
@@ -44,5 +45,5 @@ export default defineConfig({
       },
     ],
   ],
-  presets: [presetUno(), presetDue()],
+  presets: [presetWind(), presetDue()],
 });
