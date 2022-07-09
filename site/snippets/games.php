@@ -2,7 +2,7 @@
   <ul class="grid sm:grid-cols-2">
     <?php foreach ($gamesPage->children()->listed() as $game): ?>
       <?php
-      $screenshots = array_values($game->screenshots()->toFiles()->map(fn($i) => $i->url())->data());
+      $screenshots = $game->screenshots()->toFiles()->map(fn($i) => $i->url())->values();
       ?>
 
       <li class="game-card"<?= attr(['data-screenshots' => implode('|', $screenshots) ?? null], ' ') ?>>
@@ -22,7 +22,7 @@
           <?php endif ?>
 
           <div class="prose hyphenated">
-            <p class="md:text-lg mb-lg"><?= $game->description() ?></p>
+            <p class="mb-lg md:text-size-lg md:leading-heading"><?= $game->description() ?></p>
 
             <a href="<?= $game->url() ?>" class="button-primary md:text-size-lg">
               <span class="absolute inset-0" aria-hidden="true"></span>

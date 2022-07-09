@@ -36,7 +36,7 @@
         <figure class="text-center">
           <img class="mx-auto" src="<?= $file->url() ?>" alt="<?= $file->caption()->or($file->alt()) ?>">
           <?php if ($file->caption()->isNotEmpty()): ?>
-            <figcaption class="my-2 text-xs">
+            <figcaption class="my-2 text-size-xs leading-normal">
               <p><?= $file->caption() ?></p>
             </figcaption>
           <?php endif ?>

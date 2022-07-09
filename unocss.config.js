@@ -19,6 +19,18 @@ export default defineConfig({
         900: "#000000",
       },
     },
+    // FIXME: UnoCSS won't overrride built-in sizes with [fontSize, lineHeight] syntax
+    // Temporarily redeclare sizes from DueCSS
+    fontSize: {
+      xs: "0.75rem",
+      sm: "0.875rem",
+      base: "1rem",
+      lg: "var(--du-text-lg)",
+      xl: "var(--du-text-xl)",
+      "2xl": "var(--du-text-2xl)",
+      "3xl": "var(--du-text-3xl)",
+      "4xl": "var(--du-text-4xl)",
+    },
     borderRadius: {
       DEFAULT: "0",
     },
