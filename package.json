@@ -11,12 +11,13 @@
     "duecss": "^0.26.0"
   },
   "devDependencies": {
-    "@unocss/cli": "^0.43.2",
-    "@unocss/preset-wind": "^0.43.2",
-    "concurrently": "^7.2.2",
+    "@unocss/cli": "^0.44.4",
+    "@unocss/core": "^0.44.4",
+    "@unocss/preset-wind": "^0.44.4",
+    "concurrently": "^7.3.0",
     "hashup": "^0.4.2",
     "prettier": "^2.7.1",
     "sass": "^1.53.0",
-    "unocss": "^0.43.2"
+    "unocss": "^0.44.4"
   }
 }
