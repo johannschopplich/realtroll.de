@@ -13,20 +13,10 @@
 
 .editorial-title {
   color: var(--du-color-contrast-higher);
-  font-size: clamp(var(--du-text-4xl), 5vw, 3rem);
+  font-size: clamp(var(--du-text-3xl), 5vw, 3rem);
   font-family: var(--du-font-family-heading);
-  font-weight: 600;
-  line-height: var(--du-line-height-heading);
-}
-
-#custom-cursor {
-  position: fixed;
-  top: -120px;
-  left: 1rem;
-  transition: transform 50ms ease;
-  transform: translate(var(--mouseX), var(--mouseY));
-  pointer-events: none;
-  z-index: 10;
+  line-height: 1;
+  font-weight: 700;
 }
 
 .game-card {

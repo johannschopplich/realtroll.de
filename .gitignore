@@ -22,6 +22,7 @@ site/config/.license
 # Frontend
 public/assets/manifest.json
 public/assets/css
+public/assets/js
 src/uno.css
 
 # Games
