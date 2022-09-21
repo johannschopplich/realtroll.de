@@ -2,7 +2,7 @@
   "name": "johannschopplich/kirby-hashed-assets",
   "description": "File name hashes support for css() and js() helpers",
   "type": "kirby-plugin",
-  "version": "3.0.2",
+  "version": "3.0.4",
   "keywords": [
     "assets",
     "components",
@@ -10,6 +10,7 @@
     "helpers",
     "js",
     "kirby",
+    "kirby-cms",
     "laravel-mix",
     "manifest"
   ],

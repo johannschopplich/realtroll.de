@@ -9,18 +9,18 @@
     "build": "npm run clean && npm run uno && npm run build:css -- --no-source-map && npm run build:js -- --minify && hashup public/assets"
   },
   "dependencies": {
-    "duecss": "^0.26.0"
+    "duecss": "^0.27.0"
   },
   "devDependencies": {
-    "@unocss/cli": "^0.44.4",
-    "@unocss/core": "^0.44.4",
-    "@unocss/preset-wind": "^0.44.4",
-    "concurrently": "^7.3.0",
-    "esbuild": "^0.14.49",
+    "@unocss/cli": "^0.45.22",
+    "@unocss/core": "^0.45.22",
+    "@unocss/preset-wind": "^0.45.22",
+    "concurrently": "^7.4.0",
+    "esbuild": "^0.15.8",
     "hashup": "^0.4.2",
     "prettier": "^2.7.1",
-    "sass": "^1.53.0",
+    "sass": "^1.54.9",
     "shx": "^0.3.4",
-    "unocss": "^0.44.4"
+    "unocss": "^0.45.22"
   }
 }

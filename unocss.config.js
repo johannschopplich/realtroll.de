@@ -1,5 +1,4 @@
-import { defineConfig } from "unocss";
-import { presetWind } from "@unocss/preset-wind";
+import { defineConfig, presetWind } from "unocss";
 import { presetDue } from "duecss";
 
 export default defineConfig({
