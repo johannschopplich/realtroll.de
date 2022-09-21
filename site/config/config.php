@@ -17,7 +17,7 @@ return [
         ]
     ],
 
-    'kirby-extended' => [
+    'kirby-helpers' => [
         'robots' => [
             'enable' => true
         ],
