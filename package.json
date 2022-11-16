@@ -12,15 +12,22 @@
     "duecss": "^0.27.0"
   },
   "devDependencies": {
-    "@unocss/cli": "^0.45.22",
-    "@unocss/core": "^0.45.22",
-    "@unocss/preset-wind": "^0.45.22",
-    "concurrently": "^7.4.0",
-    "esbuild": "^0.15.8",
+    "@unocss/cli": "^0.46.5",
+    "@unocss/core": "^0.46.5",
+    "@unocss/preset-wind": "^0.46.5",
+    "concurrently": "^7.5.0",
+    "esbuild": "^0.15.14",
     "hashup": "^0.4.2",
     "prettier": "^2.7.1",
-    "sass": "^1.54.9",
+    "sass": "^1.56.1",
     "shx": "^0.3.4",
-    "unocss": "^0.45.22"
+    "unocss": "^0.46.5"
+  },
+  "pnpm": {
+    "peerDependencyRules": {
+      "ignoreMissing": [
+        "vite"
+      ]
+    }
   }
 }
