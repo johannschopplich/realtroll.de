@@ -1,5 +1,6 @@
 {
   "private": true,
+  "packageManager": "pnpm@7.18.2",
   "scripts": {
     "clean": "shx rm -rf public/assets/{css,js}",
     "uno": "unocss \"site/{layouts,snippets,templates}/**/*\" --out-file src/uno.css",
@@ -9,19 +10,19 @@
     "build": "npm run clean && npm run uno && npm run build:css -- --no-source-map && npm run build:js -- --minify && hashup public/assets"
   },
   "dependencies": {
-    "duecss": "^0.27.0"
+    "duecss": "^0.27.2"
   },
   "devDependencies": {
-    "@unocss/cli": "^0.46.5",
-    "@unocss/core": "^0.46.5",
-    "@unocss/preset-wind": "^0.46.5",
-    "concurrently": "^7.5.0",
-    "esbuild": "^0.15.14",
-    "hashup": "^0.4.2",
-    "prettier": "^2.7.1",
-    "sass": "^1.56.1",
+    "@unocss/cli": "^0.47.6",
+    "@unocss/core": "^0.47.6",
+    "@unocss/preset-wind": "^0.47.6",
+    "concurrently": "^7.6.0",
+    "esbuild": "^0.16.8",
+    "hashup": "^0.4.3",
+    "prettier": "^2.8.1",
+    "sass": "^1.57.0",
     "shx": "^0.3.4",
-    "unocss": "^0.46.5"
+    "unocss": "^0.47.6"
   },
   "pnpm": {
     "peerDependencyRules": {
