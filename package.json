@@ -17,7 +17,7 @@
     "@unocss/core": "^0.47.6",
     "@unocss/preset-wind": "^0.47.6",
     "concurrently": "^7.6.0",
-    "esbuild": "^0.16.8",
+    "esbuild": "^0.16.9",
     "hashup": "^0.4.3",
     "prettier": "^2.8.1",
     "sass": "^1.57.0",
