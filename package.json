@@ -1,6 +1,6 @@
 {
   "private": true,
-  "packageManager": "pnpm@7.18.2",
+  "packageManager": "pnpm@7.20.0",
   "scripts": {
     "clean": "shx rm -rf public/assets/{css,js}",
     "uno": "unocss \"site/{layouts,snippets,templates}/**/*\" --out-file src/uno.css",
@@ -13,16 +13,16 @@
     "duecss": "^0.27.2"
   },
   "devDependencies": {
-    "@unocss/cli": "^0.47.6",
-    "@unocss/core": "^0.47.6",
-    "@unocss/preset-wind": "^0.47.6",
+    "@unocss/cli": "^0.48.0",
+    "@unocss/core": "^0.48.0",
+    "@unocss/preset-wind": "^0.48.0",
     "concurrently": "^7.6.0",
-    "esbuild": "^0.16.9",
+    "esbuild": "^0.16.12",
     "hashup": "^0.4.3",
     "prettier": "^2.8.1",
-    "sass": "^1.57.0",
+    "sass": "^1.57.1",
     "shx": "^0.3.4",
-    "unocss": "^0.47.6"
+    "unocss": "^0.48.0"
   },
   "pnpm": {
     "peerDependencyRules": {
