@@ -5,7 +5,7 @@ icon: 🕹
 tabs:
   content:
     label: Seite
-    icon: page
+    icon: draft
     columns:
       main:
         width: 2/3

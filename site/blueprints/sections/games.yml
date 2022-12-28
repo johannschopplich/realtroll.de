@@ -1,6 +1,6 @@
 type: pages
 headline: Spiele
-parent: kirby.page('spiele')
+parent: kirby.page("spiele")
 template: game
 empty: Keine Spiele
 layout: cards

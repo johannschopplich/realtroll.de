@@ -9,5 +9,5 @@ sections:
     layout: cards
     size: small
     image:
-      ratio: 4/3
       cover: true
+      ratio: 4/3

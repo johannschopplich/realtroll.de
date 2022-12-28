@@ -27,6 +27,6 @@ tabs:
             type: fields
             fields:
               thumbnail:
-                query: site.files.template('image')
+                query: site.files.template("image")
 
   images: tabs/images
