@@ -1,5 +1,6 @@
 import { defineConfig, presetWind } from "unocss";
 import { presetDue } from "duecss";
+import type { Theme } from "@unocss/preset-wind";
 
 export default defineConfig({
   theme: {
@@ -27,7 +28,9 @@ export default defineConfig({
       /^content(?:-(fluid))?$/,
       ([, fluid], { theme }) =>
         `relative ${
-          fluid ? "mx-lg" : `mx-auto w-[calc(100%-2*${theme.spacing.lg})]`
+          fluid
+            ? "mx-lg"
+            : `mx-auto w-[calc(100%-2*${(theme as Theme)?.spacing?.lg})]`
         }`,
     ],
     [
@@ -36,7 +39,10 @@ export default defineConfig({
         let result = `relative max-w-screen-${bp}`;
 
         if (m === "fluid") result += " mx-lg";
-        else result += ` mx-auto w-[calc(100%-2*${theme.spacing.lg})]`;
+        else
+          result += ` mx-auto w-[calc(100%-2*${
+            (theme as Theme)?.spacing?.lg
+          })]`;
 
         if (m === "full") result += " w-full";
 

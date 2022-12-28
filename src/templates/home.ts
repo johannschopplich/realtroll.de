@@ -2,20 +2,20 @@ const floatingScreenshot = document.querySelector<HTMLImageElement>(
   "#floating-screenshot"
 );
 
-// Prevent redundant rAF calls
-let needForRAF = true;
+// Prevent redundant calls to `requestAnimationFrame`
+let needsAnimationFrame = true;
 
 let lastElement: HTMLElement | undefined;
 let lastTimerId: number | undefined;
 
 export default () => {
   document.addEventListener("mousemove", (event) => {
-    if (needForRAF) {
-      requestAnimationFrame(() => {
-        needForRAF = false;
-        updateMouseProperties(event);
-      });
-    }
+    if (!needsAnimationFrame) return;
+
+    requestAnimationFrame(() => {
+      needsAnimationFrame = false;
+      updateMouseProperties(event);
+    });
   });
 
   if (matchMedia("(hover: hover)").matches) {
@@ -28,7 +28,7 @@ export default () => {
 function updateMouseProperties(event: MouseEvent) {
   document.documentElement.style.setProperty("--mouseX", `${event.clientX}px`);
   document.documentElement.style.setProperty("--mouseY", `${event.clientY}px`);
-  needForRAF = true;
+  needsAnimationFrame = true;
 }
 
 function handleScreenshots(event: MouseEvent) {

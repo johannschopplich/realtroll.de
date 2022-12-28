@@ -1,6 +1,9 @@
-const templates: Record<string, () => Promise<Record<string, any>>> = {
+const templates = {
   home: () => import("./templates/home"),
+  default: undefined,
 };
 
-const { template = "default" } = document.body.dataset;
-templates[template]?.().then((m) => m.default?.());
+const template = document.body.dataset.template as
+  | keyof typeof templates
+  | undefined;
+templates[template ?? "default"]?.().then((m) => m.default?.());

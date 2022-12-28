@@ -7,7 +7,8 @@
     "build:css": "sass --style=compressed src/main.scss public/assets/css/main.css",
     "build:js": "esbuild src/main.ts --bundle --format=esm --splitting --outdir=public/assets/js",
     "dev": "npm run clean && concurrently \"npm run uno -- --watch\" \"npm run build:css -- --watch\" \"npm run build:js -- --watch --sourcemap\"",
-    "build": "npm run clean && npm run uno && npm run build:css -- --no-source-map && npm run build:js -- --minify && hashup public/assets"
+    "build": "npm run clean && npm run uno && npm run build:css -- --no-source-map && npm run build:js -- --minify && hashup public/assets",
+    "format": "prettier \"src/**/*\" --write --ignore-path .gitignore"
   },
   "dependencies": {
     "duecss": "^0.27.2"

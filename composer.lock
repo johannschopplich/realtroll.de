@@ -418,24 +418,25 @@
         },
         {
             "name": "johannschopplich/kirby-hashed-assets",
-            "version": "3.0.5",
+            "version": "3.0.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/johannschopplich/kirby-hashed-assets.git",
-                "reference": "83b60e290272dd0420f3f9e5ac721c7ace6a47f5"
+                "reference": "32653de0f51cbf03bd8a0eb1550a659f8cd6a270"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/johannschopplich/kirby-hashed-assets/zipball/83b60e290272dd0420f3f9e5ac721c7ace6a47f5",
-                "reference": "83b60e290272dd0420f3f9e5ac721c7ace6a47f5",
+                "url": "https://api.github.com/repos/johannschopplich/kirby-hashed-assets/zipball/32653de0f51cbf03bd8a0eb1550a659f8cd6a270",
+                "reference": "32653de0f51cbf03bd8a0eb1550a659f8cd6a270",
                 "shasum": ""
             },
             "require": {
                 "getkirby/composer-installer": "^1.2",
-                "php": ">=7.4.0"
+                "php": ">=8.0.0"
             },
             "require-dev": {
-                "getkirby/cms": "^3.7",
+                "friendsofphp/php-cs-fixer": "@stable",
+                "getkirby/cms": "^3.8",
                 "phpunit/phpunit": "^9.0"
             },
             "type": "kirby-plugin",
@@ -468,22 +469,22 @@
             ],
             "support": {
                 "issues": "https://github.com/johannschopplich/kirby-hashed-assets/issues",
-                "source": "https://github.com/johannschopplich/kirby-hashed-assets/tree/v3.0.5"
+                "source": "https://github.com/johannschopplich/kirby-hashed-assets/tree/v3.0.7"
             },
-            "time": "2022-09-22T06:07:36+00:00"
+            "time": "2022-12-25T18:25:33+00:00"
         },
         {
             "name": "johannschopplich/kirby-helpers",
-            "version": "3.0.7",
+            "version": "3.0.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/johannschopplich/kirby-helpers.git",
-                "reference": "b9aac395bedad0eccbdda2f5a061165143362944"
+                "reference": "9a5a42eff834bde2e99bb865bfa352afed56e803"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/johannschopplich/kirby-helpers/zipball/b9aac395bedad0eccbdda2f5a061165143362944",
-                "reference": "b9aac395bedad0eccbdda2f5a061165143362944",
+                "url": "https://api.github.com/repos/johannschopplich/kirby-helpers/zipball/9a5a42eff834bde2e99bb865bfa352afed56e803",
+                "reference": "9a5a42eff834bde2e99bb865bfa352afed56e803",
                 "shasum": ""
             },
             "require": {
@@ -492,6 +493,7 @@
                 "vlucas/phpdotenv": "^5.0"
             },
             "require-dev": {
+                "friendsofphp/php-cs-fixer": "@stable",
                 "getkirby/cms": "^3.8"
             },
             "type": "kirby-plugin",
@@ -532,9 +534,9 @@
             ],
             "support": {
                 "issues": "https://github.com/johannschopplich/kirby-helpers/issues",
-                "source": "https://github.com/johannschopplich/kirby-helpers/tree/v3.0.7"
+                "source": "https://github.com/johannschopplich/kirby-helpers/tree/v3.0.12"
             },
-            "time": "2022-11-18T18:34:34+00:00"
+            "time": "2022-12-25T18:50:02+00:00"
         },
         {
             "name": "laminas/laminas-escaper",
