@@ -3,7 +3,7 @@
     <?php foreach ($games->children()->listed() as $game): ?>
       <?php
       $screenshots = $game->screenshots()->toFiles()->map(fn ($i) => $i->url())->values();
-      ?>
+        ?>
 
       <li class="game-card"<?= attr(['data-screenshots' => implode('|', $screenshots)], ' ') ?>>
         <div class="relative game-card-inner">
@@ -21,7 +21,7 @@
             <p class="flex items-center justify-center">(Kein Logo)</p>
           <?php endif ?>
 
-          <div class="prose hyphenated">
+          <div class="prose hyphenate">
             <p class="mb-lg"><?= $game->description() ?></p>
 
             <a href="<?= $game->url() ?>" class="button-primary">

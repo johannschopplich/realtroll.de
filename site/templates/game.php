@@ -1,11 +1,11 @@
 <?php snippet('header') ?>
 
 <div class="content-lg text-center">
-  <h1 class="editorial-title hyphenated mb-5xl">
+  <h1 class="editorial-title hyphenate mb-5xl">
     <?= $page->title()->escape() ?>
   </h1>
 
-  <div class="columns items-center justify-center gap-lg">
+  <div class="columns gap-lg items-center justify-center">
     <?php if ($page->gameFolder()->isNotEmpty()): ?>
       <div class="column-narrow">
         <a href="/play/?game=<?= $page->gameFolder() ?>" class="button-primary" target="_blank">

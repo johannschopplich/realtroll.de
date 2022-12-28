@@ -30,7 +30,7 @@
 </head>
 <body data-template="<?= $page->intendedTemplate()->name() ?>">
 
-  <div id="floating-screenshot" class="fixed top-[-120px] left-0 w-[320px] aspect-[4/3] flex justify-center items-center translate-x-[var(--mouseX)] translate-y-[var(--mouseY)] pointer-events-none z-10 hidden children:hidden">
+  <div id="floating-screenshot" class="children:hidden pointer-events-none fixed top-[-120px] left-0 z-10 hidden aspect-[4/3] w-[320px] translate-x-[var(--mouseX)] translate-y-[var(--mouseY)] items-center justify-center">
     <img class="pixelated scale-200">
   </div>
 
