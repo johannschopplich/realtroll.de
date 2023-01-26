@@ -1,6 +1,6 @@
 <?php
 
-namespace KirbyHelpers;
+namespace JohannSchopplich\Helpers;
 
 use Kirby\Cms\Field;
 use Kirby\Cms\Page;
@@ -13,7 +13,7 @@ class PageMeta
 
     public function __construct(protected Page $page)
     {
-        $defaults = option('kirby-helpers.meta.defaults', []);
+        $defaults = option('johannschopplich.helpers.meta.defaults', []);
         $this->metadata = is_callable($defaults) ? $defaults(kirby(), site(), $this->page) : $defaults;
 
         if (method_exists($this->page, 'metadata')) {
@@ -163,7 +163,7 @@ class PageMeta
         foreach ($opengraph as $prop => $content) {
             if (is_array($content)) {
                 if (str_starts_with($prop, 'namespace:')) {
-                    $prop = preg_replace('/^(namespace:)/', '', $prop);
+                    $prop = substr($prop, 10);
                 }
 
                 foreach ($content as $typeProp => $typeContent) {

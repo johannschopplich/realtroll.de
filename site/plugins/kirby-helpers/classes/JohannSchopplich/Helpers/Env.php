@@ -1,7 +1,8 @@
 <?php
 
-namespace KirbyHelpers;
+namespace JohannSchopplich\Helpers;
 
+use Closure;
 use Dotenv\Dotenv;
 use Dotenv\Repository\RepositoryBuilder;
 use Dotenv\Repository\RepositoryInterface;
@@ -12,7 +13,7 @@ class Env
     protected static bool $loaded = false;
     protected static RepositoryInterface|null $repository = null;
 
-    public static function getRepository(): \Dotenv\Repository\RepositoryInterface
+    public static function getRepository(): RepositoryInterface
     {
         return static::$repository ??= RepositoryBuilder::createWithDefaultAdapters()->immutable()->make();
     }
@@ -33,7 +34,7 @@ class Env
         )->load();
     }
 
-    public static function get(string $key, $default = null)
+    public static function get(string $key, $default = null): mixed
     {
         return Option::fromValue(static::getRepository()->get($key))
             ->map(function ($value) {
@@ -58,6 +59,6 @@ class Env
 
                 return $value;
             })
-            ->getOrCall(fn () => value($default));
+            ->getOrCall(fn () => $default instanceof Closure ? $default() : $default);
     }
 }

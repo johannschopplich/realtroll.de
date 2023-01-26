@@ -14,16 +14,16 @@
     "duecss": "^0.27.2"
   },
   "devDependencies": {
-    "@unocss/cli": "^0.48.0",
-    "@unocss/core": "^0.48.0",
-    "@unocss/preset-wind": "^0.48.0",
+    "@unocss/cli": "^0.49.0",
+    "@unocss/core": "^0.49.0",
+    "@unocss/preset-wind": "^0.49.0",
     "concurrently": "^7.6.0",
-    "esbuild": "^0.16.12",
+    "esbuild": "^0.17.4",
     "hashup": "^0.4.3",
-    "prettier": "^2.8.1",
+    "prettier": "^2.8.3",
     "sass": "^1.57.1",
     "shx": "^0.3.4",
-    "unocss": "^0.48.0"
+    "unocss": "^0.49.0"
   },
   "pnpm": {
     "peerDependencyRules": {
