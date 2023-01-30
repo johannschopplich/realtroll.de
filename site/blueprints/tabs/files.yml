@@ -3,6 +3,6 @@ icon: import
 sections:
   files:
     type: files
-    headline: Dateien
+    label: Dateien
     template: default
     empty: Noch keine Dateien

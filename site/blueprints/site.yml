@@ -15,7 +15,7 @@ tabs:
         sections:
           pages:
             type: pages
-            headline: Seiten
+            label: Seiten
             create: default
             image:
               back: white

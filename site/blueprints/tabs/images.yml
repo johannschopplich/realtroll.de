@@ -3,7 +3,7 @@ icon: image
 sections:
   images:
     type: files
-    headline: Bilder
+    label: Bilder
     template: image
     empty: Noch keine Bilder
     layout: cards

@@ -1,4 +1,4 @@
 type: files
-headline: Bilder
+label: Bilder
 template: image
 empty: Keine Bilder
