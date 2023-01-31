@@ -1,17 +1,20 @@
 type: fields
 fields:
   customTitle:
-    label: Eigener Titel
+    label: Titel (Überschreiben)
     type: text
     icon: title
+    placeholder: "{{ page.title }} – {{ site.title }}"
+    help: Der Seitentitel, so wie er in Suchmaschinen erscheinen soll. Bleibt das Feld leer, wird stattdessen der Seitentitel ausgegeben.
   description:
-    label: Beschreibung
+    label: Beschreibung (Überschreiben)
     type: textarea
     buttons: false
-    icon: text
+    help: Eine kurze Beschreibung der Seite, die von Suchmaschinen unter dem Titel angezeigt wird.
   thumbnail:
     label: Vorschaubild
     type: files
-    query: page.files.template("image")
-    uploads: image
+    query: page.files.template('image')
+    uploads:
+      template: image
     multiple: false
