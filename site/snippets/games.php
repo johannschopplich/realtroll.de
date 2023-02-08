@@ -1,9 +1,7 @@
 <?php if ($games = page('spiele')): ?>
   <ul class="grid sm:grid-cols-2">
     <?php foreach ($games->children()->listed() as $game): ?>
-      <?php
-      $screenshots = $game->screenshots()->toFiles()->map(fn ($i) => $i->url())->values();
-        ?>
+      <?php $screenshots = $game->screenshots()->toFiles()->map(fn ($i) => $i->url())->values() ?>
 
       <li class="game-card"<?= attr(['data-screenshots' => implode('|', $screenshots)], ' ') ?>>
         <div class="relative game-card-inner">

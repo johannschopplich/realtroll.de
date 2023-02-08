@@ -1,4 +1,4 @@
-<?php snippet('header') ?>
+<?php snippet('layout', slots: true) ?>
 
 <div class="content-lg mb-7xl">
   <h1 class="editorial-title"><?= $page->text()->kti() ?></h1>
@@ -8,4 +8,4 @@
   <?php snippet('games') ?>
 </div>
 
-<?php snippet('footer') ?>
+<?php endsnippet() ?>

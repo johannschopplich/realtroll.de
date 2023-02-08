@@ -1,4 +1,4 @@
-<?php snippet('header') ?>
+<?php snippet('layout', slots: true) ?>
 
 <div class="content-lg text-center">
   <h1 class="editorial-title hyphenate mb-5xl">
@@ -65,4 +65,4 @@
   </div>
 </div>
 
-<?php snippet('footer') ?>
+<?php endsnippet() ?>
