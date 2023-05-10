@@ -1,5 +1,5 @@
 .prose {
-  :where(p) {
+  :where(p, ol > li) {
     font-stretch: expanded;
   }
 }
