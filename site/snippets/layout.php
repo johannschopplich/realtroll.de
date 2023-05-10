@@ -32,12 +32,12 @@
 <body data-template="<?= $page->intendedTemplate()->name() ?>">
 
   <div id="floating-screenshot" class="children:hidden pointer-events-none fixed top-[-120px] left-0 z-10 hidden aspect-[4/3] w-[320px] translate-x-[var(--mouseX)] translate-y-[var(--mouseY)] items-center justify-center">
-    <img class="pixelated md:scale-[2]">
+    <img class="pixelated scale-[2]">
   </div>
 
   <header class="editorial pixelated flex items-center justify-center <?= $page->isHomePage() ? 'pb-48 mb-7xl' : 'mb-sm' ?>" aria-hidden="true">
     <?php if ($page->isHomePage()): ?>
-      <img class="pixelated scale-200" src="<?= asset('assets/img/willkommen.gif')->url() ?>" alt="Willkommen auf realtroll.de">
+      <img class="pixelated md:scale-[2]" src="<?= asset('assets/img/willkommen.gif')->url() ?>" alt="Willkommen auf realtroll.de">
     <?php endif ?>
   </header>
 
