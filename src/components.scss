@@ -20,32 +20,3 @@
   line-height: 1;
   font-weight: 700;
 }
-
-.game-card {
-  background: var(--du-color-primary-700);
-  margin-top: -2px;
-}
-
-.game-card-inner {
-  display: grid;
-  grid-template-rows: 1fr auto;
-  height: 100%;
-  background-color: #fff;
-  border: 2px solid var(--du-color-primary-700);
-  padding: 3rem; // 5xl
-  transition: transform 200ms;
-}
-
-@media (min-width: 640px) {
-  .game-card:nth-child(2n + 1) .game-card-inner {
-    margin-right: -2px;
-  }
-
-  .game-card-inner:hover {
-    transform: translate(-4px, -4px);
-
-    &:active {
-      transform: translate(0, 0);
-    }
-  }
-}
