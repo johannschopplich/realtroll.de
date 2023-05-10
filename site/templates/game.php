@@ -14,7 +14,7 @@
       </div>
     <?php endif ?>
     <div class="column-narrow">
-      <a href="<?= $page->downloadLink() ?>" class="<?= $page->gameFolder()->isNotEmpty() ? 'button-text' : 'button-primary' ?>">
+      <a href="<?= $page->downloadLink() ?>" class="<?= $page->gameFolder()->isNotEmpty() ? 'button-primary-outlined' : 'button-primary' ?>">
         Download (Windows)
       </a>
     </div>
