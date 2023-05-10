@@ -39,9 +39,12 @@ export default defineConfig<Theme>({
         }`,
     ],
     [
-      /^content-(sm|md|lg|xl|2xl)(?:-(full|fluid))?$/,
+      /^content-(.+)(?:-(full|fluid))?$/,
       ([, bp, m], { theme }) => {
-        let result = `relative max-w-screen-${bp}`;
+        let result =
+          bp === "prose"
+            ? `relative max-w-${bp}`
+            : `relative max-w-screen-${bp}`;
 
         if (m === "fluid") result += " mx-lg";
         else

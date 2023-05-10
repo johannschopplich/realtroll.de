@@ -1,6 +1,5 @@
-<nav class="mb-5xl">
-  <ul class="flex list-none flex-wrap justify-center text-center">
-    <li class="after:content-[quoted:/] after:text-theme-text after:px-sm"><a href="<?= $site->homePage()->url() ?>" class="text-primary-400">Startseite</a></li>
-    <li><a href="<?= $page->url() ?>" class="text-current"><?= $page->title()->escape() ?></a></li>
+<nav class="content-prose mb-5xl">
+  <ul class="flex list-none flex-wrap">
+    <li><a href="<?= $site->homePage()->url() ?>" class="text-primary-500">&larr; Startseite</a></li>
   </ul>
 </nav>
