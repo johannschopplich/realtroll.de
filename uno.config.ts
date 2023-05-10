@@ -26,6 +26,10 @@ export default defineConfig<Theme>({
       DEFAULT: "0",
     },
   },
+  rules: [
+    ["pixelated", { "image-rendering": "pixelated" }],
+    ["expanded", { "font-stretch": "expanded" }],
+  ],
   shortcuts: [
     [
       /^content(?:-(fluid))?$/,
