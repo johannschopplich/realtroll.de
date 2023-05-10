@@ -1,7 +1,11 @@
 :root {
-  --du-font-family-normal: "Space Mono", monospace;
+  --du-font-family-heading: "Gridular", monospace;
+  --du-font-family-normal: "Iosevka Slab Web", monospace;
   --du-color-background: hsl(38, 24%, 96%);
   --du-decoration-width: max(2px, 0.1em);
+
+  --du-fluid-min-font-size: 16;
+  --du-fluid-max-font-size: 18;
 }
 
 html {

@@ -20,7 +20,7 @@
           <?php endif ?>
 
           <div class="prose hyphenate">
-            <p class="mb-lg"><?= $game->description() ?></p>
+            <p class="mb-lg expanded"><?= $game->description() ?></p>
 
             <a href="<?= $game->url() ?>" class="button-primary">
               <span class="absolute inset-0" aria-hidden="true"></span>

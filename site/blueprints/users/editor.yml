@@ -5,15 +5,11 @@ description: Kann Beiträge veröffentlichen und verwalten.
 permissions:
   access:
     settings: false
+    users: false
   user:
     changeRole: false
     delete: false
-  users:
-    changeEmail: false
-    changeName: false
-    changePassword: false
-    delete: false
-    update: false
+  users: false
 
 sections:
   info:

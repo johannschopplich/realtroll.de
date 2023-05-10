@@ -1,26 +1,28 @@
-.pixelated {
-  image-rendering: pixelated;
-  image-rendering: crisp-edges;
+.prose {
+  :where(p) {
+    font-stretch: expanded;
+  }
 }
 
 .editorial {
   border-bottom: 2px solid;
   background: url("/assets/img/editorial-gesichter.png") center bottom no-repeat,
-    url("/assets/img/bg-pattern.svg") center repeat fixed var(--du-color-background);
+    url("/assets/img/bg-pattern.svg") center repeat fixed
+      var(--du-color-background);
   background-size: auto 84px, auto;
   padding-top: 8rem;
 }
 
 .editorial-title {
-  color: var(--du-color-contrast-higher);
-  font-size: clamp(var(--du-text-3xl), 5vw, 3rem);
+  color: var(--du-color-primary-700);
+  font-size: clamp(var(--du-text-3xl), 5vw, 4rem);
   font-family: var(--du-font-family-heading);
   line-height: 1;
   font-weight: 700;
 }
 
 .game-card {
-  background: #000;
+  background: var(--du-color-primary-700);
   margin-top: -2px;
 }
 
@@ -29,7 +31,7 @@
   grid-template-rows: 1fr auto;
   height: 100%;
   background-color: #fff;
-  border: 2px solid #000;
+  border: 2px solid var(--du-color-primary-700);
   padding: 3rem; // 5xl
   transition: transform 200ms;
 }
@@ -46,4 +48,13 @@
       transform: translate(0, 0);
     }
   }
+}
+
+.pixelated {
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+
+.expanded {
+  font-stretch: expanded;
 }

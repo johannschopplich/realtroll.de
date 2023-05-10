@@ -3,8 +3,7 @@ const templates = {
   default: undefined,
 };
 
-const template = document.body.dataset.template as
-  | keyof typeof templates
-  | undefined;
+const template =
+  (document.body.dataset.template as keyof typeof templates) ?? "default";
 
-templates[template ?? "default"]?.().then((m) => m.default?.());
+templates[template]?.().then((m) => m.default?.());

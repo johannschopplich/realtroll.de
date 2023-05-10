@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="var-color-primary var-color-primary-100" lang="de">
+<html class="var-color-primary var-color-primary-100 var-color-primary-700" lang="de">
 <head>
 
   <meta charset="utf-8">
@@ -19,7 +19,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
   <?= css([
-    'https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap',
+    'assets/fonts/Gridular.css',
+    'assets/fonts/IosevkaSlab.css',
     'assets/css/main.css'
   ]) ?>
 

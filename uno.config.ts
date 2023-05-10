@@ -2,8 +2,11 @@ import { defineConfig, presetWind } from "unocss";
 import { presetDue } from "duecss";
 import type { Theme } from "@unocss/preset-wind";
 
-export default defineConfig({
+export default defineConfig<Theme>({
   theme: {
+    maxWidth: {
+      prose: "75ch",
+    },
     colors: {
       primary: {
         DEFAULT: "#884A1F",
@@ -28,9 +31,7 @@ export default defineConfig({
       /^content(?:-(fluid))?$/,
       ([, fluid], { theme }) =>
         `relative ${
-          fluid
-            ? "mx-lg"
-            : `mx-auto w-[calc(100%-2*${(theme as Theme)?.spacing?.lg})]`
+          fluid ? "mx-lg" : `mx-auto w-[calc(100%-2*${theme?.spacing?.lg})]`
         }`,
     ],
     [
