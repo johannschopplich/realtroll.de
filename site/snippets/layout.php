@@ -31,11 +31,11 @@
 </head>
 <body data-template="<?= $page->intendedTemplate()->name() ?>">
 
-  <div id="floating-screenshot" class="children:hidden pointer-events-none fixed top-[-120px] left-0 z-10 hidden aspect-[4/3] w-[320px] translate-x-[var(--mouseX)] translate-y-[var(--mouseY)] items-center justify-center">
+  <div id="floating-screenshot" class="fixed top-[-120px] left-0 z-10 pointer-events-none hidden w-[320px] aspect-[4/3] translate-x-[var(--mouseX)] translate-y-[var(--mouseY)] items-center justify-center children:hidden">
     <img class="pixelated scale-[2]">
   </div>
 
-  <header class="editorial pixelated flex items-center justify-center <?= $page->isHomePage() ? 'pb-48 mb-7xl' : 'mb-sm' ?>" aria-hidden="true">
+  <header class="editorial flex items-center justify-center pixelated <?= $page->isHomePage() ? 'pb-[10rem] mb-5xl md:pb-[12rem] md:mb-7xl' : 'mb-sm' ?>" aria-hidden="true">
     <?php if ($page->isHomePage()): ?>
       <img class="pixelated md:scale-[2]" src="<?= asset('assets/img/willkommen.gif')->url() ?>" alt="Willkommen auf realtroll.de">
     <?php endif ?>
