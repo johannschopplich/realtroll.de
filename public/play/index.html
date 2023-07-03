@@ -156,25 +156,21 @@
           <path
             id="dpad-up"
             data-key="ArrowUp"
-            data-key-code="38"
             d="M48,5.8C48,2.5,45.4,0,42,0H29.9C26.6,0,24,2.4,24,5.8V24h24V5.8z"
           />
           <path
             id="dpad-right"
             data-key="ArrowRight"
-            data-key-code="39"
             d="M66.2,24H48v24h18.2c3.3,0,5.8-2.7,5.8-6V29.9C72,26.5,69.5,24,66.2,24z"
           />
           <path
             id="dpad-down"
             data-key="ArrowDown"
-            data-key-code="40"
             d="M24,66.3c0,3.3,2.6,5.7,5.9,5.7H42c3.3,0,6-2.4,6-5.7V48H24V66.3z"
           />
           <path
             id="dpad-left"
             data-key="ArrowLeft"
-            data-key-code="37"
             d="M5.7,24C2.4,24,0,26.5,0,29.9V42c0,3.3,2.3,6,5.7,6H24V24H5.7z"
           />
           <rect id="dpad-center" x="24" y="24" width="24" height="24" />
@@ -182,8 +178,8 @@
       </div>
 
       <div id="apad" class="unselectable">
-        <div id="apad-enter" data-key="Enter" data-key-code="13"></div>
-        <div id="apad-escape" data-key="Escape" data-key-code="27"></div>
+        <div id="apad-enter" data-key="Enter"></div>
+        <div id="apad-escape" data-key="Escape"></div>
       </div>
     </div>
 
@@ -201,12 +197,14 @@
         " ",
         "F12",
       ];
+      /** @type {Map<string, string>} */
       const keys = new Map();
+      /** @type {Map<string, string>} */
       const keysDown = new Map();
       const viewport = document.getElementById("viewport");
       const canvas = document.getElementById("canvas");
-      /** @type {Record<number, Gamepad>} */
-      const gamepads = {};
+      /** @type {Map<number, Gamepad>} */
+      const gamepads = new Map();
       const hasGamepadEvents = "ongamepadonnected" in window;
       let lastTouchedId;
 
@@ -223,7 +221,7 @@
       // given key on touch-based devices
       if (hasTouchscreen) {
         for (const button of document.querySelectorAll("[data-key]")) {
-          bindKey(button, button.dataset.key, button.dataset.keyCode);
+          bindKey(button, button.dataset.key);
         }
       } else {
         // Prevent scrolling when pressing specific keys
@@ -261,16 +259,10 @@
        *
        * @param {string} eventType Type of the keyboard event
        * @param {string} key Key to simulate
-       * @param {number} keyCode Key code to simulate (deprecated)
        */
-      function simulateKeyboardEvent(eventType, key, keyCode) {
+      function simulateKeyboardEvent(eventType, key) {
         const event = new Event(eventType, { bubbles: true });
-        event.key = key;
         event.code = key;
-        // Deprecated, but necessary for emscripten somehow
-        event.keyCode = keyCode;
-        event.which = keyCode;
-
         canvas.dispatchEvent(event);
       }
 
@@ -278,12 +270,11 @@
        * Simulate a keyboard input from `keydown` to `keyup`
        *
        * @param {string} key Key to simulate
-       * @param {number} keyCode Key code to simulate (deprecated)
        */
-      function simulateKeyboardInput(key, keyCode) {
-        simulateKeyboardEvent("keydown", key, keyCode);
+      function simulateKeyboardInput(key) {
+        simulateKeyboardEvent("keydown", key);
         window.setTimeout(() => {
-          simulateKeyboardEvent("keyup", key, keyCode);
+          simulateKeyboardEvent("keyup", key);
         }, 100);
       }
 
@@ -292,14 +283,13 @@
        *
        * @param {HTMLElement} element The element to bind a key to
        * @param {string} key Key to simulate
-       * @param {number} keyCode Key code to simulate (deprecated)
        */
-      function bindKey(element, key, keyCode) {
-        keys.set(element.id, { key, keyCode });
+      function bindKey(element, key) {
+        keys.set(element.id, key);
 
         element.addEventListener("touchstart", (event) => {
           event.preventDefault();
-          simulateKeyboardEvent("keydown", key, keyCode);
+          simulateKeyboardEvent("keydown", key);
           keysDown.set(event.target.id, element.id);
           element.classList.add("active");
         });
@@ -309,8 +299,7 @@
 
           const pressedKey = keysDown.get(event.target.id);
           if (pressedKey && keys.has(pressedKey)) {
-            const { key, keyCode } = keys.get(pressedKey);
-            simulateKeyboardEvent("keyup", key, keyCode);
+            simulateKeyboardEvent("keyup", keys.get(pressedKey));
           }
 
           keysDown.delete(event.target.id);
@@ -329,15 +318,13 @@
           if (origTargetId === nextTargetId) return;
 
           if (origTargetId) {
-            const { key, keyCode } = keys.get(origTargetId);
-            simulateKeyboardEvent("keyup", key, keyCode);
+            simulateKeyboardEvent("keyup", keys.get(origTargetId));
             keysDown.delete(target.id);
             document.getElementById(origTargetId).classList.remove("active");
           }
 
           if (keys.has(nextTargetId)) {
-            const { key, keyCode } = keys.get(nextTargetId);
-            simulateKeyboardEvent("keydown", key, keyCode);
+            simulateKeyboardEvent("keydown", keys.get(nextTargetId));
             keysDown.set(target.id, nextTargetId);
             lastTouchedId = nextTargetId;
             document.getElementById(nextTargetId).classList.add("active");
@@ -347,25 +334,22 @@
 
       function addGamepad(gamepad) {
         if (!gamepad) return;
-        gamepads[gamepad.index] = gamepad;
+        gamepads.set(gamepad.index, gamepad);
         updateTouchControlsVisibility();
       }
 
       function removeGamepad(gamepad) {
         if (!gamepad) return;
-        delete gamepads[gamepad.index];
+        gamepads.delete(gamepad.index);
         updateTouchControlsVisibility();
       }
 
       function scanGamePads() {
-        const pads =
-          navigator.getGamepads?.() ?? navigator.webkitGetGamepads?.() ?? [];
-
-        for (const pad of pads) {
+        for (const pad of navigator.getGamepads?.() ?? []) {
           if (!pad) continue;
 
-          if (pad.index in gamepads) {
-            gamepads[pad.index] = pad;
+          if (gamepads.has(pad.index)) {
+            gamepads.set(pad.index, pad);
           } else {
             addGamepad(pad);
           }
@@ -373,7 +357,7 @@
       }
 
       function updateTouchControlsVisibility() {
-        if (hasTouchscreen && Object.keys(gamepads).length === 0) {
+        if (hasTouchscreen && gamepads.size === 0) {
           for (const el of document.querySelectorAll("#dpad, #apad")) {
             el.style.display = "";
           }
