@@ -1,6 +1,6 @@
 {
   "private": true,
-  "packageManager": "pnpm@8.6.5",
+  "packageManager": "pnpm@8.7.5",
   "scripts": {
     "clean": "shx rm -rf public/assets/{css,js}",
     "uno": "unocss \"site/{layouts,snippets,templates}/**/*\" --out-file src/uno.css",
@@ -8,29 +8,22 @@
     "build:js": "esbuild src/main.ts --bundle --format=esm --splitting --outdir=public/assets/js",
     "dev": "npm run clean && concurrently \"npm run uno -- --watch\" \"npm run build:css -- --watch\" \"npm run build:js -- --watch --sourcemap\"",
     "build": "npm run clean && npm run uno && npm run build:css -- --no-source-map && npm run build:js -- --minify && hashup public/assets",
-    "format": "prettier \"src/**/*\" --write --ignore-path .gitignore"
+    "format": "prettier \"src/**/*\" --write"
   },
   "dependencies": {
-    "duecss": "^0.30.0"
+    "duecss": "^0.31.2"
   },
   "devDependencies": {
-    "@unocss/cli": "^0.53.4",
-    "@unocss/core": "^0.53.4",
-    "@unocss/preset-wind": "^0.53.4",
-    "concurrently": "^8.2.0",
-    "esbuild": "^0.18.11",
+    "@unocss/cli": "^0.55.7",
+    "@unocss/core": "^0.55.7",
+    "@unocss/preset-wind": "^0.55.7",
+    "concurrently": "^8.2.1",
+    "esbuild": "^0.19.3",
     "hashup": "^0.4.4",
-    "prettier": "^2.8.8",
-    "sass": "^1.63.6",
+    "prettier": "^3.0.3",
+    "sass": "^1.67.0",
     "shx": "^0.3.4",
-    "typescript": "^5.1.6",
-    "unocss": "^0.53.4"
-  },
-  "pnpm": {
-    "peerDependencyRules": {
-      "ignoreMissing": [
-        "vite"
-      ]
-    }
+    "typescript": "^5.2.2",
+    "unocss": "^0.55.7"
   }
 }
