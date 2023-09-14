@@ -1,5 +1,5 @@
 const floatingScreenshot = document.querySelector<HTMLImageElement>(
-  "#floating-screenshot"
+  "#floating-screenshot",
 );
 
 // Prevent redundant calls to `requestAnimationFrame`
@@ -8,7 +8,7 @@ let needsAnimationFrame = true;
 let lastElement: HTMLElement | undefined;
 let lastTimerId: number | undefined;
 
-export default () => {
+export default function () {
   document.addEventListener("mousemove", (event) => {
     if (!needsAnimationFrame) return;
 
@@ -23,7 +23,7 @@ export default () => {
       capture: true,
     });
   }
-};
+}
 
 function updateMouseProperties(event: MouseEvent) {
   document.documentElement.style.setProperty("--mouseX", `${event.clientX}px`);
@@ -35,7 +35,7 @@ function handleScreenshots(event: MouseEvent) {
   if (!floatingScreenshot) return;
 
   const element = (event.target as HTMLElement).closest<HTMLElement>(
-    "[data-screenshots]"
+    "[data-screenshots]",
   );
 
   if (!element) {

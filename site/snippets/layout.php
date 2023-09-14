@@ -31,8 +31,8 @@
 </head>
 <body data-template="<?= $page->intendedTemplate()->name() ?>">
 
-  <div id="floating-screenshot" class="fixed top-[-120px] left-0 z-10 pointer-events-none hidden w-[320px] aspect-[4/3] translate-x-[var(--mouseX)] translate-y-[var(--mouseY)] items-center justify-center children:hidden">
-    <img class="pixelated scale-[2]">
+  <div id="floating-screenshot" class="fixed top-[0] left-[0] z-10 pointer-events-none hidden w-[320px] aspect-[4/3] translate-x-[var(--mouseX)] translate-y-[var(--mouseY)] items-center justify-center children:hidden">
+    <img class="pixelated scale-[2] origin-top-left">
   </div>
 
   <header class="editorial flex items-center justify-center pixelated <?= $page->isHomePage() ? 'pb-[10rem] mb-5xl md:pb-[12rem] md:mb-7xl' : 'mb-sm' ?>" aria-hidden="true">
