@@ -1,9 +1,11 @@
 {
   "require": {
-    "getkirby/cms": "^3.9",
-    "johannschopplich/kirby-helpers": "^4.1",
+    "getkirby/cms": "^4",
+    "johannschopplich/kirby-helpers": "^5.0",
     "johannschopplich/kirby-hashed-assets": "^3.0"
   },
+  "minimum-stability": "dev",
+  "prefer-stable": true,
   "scripts": {
     "start": [
       "Composer\\Config::disableProcessTimeout",
