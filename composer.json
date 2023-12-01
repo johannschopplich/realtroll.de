@@ -4,8 +4,6 @@
     "johannschopplich/kirby-helpers": "^5.0",
     "johannschopplich/kirby-hashed-assets": "^3.0"
   },
-  "minimum-stability": "dev",
-  "prefer-stable": true,
   "scripts": {
     "start": [
       "Composer\\Config::disableProcessTimeout",
