@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -187,7 +187,7 @@
 
     <script>
       const hasTouchscreen = window.matchMedia(
-        "(hover: none), (pointer: coarse)"
+        "(hover: none), (pointer: coarse)",
       ).matches;
       const preventNativeKeys = [
         "ArrowUp",
@@ -207,6 +207,19 @@
       const gamepads = new Map();
       const hasGamepadEvents = "ongamepadonnected" in window;
       let lastTouchedId;
+      let easyrpgPlayer;
+
+      // Launch the Player and configure it
+      window.addEventListener("load", async (event) => {
+        const module = await createEasyRpgPlayer({
+          game: undefined,
+          saveFs: undefined,
+        });
+
+        // Module is ready
+        easyrpgPlayer = Module;
+        easyrpgPlayer.initApi();
+      });
 
       // Make EasyRPG player embeddable
       canvas.addEventListener("mouseenter", () => window.focus());
@@ -246,10 +259,10 @@
       }
 
       window.addEventListener("gamepadconnected", (event) =>
-        addGamepad(event.gamepad)
+        addGamepad(event.gamepad),
       );
       window.addEventListener("gamepaddisconnected", (event) =>
-        removeGamepad(event.gamepad)
+        removeGamepad(event.gamepad),
       );
 
       updateTouchControlsVisibility();
