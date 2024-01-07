@@ -211,13 +211,13 @@
 
       // Launch the Player and configure it
       window.addEventListener("load", async (event) => {
-        const module = await createEasyRpgPlayer({
+        const mod = await createEasyRpgPlayer({
           game: undefined,
           saveFs: undefined,
         });
 
         // Module is ready
-        easyrpgPlayer = Module;
+        easyrpgPlayer = mod;
         easyrpgPlayer.initApi();
       });
 
