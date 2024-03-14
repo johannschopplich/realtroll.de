@@ -219,11 +219,12 @@
         // Module is ready
         easyrpgPlayer = mod;
         easyrpgPlayer.initApi();
+        canvas.focus();
       });
 
       // Make EasyRPG player embeddable
-      canvas.addEventListener("mouseenter", () => window.focus());
-      canvas.addEventListener("click", () => window.focus());
+      canvas.addEventListener("mouseenter", () => canvas.focus());
+      canvas.addEventListener("click", () => canvas.focus());
 
       // Handle clicking on the fullscreen button
       document

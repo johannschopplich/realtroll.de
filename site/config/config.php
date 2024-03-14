@@ -17,7 +17,7 @@ return [
         ]
     ],
 
-    'kirby-helpers' => [
+    'johannschopplich.helpers' => [
         'robots' => [
             'enabled' => true
         ],
