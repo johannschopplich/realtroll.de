@@ -19,10 +19,10 @@ return [
 
     'kirby-helpers' => [
         'robots' => [
-            'enable' => true
+            'enabled' => true
         ],
         'sitemap' => [
-            'enable' => true
+            'enabled' => true
         ]
     ]
 

@@ -2,7 +2,7 @@
   "name": "realtroll-website",
   "type": "module",
   "private": true,
-  "packageManager": "pnpm@8.14.0",
+  "packageManager": "pnpm@8.15.4",
   "scripts": {
     "clean": "shx rm -rf public/assets/{css,js}",
     "uno": "unocss \"site/{layouts,snippets,templates}/**/*\" --out-file src/uno.css",
@@ -13,19 +13,19 @@
     "format": "prettier \"src/**/*\" --write"
   },
   "dependencies": {
-    "duecss": "^0.31.4"
+    "duecss": "^0.32.0"
   },
   "devDependencies": {
-    "@unocss/cli": "^0.58.3",
-    "@unocss/core": "^0.58.3",
-    "@unocss/preset-wind": "^0.58.3",
+    "@unocss/cli": "^0.58.5",
+    "@unocss/core": "^0.58.5",
+    "@unocss/preset-wind": "^0.58.5",
     "concurrently": "^8.2.2",
-    "esbuild": "^0.19.11",
+    "esbuild": "^0.20.1",
     "hashup": "^0.4.4",
-    "prettier": "^3.1.1",
-    "sass": "^1.69.7",
+    "prettier": "^3.2.5",
+    "sass": "^1.71.1",
     "shx": "^0.3.4",
-    "typescript": "^5.3.3",
-    "unocss": "^0.58.3"
+    "typescript": "^5.4.2",
+    "unocss": "^0.58.5"
   }
 }

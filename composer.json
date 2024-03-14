@@ -1,7 +1,7 @@
 {
   "require": {
     "getkirby/cms": "^4",
-    "johannschopplich/kirby-helpers": "^5.0",
+    "johannschopplich/kirby-helpers": "^6.1",
     "johannschopplich/kirby-hashed-assets": "^3.0"
   },
   "scripts": {
