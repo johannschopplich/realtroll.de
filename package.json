@@ -21,7 +21,7 @@
     "@unocss/preset-wind": "^0.59.4",
     "concurrently": "^8.2.2",
     "esbuild": "^0.20.2",
-    "hashup": "^0.4.5",
+    "hashup": "^0.4.6",
     "prettier": "^3.2.5",
     "sass": "^1.75.0",
     "shx": "^0.3.4",
