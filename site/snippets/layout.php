@@ -15,11 +15,8 @@
   <link rel="icon" href="/assets/img/icons/favicon-32x32.png" sizes="32x32" type="image/png">
   <link rel="icon" href="/assets/img/icons/favicon-16x16.png" sizes="16x16" type="image/png">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
   <?= css([
-    'assets/fonts/Gridular.css',
+    'assets/fonts/PPMondwest.css',
     'assets/fonts/IosevkaSlab.css',
     'assets/css/main.css'
   ]) ?>
