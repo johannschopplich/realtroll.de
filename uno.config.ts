@@ -39,6 +39,7 @@ export default defineConfig<Theme>({
         }`,
     ],
     [
+      // eslint-disable-next-line regexp/optimal-quantifier-concatenation
       /^content-(.+)(?:-(full|fluid))?$/,
       ([, bp, m], { theme }) => {
         let result =
