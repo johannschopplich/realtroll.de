@@ -1,5 +1,4 @@
 {
-  "name": "realtroll-website",
   "type": "module",
   "private": true,
   "packageManager": "pnpm@9.4.0",
