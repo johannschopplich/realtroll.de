@@ -33,8 +33,8 @@ importers:
         specifier: ^9.11.1
         version: 9.11.1(jiti@1.21.6)
       hashup:
-        specifier: ^0.4.6
-        version: 0.4.6
+        specifier: ^0.5.0
+        version: 0.5.0
       prettier:
         specifier: ^3.3.3
         version: 3.3.3
@@ -1730,8 +1730,8 @@ packages:
     resolution: {integrity: sha512-EykJT/Q1KjTWctppgIAgfSO0tKVuZUjhgMr17kqTumMl6Afv3EISleU7qZUzoXDFTAHTDC4NOoG/ZxU3EvlMPQ==}
     engines: {node: '>=8'}
 
-  hashup@0.4.6:
-    resolution: {integrity: sha512-S9JTKW95eFG/vPfxqgjtKcnNwNnUlKSNWwO/kLLGP9glAVTqef+pYkhns/M2trFjYuxiyynb7/jE5hlxjIn5tA==}
+  hashup@0.5.0:
+    resolution: {integrity: sha512-7U575qsjti6iA+kCsITxhFPOy8v3/ivs4rp7jyfe5KzbyeOEg+O4R1R/E3uVf0ETzysBsN0TF4S/Q7kDwiXCRw==}
     hasBin: true
 
   hasown@2.0.2:
@@ -4270,7 +4270,7 @@ snapshots:
 
   has-flag@4.0.0: {}
 
-  hashup@0.4.6: {}
+  hashup@0.5.0: {}
 
   hasown@2.0.2:
     dependencies:
