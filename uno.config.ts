@@ -1,6 +1,6 @@
-import { defineConfig, presetWind } from "unocss";
-import { presetDue } from "duecss";
 import type { Theme } from "@unocss/preset-wind";
+import { presetDue } from "duecss";
+import { defineConfig, presetWind } from "unocss";
 
 export default defineConfig<Theme>({
   theme: {

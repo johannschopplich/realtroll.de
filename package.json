@@ -1,7 +1,7 @@
 {
   "type": "module",
   "private": true,
-  "packageManager": "pnpm@9.4.0",
+  "packageManager": "pnpm@9.12.0",
   "scripts": {
     "clean": "shx rm -rf public/assets/{css,js}",
     "uno": "unocss \"site/{layouts,snippets,templates}/**/*\" --out-file src/uno.css",
@@ -11,22 +11,23 @@
     "build": "npm run clean && npm run uno && npm run build:css -- --no-source-map && npm run build:js -- --minify && hashup public/assets",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "format": "prettier \"src/**/*\" --write"
+    "format": "prettier \"src/**/*\" --write",
+    "test:types": "tsc --noEmit"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^2.21.2",
-    "@unocss/cli": "^0.61.0",
-    "@unocss/core": "^0.61.0",
-    "@unocss/preset-wind": "^0.61.0",
-    "concurrently": "^8.2.2",
+    "@antfu/eslint-config": "^3.7.3",
+    "@unocss/cli": "^0.63.3",
+    "@unocss/core": "^0.63.3",
+    "@unocss/preset-wind": "^0.63.3",
+    "concurrently": "^9.0.1",
     "duecss": "^0.32.0",
-    "esbuild": "^0.22.0",
-    "eslint": "^9.6.0",
+    "esbuild": "^0.24.0",
+    "eslint": "^9.11.1",
     "hashup": "^0.4.6",
-    "prettier": "^3.3.2",
-    "sass": "^1.77.6",
+    "prettier": "^3.3.3",
+    "sass": "^1.79.4",
     "shx": "^0.3.4",
-    "typescript": "^5.5.2",
-    "unocss": "^0.61.0"
+    "typescript": "^5.5.4",
+    "unocss": "^0.63.3"
   }
 }

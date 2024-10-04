@@ -56,8 +56,8 @@ function handleScreenshots(event: MouseEvent) {
 
   if (!img) return;
 
-  img.src = sources[0];
-  preloadImg.src = sources[1];
+  img.src = sources[0]!;
+  preloadImg.src = sources[1]!;
 
   let index = 1;
   lastTimerId = setInterval(() => {
@@ -66,10 +66,10 @@ function handleScreenshots(event: MouseEvent) {
     }
 
     if (index + 1 < sources.length) {
-      preloadImg.src = sources[index + 1];
+      preloadImg.src = sources[index + 1]!;
     }
 
-    img.src = sources[index];
+    img.src = sources[index]!;
     index++;
   }, 1250);
 
