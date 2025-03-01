@@ -2,7 +2,8 @@
   "require": {
     "getkirby/cms": "^4",
     "johannschopplich/kirby-helpers": "^6",
-    "johannschopplich/kirby-hashed-assets": "^3"
+    "johannschopplich/kirby-hashed-assets": "^3",
+    "getkirby/kql": "^2"
   },
   "scripts": {
     "start": [

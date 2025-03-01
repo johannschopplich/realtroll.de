@@ -19,6 +19,18 @@ return [
         ]
     ],
 
+    'kql' => [
+        'auth' => 'bearer'
+    ],
+
+    'headless' => [
+        'token' => env('KIRBY_HEADLESS_API_TOKEN'),
+
+        'cors' => [
+            'allowOrigin' => env('KIRBY_HEADLESS_ALLOW_ORIGIN', '*')
+        ]
+    ],
+
     'johannschopplich.helpers' => [
         'robots' => [
             'enabled' => true
