@@ -1,7 +1,7 @@
 {
   "type": "module",
   "private": true,
-  "packageManager": "pnpm@9.12.0",
+  "packageManager": "pnpm@10.8.0",
   "scripts": {
     "clean": "shx rm -rf public/assets/{css,js}",
     "uno": "unocss \"site/{layouts,snippets,templates}/**/*\" --out-file src/uno.css",
@@ -15,19 +15,19 @@
     "test:types": "tsc --noEmit"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^3.7.3",
-    "@unocss/cli": "^0.63.3",
-    "@unocss/core": "^0.63.3",
-    "@unocss/preset-wind": "^0.63.3",
-    "concurrently": "^9.0.1",
+    "@antfu/eslint-config": "^4.12.0",
+    "@unocss/cli": "^0.63.6",
+    "@unocss/core": "^0.63.6",
+    "@unocss/preset-wind": "^0.63.6",
+    "concurrently": "^9.1.2",
     "duecss": "^0.32.0",
-    "esbuild": "^0.24.0",
-    "eslint": "^9.11.1",
+    "esbuild": "^0.25.2",
+    "eslint": "^9.24.0",
     "hashup": "^0.5.0",
-    "prettier": "^3.3.3",
-    "sass": "^1.79.4",
-    "shx": "^0.3.4",
-    "typescript": "^5.5.4",
-    "unocss": "^0.63.3"
+    "prettier": "^3.5.3",
+    "sass": "^1.86.3",
+    "shx": "^0.4.0",
+    "typescript": "^5.8.3",
+    "unocss": "^0.63.6"
   }
 }
