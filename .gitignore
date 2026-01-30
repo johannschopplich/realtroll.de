@@ -1,7 +1,8 @@
-.DS_Store
-.env
 node_modules
 vendor
+.DS_Store
+.env
+mprocs.log
 
 # Kirby
 .lock
@@ -23,11 +24,10 @@ site/config/.license
 site/plugins/*
 !site/plugins/.gitkeep
 
-# Frontend
-public/assets/manifest.json
-public/assets/css
-public/assets/js
-src/uno.css
+# Build assets
+public/assets/dev
+public/dist
+src/styles/uno.css
 
 # Games
 !public/play/games/.gitkeep

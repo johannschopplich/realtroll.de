@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="var-color-primary var-color-primary-100 var-color-primary-700" lang="de">
+<html class="var-color-primary var-color-primary-100 var-color-primary-200 var-color-primary-700" lang="de">
 <head>
 
   <meta charset="utf-8">
@@ -15,13 +15,17 @@
   <link rel="icon" href="/assets/img/icons/favicon-32x32.png" sizes="32x32" type="image/png">
   <link rel="icon" href="/assets/img/icons/favicon-16x16.png" sizes="16x16" type="image/png">
 
+  <?php if (vite()->isDev()): ?>
+    <?= css('assets/dev/index.css?v=' . time(), ['id' => 'vite-dev-css']) ?>
+  <?php endif ?>
+
+  <?= vite()->js('main.ts') ?>
+  <?= vite()->css('main.ts') ?>
+
   <?= css([
     'assets/fonts/PPMondwest.css',
-    'assets/fonts/IosevkaSlab.css',
-    'assets/css/main.css'
+    'assets/fonts/IosevkaSlab.css'
   ]) ?>
-
-  <?= js('assets/js/main.js', ['type' => 'module']) ?>
 
   <script async defer data-domain="realtroll.de" src="https://plausible.io/js/plausible.js"></script>
 

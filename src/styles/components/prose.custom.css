@@ -1,0 +1,36 @@
+@layer components {
+  .prose {
+    --un-prose-code: var(--un-color-contrast-higher);
+    --un-prose-bg-soft: var(--un-color-contrast-lowest);
+
+    & :where(h1, h2, h3, h4, h5, h6) {
+      line-height: var(--un-line-height-heading);
+    }
+
+    & :where(h1) {
+      font-size: var(--un-text-3xl);
+    }
+
+    & :where(h2) {
+      font-size: var(--un-text-2xl);
+    }
+
+    & :where(h3) {
+      font-size: var(--un-text-xl);
+    }
+
+    & :where(h4) {
+      font-size: var(--un-text-lg);
+    }
+
+    & :where(figure) {
+      text-align: center;
+      margin-right: 0;
+      margin-left: 0;
+    }
+
+    & :where(figcaption) {
+      margin-top: 0.5rem;
+    }
+  }
+}

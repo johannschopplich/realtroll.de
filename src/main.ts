@@ -1,10 +1,24 @@
-const templates = {
-  home: () => import("./templates/home"),
-  default: undefined,
-};
+/// <reference types="vite/client" />
 
-type Template = keyof typeof templates;
+import "./styles/main.css";
 
-const template = (document.body.dataset.template as Template) ?? "default";
+interface PageTemplate {
+  default?: () => void | Promise<void>;
+}
 
-templates[template]?.().then((m) => m.default?.());
+// Remove temporary stylesheet (to prevent FOUC) in development mode
+if (import.meta.env.DEV) {
+  for (const el of document.querySelectorAll(`[id*="vite-dev"]`)) {
+    el.remove();
+  }
+}
+
+// Auto-load templates
+const templates = Object.fromEntries(
+  Object.entries(import.meta.glob<PageTemplate>("./templates/*.ts")).map(
+    ([key, value]) => [key.slice(12, -3), value],
+  ),
+);
+
+const { template = "default" } = document.body.dataset;
+templates[template]?.().then((mod) => mod.default?.());

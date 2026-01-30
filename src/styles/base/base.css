@@ -1,0 +1,128 @@
+@layer base {
+  :root {
+    --un-fluid-min-width: 320;
+    --un-fluid-max-width: 1140;
+    --un-fluid-screen: 100vw;
+    --un-fluid-bp: calc(
+      (var(--un-fluid-screen) - var(--un-fluid-min-width) / 16 * 1rem) /
+        (var(--un-fluid-max-width) - var(--un-fluid-min-width))
+    );
+
+    --un-font-family-heading: "PP Mondwest", monospace;
+    --un-font-family-normal: "Iosevka Slab Web", monospace;
+    --un-line-height-normal: calc(1ex / 0.32);
+    --un-line-height-heading: calc(1ex / 0.42);
+
+    --un-text-scale-ratio: 1.2;
+    --un-text-lg: calc(1rem * var(--un-text-scale-ratio));
+    --un-text-xl: calc(var(--un-text-lg) * var(--un-text-scale-ratio));
+    --un-text-2xl: calc(var(--un-text-xl) * var(--un-text-scale-ratio));
+    --un-text-3xl: calc(var(--un-text-2xl) * var(--un-text-scale-ratio));
+    --un-text-4xl: calc(var(--un-text-3xl) * var(--un-text-scale-ratio));
+
+    --un-fluid-min-font-size: 16;
+    --un-fluid-max-font-size: 18;
+
+    --un-decoration-thickness: max(2px, 0.1em);
+    --un-decoration-offset: max(2px, 0.1em);
+
+    /* Colors (stone-based) */
+    --tw-color-stone-50: oklch(0.985 0.001 106.423);
+    --tw-color-stone-100: oklch(0.97 0.001 106.424);
+    --tw-color-stone-200: oklch(0.923 0.003 48.717);
+    --tw-color-stone-300: oklch(0.869 0.005 56.366);
+    --tw-color-stone-400: oklch(0.709 0.01 56.259);
+    --tw-color-stone-500: oklch(0.553 0.013 58.071);
+    --tw-color-stone-600: oklch(0.444 0.011 73.639);
+    --tw-color-stone-700: oklch(0.374 0.01 67.558);
+    --tw-color-stone-800: oklch(0.268 0.007 34.298);
+    --tw-color-stone-900: oklch(0.216 0.006 56.043);
+    --tw-color-stone-950: oklch(0.147 0.004 49.25);
+
+    /* Contrast scale */
+    --un-color-contrast-lowest: var(--tw-color-stone-100);
+    --un-color-contrast-lower: var(--tw-color-stone-200);
+    --un-color-contrast-low: var(--tw-color-stone-300);
+    --un-color-contrast-medium: var(--tw-color-stone-500);
+    --un-color-contrast-high: var(--tw-color-stone-800);
+    --un-color-contrast-higher: var(--tw-color-stone-900);
+
+    /* Semantic colors */
+    --un-color-background: hsl(38, 24%, 96%);
+    --un-color-text: var(--un-color-contrast-higher);
+    --un-color-link: var(--un-color-primary-500);
+    --un-color-link-hover: var(--un-color-text);
+  }
+
+  @media screen and (min-width: 1140px) {
+    :root {
+      --un-fluid-screen: calc(var(--un-fluid-max-width) * 1px);
+    }
+  }
+
+  html {
+    min-width: calc(1px * var(--un-fluid-min-width));
+    font-size: calc(
+      ((var(--un-fluid-min-font-size, 16) / 16) * 1rem) +
+        (
+          var(--un-fluid-max-font-size, 18) - var(--un-fluid-min-font-size, 16)
+        ) *
+        var(--un-fluid-bp)
+    );
+    background-color: var(--un-color-background);
+    background-image: radial-gradient(
+      var(--un-color-primary-100) 1px,
+      var(--un-color-background) 1px
+    );
+    background-size: 50px 50px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+
+    @media (prefers-reduced-motion: no-preference) {
+      scroll-behavior: smooth;
+    }
+  }
+
+  body {
+    font-family: var(--un-font-family-normal);
+    line-height: var(--un-line-height-normal);
+    color: var(--un-color-text);
+  }
+
+  a {
+    cursor: pointer;
+    color: var(--un-color-link);
+    text-decoration-line: none;
+    text-decoration-style: solid;
+    text-decoration-color: currentColor;
+    text-decoration-thickness: var(--un-decoration-thickness);
+    text-underline-offset: var(--un-decoration-offset);
+
+    &:hover {
+      color: var(--un-color-link-hover);
+      text-decoration-line: underline;
+    }
+  }
+
+  svg:not([fill]) {
+    fill: currentColor;
+  }
+
+  button {
+    touch-action: manipulation;
+  }
+
+  ::selection {
+    color: black;
+    background: var(--un-color-primary-200);
+  }
+
+  :focus:not(:focus-visible) {
+    outline: none;
+  }
+
+  :focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+  }
+}
