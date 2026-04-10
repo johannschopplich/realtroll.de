@@ -159,6 +159,10 @@ export default defineConfig<Theme>({
         return `${buttonBase} bg-${color} text-white hover:bg-${color}-600 focus-visible:bg-${color}-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-${color}`;
       },
     ],
+    {
+      "editorial-title":
+        "text-primary-700 font-heading font-700 leading-none text-[clamp(var(--un-text-3xl),5vw,4rem)]",
+    },
   ],
   safelist: ["sr-only", "invisible"],
   outputToCssLayers: true,
