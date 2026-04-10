@@ -116,14 +116,14 @@ export default defineConfig<Theme>({
   ],
   shortcuts: [
     [
-      /^page(?:-(fluid))?$/,
+      /^content(?:-(fluid))?$/,
       ([, fluid], { theme }) =>
         `relative ${
           fluid ? "mx-lg" : `mx-auto w-[calc(100%-2*${theme?.spacing?.lg})]`
         }`,
     ],
     [
-      /^page-(.+)$/,
+      /^content-(.+)$/,
       ([, bp], { theme }) => {
         const maxWidth = bp === "prose" ? `max-w-${bp}` : `max-w-screen-${bp}`;
         return `relative ${maxWidth} mx-auto w-[calc(100%-2*${(theme as Theme)?.spacing?.lg})]`;
