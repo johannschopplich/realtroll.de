@@ -12,17 +12,18 @@ export default defineConfig<Theme>({
   theme: {
     colors: {
       primary: {
-        DEFAULT: "#884A1F",
-        50: "#E1A67E",
-        100: "#DE9B6D",
-        200: "#D6844C",
-        300: "#CB6E2E",
-        400: "#AA5C27",
-        500: "#884A1F",
-        600: "#673818",
-        700: "#462610",
-        800: "#180D06",
-        900: "#000000",
+        DEFAULT: "oklch(52% 0.105 52)",
+        50: "oklch(97.5% 0.012 52)",
+        100: "oklch(94% 0.025 52)",
+        200: "oklch(88% 0.05 52)",
+        300: "oklch(78% 0.085 52)",
+        400: "oklch(65% 0.105 52)",
+        500: "oklch(52% 0.105 52)",
+        600: "oklch(43% 0.095 52)",
+        700: "oklch(36% 0.08 52)",
+        800: "oklch(29% 0.065 52)",
+        900: "oklch(24% 0.05 52)",
+        950: "oklch(18% 0.035 52)",
       },
       link: {
         DEFAULT: "var(--un-color-link)",
@@ -112,18 +113,17 @@ export default defineConfig<Theme>({
       },
     ],
     ["pixelated", { "image-rendering": "pixelated" }],
-    ["expanded", { "font-stretch": "expanded" }],
   ],
   shortcuts: [
     [
-      /^content(?:-(fluid))?$/,
+      /^page(?:-(fluid))?$/,
       ([, fluid], { theme }) =>
         `relative ${
           fluid ? "mx-lg" : `mx-auto w-[calc(100%-2*${theme?.spacing?.lg})]`
         }`,
     ],
     [
-      /^content-(.+)$/,
+      /^page-(.+)$/,
       ([, bp], { theme }) => {
         const maxWidth = bp === "prose" ? `max-w-${bp}` : `max-w-screen-${bp}`;
         return `relative ${maxWidth} mx-auto w-[calc(100%-2*${(theme as Theme)?.spacing?.lg})]`;
@@ -143,6 +143,7 @@ export default defineConfig<Theme>({
         const buttonBase = [
           "inline-flex items-center justify-center",
           "select-none rounded px-3 py-2 leading-none",
+          "active:scale-97",
           "disabled:opacity-75 disabled:cursor-not-allowed",
           "aria-disabled:opacity-75 aria-disabled:cursor-not-allowed",
         ].join(" ");

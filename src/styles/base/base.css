@@ -1,4 +1,4 @@
-@layer base {
+@layer foundations {
   :root {
     --un-fluid-min-width: 320;
     --un-fluid-max-width: 1140;
@@ -50,7 +50,7 @@
     /* Semantic colors */
     --un-color-background: hsl(38, 24%, 96%);
     --un-color-text: var(--un-color-contrast-higher);
-    --un-color-link: var(--un-color-primary-500);
+    --un-color-link: var(--un-color-primary);
     --un-color-link-hover: var(--un-color-text);
   }
 
@@ -71,8 +71,8 @@
     );
     background-color: var(--un-color-background);
     background-image: radial-gradient(
-      var(--un-color-primary-100) 1px,
-      var(--un-color-background) 1px
+      var(--un-color-primary-100) 0.75px,
+      var(--un-color-background) 0.75px
     );
     background-size: 50px 50px;
     overflow-x: hidden;

@@ -4,6 +4,7 @@
     --un-prose-bg-soft: var(--un-color-contrast-lowest);
 
     & :where(h1, h2, h3, h4, h5, h6) {
+      font-family: var(--un-font-family-heading);
       line-height: var(--un-line-height-heading);
     }
 
@@ -25,8 +26,7 @@
 
     & :where(figure) {
       text-align: center;
-      margin-right: 0;
-      margin-left: 0;
+      margin-inline: 0;
     }
 
     & :where(figcaption) {
