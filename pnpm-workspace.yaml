@@ -1,2 +1,8 @@
-onlyBuiltDependencies:
-  - esbuild
+allowBuilds:
+  esbuild: true
+
+minimumReleaseAgeExclude:
+  - "@types/node"
+
+shellEmulator: true
+trustPolicy: no-downgrade

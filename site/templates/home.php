@@ -1,11 +1,16 @@
-<?php snippet('layout', slots: true) ?>
+<?php
 
-<div class="content-xl mb-5xl md:px-5xl md:mb-7xl">
-  <h1 class="editorial-title"><?= $page->text()->kti() ?></h1>
-</div>
+/** @var \Kirby\Cms\Site $site */
+/** @var \Kirby\Cms\Page $page */
+
+snippet('layouts/default', slots: true)
+
+?>
+
+<h1 class="sr-only"><?= $site->title()->escape() ?></h1>
 
 <div class="content-xl">
-  <?php snippet('games') ?>
+  <?php snippet('components/games') ?>
 </div>
 
 <?php endsnippet() ?>

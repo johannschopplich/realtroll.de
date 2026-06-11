@@ -6,7 +6,7 @@ const floatingScreenshot = document.querySelector<HTMLImageElement>(
 let needsAnimationFrame = true;
 
 let lastElement: HTMLElement | undefined;
-let lastTimerId: number | undefined;
+let lastTimerId: ReturnType<typeof setInterval> | undefined;
 
 export default function () {
   document.addEventListener("mousemove", (event) => {
@@ -25,9 +25,27 @@ export default function () {
   }
 }
 
+const PREVIEW_CURSOR_OFFSET = 16;
+
 function updateMouseProperties(event: MouseEvent) {
-  document.documentElement.style.setProperty("--mouseX", `${event.clientX}px`);
-  document.documentElement.style.setProperty("--mouseY", `${event.clientY}px`);
+  let x = event.clientX + PREVIEW_CURSOR_OFFSET;
+  let y = event.clientY + PREVIEW_CURSOR_OFFSET;
+
+  // Flip the preview to the other side of the cursor before it would clip
+  // beyond the viewport (the image is scaled, so measure its rendered size)
+  const image = floatingScreenshot?.querySelector("img");
+  if (image) {
+    const { width, height } = image.getBoundingClientRect();
+    if (width > 0 && x + width > window.innerWidth) {
+      x = Math.max(event.clientX - width - PREVIEW_CURSOR_OFFSET, 0);
+    }
+    if (height > 0 && y + height > window.innerHeight) {
+      y = Math.max(event.clientY - height - PREVIEW_CURSOR_OFFSET, 0);
+    }
+  }
+
+  document.documentElement.style.setProperty("--mouseX", `${x}px`);
+  document.documentElement.style.setProperty("--mouseY", `${y}px`);
   needsAnimationFrame = true;
 }
 

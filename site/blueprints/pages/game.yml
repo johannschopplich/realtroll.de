@@ -18,6 +18,19 @@ tabs:
             label: Erstveröffentlichung
             type: date
             width: 1/2
+          releaseStatus:
+            label: Status
+            type: select
+            width: 1/2
+            options:
+              demo: Demo
+              vollversion: Vollversion
+              in-arbeit: In Arbeit
+          engine:
+            label: Engine
+            type: text
+            width: 1/2
+            placeholder: RPG Maker 2003
           intro:
             label: Intro
             type: blocks
@@ -28,6 +41,12 @@ tabs:
       sidebar:
         width: 1/3
         sections:
+          subpages:
+            type: pages
+            label: Unterseiten
+            templates:
+              - default
+            help: Z. B. die Lösung des Spiels. Veröffentlichte Unterseiten werden auf der Spieleseite verlinkt.
           sidebar:
             type: fields
             fields:

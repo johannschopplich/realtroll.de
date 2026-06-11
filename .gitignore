@@ -3,6 +3,7 @@ vendor
 .DS_Store
 .env
 mprocs.log
+docs
 
 # Kirby
 .lock

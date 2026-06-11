@@ -51,7 +51,6 @@
     --un-color-background: hsl(38, 24%, 96%);
     --un-color-text: var(--un-color-contrast-higher);
     --un-color-link: var(--un-color-primary);
-    --un-color-link-hover: var(--un-color-text);
   }
 
   @media screen and (min-width: 1140px) {
@@ -92,15 +91,18 @@
   a {
     cursor: pointer;
     color: var(--un-color-link);
-    text-decoration-line: none;
+  }
+
+  a:not([class]),
+  .link-default {
+    text-decoration-line: underline;
     text-decoration-style: solid;
-    text-decoration-color: currentColor;
+    text-decoration-color: var(--un-decoration-color, transparent);
     text-decoration-thickness: var(--un-decoration-thickness);
     text-underline-offset: var(--un-decoration-offset);
 
     &:hover {
-      color: var(--un-color-link-hover);
-      text-decoration-line: underline;
+      text-decoration-color: currentcolor;
     }
   }
 
@@ -124,5 +126,21 @@
   :focus-visible {
     outline: 2px solid currentColor;
     outline-offset: 2px;
+  }
+
+  .bg-polka-grid {
+    background-color: var(--un-color-background);
+    background-image: radial-gradient(
+      var(--un-color-primary-100) 0.75px,
+      var(--un-color-background) 0.75px
+    );
+    background-size: 50px 50px;
+  }
+
+  .bg-graph-paper {
+    background-image:
+      linear-gradient(var(--un-color-primary-100) 1px, transparent 1px),
+      linear-gradient(90deg, var(--un-color-primary-100) 1px, transparent 1px);
+    background-size: 12px 12px;
   }
 }

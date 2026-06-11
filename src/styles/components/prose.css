@@ -2,6 +2,11 @@
   .prose {
     --un-prose-code: var(--un-color-contrast-higher);
     --un-prose-bg-soft: var(--un-color-contrast-lowest);
+    --un-decoration-color: var(--un-color-primary-300);
+
+    & :where(p, ol > li, ul > li) {
+      font-stretch: expanded;
+    }
 
     & :where(h1, h2, h3, h4, h5, h6) {
       font-family: var(--un-font-family-heading);

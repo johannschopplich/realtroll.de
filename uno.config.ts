@@ -25,10 +25,6 @@ export default defineConfig<Theme>({
         900: "oklch(24% 0.05 52)",
         950: "oklch(18% 0.035 52)",
       },
-      link: {
-        DEFAULT: "var(--un-color-link)",
-        hover: "var(--un-color-link-hover)",
-      },
       theme: {
         base: "var(--un-color-text)",
         background: "var(--un-color-background)",
@@ -138,33 +134,69 @@ export default defineConfig<Theme>({
       "column-full": "block flex-none w-full",
     },
     [
-      /^button-(.+?)(?:-?(outlined))?$/,
+      /^button-(primary|text)(?:-?(outlined))?$/,
       ([, color, outlined]) => {
         const buttonBase = [
           "inline-flex items-center justify-center",
           "select-none rounded px-3 py-2 leading-none",
-          "active:scale-97",
           "disabled:opacity-75 disabled:cursor-not-allowed",
           "aria-disabled:opacity-75 aria-disabled:cursor-not-allowed",
         ].join(" ");
 
         if (color === "text") {
-          return `${buttonBase} bg-transparent text-theme-base hover:underline hover:decoration-[length:var(--un-decoration-thickness)] focus-visible:underline focus-visible:decoration-[length:var(--un-decoration-thickness)]`;
+          return `${buttonBase} active:scale-97 bg-transparent text-theme-base hover:underline hover:decoration-[length:var(--un-decoration-thickness)] focus-visible:underline focus-visible:decoration-[length:var(--un-decoration-thickness)]`;
         }
+
+        const elevatedStyles = [
+          `border-2 border-${color}-700`,
+          `shadow-[4px_4px_0_var(--un-color-${color}-700)]`,
+          "active:translate-[4px] active:shadow-none",
+          `focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-${color}`,
+        ].join(" ");
 
         if (outlined) {
-          return `${buttonBase} ring ring-inset ring-${color} bg-transparent text-${color} hover:bg-${color} hover:text-white focus-visible:bg-${color} focus-visible:text-white`;
+          return `${buttonBase} ${elevatedStyles} ring ring-inset ring-${color} bg-theme-background text-${color}`;
         }
 
-        return `${buttonBase} bg-${color} text-white hover:bg-${color}-600 focus-visible:bg-${color}-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-${color}`;
+        return `${buttonBase} ${elevatedStyles} bg-${color} text-white`;
+      },
+    ],
+    [
+      // list-none/ps-0 guards against list styles when rendered inside .prose
+      /^game-chips-(base|lg)$/,
+      ([, size]) =>
+        `list-none ps-0 flex flex-wrap items-center font-medium ${
+          size === "lg" ? "text-sm gap-2.5" : "text-xs gap-2"
+        }`,
+    ],
+    [
+      /^game-chip-(bevel|glass)-(base|lg)$/,
+      ([, appearance, size]) => {
+        const surface =
+          appearance === "bevel"
+            ? "text-primary-800 bg-primary-100 border-t-primary-50 border-l-primary-50 border-b-primary-400 border-r-primary-400"
+            : "text-primary-50 bg-white/10 border-t-white/30 border-l-white/30 border-b-primary-950/60 border-r-primary-950/60";
+        return `border-2 leading-none ${surface} ${
+          size === "lg" ? "px-2.5 py-1.5" : "px-2 py-1"
+        }`;
       },
     ],
     {
+      "corner-square":
+        "hidden md:block absolute bg-theme-background border-2 border-primary-700 pointer-events-none",
       "editorial-title":
         "text-primary-700 font-heading font-700 leading-none text-[clamp(var(--un-text-3xl),5vw,4rem)]",
     },
   ],
-  safelist: ["sr-only", "invisible"],
+  safelist: [
+    "sr-only",
+    "invisible",
+    ...["base", "lg"].flatMap((size) => [
+      `game-chips-${size}`,
+      `game-chip-bevel-${size}`,
+      `game-chip-glass-${size}`,
+    ]),
+  ],
   outputToCssLayers: true,
   transformers: [transformerDirectives()],
   presets: [

@@ -1,5 +1,6 @@
 /// <reference types="vite/client" />
 
+import { setupNavScrollState } from "./nav.ts";
 import "./styles/main.css";
 
 interface PageTemplate {
@@ -19,6 +20,8 @@ const templates = Object.fromEntries(
     ([key, value]) => [key.slice(12, -3), value],
   ),
 );
+
+setupNavScrollState();
 
 const { template = "default" } = document.body.dataset;
 templates[template]?.().then((mod) => mod.default?.());

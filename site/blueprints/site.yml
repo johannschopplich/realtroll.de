@@ -7,8 +7,20 @@ tabs:
     sections:
       games: sections/games
 
+  blog:
+    label: Blog
+    icon: text
+    sections:
+      articles:
+        type: pages
+        label: Artikel
+        parent: site.find("blog")
+        template: article
+        sortBy: date desc
+        info: "{{ page.date.toDate('d.m.Y') }}"
+
   pages:
-    label: Einstellungen
+    label: Seiten
     icon: settings
     columns:
       - width: 1/2
