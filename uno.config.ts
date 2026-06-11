@@ -183,7 +183,7 @@ export default defineConfig<Theme>({
     ],
     {
       "corner-square":
-        "hidden md:block absolute bg-theme-background border-2 border-primary-700 pointer-events-none",
+        "block absolute bg-theme-background border-2 border-primary-700 pointer-events-none",
       "editorial-title":
         "text-primary-700 font-heading font-700 leading-none text-[clamp(var(--un-text-3xl),5vw,4rem)]",
     },
