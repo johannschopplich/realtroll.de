@@ -24,8 +24,8 @@ tabs:
             width: 1/2
             options:
               demo: Demo
-              vollversion: Vollversion
-              in-arbeit: In Arbeit
+              full-version: Vollversion
+              in-progress: In Arbeit
           engine:
             label: Engine
             type: text

@@ -13,8 +13,8 @@ $size ??= 'base';
 
 $releaseStatusLabels = [
   'demo' => 'Demo',
-  'vollversion' => 'Vollversion',
-  'in-arbeit' => 'In Arbeit',
+  'full-version' => 'Vollversion',
+  'in-progress' => 'In Arbeit',
 ];
 
 $chips = array_filter([
