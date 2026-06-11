@@ -116,19 +116,18 @@
   </div>
 
   <footer class="sticky bottom-0 z-0 bg-theme-background">
-    <div class="relative py-7xl text-center bg-graph-paper">
+    <div class="relative pt-9xl pb-xl text-center bg-graph-paper">
       <div class="absolute inset-0 overflow-hidden pointer-events-none select-none" aria-hidden="true">
         <p class="absolute inset-x-0 bottom-0 translate-y-1/5 font-heading text-[18vw] leading-none text-primary-700 opacity-5 whitespace-nowrap text-center">real Troll</p>
       </div>
       <img class="pixelated mx-auto mb-lg" src="<?= asset('assets/img/real-troll-avatar.gif')->url() ?>" alt="Avatar von real Troll">
-      <nav class="flex gap-lg justify-center flex-wrap mb-lg text-sm">
+      <nav class="flex gap-lg justify-center flex-wrap text-sm">
         <?php if ($blog): ?>
           <a href="<?= $blog->url() ?>">Blog</a>
         <?php endif ?>
         <a href="<?= url('impressum') ?>">Impressum</a>
         <a href="<?= url('datenschutzerklaerung') ?>">Datenschutzerklärung</a>
       </nav>
-      <p class="text-sm text-contrast-medium">© <?= date('Y') ?> real Troll</p>
     </div>
   </footer>
 
