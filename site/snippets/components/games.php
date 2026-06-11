@@ -35,7 +35,6 @@ if (!$items || $items->count() === 0) return;
 
           <div class="prose hyphenate">
             <?php snippet('components/game-chips', ['game' => $game]) ?>
-            <h2 class="font-heading text-2xl text-primary-700 mb-lg leading-none"><?= $game->title()->escape() ?></h2>
             <p class="mb-lg font-stretch-expanded"><?= $game->description() ?></p>
             <a href="<?= $game->url() ?>" class="button-primary">
               Mehr zum Spiel…

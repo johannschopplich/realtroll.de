@@ -1,10 +1,11 @@
 <?php
 
 /**
+ * @var \Kirby\Cms\Page $page
  * @var \Kirby\Cms\Page $game
  * @var string $classes additional classes for the list, e.g. `justify-center`
- * @var string $appearance 'bevel' (opaque, for light surfaces) | 'glass' (translucent, for dark surfaces)
- * @var string $size 'base' | 'lg'
+ * @var string $appearance `bevel` (opaque, for light surfaces) | `glass` (translucent, for dark surfaces)
+ * @var string $size `base` | `lg`
  */
 
 $classes ??= '';
@@ -20,7 +21,7 @@ $releaseStatusLabels = [
 $chips = array_filter([
   $releaseStatusLabels[$game->releaseStatus()->value()] ?? null,
   $game->published()->isNotEmpty() ? $game->published()->toDate('Y') : null,
-  $game->engine()->isNotEmpty() ? $game->engine()->value() : null,
+  !$page->isHomePage() && $game->engine()->isNotEmpty() ? $game->engine()->value() : null
 ]);
 
 if ($chips === []) return;
