@@ -24,6 +24,7 @@ site/config/.license
 # Plugins
 site/plugins/*
 !site/plugins/.gitkeep
+!site/plugins/easyrpg
 
 # Build assets
 public/assets/dev
