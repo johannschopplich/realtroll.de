@@ -2,17 +2,22 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <meta name="color-scheme" content="dark" />
+    <meta name="theme-color" content="#000000" />
     <title>EasyRPG Player</title>
     <style>
       :root {
-        --color-gray: hsl(0, 0%, 55%);
-        --controls-size: 10vh;
+        --color-gray: hsl(0 0% 55%);
+        --controls-size: 10dvh;
       }
 
       @media (orientation: landscape) {
         :root {
-          --controls-size: 20vh;
+          --controls-size: 20dvh;
         }
       }
 
@@ -21,47 +26,45 @@
       }
 
       body {
-        font-family:
-          -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif,
-          "Apple Color Emoji", "Segoe UI Emoji";
         margin: 0;
+        font-family: system-ui, sans-serif;
         color: white;
         background: black;
-      }
-
-      .unselectable {
         -webkit-touch-callout: none;
         -webkit-user-select: none;
         user-select: none;
       }
 
       #status {
+        position: fixed;
+        inset: 0;
+        z-index: 1;
+        display: grid;
+        place-content: center;
         font-size: 1.5rem;
         color: var(--color-gray);
         text-align: center;
+        pointer-events: none;
       }
 
       #controls {
-        position: relative;
-        text-align: right;
+        position: fixed;
+        top: env(safe-area-inset-top);
+        right: env(safe-area-inset-right);
         z-index: 10;
       }
 
       #controls button {
-        -webkit-appearance: button;
         display: inline-flex;
+        padding: 0.5rem;
+        color: white;
         background: transparent;
         border: 0;
-        color: white;
-        font-family: inherit;
-        font-size: 1em;
-        line-height: inherit;
         cursor: pointer;
-        padding: 0.5rem;
       }
 
-      #controls svg {
-        pointer-events: none;
+      #controls button[hidden] {
+        display: none;
       }
 
       #canvas {
@@ -71,8 +74,9 @@
         width: 100%;
         height: 100%;
         border: 0;
-        image-rendering: pixelated;
+        outline: none;
         image-rendering: crisp-edges;
+        image-rendering: pixelated;
         transform: translate(-50%, -50%);
       }
 
@@ -80,18 +84,57 @@
         object-fit: contain;
       }
 
-      #dpad,
-      #apad {
-        position: fixed;
-        bottom: 1rem;
-      }
+      @media (hover: none), (pointer: coarse) {
+        #viewport {
+          display: grid;
+          grid-template-areas:
+            "screen screen"
+            "dpad apad";
+          grid-template-rows: minmax(0, 1fr) auto;
+          grid-template-columns: 1fr 1fr;
+          height: 100dvh;
+        }
 
-      #dpad {
-        left: 1rem;
-      }
+        #canvas {
+          position: static;
+          grid-area: screen;
+          object-fit: contain;
+          transform: none;
+        }
 
-      #apad {
-        right: 1rem;
+        #dpad,
+        #apad {
+          align-self: center;
+        }
+
+        #dpad {
+          grid-area: dpad;
+          padding: 0.75rem 0 calc(0.75rem + env(safe-area-inset-bottom))
+            calc(0.75rem + env(safe-area-inset-left));
+        }
+
+        #apad {
+          grid-area: apad;
+          justify-self: end;
+          padding: 0.75rem calc(0.75rem + env(safe-area-inset-right))
+            calc(0.75rem + env(safe-area-inset-bottom)) 0;
+        }
+
+        @media (orientation: landscape) {
+          #viewport {
+            grid-template-areas: "dpad screen apad";
+            grid-template-rows: minmax(0, 1fr);
+            grid-template-columns: auto minmax(0, 1fr) auto;
+          }
+
+          #dpad {
+            padding: 0 0.75rem 0 calc(0.75rem + env(safe-area-inset-left));
+          }
+
+          #apad {
+            padding: 0 calc(0.75rem + env(safe-area-inset-right)) 0 0.75rem;
+          }
+        }
       }
 
       #dpad svg {
@@ -111,9 +154,8 @@
         border-radius: 50%;
       }
 
-      #apad > :last-child {
-        position: relative;
-        right: var(--controls-size);
+      #apad > :first-child {
+        margin-left: var(--controls-size);
       }
 
       #dpad path:not(.active),
@@ -131,7 +173,7 @@
   </head>
   <body>
     <div id="controls">
-      <button id="controls-fullscreen" class="unselectable">
+      <button id="controls-fullscreen" aria-label="Enter fullscreen">
         <svg
           viewBox="0 0 15 15"
           fill="none"
@@ -150,9 +192,9 @@
     <div id="status"></div>
 
     <div id="viewport">
-      <canvas id="canvas" tabindex="-1" class="unselectable"></canvas>
+      <canvas id="canvas" tabindex="-1"></canvas>
 
-      <div id="dpad" class="unselectable">
+      <div id="dpad" aria-hidden="true">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72">
           <path
             id="dpad-up"
@@ -178,7 +220,7 @@
         </svg>
       </div>
 
-      <div id="apad" class="unselectable">
+      <div id="apad" aria-hidden="true">
         <div id="apad-enter" data-key="Enter"></div>
         <div id="apad-escape" data-key="Escape"></div>
       </div>
@@ -186,7 +228,12 @@
 
     <script src="index.js" async></script>
 
-    <script>
+    <script type="module">
+      const gameId = new URLSearchParams(location.search).get("game");
+      if (gameId) {
+        document.title = `${gameId} – EasyRPG Player`;
+      }
+
       const hasTouchscreen = window.matchMedia(
         "(hover: none), (pointer: coarse)",
       ).matches;
@@ -206,20 +253,15 @@
       const canvas = document.getElementById("canvas");
       /** @type {Map<number, Gamepad>} */
       const gamepads = new Map();
-      const hasGamepadEvents = "ongamepadconnected" in window;
       let lastTouchedId;
-      let easyrpgPlayer;
 
-      // Launch the Player and configure it
-      window.addEventListener("load", async (event) => {
-        const mod = await createEasyRpgPlayer({
+      // Launch the Player; it reads the game from the query string itself
+      window.addEventListener("load", async () => {
+        const player = await createEasyRpgPlayer({
           game: undefined,
           saveFs: undefined,
-        });
-
-        // Module is ready
-        easyrpgPlayer = mod;
-        easyrpgPlayer.initApi();
+        }));
+        player.initApi();
         canvas.focus();
       });
 
@@ -227,10 +269,16 @@
       canvas.addEventListener("mouseenter", () => canvas.focus());
       canvas.addEventListener("click", () => canvas.focus());
 
-      // Handle clicking on the fullscreen button
-      document
-        .querySelector("#controls-fullscreen")
-        .addEventListener("click", () => viewport?.requestFullscreen?.());
+      // iOS Safari only supports fullscreen on video elements, so hide the
+      // button where element fullscreen is unavailable
+      const fullscreenButton = document.getElementById("controls-fullscreen");
+      if (document.fullscreenEnabled) {
+        fullscreenButton.addEventListener("click", () =>
+          viewport.requestFullscreen(),
+        );
+      } else {
+        fullscreenButton.hidden = true;
+      }
 
       // Bind all elements providing a `data-key` attribute with the
       // given key on touch-based devices
@@ -248,16 +296,7 @@
 
         canvas.addEventListener("contextmenu", (event) => {
           event.preventDefault();
-          // simulateKeyboardInput("Escape", 27);
         });
-
-        // canvas.addEventListener("click", () => {
-        //   simulateKeyboardInput("Enter", 13);
-        // });
-      }
-
-      if (!hasGamepadEvents) {
-        setInterval(scanGamePads, 1000);
       }
 
       window.addEventListener("gamepadconnected", (event) =>
@@ -269,6 +308,15 @@
 
       updateTouchControlsVisibility();
 
+      // The wake lock is released whenever the tab gets hidden, so it has
+      // to be re-requested every time the player becomes visible again
+      requestWakeLock();
+      document.addEventListener("visibilitychange", () => {
+        if (document.visibilityState === "visible") {
+          requestWakeLock();
+        }
+      });
+
       /**
        * Simulate a keyboard event on the emscripten canvas
        *
@@ -279,18 +327,6 @@
         const event = new Event(eventType, { bubbles: true });
         event.code = key;
         canvas.dispatchEvent(event);
-      }
-
-      /**
-       * Simulate a keyboard input from `keydown` to `keyup`
-       *
-       * @param {string} key Key to simulate
-       */
-      function simulateKeyboardInput(key) {
-        simulateKeyboardEvent("keydown", key);
-        window.setTimeout(() => {
-          simulateKeyboardEvent("keyup", key);
-        }, 100);
       }
 
       /**
@@ -329,7 +365,7 @@
         element.addEventListener("touchmove", (event) => {
           const { target, clientX, clientY } = event.changedTouches[0];
           const origTargetId = keysDown.get(target.id);
-          const nextTargetId = document.elementFromPoint(clientX, clientY).id;
+          const nextTargetId = document.elementFromPoint(clientX, clientY)?.id;
           if (origTargetId === nextTargetId) return;
 
           if (origTargetId) {
@@ -359,23 +395,22 @@
         updateTouchControlsVisibility();
       }
 
-      function scanGamePads() {
-        for (const pad of navigator.getGamepads?.() ?? []) {
-          if (!pad) continue;
+      function updateTouchControlsVisibility() {
+        if (!hasTouchscreen) return;
 
-          if (gamepads.has(pad.index)) {
-            gamepads.set(pad.index, pad);
-          } else {
-            addGamepad(pad);
-          }
+        // Touch controls are redundant while a gamepad is connected
+        const hasConnectedGamepad = gamepads.size > 0;
+        for (const element of document.querySelectorAll("#dpad, #apad")) {
+          element.style.display = hasConnectedGamepad ? "none" : "";
         }
       }
 
-      function updateTouchControlsVisibility() {
-        if (hasTouchscreen && gamepads.size === 0) {
-          for (const el of document.querySelectorAll("#dpad, #apad")) {
-            el.style.display = "";
-          }
+      async function requestWakeLock() {
+        try {
+          await navigator.wakeLock?.request("screen");
+        } catch {
+          // Keeping the screen awake is a progressive enhancement; the
+          // request is denied e.g. in power-save mode
         }
       }
     </script>
