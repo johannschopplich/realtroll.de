@@ -1,0 +1,5 @@
+label: Titel (Überschreiben)
+type: text
+icon: title
+placeholder: "{{ page.title }} – {{ site.title }}"
+help: Der Seitentitel, so wie er in Suchmaschinen erscheint. Bleibt das Feld leer, wird stattdessen der Seitentitel ausgegeben.

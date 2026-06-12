@@ -2,17 +2,22 @@ title: Seite
 
 icon: 🏠
 
-columns:
-  main:
-    width: 2/3
-    fields:
-      text:
-        label: Text
-        type: textarea
-        buttons: false
+tabs:
+  content:
+    label: Inhalt
+    icon: draft
+    columns:
+      main:
+        width: 2/3
+        fields:
+          text:
+            label: Text
+            type: textarea
+            buttons: false
 
-  sidebar:
-    width: 1/3
-    sections:
-      images: sections/images
-      meta: sections/meta
+      sidebar:
+        width: 1/3
+        sections:
+          images: sections/images
+
+  seo: tabs/seo

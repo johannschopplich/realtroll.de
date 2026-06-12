@@ -2,18 +2,14 @@
 
 /** @var \Kirby\Cms\Page $page */
 
-snippet('layouts/default', slots: true)
+snippet('layouts/default', slots: true);
 
-?>
-
-<?php
 $logo = $page->logo()->toFile();
-$heroScreenshot = $page->screenshots()->toFiles()->first();
-?>
 
+?>
 <div class="md:content-lg">
   <div class="relative overflow-hidden md:border-2 md:border-primary-700">
-    <?php if ($heroScreenshot): ?>
+    <?php if ($heroScreenshot = ($page->heroScreenshot()->toFile() ?? $page->screenshots()->toFiles()->first())): ?>
       <img class="absolute inset-0 size-full object-cover pixelated" src="<?= $heroScreenshot->url() ?>" alt="" aria-hidden="true">
     <?php endif ?>
     <div class="absolute inset-0 bg-primary-950/75" aria-hidden="true"></div>

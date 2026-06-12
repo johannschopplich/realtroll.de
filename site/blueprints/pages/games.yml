@@ -2,5 +2,11 @@ title: Spiele
 
 icon: 🕹
 
-sections:
-  games: sections/games
+tabs:
+  content:
+    label: Spiele
+    icon: dashboard
+    sections:
+      games: sections/games
+
+  seo: tabs/seo

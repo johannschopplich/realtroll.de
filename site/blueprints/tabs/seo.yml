@@ -1,0 +1,12 @@
+label: SEO
+icon: search
+columns:
+  main:
+    width: 2/3
+    sections:
+      seoFields:
+        type: fields
+        fields:
+          customTitle: fields/customTitle
+          description: fields/description
+          thumbnail: fields/thumbnail

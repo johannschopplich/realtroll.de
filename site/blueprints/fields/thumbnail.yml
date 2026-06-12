@@ -1,0 +1,6 @@
+label: Vorschaubild
+type: files
+query: page.files.template('image')
+uploads:
+  template: image
+multiple: false

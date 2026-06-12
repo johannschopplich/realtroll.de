@@ -1,0 +1,4 @@
+label: Beschreibung
+type: textarea
+buttons: false
+help: Eine kurze Beschreibung der Seite für Suchmaschinen und Social Media.

@@ -5,9 +5,10 @@ icon: text
 options:
   changeTemplate: false
 
-columns:
-  main:
-    width: 2/3
+tabs:
+  content:
+    label: Artikel
+    icon: text
     sections:
       articles:
         type: pages
@@ -16,7 +17,4 @@ columns:
         sortBy: date desc
         info: "{{ page.date.toDate('d.m.Y') }}"
 
-  sidebar:
-    width: 1/3
-    sections:
-      meta: sections/meta
+  seo: tabs/seo

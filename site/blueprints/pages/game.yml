@@ -4,39 +4,34 @@ icon: 🕹
 
 tabs:
   content:
-    label: Seite
+    label: Inhalt
     icon: draft
     columns:
       main:
         width: 2/3
-        fields:
-          downloadLink:
-            label: Downloadlink
-            type: url
-            width: 1/2
-          published:
-            label: Erstveröffentlichung
-            type: date
-            width: 1/2
-          releaseStatus:
-            label: Status
-            type: select
-            width: 1/2
-            options:
-              demo: Demo
-              full-version: Vollversion
-              in-progress: In Arbeit
-          engine:
-            label: Engine
-            type: text
-            width: 1/2
-            placeholder: RPG Maker 2003
-          intro:
-            label: Intro
-            type: blocks
+        sections:
+          gallery:
+            type: fields
+            fields:
+              screenshots:
+                label: Screenshots
+                type: files
+                layout: cards
+                query: page.files.template('image')
+                uploads: image
+                image:
+                  cover: true
+                  ratio: 4/3
+                  back: white
           text:
-            label: Text
-            type: blocks
+            type: fields
+            fields:
+              intro:
+                label: Intro
+                type: blocks
+              text:
+                label: Text
+                type: blocks
 
       sidebar:
         width: 1/3
@@ -56,27 +51,78 @@ tabs:
                 multiple: false
                 query: page.files.template('image')
                 uploads: image
-              screenshots:
-                label: Screenshots
+              heroScreenshot:
+                label: Titelbild
                 type: files
-                query: page.files.template('image')
-                uploads: image
+                multiple: false
+                query: page.screenshots.toFiles
+                uploads: false
+                width: 1/2
+                help: Wenn leer, wird der erste Screenshot verwendet.
+
+  gameData:
+    label: Spieldaten
+    icon: tag
+    columns:
+      main:
+        width: 2/3
+        sections:
+          facts:
+            type: fields
+            fields:
+              downloadLink:
+                label: Downloadlink
+                type: url
+                width: 1/2
+              published:
+                label: Erstveröffentlichung
+                type: date
+                width: 1/2
+              releaseStatus:
+                label: Status
+                type: select
+                width: 1/2
+                options:
+                  demo: Demo
+                  full-version: Vollversion
+                  in-progress: In Arbeit
+              engine:
+                label: Engine
+                type: text
+                width: 1/2
+                placeholder: RPG Maker 2003
+
+      sidebar:
+        width: 1/3
+        sections:
+          technical:
+            type: fields
+            fields:
+              onlinePlayInfo:
+                label: Onlinespielen
+                type: info
+                theme: info
+                text: |
+                  Damit das Spiel im Browser spielbar ist, muss der Spielordner per SFTP nach `public/play/games/` auf den Server hochgeladen und entpackt werden. Die `index.json` für den EasyRPG Player erzeugt der Server automatisch.
               gameFolder:
                 label: Ordnername fürs Onlinespielen
                 type: text
-                text:
-                  - Nein
-                  - Ja
-                help: Nur ausfüllen, wenn das Spiel hochgeladen, entpackt, und die `index.json` für den EasyRPG Player generiert wurde. Nicht vom Redaktionsbereich aus handhabbar.
-              cursor:
-                label: Cursor
-                type: files
-                multiple: false
-                query: page.files.template('image')
-                uploads: image
-                help: >
-                  Derzeit ungenutze Spielerei.
-
-          meta: sections/meta
+                help: Nur ausfüllen, wenn der Spielordner auf dem Server liegt. Nicht vom Redaktionsbereich aus handhabbar.
 
   images: tabs/images
+
+  seo:
+    label: SEO
+    icon: search
+    columns:
+      main:
+        width: 2/3
+        sections:
+          seoFields:
+            type: fields
+            fields:
+              customTitle: fields/customTitle
+              description:
+                extends: fields/description
+                help: Eine kurze Beschreibung des Spiels. Erscheint in Suchmaschinen und als Teaser auf der Spieleliste.
+              thumbnail: fields/thumbnail

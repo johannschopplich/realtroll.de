@@ -22,23 +22,27 @@ tabs:
   pages:
     label: Seiten
     icon: settings
-    columns:
-      - width: 1/2
-        sections:
-          pages:
-            type: pages
-            label: Seiten
-            create: default
-            image:
-              back: white
+    sections:
+      pages:
+        type: pages
+        label: Seiten
+        create: default
+        image:
+          back: white
 
-      - width: 1/2
-        sections:
-          meta:
-            extends: sections/meta
-            type: fields
-            fields:
-              thumbnail:
-                query: site.files.template("image")
+  seo:
+    label: SEO
+    icon: search
+    sections:
+      seoFields:
+        type: fields
+        fields:
+          description:
+            extends: fields/description
+            help: Eine kurze Beschreibung der Website. Wird für Seiten ohne eigene Beschreibung verwendet.
+          thumbnail:
+            extends: fields/thumbnail
+            query: site.files.template('image')
+            help: Wird für Seiten ohne eigenes Vorschaubild verwendet.
 
   images: tabs/images
