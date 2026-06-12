@@ -1,5 +1,6 @@
 <?php
 
+use JohannSchopplich\EasyRpg\ExFontExtractor;
 use JohannSchopplich\EasyRpg\GameIndex;
 use Kirby\Cms\App;
 use Kirby\Data\Json;
@@ -7,6 +8,7 @@ use Kirby\Filesystem\F;
 use Kirby\Http\Response;
 
 F::loadClasses([
+    'JohannSchopplich\\EasyRpg\\ExFontExtractor' => __DIR__ . '/classes/ExFontExtractor.php',
     'JohannSchopplich\\EasyRpg\\GameIndex' => __DIR__ . '/classes/GameIndex.php'
 ]);
 
@@ -30,7 +32,11 @@ App::plugin('johannschopplich/easyrpg', [
 
                 $json = $kirby
                     ->cache('johannschopplich.easyrpg')
-                    ->getOrSet($gameFolder, fn () => Json::encode(GameIndex::generate($gameRoot)));
+                    ->getOrSet($gameFolder, function () use ($gameRoot) {
+                        ExFontExtractor::ensure($gameRoot);
+
+                        return Json::encode(GameIndex::generate($gameRoot));
+                    });
 
                 return Response::json($json);
             }

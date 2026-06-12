@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace JohannSchopplich\EasyRpg;
 
 use Kirby\Filesystem\Dir;
@@ -12,22 +14,22 @@ use Normalizer;
  *
  * @see https://github.com/EasyRPG/Tools/tree/master/gencache
  */
-class GameIndex
+final class GameIndex
 {
-    public const METADATA_VERSION = 2;
-    public const DEFAULT_RECURSION_DEPTH = 4;
+    public const int METADATA_VERSION = 2;
+    public const int DEFAULT_RECURSION_DEPTH = 4;
 
     /** File extensions that are kept in lookup keys below the game root. */
-    private const KEPT_EXTENSIONS = ['.ini', '.po'];
+    private const array KEPT_EXTENSIONS = ['.ini', '.po'];
 
     public static function generate(string $gameRoot, int $recursionDepth = self::DEFAULT_RECURSION_DEPTH): array
     {
         return [
             'metadata' => [
-                'version' => static::METADATA_VERSION,
+                'version' => self::METADATA_VERSION,
                 'date' => date('Y-m-d')
             ],
-            'cache' => static::scanDirectory($gameRoot, $recursionDepth)
+            'cache' => self::scanDirectory($gameRoot, $recursionDepth)
         ];
     }
 
@@ -50,11 +52,11 @@ class GameIndex
                 continue;
             }
 
-            $key = static::normalizeName($name);
+            $key = self::normalizeName($name);
             $absolutePath = $path . '/' . $name;
 
             if (is_dir($absolutePath)) {
-                $subdirectoryEntries = static::scanDirectory($absolutePath, $remainingDepth - 1, $name);
+                $subdirectoryEntries = self::scanDirectory($absolutePath, $remainingDepth - 1, $name);
 
                 if ($subdirectoryEntries !== []) {
                     $entries[$key] = $subdirectoryEntries;
@@ -63,14 +65,14 @@ class GameIndex
                 continue;
             }
 
-            if ($isGameRoot === true || static::hasKeptExtension($key)) {
-                if (static::stripExtension($key) === 'exfont') {
+            if ($isGameRoot === true || self::hasKeptExtension($key)) {
+                if (self::stripExtension($key) === 'exfont') {
                     $key = 'exfont';
                 }
 
                 $entries[$key] = $name;
             } else {
-                $entries[static::stripExtension($key)] = $name;
+                $entries[self::stripExtension($key)] = $name;
             }
         }
 

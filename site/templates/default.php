@@ -2,21 +2,90 @@
 
 /** @var \Kirby\Cms\Page $page */
 
-snippet('layouts/default', slots: true)
+use Kirby\Toolkit\Str;
+
+$introBlocks = [];
+$chapters = [];
+
+foreach ($page->text()->toBlocks() as $block) {
+  if ($block->type() === 'heading' && $block->level()->value() === 'h2') {
+    $title = trim(strip_tags($block->text()->value()));
+    preg_match('/^(\d{1,2})\.\s*(.+)$/su', $title, $matches);
+    $chapters[] = [
+      'id' => Str::slug($title),
+      'number' => (int)($matches[1] ?? count($chapters) + 1),
+      'label' => $matches[2] ?? $title,
+      'blocks' => [],
+    ];
+  } elseif ($chapters === []) {
+    $introBlocks[] = $block;
+  } else {
+    $chapters[array_key_last($chapters)]['blocks'][] = $block;
+  }
+}
+
+$hasChapterLayout = $page->parent() !== null && $chapters !== [];
+
+snippet('layouts/default', slots: true);
 
 ?>
 
 <div class="content-lg text-center">
+  <?php if ($parent = $page->parent()): ?>
+    <p class="mb-lg text-sm font-medium tracking-tight uppercase text-primary-700"><?= $parent->title()->escape() ?></p>
+  <?php endif ?>
   <h1 class="editorial-title"><?= $page->title()->escape() ?></h1>
 </div>
 
-<div class="mt-7xl">
-  <div class="content-prose">
-    <div class="prose">
-      <?= $page->text()->toBlocks() ?>
+<?php if (!$hasChapterLayout): ?>
+
+  <div class="mt-7xl">
+    <div class="content-prose">
+      <div class="prose">
+        <?= $page->text()->toBlocks() ?>
+      </div>
     </div>
   </div>
-</div>
+
+<?php else: ?>
+
+  <?php if ($introBlocks !== []): ?>
+    <div class="mt-7xl">
+      <div class="content-prose">
+        <div class="prose">
+          <?php foreach ($introBlocks as $block): ?>
+            <?= $block->toHtml() ?>
+          <?php endforeach ?>
+        </div>
+      </div>
+    </div>
+  <?php endif ?>
+
+  <div class="content-prose mt-7xl">
+    <ol class="ps-0 list-none space-y-xl">
+      <?php foreach ($chapters as $chapter): ?>
+        <li>
+          <details id="<?= $chapter['id'] ?>" class="group relative bg-theme-background border-2 border-primary-700 open:shadow-[4px_4px_0_var(--un-color-primary-700)]">
+            <summary class="flex items-center gap-lg px-lg py-sm list-none cursor-pointer select-none [&::-webkit-details-marker]:hidden">
+              <span class="game-chip-bevel-base font-heading"><?= $chapter['number'] ?></span>
+              <h2 class="flex-1 my-0 font-heading font-normal text-lg text-primary-700"><?= esc($chapter['label']) ?></h2>
+              <span class="font-heading text-xl text-primary-700 group-open:hidden" aria-hidden="true">+</span>
+              <span class="hidden font-heading text-xl text-primary-700 group-open:inline" aria-hidden="true">&ndash;</span>
+            </summary>
+            <div class="px-lg pt-lg pb-xl border-t-2 border-primary-700">
+              <div class="prose">
+                <?php foreach ($chapter['blocks'] as $block): ?>
+                  <?= $block->toHtml() ?>
+                <?php endforeach ?>
+              </div>
+            </div>
+          </details>
+        </li>
+      <?php endforeach ?>
+    </ol>
+  </div>
+
+<?php endif ?>
 
 <?php if ($parent = $page->parent()): ?>
   <?php snippet('components/section-divider') ?>
