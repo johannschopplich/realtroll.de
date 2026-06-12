@@ -18,7 +18,8 @@ if (!$items || $items->count() === 0) return;
       <?= attr(['data-screenshots' => implode('|', $screenshots)], ' ') ?>
     >
       <?php if ($isFeatured): ?>
-        <div class="relative bg-white border-2 border-primary-700 p-3xl md:p-5xl md:grid md:grid-cols-2 md:gap-5xl md:items-center transition-transform duration-200 md:group-hover:translate-[-4px] md:group-active:translate-0">
+        <?php /* z-0 → group-hover:z-2 lifts the card above the header faces (z-1) */ ?>
+        <div class="relative z-0 bg-white border-2 border-primary-700 p-3xl md:p-5xl md:grid md:grid-cols-2 md:gap-5xl md:items-center transition-[transform,z-index] duration-200 md:group-hover:translate-[-4px] md:group-hover:z-2 md:group-active:translate-0">
           <?php if ($logo): ?>
             <figure class="mb-3xl md:mb-0 flex items-center justify-center">
               <img

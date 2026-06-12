@@ -2,7 +2,6 @@ const floatingScreenshot = document.querySelector<HTMLImageElement>(
   "#floating-screenshot",
 );
 
-// Prevent redundant calls to `requestAnimationFrame`
 let needsAnimationFrame = true;
 
 let lastElement: HTMLElement | undefined;
@@ -73,6 +72,8 @@ function handleScreenshots(event: MouseEvent) {
   const preloadImg = new Image();
 
   if (!img) return;
+
+  img.style.scale = Number.isInteger(devicePixelRatio * 1.5) ? "1.5" : "2";
 
   img.src = sources[0]!;
   preloadImg.src = sources[1]!;

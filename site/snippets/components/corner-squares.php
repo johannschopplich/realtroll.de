@@ -18,6 +18,6 @@ $positions = [
 ?>
 <?php foreach ($corners as $corner): ?>
   <?php if (isset($positions[$corner])): ?>
-    <div class="corner-square z-20 <?= $positions[$corner] ?>" style="width: <?= $edge ?>; height: <?= $edge ?>" aria-hidden="true"></div>
+    <div class="corner-square z-2 <?= $positions[$corner] ?>" style="width: <?= $edge ?>; height: <?= $edge ?>" aria-hidden="true"></div>
   <?php endif ?>
 <?php endforeach ?>

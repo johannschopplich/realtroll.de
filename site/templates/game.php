@@ -11,8 +11,8 @@ $logo = $page->logo()->toFile();
 $heroScreenshot = $page->screenshots()->toFiles()->first();
 ?>
 
-<div class="content-lg">
-  <div class="relative border-2 border-primary-700 overflow-hidden">
+<div class="md:content-lg">
+  <div class="relative overflow-hidden md:border-2 md:border-primary-700">
     <?php if ($heroScreenshot): ?>
       <img class="absolute inset-0 size-full object-cover pixelated" src="<?= $heroScreenshot->url() ?>" alt="" aria-hidden="true">
     <?php endif ?>

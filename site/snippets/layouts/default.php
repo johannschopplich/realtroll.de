@@ -40,7 +40,7 @@
 </head>
 <body class="min-h-dvh overflow-x-clip" data-template="<?= $page->intendedTemplate()->name() ?>">
 
-  <div id="floating-screenshot" class="fixed top-[0] left-[0] z-10 pointer-events-none hidden w-[320px] aspect-[4/3] translate-x-[var(--mouseX)] translate-y-[var(--mouseY)] items-center justify-center children:hidden">
+  <div id="floating-screenshot" class="fixed top-[0] left-[0] z-50 pointer-events-none hidden w-[320px] aspect-[4/3] translate-x-[var(--mouseX)] translate-y-[var(--mouseY)] items-center justify-center children:hidden">
     <img class="pixelated scale-[2] origin-top-left">
   </div>
 
@@ -56,7 +56,7 @@
     <nav
       id="main-nav"
       data-scrolled="false"
-      class="group sticky top-0 z-40 h-14 flex items-center justify-between px-lg md:px-5xl border-b-2 border-transparent transition-colors duration-200 data-[scrolled=true]:bg-theme-background data-[scrolled=true]:border-primary-700"
+      class="group sticky top-0 z-10 h-14 flex items-center justify-between px-lg md:px-5xl border-b-2 border-transparent transition-colors duration-200 data-[scrolled=true]:bg-theme-background data-[scrolled=true]:border-primary-700"
       aria-label="Hauptnavigation"
     >
       <span class="corner-square -bottom-px left-0 size-2 -translate-x-1/2 translate-y-1/2 opacity-0 transition-opacity duration-200 group-data-[scrolled=true]:opacity-100" aria-hidden="true"></span>
@@ -92,13 +92,13 @@
 
     <?php if ($page->isHomePage()): ?>
       <header
-        class="relative flex items-center justify-center pixelated border-b-2 border-primary-700 pt-6xl pb-8xl md:pt-7xl md:pb-9xl"
+        class="relative flex items-center justify-center pixelated pt-6xl pb-8xl md:pt-7xl md:pb-[calc(var(--spacing-9xl)+var(--spacing-xl))]"
         style="background: url('<?= asset('assets/img/bg-pattern.svg')->url() ?>') center repeat fixed"
         aria-hidden="true"
       >
         <img class="pixelated md:scale-[1.5]" src="<?= asset('assets/img/willkommen.gif')->url() ?>" alt="Willkommen auf realtroll.de">
         <img
-          class="pixelated absolute bottom-0 left-1/2 -translate-x-1/2 z-10 max-w-none origin-bottom scale-[1.5] md:scale-[2]"
+          class="pixelated absolute bottom-0 left-1/2 -translate-x-1/2 z-1 max-w-none origin-bottom scale-[1.5] md:scale-[2]"
           src="<?= asset('assets/img/editorial-gesichter.png')->url() ?>"
           width="207"
           height="42"
@@ -107,7 +107,7 @@
       </header>
     <?php endif ?>
 
-    <main id="main" class="<?= $page->isHomePage() ? 'mt-5xl md:mt-7xl' : 'mt-5xl' ?>">
+    <main id="main" class="<?php e(!$page->isHomePage(), 'mt-5xl') ?>">
       <?= $slot ?>
     </main>
 
