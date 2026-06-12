@@ -8,7 +8,7 @@ snippet('layouts/default', slots: true)
 
 <article class="content-prose">
   <header class="mb-7xl text-center">
-    <p class="text-sm text-contrast-medium mb-sm">
+    <p class="mb-sm text-sm text-contrast-medium">
       <time datetime="<?= $page->date()->toDate('c') ?>">
         <?= $page->date()->toDate('d.m.Y') ?>
       </time>
@@ -31,9 +31,9 @@ snippet('layouts/default', slots: true)
   </div>
 </article>
 
-<nav class="content-prose mt-9xl flex justify-between gap-lg text-sm" aria-label="Artikel-Navigation">
+<nav class="content-prose flex justify-between gap-lg mt-9xl text-sm" aria-label="Artikel-Navigation">
   <?php if ($prev = $page->prevListed()): ?>
-    <a href="<?= $prev->url() ?>" class="text-primary-700 hover:underline decoration-[length:var(--un-decoration-thickness)]">
+    <a href="<?= $prev->url() ?>" class="decoration-[length:var(--un-decoration-thickness)] text-primary-700 hover:underline">
       &larr; <?= $prev->title()->escape() ?>
     </a>
   <?php else: ?>
@@ -41,7 +41,7 @@ snippet('layouts/default', slots: true)
   <?php endif ?>
 
   <?php if ($next = $page->nextListed()): ?>
-    <a href="<?= $next->url() ?>" class="text-primary-700 hover:underline decoration-[length:var(--un-decoration-thickness)]">
+    <a href="<?= $next->url() ?>" class="decoration-[length:var(--un-decoration-thickness)] text-primary-700 hover:underline">
       <?= $next->title()->escape() ?> &rarr;
     </a>
   <?php endif ?>

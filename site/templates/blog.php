@@ -6,7 +6,7 @@ snippet('layouts/default', slots: true)
 
 ?>
 
-<div class="content-lg text-center mb-7xl">
+<div class="content-lg mb-7xl text-center">
   <h1 class="editorial-title"><?= $page->title()->escape() ?></h1>
 </div>
 
@@ -15,13 +15,13 @@ snippet('layouts/default', slots: true)
   <?php foreach ($articles as $article): ?>
     <article
       id="<?= \Kirby\Toolkit\Str::slug($article->date()->toDate('Y-m-d') . '-' . $article->slug()) ?>"
-      class="relative border-2 border-primary-700 bg-white p-3xl md:p-5xl mb-5xl"
+      class="relative p-3xl mb-5xl bg-white border-2 border-primary-700 md:p-5xl"
     >
       <?php snippet('components/corner-squares', ['size' => 3]) ?>
 
       <header class="mb-xl">
-        <h2 class="font-heading text-xl text-primary-700 mb-xs leading-none scroll-mt-8xl">
-          <a href="<?= $article->url() ?>" class="no-underline hover:underline decoration-[length:var(--un-decoration-thickness)]">
+        <h2 class="mb-xs scroll-mt-8xl font-heading text-xl leading-none text-primary-700">
+          <a href="<?= $article->url() ?>" class="no-underline decoration-[length:var(--un-decoration-thickness)] hover:underline">
             <?= $article->title()->escape() ?>
           </a>
         </h2>

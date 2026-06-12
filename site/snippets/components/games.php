@@ -14,14 +14,14 @@ if (!$items || $items->count() === 0) return;
     ?>
 
     <li
-      class="group bg-primary-700 mt-[-2px] <?= $isFeatured ? 'md:col-span-2' : '' ?>"
+      class="group mt-[-2px] bg-primary-700 <?= $isFeatured ? 'md:col-span-2' : '' ?>"
       <?= attr(['data-screenshots' => implode('|', $screenshots), 'data-title' => $game->title()], ' ') ?>
     >
       <?php if ($isFeatured): ?>
         <?php /* z-0 → group-hover:z-2 lifts the card above the header faces (z-1) */ ?>
-        <div class="relative z-0 bg-white border-2 border-primary-700 p-3xl md:p-5xl md:grid md:grid-cols-2 md:gap-5xl md:items-center transition-[transform,z-index] duration-200 md:group-hover:translate-[-4px] md:group-hover:z-2 md:group-active:translate-0">
+        <div class="relative z-0 p-3xl bg-white border-2 border-primary-700 transition-[transform,z-index] duration-200 md:grid md:grid-cols-2 md:items-center md:gap-5xl md:p-5xl md:group-hover:translate-[-4px] md:group-hover:z-2 md:group-active:translate-0">
           <?php if ($logo): ?>
-            <figure class="mb-4xl md:mb-0 flex items-center justify-center">
+            <figure class="flex items-center justify-center mb-4xl md:mb-0">
               <img
                 class="pixelated max-w-full h-auto"
                 src="<?= $logo->url() ?>"
@@ -43,7 +43,7 @@ if (!$items || $items->count() === 0) return;
           </div>
         </div>
       <?php else: ?>
-        <div class="relative grid grid-rows-[1fr_auto] h-full bg-white border-2 border-primary-700 p-3xl transition-transform duration-200 md:p-5xl md:group-hover:translate-[-4px] md:group-active:translate-0">
+        <div class="relative grid grid-rows-[1fr_auto] p-3xl h-full bg-white border-2 border-primary-700 transition-transform duration-200 md:p-5xl md:group-hover:translate-[-4px] md:group-active:translate-0">
           <?php if ($logo): ?>
             <figure class="mb-4xl">
               <img

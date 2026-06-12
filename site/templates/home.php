@@ -19,7 +19,7 @@ snippet('layouts/default', slots: true);
   aria-hidden="true"
 >
   <img class="pixelated block max-w-[calc(100vw-3rem)] h-auto" alt="">
-  <figcaption class="mt-2 flex items-center justify-between gap-lg text-xs font-medium text-primary-700">
+  <figcaption class="flex items-center justify-between gap-lg mt-2 text-xs font-medium text-primary-700">
     <span data-showcase-title></span>
     <span class="flex gap-1" data-showcase-dots></span>
   </figcaption>

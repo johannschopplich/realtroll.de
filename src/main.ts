@@ -1,7 +1,10 @@
 /// <reference types="vite/client" />
 
-import { setupNavScrollState } from "./nav.ts";
 import "./styles/main.css";
+
+interface AppModule {
+  install?: () => void | Promise<void>;
+}
 
 interface PageTemplate {
   default?: () => void | Promise<void>;
@@ -14,14 +17,21 @@ if (import.meta.env.DEV) {
   }
 }
 
+// Auto-load modules
+for (const mod of Object.values(
+  import.meta.glob<AppModule>("./modules/*.ts", {
+    eager: true,
+  }),
+)) {
+  mod.install?.();
+}
+
 // Auto-load templates
 const templates = Object.fromEntries(
   Object.entries(import.meta.glob<PageTemplate>("./templates/*.ts")).map(
     ([key, value]) => [key.slice(12, -3), value],
   ),
 );
-
-setupNavScrollState();
 
 const { template = "default" } = document.body.dataset;
 templates[template]?.().then((mod) => mod.default?.());

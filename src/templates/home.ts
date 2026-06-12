@@ -1,6 +1,6 @@
-const CYCLE_INTERVAL = 1250;
+import { prefersReducedMotion } from "../utils/index.ts";
 
-const prefersReducedMotion = matchMedia("(prefers-reduced-motion: reduce)");
+const CYCLE_INTERVAL = 1250;
 
 export default function () {
   if (!matchMedia("(hover: hover)").matches) return;

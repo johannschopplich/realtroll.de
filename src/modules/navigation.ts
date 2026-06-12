@@ -1,6 +1,6 @@
 const SCROLL_THRESHOLD = 8;
 
-export function setupNavScrollState() {
+export function install() {
   const nav = document.querySelector<HTMLElement>("#main-nav");
   if (!nav) return;
 

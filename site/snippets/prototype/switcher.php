@@ -19,10 +19,10 @@ $index = array_search($variant, $keys, true);
 $prevVariant = $keys[($index - 1 + count($keys)) % count($keys)];
 $nextVariant = $keys[($index + 1) % count($keys)];
 ?>
-<div class="fixed <?= $position ?> left-1/2 -translate-x-1/2 z-50 flex items-center gap-1 bg-neutral-900 text-white rounded-full p-1 font-mono text-xs shadow-lg select-none">
-  <a href="?<?= $param ?>=<?= $prevVariant ?>" class="size-7 inline-flex items-center justify-center rounded-full no-underline text-white hover:bg-neutral-700" aria-label="Vorherige Variante"><?= $arrowGlyphs[$arrowKeys[0]] ?? '&larr;' ?></a>
+<div class="fixed <?= $position ?> left-1/2 z-50 flex items-center gap-1 p-1 font-mono text-xs text-white bg-neutral-900 rounded-full -translate-x-1/2 shadow-lg select-none">
+  <a href="?<?= $param ?>=<?= $prevVariant ?>" class="inline-flex items-center justify-center size-7 no-underline text-white rounded-full hover:bg-neutral-700" aria-label="Vorherige Variante"><?= $arrowGlyphs[$arrowKeys[0]] ?? '&larr;' ?></a>
   <span class="px-2 whitespace-nowrap"><?= strtoupper($variant) ?> &ndash; <?= $variants[$variant] ?></span>
-  <a href="?<?= $param ?>=<?= $nextVariant ?>" class="size-7 inline-flex items-center justify-center rounded-full no-underline text-white hover:bg-neutral-700" aria-label="Nächste Variante"><?= $arrowGlyphs[$arrowKeys[1]] ?? '&rarr;' ?></a>
+  <a href="?<?= $param ?>=<?= $nextVariant ?>" class="inline-flex items-center justify-center size-7 no-underline text-white rounded-full hover:bg-neutral-700" aria-label="Nächste Variante"><?= $arrowGlyphs[$arrowKeys[1]] ?? '&rarr;' ?></a>
 </div>
 <script>
   (() => {

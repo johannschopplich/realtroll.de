@@ -38,21 +38,21 @@
   <script async defer data-domain="realtroll.de" src="https://plausible.io/js/plausible.js"></script>
 
 </head>
-<body class="min-h-dvh overflow-x-clip" data-template="<?= $page->intendedTemplate()->name() ?>">
+<body class="overflow-x-clip min-h-dvh" data-template="<?= $page->intendedTemplate()->name() ?>">
 
   <?php
   $blog = page('blog');
   $games = page('spiele');
   $onGames = $page->isHomePage() || ($games && ($page->is($games) || $page->parents()->has($games)));
   $onBlog = $blog && ($page->is($blog) || $page->parents()->has($blog));
-  $navLink = 'text-primary-700 decoration-[length:var(--un-decoration-thickness)] underline-offset-4 hover:underline aria-[current]:underline';
+  $navLink = 'decoration-[length:var(--un-decoration-thickness)] underline-offset-4 text-primary-700 hover:underline aria-[current]:underline';
   ?>
 
   <div class="relative z-1 min-h-dvh bg-polka-grid border-b-2 border-primary-700">
     <nav
       id="main-nav"
       data-scrolled="false"
-      class="group sticky top-0 z-10 h-14 flex items-center justify-between px-lg md:px-5xl border-b-2 border-transparent transition-colors duration-200 data-[scrolled=true]:bg-theme-background data-[scrolled=true]:border-primary-700"
+      class="group sticky top-0 z-10 flex items-center justify-between px-lg h-14 border-b-2 border-transparent transition-colors duration-200 data-[scrolled=true]:bg-theme-background data-[scrolled=true]:border-primary-700 md:px-5xl"
       aria-label="Hauptnavigation"
     >
       <span class="corner-square -bottom-px left-0 size-2 -translate-x-1/2 translate-y-1/2 opacity-0 transition-opacity duration-200 group-data-[scrolled=true]:opacity-100" aria-hidden="true"></span>
@@ -88,15 +88,15 @@
 
     <?php if ($page->isHomePage()): ?>
       <header
-        class="relative flex items-center justify-center pixelated pt-6xl pb-8xl md:pt-7xl md:pb-[calc(var(--spacing-9xl)+var(--spacing-xl))]"
+        class="pixelated relative flex items-center justify-center pt-6xl pb-8xl md:pt-7xl md:pb-[calc(var(--spacing-9xl)+var(--spacing-xl))]"
         style="background: url('<?= asset('assets/img/bg-pattern.svg')->url() ?>') center repeat fixed"
       >
         <div class="flex flex-col items-center">
           <img class="pixelated md:scale-[1.5]" src="<?= asset('assets/img/willkommen.gif')->url() ?>" alt="Willkommen auf realtroll.de">
-          <p class="mt-3xl md:mt-5xl px-3xl max-w-prose font-medium text-center text-balance tracking-tight"><?= $page->text()->kti() ?></p>
+          <p class="mt-3xl px-3xl max-w-prose font-medium text-center text-balance tracking-tight md:mt-5xl"><?= $page->text()->kti() ?></p>
         </div>
         <img
-          class="pixelated absolute bottom-0 left-1/2 -translate-x-1/2 -translate-y-[2px] z-1 max-w-none origin-bottom scale-[1.5] md:scale-[2]"
+          class="pixelated absolute bottom-0 left-1/2 z-1 max-w-none -translate-x-1/2 -translate-y-[2px] origin-bottom scale-[1.5] md:scale-[2]"
           src="<?= asset('assets/img/editorial-gesichter.png')->url() ?>"
           width="207"
           height="42"
@@ -116,7 +116,7 @@
   <footer class="sticky bottom-0 z-0 bg-theme-background">
     <div class="relative pt-9xl pb-xl text-center bg-graph-paper">
       <div class="absolute inset-0 overflow-hidden pointer-events-none select-none" aria-hidden="true">
-        <p class="absolute inset-x-0 bottom-0 translate-y-1/5 font-heading text-[18vw] leading-none text-primary-700 opacity-5 whitespace-nowrap text-center">real Troll</p>
+        <p class="absolute inset-x-0 bottom-0 font-heading text-[18vw] leading-none whitespace-nowrap text-center text-primary-700 translate-y-1/5 opacity-5">real Troll</p>
       </div>
       <img class="pixelated mx-auto mb-lg" src="<?= asset('assets/img/real-troll-avatar.gif')->url() ?>" alt="Avatar von real Troll">
       <nav class="flex gap-lg justify-center flex-wrap text-sm">

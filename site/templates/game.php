@@ -10,10 +10,10 @@ $logo = $page->logo()->toFile();
 <div class="md:content-lg">
   <div class="relative overflow-hidden md:border-2 md:border-primary-700">
     <?php if ($heroScreenshot = ($page->heroScreenshot()->toFile() ?? $page->screenshots()->toFiles()->first())): ?>
-      <img class="absolute inset-0 size-full object-cover pixelated" src="<?= $heroScreenshot->url() ?>" alt="" aria-hidden="true">
+      <img class="pixelated absolute inset-0 size-full object-cover" src="<?= $heroScreenshot->url() ?>" alt="" aria-hidden="true">
     <?php endif ?>
     <div class="absolute inset-0 bg-primary-950/75" aria-hidden="true"></div>
-    <div class="relative py-8xl md:py-9xl px-3xl text-center">
+    <div class="relative py-8xl px-3xl text-center md:py-9xl">
       <h1 class="<?= $logo ? 'sr-only' : 'editorial-title hyphenate' ?>"><?= $page->title()->escape() ?></h1>
       <?php if ($logo): ?>
         <img
@@ -31,7 +31,7 @@ $logo = $page->logo()->toFile();
   </div>
 </div>
 
-<div class="content-lg text-center mt-5xl">
+<div class="content-lg mt-5xl text-center">
   <div class="columns gap-lg items-center justify-center">
     <?php if ($page->gameFolder()->isNotEmpty()): ?>
       <div class="column-narrow">
@@ -48,7 +48,7 @@ $logo = $page->logo()->toFile();
   </div>
 </div>
 
-<div class="content max-w-prose mt-8xl">
+<div class="content mt-8xl max-w-prose">
   <div class="prose">
     <?= $page->intro()->toBlocks() ?>
   </div>
@@ -60,7 +60,7 @@ $logo = $page->logo()->toFile();
   <div class="grid grid-cols-minmax-320px gap-lg">
     <?php foreach ($page->screenshots()->toFiles() as $file): ?>
       <figure class="text-center">
-        <img class="w-full h-auto pixelated" src="<?= $file->url() ?>" alt="<?= $file->caption()->or($file->alt()) ?>">
+        <img class="pixelated w-full h-auto" src="<?= $file->url() ?>" alt="<?= $file->caption()->or($file->alt()) ?>">
         <?php if ($file->caption()->isNotEmpty()): ?>
           <figcaption class="my-2 text-xs">
             <p><?= $file->caption() ?></p>

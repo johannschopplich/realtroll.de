@@ -110,7 +110,7 @@ export default defineConfig<Theme>({
       /^content-(.+)$/,
       ([, bp], { theme }) => {
         const maxWidth = bp === "prose" ? `max-w-${bp}` : `max-w-screen-${bp}`;
-        return `relative ${maxWidth} mx-auto w-[calc(100%-2*${(theme as Theme)?.spacing?.lg})]`;
+        return `relative mx-auto ${maxWidth} w-[calc(100%-2*${(theme as Theme)?.spacing?.lg})]`;
       },
     ],
     [/^column-(\d+)$/, ([, d]) => `flex-none w-${d}/12`],
@@ -126,13 +126,13 @@ export default defineConfig<Theme>({
       ([, color, outlined]) => {
         const buttonBase = [
           "inline-flex items-center justify-center",
-          "select-none rounded px-3 py-2 leading-none",
+          "px-3 py-2 leading-none rounded select-none",
           "disabled:opacity-75 disabled:cursor-not-allowed",
           "aria-disabled:opacity-75 aria-disabled:cursor-not-allowed",
         ].join(" ");
 
         if (color === "text") {
-          return `${buttonBase} active:scale-97 bg-transparent text-theme-base hover:underline hover:decoration-[length:var(--un-decoration-thickness)] focus-visible:underline focus-visible:decoration-[length:var(--un-decoration-thickness)]`;
+          return `${buttonBase} text-theme-base bg-transparent active:scale-97 hover:underline hover:decoration-[length:var(--un-decoration-thickness)] focus-visible:underline focus-visible:decoration-[length:var(--un-decoration-thickness)]`;
         }
 
         const elevatedStyles = [
@@ -143,18 +143,18 @@ export default defineConfig<Theme>({
         ].join(" ");
 
         if (outlined) {
-          return `${buttonBase} ${elevatedStyles} ring ring-inset ring-${color} bg-theme-background text-${color}`;
+          return `${buttonBase} ${elevatedStyles} text-${color} bg-theme-background ring ring-inset ring-${color}`;
         }
 
-        return `${buttonBase} ${elevatedStyles} bg-${color} text-white`;
+        return `${buttonBase} ${elevatedStyles} text-white bg-${color}`;
       },
     ],
     [
       // list-none/ps-0 guards against list styles when rendered inside .prose
       /^game-chips-(base|lg)$/,
       ([, size]) =>
-        `list-none ps-0 flex flex-wrap items-center font-medium ${
-          size === "lg" ? "text-sm gap-2.5" : "text-xs gap-2"
+        `flex flex-wrap items-center ps-0 list-none font-medium ${
+          size === "lg" ? "gap-2.5 text-sm" : "gap-2 text-xs"
         }`,
     ],
     [
@@ -164,16 +164,16 @@ export default defineConfig<Theme>({
           appearance === "bevel"
             ? "text-primary-800 bg-primary-100 border-t-primary-50 border-l-primary-50 border-b-primary-400 border-r-primary-400"
             : "text-primary-50 bg-white/10 border-t-white/30 border-l-white/30 border-b-primary-950/60 border-r-primary-950/60";
-        return `border-2 leading-none ${surface} ${
+        return `${
           size === "lg" ? "px-2.5 py-1.5" : "px-2 py-1"
-        }`;
+        } leading-none ${surface} border-2`;
       },
     ],
     {
       "corner-square":
-        "block absolute bg-theme-background border-2 border-primary-700 pointer-events-none",
+        "absolute block bg-theme-background border-2 border-primary-700 pointer-events-none",
       "editorial-title":
-        "text-primary-700 font-heading font-700 leading-none text-[clamp(var(--un-text-3xl),5vw,4rem)]",
+        "font-heading font-700 leading-none text-[clamp(var(--un-text-3xl),5vw,4rem)] text-primary-700",
     },
   ],
   safelist: [
