@@ -40,10 +40,6 @@
 </head>
 <body class="min-h-dvh overflow-x-clip" data-template="<?= $page->intendedTemplate()->name() ?>">
 
-  <div id="floating-screenshot" class="fixed top-[0] left-[0] z-50 pointer-events-none hidden w-[320px] aspect-[4/3] translate-x-[var(--mouseX)] translate-y-[var(--mouseY)] items-center justify-center children:hidden">
-    <img class="pixelated scale-[2] origin-top-left">
-  </div>
-
   <?php
   $blog = page('blog');
   $games = page('spiele');
@@ -100,7 +96,7 @@
           <p class="mt-3xl md:mt-5xl px-3xl max-w-prose font-medium text-center text-balance tracking-tight"><?= $page->text()->kti() ?></p>
         </div>
         <img
-          class="pixelated absolute bottom-0 left-1/2 -translate-x-1/2 z-1 max-w-none origin-bottom scale-[1.5] md:scale-[2]"
+          class="pixelated absolute bottom-0 left-1/2 -translate-x-1/2 -translate-y-[2px] z-1 max-w-none origin-bottom scale-[1.5] md:scale-[2]"
           src="<?= asset('assets/img/editorial-gesichter.png')->url() ?>"
           width="207"
           height="42"

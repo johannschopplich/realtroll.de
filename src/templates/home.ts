@@ -1,96 +1,96 @@
-const floatingScreenshot = document.querySelector<HTMLImageElement>(
-  "#floating-screenshot",
-);
+const CYCLE_INTERVAL = 1250;
 
-let needsAnimationFrame = true;
-
-let lastElement: HTMLElement | undefined;
-let lastTimerId: ReturnType<typeof setInterval> | undefined;
+const prefersReducedMotion = matchMedia("(prefers-reduced-motion: reduce)");
 
 export default function () {
-  document.addEventListener("mousemove", (event) => {
-    if (!needsAnimationFrame) return;
+  if (!matchMedia("(hover: hover)").matches) return;
 
-    requestAnimationFrame(() => {
-      needsAnimationFrame = false;
-      updateMouseProperties(event);
-    });
-  });
-
-  if (matchMedia("(hover: hover)").matches) {
-    document.addEventListener("mouseover", handleScreenshots, {
-      capture: true,
-    });
-  }
-}
-
-const PREVIEW_CURSOR_OFFSET = 16;
-
-function updateMouseProperties(event: MouseEvent) {
-  let x = event.clientX + PREVIEW_CURSOR_OFFSET;
-  let y = event.clientY + PREVIEW_CURSOR_OFFSET;
-
-  // Flip the preview to the other side of the cursor before it would clip
-  // beyond the viewport (the image is scaled, so measure its rendered size)
-  const image = floatingScreenshot?.querySelector("img");
-  if (image) {
-    const { width, height } = image.getBoundingClientRect();
-    if (width > 0 && x + width > window.innerWidth) {
-      x = Math.max(event.clientX - width - PREVIEW_CURSOR_OFFSET, 0);
-    }
-    if (height > 0 && y + height > window.innerHeight) {
-      y = Math.max(event.clientY - height - PREVIEW_CURSOR_OFFSET, 0);
-    }
-  }
-
-  document.documentElement.style.setProperty("--mouseX", `${x}px`);
-  document.documentElement.style.setProperty("--mouseY", `${y}px`);
-  needsAnimationFrame = true;
-}
-
-function handleScreenshots(event: MouseEvent) {
-  if (!floatingScreenshot) return;
-
-  const element = (event.target as HTMLElement).closest<HTMLElement>(
-    "[data-screenshots]",
+  const panel = document.querySelector<HTMLElement>("#screenshot-showcase");
+  const image = panel?.querySelector("img");
+  const titleElement = panel?.querySelector<HTMLElement>(
+    "[data-showcase-title]",
   );
+  const dotsElement = panel?.querySelector<HTMLElement>("[data-showcase-dots]");
+  if (!panel || !image || !titleElement || !dotsElement) return;
 
-  if (!element) {
-    if (lastTimerId !== undefined) clearInterval(lastTimerId);
-    floatingScreenshot.classList.add("hidden", "children:hidden");
-    lastElement = undefined;
-    return;
+  // Screenshots are 320px wide; scale to whole device pixels to keep the
+  // pixel art crisp (e.g. retina DPR 2 → 3 device pixels per game pixel)
+  image.style.width = `${
+    320 * (Number.isInteger(devicePixelRatio * 1.5) ? 1.5 : 2)
+  }px`;
+
+  const preloadImage = new Image();
+  let lastElement: HTMLElement | undefined;
+  let timerId: ReturnType<typeof setInterval> | undefined;
+
+  function renderDots(count: number, activeIndex: number) {
+    dotsElement!.replaceChildren(
+      ...Array.from({ length: count }, (_, dotIndex) => {
+        const dot = document.createElement("span");
+        Object.assign(dot.style, {
+          width: "0.5rem",
+          height: "0.5rem",
+          background:
+            dotIndex === activeIndex
+              ? "var(--un-color-primary-700)"
+              : "var(--un-color-primary-200)",
+        });
+        return dot;
+      }),
+    );
   }
 
-  if (lastElement === element) return;
+  function show(element: HTMLElement) {
+    const sources =
+      element.dataset.screenshots?.split("|").filter(Boolean) ?? [];
+    if (sources.length === 0) return;
 
-  lastElement = element;
-  clearInterval(lastTimerId);
+    clearInterval(timerId);
 
-  const sources = element.dataset.screenshots?.split("|") ?? [];
-  const img = floatingScreenshot.querySelector<HTMLImageElement>("img");
-  const preloadImg = new Image();
+    titleElement!.textContent = element.dataset.title ?? "";
 
-  if (!img) return;
+    let index = 0;
+    image!.src = sources[0]!;
+    renderDots(sources.length, 0);
+    if (sources[1]) preloadImage.src = sources[1];
 
-  img.style.scale = Number.isInteger(devicePixelRatio * 1.5) ? "1.5" : "2";
-
-  img.src = sources[0]!;
-  preloadImg.src = sources[1]!;
-
-  let index = 1;
-  lastTimerId = setInterval(() => {
-    if (index === sources.length) {
-      index = 0;
+    // Auto-advancing the slideshow is motion, too
+    if (!prefersReducedMotion.matches && sources.length > 1) {
+      timerId = setInterval(() => {
+        index = (index + 1) % sources.length;
+        image!.src = sources[index]!;
+        renderDots(sources.length, index);
+        preloadImage.src = sources[(index + 1) % sources.length]!;
+      }, CYCLE_INTERVAL);
     }
 
-    if (index + 1 < sources.length) {
-      preloadImg.src = sources[index + 1]!;
-    }
+    panel!.classList.remove("invisible", "opacity-0", "translate-y-4");
+  }
 
-    img.src = sources[index]!;
-    index++;
-  }, 1250);
+  function hide() {
+    clearInterval(timerId);
+    panel!.classList.add("invisible", "opacity-0", "translate-y-4");
+  }
 
-  floatingScreenshot.classList.remove("hidden", "children:hidden");
+  document.addEventListener(
+    "mouseover",
+    (event) => {
+      const element = (event.target as HTMLElement).closest<HTMLElement>(
+        "[data-screenshots]",
+      );
+
+      if (!element) {
+        if (lastElement) {
+          lastElement = undefined;
+          hide();
+        }
+        return;
+      }
+
+      if (element === lastElement) return;
+      lastElement = element;
+      show(element);
+    },
+    { capture: true },
+  );
 }

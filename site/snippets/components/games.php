@@ -15,7 +15,7 @@ if (!$items || $items->count() === 0) return;
 
     <li
       class="group bg-primary-700 mt-[-2px] <?= $isFeatured ? 'md:col-span-2' : '' ?>"
-      <?= attr(['data-screenshots' => implode('|', $screenshots)], ' ') ?>
+      <?= attr(['data-screenshots' => implode('|', $screenshots), 'data-title' => $game->title()], ' ') ?>
     >
       <?php if ($isFeatured): ?>
         <?php /* z-0 → group-hover:z-2 lifts the card above the header faces (z-1) */ ?>
