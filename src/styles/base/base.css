@@ -8,10 +8,10 @@
         (var(--un-fluid-max-width) - var(--un-fluid-min-width))
     );
 
-    --un-font-family-heading: "PP Mondwest", monospace;
     --un-font-family-normal: "Iosevka Slab Web", monospace;
-    --un-line-height-normal: calc(1ex / 0.32);
-    --un-line-height-heading: calc(1ex / 0.42);
+    --un-font-family-heading: "PP Mondwest", monospace;
+    --un-line-height-normal: 1.6;
+    --un-line-height-heading: 1.25;
 
     --un-text-scale-ratio: 1.2;
     --un-text-lg: calc(1rem * var(--un-text-scale-ratio));
