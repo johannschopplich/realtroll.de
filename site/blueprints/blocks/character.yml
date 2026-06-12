@@ -1,0 +1,23 @@
+name: Charakter
+icon: user
+preview: fields
+fields:
+  image:
+    label: Face-Icon
+    type: files
+    query: page.files.template('image')
+    uploads: image
+    multiple: false
+    width: 1/3
+  name:
+    label: Name
+    type: text
+    required: true
+    width: 1/3
+  role:
+    label: Rolle
+    type: text
+    width: 1/3
+  text:
+    label: Beschreibung
+    type: writer

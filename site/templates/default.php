@@ -68,7 +68,7 @@ snippet('layouts/default', slots: true);
           <details id="<?= $chapter['id'] ?>" class="group relative bg-theme-background border-2 border-primary-700 open:shadow-[4px_4px_0_var(--un-color-primary-700)]">
             <summary class="flex items-center gap-lg px-lg py-sm list-none cursor-pointer select-none [&::-webkit-details-marker]:hidden">
               <span class="game-chip-bevel-base font-heading"><?= $chapter['number'] ?></span>
-              <h2 class="flex-1 my-0 font-heading font-normal text-lg text-primary-700"><?= esc($chapter['label']) ?></h2>
+              <h2 class="flex-1 my-0 font-heading font-normal text-base leading-heading text-primary-700"><?= esc($chapter['label']) ?></h2>
               <span class="font-heading text-xl text-primary-700 group-open:hidden" aria-hidden="true">+</span>
               <span class="hidden font-heading text-xl text-primary-700 group-open:inline" aria-hidden="true">&ndash;</span>
             </summary>

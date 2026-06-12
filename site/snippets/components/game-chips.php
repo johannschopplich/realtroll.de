@@ -26,7 +26,7 @@ $chips = array_filter([
 
 if ($chips === []) return;
 ?>
-<ul class="game-chips-<?= $size ?> <?= $classes ?>">
+<ul class="game-chips-<?= $size ?> ps-0 list-none <?= $classes ?>">
   <?php foreach ($chips as $chip): ?>
     <li class="game-chip-<?= $appearance ?>-<?= $size ?>">
       <?= esc($chip) ?>

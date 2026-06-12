@@ -18,30 +18,18 @@
 
     & :where(h1) {
       font-size: var(--un-text-3xl);
-      @media (--md) {
-        font-size: var(--un-text-4xl);
-      }
     }
 
     & :where(h2) {
       font-size: var(--un-text-2xl);
-      @media (--md) {
-        font-size: var(--un-text-3xl);
-      }
     }
 
     & :where(h3) {
       font-size: var(--un-text-xl);
-      @media (--md) {
-        font-size: var(--un-text-2xl);
-      }
     }
 
     & :where(h4) {
       font-size: var(--un-text-lg);
-      @media (--md) {
-        font-size: var(--un-text-xl);
-      }
     }
 
     & :where(figure) {

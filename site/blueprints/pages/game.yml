@@ -32,6 +32,15 @@ tabs:
               text:
                 label: Text
                 type: blocks
+                fieldsets:
+                  - heading
+                  - text
+                  - list
+                  - character
+                  - image
+                  - video
+                  - quote
+                  - line
 
       sidebar:
         width: 1/3

@@ -150,10 +150,9 @@ export default defineConfig<Theme>({
       },
     ],
     [
-      // list-none/ps-0 guards against list styles when rendered inside .prose
       /^game-chips-(base|lg)$/,
       ([, size]) =>
-        `flex flex-wrap items-center ps-0 list-none font-medium ${
+        `flex flex-wrap items-center font-medium ${
           size === "lg" ? "gap-2.5 text-sm" : "gap-2 text-xs"
         }`,
     ],
