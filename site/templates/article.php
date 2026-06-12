@@ -7,7 +7,7 @@ snippet('layouts/default', slots: true)
 ?>
 
 <article class="content-prose">
-  <header class="mb-5xl text-center">
+  <header class="mb-7xl text-center">
     <p class="text-sm text-contrast-medium mb-sm">
       <time datetime="<?= $page->date()->toDate('c') ?>">
         <?= $page->date()->toDate('d.m.Y') ?>

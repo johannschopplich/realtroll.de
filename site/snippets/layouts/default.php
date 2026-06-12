@@ -63,14 +63,14 @@
       <span class="corner-square -bottom-px right-0 size-2 translate-x-1/2 translate-y-1/2 opacity-0 transition-opacity duration-200 group-data-[scrolled=true]:opacity-100" aria-hidden="true"></span>
       <a
         href="<?= $site->homePage()->url() ?>"
-        class="flex items-center gap-2 font-heading text-lg text-primary-700 leading-none"
+        class="flex items-center gap-2 text-sm font-medium tracking-tight text-primary-700"
         <?php e($page->isHomePage(), 'aria-current="page"') ?>
         aria-label="Startseite"
       >
         <img class="pixelated" src="/assets/img/icons/favicon-32x32.png" width="24" height="24" alt="">
         real Troll
       </a>
-      <div class="flex items-center gap-lg text-sm tracking-wide">
+      <div class="flex items-center gap-lg text-sm font-medium tracking-tight">
         <a <?= attr([
           'href' => $site->homePage()->url(),
           'class' => $navLink,
@@ -94,9 +94,11 @@
       <header
         class="relative flex items-center justify-center pixelated pt-6xl pb-8xl md:pt-7xl md:pb-[calc(var(--spacing-9xl)+var(--spacing-xl))]"
         style="background: url('<?= asset('assets/img/bg-pattern.svg')->url() ?>') center repeat fixed"
-        aria-hidden="true"
       >
-        <img class="pixelated md:scale-[1.5]" src="<?= asset('assets/img/willkommen.gif')->url() ?>" alt="Willkommen auf realtroll.de">
+        <div class="flex flex-col items-center">
+          <img class="pixelated md:scale-[1.5]" src="<?= asset('assets/img/willkommen.gif')->url() ?>" alt="Willkommen auf realtroll.de">
+          <p class="mt-3xl md:mt-5xl px-3xl max-w-prose font-medium text-center text-balance tracking-tight"><?= $page->text()->kti() ?></p>
+        </div>
         <img
           class="pixelated absolute bottom-0 left-1/2 -translate-x-1/2 z-1 max-w-none origin-bottom scale-[1.5] md:scale-[2]"
           src="<?= asset('assets/img/editorial-gesichter.png')->url() ?>"

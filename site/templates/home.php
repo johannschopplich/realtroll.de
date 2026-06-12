@@ -3,7 +3,7 @@
 /** @var \Kirby\Cms\Site $site */
 /** @var \Kirby\Cms\Page $page */
 
-snippet('layouts/default', slots: true)
+snippet('layouts/default', slots: true);
 
 ?>
 

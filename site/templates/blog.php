@@ -20,7 +20,7 @@ snippet('layouts/default', slots: true)
       <?php snippet('components/corner-squares', ['size' => 3]) ?>
 
       <header class="mb-xl">
-        <h2 class="font-heading text-xl text-primary-700 mb-xs leading-none scroll-mt-5xl">
+        <h2 class="font-heading text-xl text-primary-700 mb-xs leading-none scroll-mt-8xl">
           <a href="<?= $article->url() ?>" class="no-underline hover:underline decoration-[length:var(--un-decoration-thickness)]">
             <?= $article->title()->escape() ?>
           </a>
