@@ -247,13 +247,20 @@
       ];
       /** @type {Map<string, string>} */
       const keys = new Map();
-      /** @type {Map<string, string>} */
-      const keysDown = new Map();
+      /**
+       * Pointers that started on a control and may slide between them
+       * @type {Set<number>}
+       */
+      const engagedPointers = new Set();
+      /**
+       * Control element id currently pressed by each engaged pointer
+       * @type {Map<number, string>}
+       */
+      const pressedControls = new Map();
       const viewport = document.getElementById("viewport");
       const canvas = document.getElementById("canvas");
       /** @type {Map<number, Gamepad>} */
       const gamepads = new Map();
-      let lastTouchedId;
 
       // Launch the Player; it reads the game from the query string itself
       window.addEventListener("load", async () => {
@@ -338,49 +345,75 @@
       function bindKey(element, key) {
         keys.set(element.id, key);
 
-        element.addEventListener("touchstart", (event) => {
+        element.addEventListener("pointerdown", (event) => {
           event.preventDefault();
-          simulateKeyboardEvent("keydown", key);
-          keysDown.set(event.target.id, element.id);
-          element.classList.add("active");
-        });
+          engagedPointers.add(event.pointerId);
+          pressControl(event.pointerId, element.id);
 
-        element.addEventListener("touchend", (event) => {
-          event.preventDefault();
-
-          const pressedKey = keysDown.get(event.target.id);
-          if (pressedKey && keys.has(pressedKey)) {
-            simulateKeyboardEvent("keyup", keys.get(pressedKey));
-          }
-
-          keysDown.delete(event.target.id);
-          element.classList.remove("active");
-
-          if (lastTouchedId) {
-            document.getElementById(lastTouchedId).classList.remove("active");
+          // Touch input captures implicitly; mouse and pen need an
+          // explicit capture so the gesture keeps firing on this element
+          try {
+            element.setPointerCapture(event.pointerId);
+          } catch {
+            // The pointer may already be gone
           }
         });
 
-        // Inspired by https://github.com/pulsejet/mkxp-web/blob/262a2254b684567311c9f0e135ee29f6e8c3613e/extra/js/dpad.js
-        element.addEventListener("touchmove", (event) => {
-          const { target, clientX, clientY } = event.changedTouches[0];
-          const origTargetId = keysDown.get(target.id);
-          const nextTargetId = document.elementFromPoint(clientX, clientY)?.id;
-          if (origTargetId === nextTargetId) return;
+        // Slide between controls without lifting the pointer, inspired by
+        // https://github.com/pulsejet/mkxp-web/blob/262a2254b684567311c9f0e135ee29f6e8c3613e/extra/js/dpad.js
+        element.addEventListener("pointermove", (event) => {
+          if (!engagedPointers.has(event.pointerId)) return;
 
-          if (origTargetId) {
-            simulateKeyboardEvent("keyup", keys.get(origTargetId));
-            keysDown.delete(target.id);
-            document.getElementById(origTargetId).classList.remove("active");
-          }
+          const targetId = document.elementFromPoint(
+            event.clientX,
+            event.clientY,
+          )?.id;
+          if (targetId === pressedControls.get(event.pointerId)) return;
 
-          if (keys.has(nextTargetId)) {
-            simulateKeyboardEvent("keydown", keys.get(nextTargetId));
-            keysDown.set(target.id, nextTargetId);
-            lastTouchedId = nextTargetId;
-            document.getElementById(nextTargetId).classList.add("active");
+          if (targetId && keys.has(targetId)) {
+            pressControl(event.pointerId, targetId);
+          } else {
+            releaseControl(event.pointerId);
           }
         });
+
+        for (const eventType of ["pointerup", "pointercancel"]) {
+          element.addEventListener(eventType, (event) => {
+            engagedPointers.delete(event.pointerId);
+            releaseControl(event.pointerId);
+          });
+        }
+      }
+
+      /**
+       * Press a control, releasing whatever the pointer held before
+       *
+       * @param {number} pointerId Pointer pressing the control
+       * @param {string} elementId Element id of the control to press
+       */
+      function pressControl(pointerId, elementId) {
+        releaseControl(pointerId);
+
+        pressedControls.set(pointerId, elementId);
+        simulateKeyboardEvent("keydown", keys.get(elementId));
+        document.getElementById(elementId).classList.add("active");
+      }
+
+      /**
+       * Release the control held by a pointer, unless another pointer
+       * still presses the same control
+       *
+       * @param {number} pointerId Pointer to release
+       */
+      function releaseControl(pointerId) {
+        const elementId = pressedControls.get(pointerId);
+        if (!elementId) return;
+
+        pressedControls.delete(pointerId);
+        if ([...pressedControls.values()].includes(elementId)) return;
+
+        simulateKeyboardEvent("keyup", keys.get(elementId));
+        document.getElementById(elementId).classList.remove("active");
       }
 
       function addGamepad(gamepad) {
