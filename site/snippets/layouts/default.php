@@ -7,7 +7,7 @@
 
 ?>
 <!doctype html>
-<html class="var-color-primary var-color-primary-100 var-color-primary-200 var-color-primary-300 var-color-primary-700" lang="de">
+<html lang="de">
 <head>
 
   <meta charset="utf-8">

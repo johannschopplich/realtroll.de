@@ -1,5 +1,4 @@
 import type { Theme } from "@unocss/preset-wind4";
-import { parseColor } from "@unocss/preset-wind4/utils";
 import { defineConfig, presetWind4, transformerDirectives } from "unocss";
 
 export default defineConfig<Theme>({
@@ -12,18 +11,18 @@ export default defineConfig<Theme>({
   theme: {
     colors: {
       primary: {
-        DEFAULT: "oklch(52% 0.105 52)",
-        50: "oklch(97.5% 0.012 52)",
-        100: "oklch(94% 0.025 52)",
-        200: "oklch(88% 0.05 52)",
-        300: "oklch(78% 0.085 52)",
-        400: "oklch(65% 0.105 52)",
-        500: "oklch(52% 0.105 52)",
-        600: "oklch(43% 0.095 52)",
-        700: "oklch(36% 0.08 52)",
-        800: "oklch(29% 0.065 52)",
-        900: "oklch(24% 0.05 52)",
-        950: "oklch(18% 0.035 52)",
+        DEFAULT: "var(--un-color-primary)",
+        50: "var(--un-color-primary-50)",
+        100: "var(--un-color-primary-100)",
+        200: "var(--un-color-primary-200)",
+        300: "var(--un-color-primary-300)",
+        400: "var(--un-color-primary-400)",
+        500: "var(--un-color-primary-500)",
+        600: "var(--un-color-primary-600)",
+        700: "var(--un-color-primary-700)",
+        800: "var(--un-color-primary-800)",
+        900: "var(--un-color-primary-900)",
+        950: "var(--un-color-primary-950)",
       },
       theme: {
         base: "var(--un-color-text)",
@@ -79,17 +78,6 @@ export default defineConfig<Theme>({
     },
   },
   rules: [
-    [
-      /^var-color-(.+)$/,
-      ([, body], { theme }) => {
-        const parsed = parseColor(body, theme);
-        if (!parsed) return;
-
-        return {
-          [`--un-color-${body}`]: parsed.color,
-        };
-      },
-    ],
     [
       "hyphenate",
       {

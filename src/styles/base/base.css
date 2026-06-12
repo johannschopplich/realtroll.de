@@ -26,6 +26,19 @@
     --un-decoration-thickness: max(2px, 0.1em);
     --un-decoration-offset: max(2px, 0.1em);
 
+    --un-color-primary: oklch(52% 0.105 52);
+    --un-color-primary-50: oklch(97.5% 0.012 52);
+    --un-color-primary-100: oklch(94% 0.025 52);
+    --un-color-primary-200: oklch(88% 0.05 52);
+    --un-color-primary-300: oklch(78% 0.085 52);
+    --un-color-primary-400: oklch(65% 0.105 52);
+    --un-color-primary-500: oklch(52% 0.105 52);
+    --un-color-primary-600: oklch(43% 0.095 52);
+    --un-color-primary-700: oklch(36% 0.08 52);
+    --un-color-primary-800: oklch(29% 0.065 52);
+    --un-color-primary-900: oklch(24% 0.05 52);
+    --un-color-primary-950: oklch(18% 0.035 52);
+
     /* Colors (stone-based) */
     --tw-color-stone-50: oklch(0.985 0.001 106.423);
     --tw-color-stone-100: oklch(0.97 0.001 106.424);
@@ -131,8 +144,8 @@
   .bg-polka-grid {
     background-color: var(--un-color-background);
     background-image: radial-gradient(
-      var(--un-color-primary-100) 0.75px,
-      var(--un-color-background) 0.75px
+      var(--un-color-primary-200) 1px,
+      var(--un-color-background) 1px
     );
     background-size: 50px 50px;
   }
