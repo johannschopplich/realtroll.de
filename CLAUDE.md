@@ -3,10 +3,6 @@
 Website for the RPG Maker game developer real Troll: Kirby 5 (PHP),
 UnoCSS preset-wind4, Vite, TypeScript. Package manager: pnpm.
 
-- Website language is German; code, comments, commits, and diffs are English.
-- Design decisions and architecture: read `docs/SPEC.md` first (gitignored).
-- Dev: `pnpm dev` (mprocs, needs a TTY) at http://realtroll.de.test;
-  content root is `storage/content`.
 - UnoCSS class order: shortcuts/marker utilities (`pixelated`, `content`, …) →
   `[--var:…]` assignments → position/layout → display/flex/grid → spacing →
   sizing → typography → colors/background → border → effects/transitions →
