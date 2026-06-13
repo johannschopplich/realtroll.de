@@ -357,7 +357,8 @@
         document.getElementById("boot").classList.add("done");
       });
 
-      // Make EasyRPG player embeddable
+      // Focus the canvas on hover/click so keyboard input reaches the game
+      // (e.g. when embedded in another page)
       canvas.addEventListener("mouseenter", () => canvas.focus());
       canvas.addEventListener("click", () => canvas.focus());
 
@@ -396,7 +397,7 @@
         }
         wakeTouchControls();
       } else {
-        // Prevent scrolling when pressing specific keys
+        // Stop the browser's default for keys the game uses
         window.addEventListener("keydown", (event) => {
           if (preventNativeKeys.includes(event.key)) {
             event.preventDefault();
@@ -430,11 +431,11 @@
        * Simulate a keyboard event on the Emscripten canvas
        *
        * @param {string} eventType Type of the keyboard event
-       * @param {string} key Key to simulate
+       * @param {string} code Physical key code to simulate (e.g. "ArrowUp")
        */
-      function simulateKeyboardEvent(eventType, key) {
+      function simulateKeyboardEvent(eventType, code) {
         canvas.dispatchEvent(
-          new KeyboardEvent(eventType, { code: key, bubbles: true }),
+          new KeyboardEvent(eventType, { code, bubbles: true }),
         );
       }
 
