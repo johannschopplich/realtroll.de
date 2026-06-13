@@ -38,7 +38,6 @@
         display: grid;
         place-content: center;
         justify-items: center;
-        gap: 1.25rem;
         font-family: ui-monospace, monospace;
         text-align: center;
         background: black;
@@ -51,25 +50,6 @@
       #boot.done {
         visibility: hidden;
         opacity: 0;
-      }
-
-      #boot-title {
-        font-size: 1.25rem;
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
-      }
-
-      #boot-progress {
-        width: min(50vw, 16rem);
-        height: 2px;
-        background: hsl(0 0% 20%);
-      }
-
-      #boot-progress > div {
-        width: 0;
-        height: 100%;
-        background: white;
-        transition: width 200ms ease;
       }
 
       #status {
@@ -281,8 +261,6 @@
     </div>
 
     <div id="boot">
-      <div id="boot-title"></div>
-      <div id="boot-progress"><div></div></div>
       <div id="status"></div>
     </div>
 
@@ -328,8 +306,6 @@
       if (gameId) {
         document.title = `${gameId} – EasyRPG Player`;
       }
-      document.getElementById("boot-title").textContent =
-        gameId ?? "EasyRPG Player";
 
       const hasTouchscreen = window.matchMedia(
         "(hover: none), (pointer: coarse)",
@@ -367,22 +343,6 @@
       const connectedGamepads = new Set();
       let controlsIdleTimeoutId;
 
-      // Mirror the Emscripten download progress into the boot bar
-      const bootProgressBar = document.querySelector("#boot-progress > div");
-      const statusElement = document.getElementById("status");
-      const progressObserver = new MutationObserver(() => {
-        const progressMatch =
-          statusElement.textContent.match(/\((\d+)\/(\d+)\)/);
-        if (progressMatch) {
-          bootProgressBar.style.width = `${(100 * Number(progressMatch[1])) / Number(progressMatch[2])}%`;
-        }
-      });
-      progressObserver.observe(statusElement, {
-        childList: true,
-        characterData: true,
-        subtree: true,
-      });
-
       // Launch the Player; it reads the game from the query string itself
       window.addEventListener("load", async () => {
         const player = await createEasyRpgPlayer({
@@ -392,7 +352,6 @@
         player.initApi();
         canvas.focus();
         document.getElementById("boot").classList.add("done");
-        progressObserver.disconnect();
       });
 
       // Make EasyRPG player embeddable
