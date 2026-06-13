@@ -26,9 +26,6 @@ tabs:
           text:
             type: fields
             fields:
-              intro:
-                label: Intro
-                type: blocks
               text:
                 label: Text
                 type: blocks
@@ -41,6 +38,8 @@ tabs:
                   - video
                   - quote
                   - line
+                  - screenshots
+                  - gallery
 
       sidebar:
         width: 1/3
@@ -79,10 +78,19 @@ tabs:
           facts:
             type: fields
             fields:
+              downloadHeadline:
+                label: Download
+                type: headline
               downloadLink:
-                label: Downloadlink
+                label: Link
                 type: url
-                width: 1/2
+              downloadNote:
+                label: Hinweis
+                type: writer
+                inline: true
+              factsHeadline:
+                label: Eckdaten
+                type: headline
               published:
                 label: Erstveröffentlichung
                 type: date

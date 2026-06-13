@@ -46,40 +46,14 @@ $logo = $page->logo()->toFile();
       </a>
     </div>
   </div>
+  <?php if ($page->downloadNote()->isNotEmpty()): ?>
+    <p class="mt-lg mx-auto max-w-prose text-sm text-balance"><?= $page->downloadNote() ?></p>
+  <?php endif ?>
 </div>
 
-<div class="content mt-8xl max-w-prose">
-  <div class="prose">
-    <?= $page->intro()->toBlocks() ?>
-  </div>
+<div class="mt-8xl">
+  <?php snippet('components/prose-blocks', ['blocks' => $page->text()->toBlocks()]) ?>
 </div>
-
-<?php snippet('components/section-divider') ?>
-
-<div id="screenshots" class="content-lg">
-  <div class="grid grid-cols-minmax-320px gap-lg">
-    <?php foreach ($page->screenshots()->toFiles() as $file): ?>
-      <figure class="text-center">
-        <img class="pixelated w-full h-auto" src="<?= $file->url() ?>" alt="<?= $file->caption()->or($file->alt()) ?>">
-        <?php if ($file->caption()->isNotEmpty()): ?>
-          <figcaption class="my-2 text-xs">
-            <p><?= $file->caption() ?></p>
-          </figcaption>
-        <?php endif ?>
-      </figure>
-    <?php endforeach ?>
-  </div>
-</div>
-
-<?php $text = $page->text()->toBlocks() ?>
-<?php if ($text->isNotEmpty()): ?>
-  <?php snippet('components/section-divider') ?>
-  <div class="content max-w-prose">
-    <div class="prose">
-      <?= $text ?>
-    </div>
-  </div>
-<?php endif ?>
 
 <?php snippet('components/section-divider') ?>
 

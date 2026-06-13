@@ -1,5 +1,6 @@
 name: Charakter
 icon: user
+wysiwyg: true
 preview: fields
 fields:
   image:

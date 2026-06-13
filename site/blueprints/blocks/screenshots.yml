@@ -1,0 +1,7 @@
+name: Screenshots
+icon: image
+preview: fields
+fields:
+  info:
+    type: info
+    text: Zeigt die ausgewählten Screenshots an dieser Stelle im Text. Volle Breite, pixelgenau.

@@ -1,0 +1,15 @@
+name: Galerie
+icon: dashboard
+fields:
+  images:
+    label: Bilder
+    type: files
+    layout: cards
+    query: page.files.template('image')
+    uploads: image
+    multiple: true
+    image:
+      cover: true
+      ratio: 4/3
+      back: white
+    help: Fan-Art und Dev-Skizzen. Volle Breite, ohne Pixel-Look.

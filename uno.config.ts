@@ -150,21 +150,29 @@ export default defineConfig<Theme>({
       },
     ],
     [
-      /^game-chips-(base|lg)$/,
+      /^game-chips-(sm|base|lg)$/,
       ([, size]) =>
         `flex flex-wrap items-center font-medium ${
-          size === "lg" ? "gap-2.5 text-sm" : "gap-2 text-xs"
+          size === "lg"
+            ? "gap-2.5 text-sm"
+            : size === "sm"
+              ? "gap-1.5 text-xs"
+              : "gap-2 text-xs"
         }`,
     ],
     [
-      /^game-chip-(bevel|glass)-(base|lg)$/,
+      /^game-chip-(bevel|glass)-(sm|base|lg)$/,
       ([, appearance, size]) => {
         const surface =
           appearance === "bevel"
             ? "text-primary-800 bg-primary-100 border-t-primary-50 border-l-primary-50 border-b-primary-400 border-r-primary-400"
             : "text-primary-50 bg-white/10 border-t-white/30 border-l-white/30 border-b-primary-950/60 border-r-primary-950/60";
         return `${
-          size === "lg" ? "px-2.5 py-1.5" : "px-2 py-1"
+          size === "lg"
+            ? "px-2.5 py-1.5"
+            : size === "sm"
+              ? "px-1.5 py-0.5 text-xs"
+              : "px-2 py-1"
         } leading-none ${surface} border-2`;
       },
     ],
@@ -178,7 +186,7 @@ export default defineConfig<Theme>({
   safelist: [
     "sr-only",
     "invisible",
-    ...["base", "lg"].flatMap((size) => [
+    ...["sm", "base", "lg"].flatMap((size) => [
       `game-chips-${size}`,
       `game-chip-bevel-${size}`,
       `game-chip-glass-${size}`,

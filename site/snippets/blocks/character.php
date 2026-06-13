@@ -20,12 +20,12 @@ $scale = $file && $file->width() <= 48 ? 3 : 1;
   </div>
   <div class="flex-1">
     <div class="flex flex-wrap items-center gap-2">
-      <h3 class="my-0 font-heading text-lg text-primary-700"><?= $block->name()->escape() ?></h3>
+      <h3 class="my-0 font-heading text-lg leading-none text-primary-700"><?= $block->name()->escape() ?></h3>
       <?php if ($block->role()->isNotEmpty()): ?>
-        <span class="game-chip-bevel-base"><?= $block->role()->escape() ?></span>
+        <span class="game-chip-bevel-sm -translate-y-px"><?= $block->role()->escape() ?></span>
       <?php endif ?>
     </div>
-    <div class="mt-sm space-y-4">
+    <div class="mt-sm space-y-4 text-sm">
       <?= $block->text() ?>
     </div>
   </div>
