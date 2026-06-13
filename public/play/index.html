@@ -12,13 +12,8 @@
     <style>
       :root {
         --color-gray: hsl(0 0% 55%);
-        --controls-size: 10dvh;
-      }
-
-      @media (orientation: landscape) {
-        :root {
-          --controls-size: 20dvh;
-        }
+        --controls-size: clamp(3.5rem, 20vmin, 5.5rem);
+        --controls-dim: 0.3;
       }
 
       html {
@@ -35,16 +30,50 @@
         user-select: none;
       }
 
-      #status {
+      #boot {
         position: fixed;
         inset: 0;
         z-index: 1;
         display: grid;
         place-content: center;
-        font-size: 1.5rem;
-        color: var(--color-gray);
+        justify-items: center;
+        gap: 1.25rem;
+        font-family: ui-monospace, monospace;
         text-align: center;
+        background: black;
         pointer-events: none;
+        transition:
+          opacity 300ms ease,
+          visibility 300ms ease;
+      }
+
+      #boot.done {
+        visibility: hidden;
+        opacity: 0;
+      }
+
+      #boot-title {
+        font-size: 1.25rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+
+      #boot-progress {
+        width: min(50vw, 16rem);
+        height: 2px;
+        background: hsl(0 0% 20%);
+      }
+
+      #boot-progress > div {
+        width: 0;
+        height: 100%;
+        background: white;
+        transition: width 200ms ease;
+      }
+
+      #status {
+        font-size: 0.875rem;
+        color: var(--color-gray);
       }
 
       #controls {
@@ -67,6 +96,10 @@
         display: none;
       }
 
+      #controls button[aria-pressed="false"] {
+        opacity: 0.55;
+      }
+
       #canvas {
         position: absolute;
         top: 50%;
@@ -75,7 +108,6 @@
         height: 100%;
         border: 0;
         outline: none;
-        image-rendering: crisp-edges;
         image-rendering: pixelated;
         transform: translate(-50%, -50%);
       }
@@ -84,22 +116,36 @@
         object-fit: contain;
       }
 
+      /* Pixel-perfect mode: `!important` beats the inline styles SDL
+         writes onto the canvas while it manages its window size */
+      body[data-scaling="integer"] #canvas {
+        width: var(--canvas-width, 100%) !important;
+        height: var(--canvas-height, 100%) !important;
+      }
+
       @media (hover: none), (pointer: coarse) {
         #viewport {
+          position: fixed;
+          inset: 0;
           display: grid;
           grid-template-areas:
             "screen screen"
             "dpad apad";
           grid-template-rows: minmax(0, 1fr) auto;
           grid-template-columns: 1fr 1fr;
-          height: 100dvh;
         }
 
         #canvas {
           position: static;
           grid-area: screen;
           object-fit: contain;
+          outline: 1px solid hsl(0 0% 25%);
+          box-shadow: 0 0 0 6px hsl(0 0% 8%);
           transform: none;
+        }
+
+        body[data-scaling="integer"] #canvas {
+          place-self: center;
         }
 
         #dpad,
@@ -144,7 +190,7 @@
       }
 
       #dpad svg rect {
-        opacity: 0.4;
+        opacity: var(--controls-dim);
       }
 
       #apad > * {
@@ -158,9 +204,36 @@
         margin-left: var(--controls-size);
       }
 
+      #dpad,
+      #apad {
+        transition: opacity 500ms ease;
+      }
+
+      body.controls-idle #dpad,
+      body.controls-idle #apad {
+        opacity: var(--controls-dim);
+      }
+
+      #dpad path,
+      #apad > * {
+        transition:
+          opacity 80ms ease,
+          scale 80ms ease;
+      }
+
+      #dpad path {
+        transform-box: fill-box;
+        transform-origin: center;
+      }
+
+      #dpad path.active,
+      #apad > .active {
+        scale: 0.94;
+      }
+
       #dpad path:not(.active),
       #apad > *:not(.active) {
-        opacity: 0.4;
+        opacity: var(--controls-dim);
       }
 
       @media (hover: hover) and (pointer: fine) {
@@ -173,6 +246,24 @@
   </head>
   <body>
     <div id="controls">
+      <button
+        id="controls-scaling"
+        aria-label="Pixel-perfect scaling"
+        aria-pressed="false"
+      >
+        <svg
+          viewBox="0 0 15 15"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          width="25"
+          height="25"
+        >
+          <path
+            d="M3.5 3.5H11.5V11.5M3.5 3.5V0M3.5 3.5H0M11.5 11.5H3.5V6M11.5 11.5V15M11.5 11.5H15"
+            stroke="currentColor"
+          ></path>
+        </svg>
+      </button>
       <button id="controls-fullscreen" aria-label="Enter fullscreen">
         <svg
           viewBox="0 0 15 15"
@@ -189,7 +280,11 @@
       </button>
     </div>
 
-    <div id="status"></div>
+    <div id="boot">
+      <div id="boot-title"></div>
+      <div id="boot-progress"><div></div></div>
+      <div id="status"></div>
+    </div>
 
     <div id="viewport">
       <canvas id="canvas" tabindex="-1"></canvas>
@@ -233,6 +328,8 @@
       if (gameId) {
         document.title = `${gameId} – EasyRPG Player`;
       }
+      document.getElementById("boot-title").textContent =
+        gameId ?? "EasyRPG Player";
 
       const hasTouchscreen = window.matchMedia(
         "(hover: none), (pointer: coarse)",
@@ -259,8 +356,12 @@
       const pressedControls = new Map();
       const viewport = document.getElementById("viewport");
       const canvas = document.getElementById("canvas");
+      // RPG Maker 2000/2003 games render at a native 320x240
+      const nativeGameWidth = 320;
+      const nativeGameHeight = 240;
       /** @type {Map<number, Gamepad>} */
       const gamepads = new Map();
+      let controlsIdleTimeoutId;
 
       // Launch the Player; it reads the game from the query string itself
       window.addEventListener("load", async () => {
@@ -270,6 +371,22 @@
         });
         player.initApi();
         canvas.focus();
+        document.getElementById("boot").classList.add("done");
+      });
+
+      // Mirror the Emscripten download progress into the boot bar
+      const bootProgressBar = document.querySelector("#boot-progress > div");
+      const statusElement = document.getElementById("status");
+      new MutationObserver(() => {
+        const progressMatch =
+          statusElement.textContent.match(/\((\d+)\/(\d+)\)/);
+        if (progressMatch) {
+          bootProgressBar.style.width = `${(100 * Number(progressMatch[1])) / Number(progressMatch[2])}%`;
+        }
+      }).observe(statusElement, {
+        childList: true,
+        characterData: true,
+        subtree: true,
       });
 
       // Make EasyRPG player embeddable
@@ -287,12 +404,30 @@
         fullscreenButton.hidden = true;
       }
 
+      // Pixel-perfect scaling, persisted across sessions
+      const scalingButton = document.getElementById("controls-scaling");
+      const scalingStorageKey = "easyrpg-player-scaling";
+      scalingButton.addEventListener("click", () => {
+        setIntegerScaling(document.body.dataset.scaling !== "integer");
+      });
+      window.addEventListener("resize", applyIntegerScale);
+
+      let storedScalingMode = null;
+      try {
+        storedScalingMode = localStorage.getItem(scalingStorageKey);
+      } catch {
+        // Storage can be unavailable (e.g. blocked cookies); start in
+        // fit mode
+      }
+      setIntegerScaling(storedScalingMode === "integer");
+
       // Bind all elements providing a `data-key` attribute with the
       // given key on touch-based devices
       if (hasTouchscreen) {
         for (const button of document.querySelectorAll("[data-key]")) {
           bindKey(button, button.dataset.key);
         }
+        wakeTouchControls();
       } else {
         // Prevent scrolling when pressing specific keys
         window.addEventListener("keydown", (event) => {
@@ -325,15 +460,15 @@
       });
 
       /**
-       * Simulate a keyboard event on the emscripten canvas
+       * Simulate a keyboard event on the Emscripten canvas
        *
        * @param {string} eventType Type of the keyboard event
        * @param {string} key Key to simulate
        */
       function simulateKeyboardEvent(eventType, key) {
-        const event = new Event(eventType, { bubbles: true });
-        event.code = key;
-        canvas.dispatchEvent(event);
+        canvas.dispatchEvent(
+          new KeyboardEvent(eventType, { code: key, bubbles: true }),
+        );
       }
 
       /**
@@ -359,8 +494,7 @@
           }
         });
 
-        // Slide between controls without lifting the pointer, inspired by
-        // https://github.com/pulsejet/mkxp-web/blob/262a2254b684567311c9f0e135ee29f6e8c3613e/extra/js/dpad.js
+        // Slide between controls without lifting the pointer
         element.addEventListener("pointermove", (event) => {
           if (!engagedPointers.has(event.pointerId)) return;
 
@@ -393,6 +527,7 @@
        */
       function pressControl(pointerId, elementId) {
         releaseControl(pointerId);
+        wakeTouchControls();
 
         pressedControls.set(pointerId, elementId);
         simulateKeyboardEvent("keydown", keys.get(elementId));
@@ -409,6 +544,7 @@
         const elementId = pressedControls.get(pointerId);
         if (!elementId) return;
 
+        wakeTouchControls();
         pressedControls.delete(pointerId);
         if ([...pressedControls.values()].includes(elementId)) return;
 
@@ -436,6 +572,80 @@
         for (const element of document.querySelectorAll("#dpad, #apad")) {
           element.style.display = hasConnectedGamepad ? "none" : "";
         }
+      }
+
+      /**
+       * Toggle pixel-perfect scaling and persist the choice
+       *
+       * @param {boolean} isEnabled Whether to snap to integer multiples
+       */
+      function setIntegerScaling(isEnabled) {
+        if (isEnabled) {
+          document.body.dataset.scaling = "integer";
+        } else {
+          delete document.body.dataset.scaling;
+        }
+        scalingButton.setAttribute("aria-pressed", String(isEnabled));
+
+        try {
+          localStorage.setItem(
+            scalingStorageKey,
+            isEnabled ? "integer" : "fit",
+          );
+        } catch {
+          // The toggle still works without persistence
+        }
+
+        applyIntegerScale();
+
+        // SDL only re-reads the canvas size on window resize, so nudge
+        // it after the CSS box of the canvas changed
+        window.dispatchEvent(new Event("resize"));
+      }
+
+      /**
+       * Snap the canvas to the largest whole multiple of the native game
+       * resolution that fits the available space
+       */
+      function applyIntegerScale() {
+        const rootStyle = document.documentElement.style;
+        rootStyle.removeProperty("--canvas-width");
+        rootStyle.removeProperty("--canvas-height");
+        if (document.body.dataset.scaling !== "integer") return;
+
+        // With the properties cleared the canvas spans 100% again, so its
+        // client box measures the available space
+        const scale = Math.max(
+          1,
+          Math.floor(
+            Math.min(
+              canvas.clientWidth / nativeGameWidth,
+              canvas.clientHeight / nativeGameHeight,
+            ),
+          ),
+        );
+        rootStyle.setProperty("--canvas-width", `${nativeGameWidth * scale}px`);
+        rootStyle.setProperty(
+          "--canvas-height",
+          `${nativeGameHeight * scale}px`,
+        );
+      }
+
+      /**
+       * Light up the touch controls and dim them again after a few
+       * seconds without input
+       */
+      function wakeTouchControls() {
+        document.body.classList.remove("controls-idle");
+        clearTimeout(controlsIdleTimeoutId);
+        controlsIdleTimeoutId = setTimeout(() => {
+          // Keep the controls lit while something is still pressed
+          if (pressedControls.size > 0) {
+            wakeTouchControls();
+            return;
+          }
+          document.body.classList.add("controls-idle");
+        }, 3000);
       }
 
       async function requestWakeLock() {
