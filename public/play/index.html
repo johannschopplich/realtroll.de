@@ -247,7 +247,6 @@
         id="controls-fullscreen"
         type="button"
         aria-label="Enter fullscreen"
-        aria-pressed="false"
       >
         <svg
           viewBox="0 0 15 15"
@@ -366,24 +365,12 @@
       // button where element fullscreen is unavailable
       const fullscreenButton = document.getElementById("controls-fullscreen");
       if (document.fullscreenEnabled) {
-        fullscreenButton.addEventListener("click", () => {
-          if (document.fullscreenElement) {
-            document.exitFullscreen();
-          } else {
-            viewport.requestFullscreen();
-          }
-        });
-
-        // Keep the button in sync when fullscreen is left via Escape or a
-        // system gesture, not just our own click
-        document.addEventListener("fullscreenchange", () => {
-          const isFullscreen = document.fullscreenElement === viewport;
-          fullscreenButton.setAttribute("aria-pressed", String(isFullscreen));
-          fullscreenButton.setAttribute(
-            "aria-label",
-            isFullscreen ? "Exit fullscreen" : "Enter fullscreen",
-          );
-        });
+        // One-way: `#controls` lives outside `#viewport`, so the button is
+        // not painted in fullscreen and can't toggle it back off – leave is
+        // via Escape or a system gesture
+        fullscreenButton.addEventListener("click", () =>
+          viewport.requestFullscreen(),
+        );
       } else {
         fullscreenButton.hidden = true;
       }
