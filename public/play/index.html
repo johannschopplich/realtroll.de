@@ -243,6 +243,7 @@
     <div id="controls">
       <button
         id="controls-scaling"
+        type="button"
         aria-label="Pixel-perfect scaling"
         aria-pressed="false"
       >
@@ -259,7 +260,11 @@
           ></path>
         </svg>
       </button>
-      <button id="controls-fullscreen" aria-label="Enter fullscreen">
+      <button
+        id="controls-fullscreen"
+        type="button"
+        aria-label="Enter fullscreen"
+      >
         <svg
           viewBox="0 0 15 15"
           fill="none"
@@ -335,6 +340,10 @@
         "ArrowRight",
         "ArrowLeft",
         " ",
+        "F1",
+        "F3",
+        "F5",
+        "F7",
         "F12",
       ];
       /** @type {Map<string, string>} */
@@ -358,6 +367,22 @@
       const connectedGamepads = new Set();
       let controlsIdleTimeoutId;
 
+      // Mirror the Emscripten download progress into the boot bar
+      const bootProgressBar = document.querySelector("#boot-progress > div");
+      const statusElement = document.getElementById("status");
+      const progressObserver = new MutationObserver(() => {
+        const progressMatch =
+          statusElement.textContent.match(/\((\d+)\/(\d+)\)/);
+        if (progressMatch) {
+          bootProgressBar.style.width = `${(100 * Number(progressMatch[1])) / Number(progressMatch[2])}%`;
+        }
+      });
+      progressObserver.observe(statusElement, {
+        childList: true,
+        characterData: true,
+        subtree: true,
+      });
+
       // Launch the Player; it reads the game from the query string itself
       window.addEventListener("load", async () => {
         const player = await createEasyRpgPlayer({
@@ -367,21 +392,7 @@
         player.initApi();
         canvas.focus();
         document.getElementById("boot").classList.add("done");
-      });
-
-      // Mirror the Emscripten download progress into the boot bar
-      const bootProgressBar = document.querySelector("#boot-progress > div");
-      const statusElement = document.getElementById("status");
-      new MutationObserver(() => {
-        const progressMatch =
-          statusElement.textContent.match(/\((\d+)\/(\d+)\)/);
-        if (progressMatch) {
-          bootProgressBar.style.width = `${(100 * Number(progressMatch[1])) / Number(progressMatch[2])}%`;
-        }
-      }).observe(statusElement, {
-        childList: true,
-        characterData: true,
-        subtree: true,
+        progressObserver.disconnect();
       });
 
       // Make EasyRPG player embeddable
