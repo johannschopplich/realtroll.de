@@ -13,7 +13,8 @@
       :root {
         --color-gray: hsl(0 0% 55%);
         --controls-size: clamp(3.5rem, 20vmin, 5.5rem);
-        --controls-dim: 0.3;
+        --controls-opacity: 0.4;
+        --controls-fade: 80ms;
       }
 
       html {
@@ -189,10 +190,6 @@
         fill: var(--color-gray);
       }
 
-      #dpad svg rect {
-        opacity: var(--controls-dim);
-      }
-
       #apad > * {
         width: var(--controls-size);
         height: var(--controls-size);
@@ -204,20 +201,11 @@
         margin-left: var(--controls-size);
       }
 
-      #dpad,
-      #apad {
-        transition: opacity 500ms ease;
-      }
-
-      body.controls-idle #dpad,
-      body.controls-idle #apad {
-        opacity: var(--controls-dim);
-      }
-
-      #dpad path,
+      #dpad svg > *,
       #apad > * {
+        opacity: var(--controls-opacity);
         transition:
-          opacity 80ms ease,
+          opacity var(--controls-fade) ease,
           scale 80ms ease;
       }
 
@@ -228,12 +216,19 @@
 
       #dpad path.active,
       #apad > .active {
+        opacity: 1;
         scale: 0.94;
       }
 
-      #dpad path:not(.active),
-      #apad > *:not(.active) {
-        opacity: var(--controls-dim);
+      /* Idle dims the whole deck by flipping the shared opacity var */
+      body.controls-idle {
+        --controls-opacity: 0.2;
+        --controls-fade: 500ms;
+      }
+
+      body.gamepad-connected #dpad,
+      body.gamepad-connected #apad {
+        display: none;
       }
 
       @media (hover: hover) and (pointer: fine) {
@@ -359,8 +354,8 @@
       // RPG Maker 2000/2003 games render at a native 320x240
       const nativeGameWidth = 320;
       const nativeGameHeight = 240;
-      /** @type {Map<number, Gamepad>} */
-      const gamepads = new Map();
+      /** @type {Set<number>} */
+      const connectedGamepads = new Set();
       let controlsIdleTimeoutId;
 
       // Launch the Player; it reads the game from the query string itself
@@ -441,14 +436,14 @@
         });
       }
 
-      window.addEventListener("gamepadconnected", (event) =>
-        addGamepad(event.gamepad),
-      );
-      window.addEventListener("gamepaddisconnected", (event) =>
-        removeGamepad(event.gamepad),
-      );
-
-      updateTouchControlsVisibility();
+      window.addEventListener("gamepadconnected", (event) => {
+        connectedGamepads.add(event.gamepad.index);
+        updateTouchControlsVisibility();
+      });
+      window.addEventListener("gamepaddisconnected", (event) => {
+        connectedGamepads.delete(event.gamepad.index);
+        updateTouchControlsVisibility();
+      });
 
       // The wake lock is released whenever the tab gets hidden, so it has
       // to be re-requested every time the player becomes visible again
@@ -552,26 +547,11 @@
         document.getElementById(elementId).classList.remove("active");
       }
 
-      function addGamepad(gamepad) {
-        if (!gamepad) return;
-        gamepads.set(gamepad.index, gamepad);
-        updateTouchControlsVisibility();
-      }
-
-      function removeGamepad(gamepad) {
-        if (!gamepad) return;
-        gamepads.delete(gamepad.index);
-        updateTouchControlsVisibility();
-      }
-
       function updateTouchControlsVisibility() {
-        if (!hasTouchscreen) return;
-
-        // Touch controls are redundant while a gamepad is connected
-        const hasConnectedGamepad = gamepads.size > 0;
-        for (const element of document.querySelectorAll("#dpad, #apad")) {
-          element.style.display = hasConnectedGamepad ? "none" : "";
-        }
+        document.body.classList.toggle(
+          "gamepad-connected",
+          connectedGamepads.size > 0,
+        );
       }
 
       /**
