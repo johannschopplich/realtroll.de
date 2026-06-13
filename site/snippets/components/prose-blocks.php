@@ -6,9 +6,26 @@ $breakoutTypes = ['screenshots', 'gallery'];
 
 $sections = [];
 $proseBlocks = [];
+$characterBlocks = [];
 
 foreach ($blocks as $block) {
-  if (in_array($block->type(), $breakoutTypes, true)) {
+  $type = $block->type();
+
+  if ($type === 'character') {
+    if ($proseBlocks) {
+      $sections[] = ['type' => 'prose', 'blocks' => $proseBlocks];
+      $proseBlocks = [];
+    }
+    $characterBlocks[] = $block;
+    continue;
+  }
+
+  if ($characterBlocks) {
+    $sections[] = ['type' => 'characters', 'blocks' => $characterBlocks];
+    $characterBlocks = [];
+  }
+
+  if (in_array($type, $breakoutTypes, true)) {
     if ($proseBlocks) {
       $sections[] = ['type' => 'prose', 'blocks' => $proseBlocks];
       $proseBlocks = [];
@@ -19,13 +36,25 @@ foreach ($blocks as $block) {
   }
 }
 
+if ($characterBlocks) {
+  $sections[] = ['type' => 'characters', 'blocks' => $characterBlocks];
+}
+
 if ($proseBlocks) {
   $sections[] = ['type' => 'prose', 'blocks' => $proseBlocks];
 }
 
 ?>
 <?php foreach ($sections as $section): ?>
-  <?php if ($section['type'] === 'breakout'): ?>
+  <?php if ($section['type'] === 'characters'): ?>
+    <div class="content-prose my-3xl">
+      <div class="grid gap-x-2xl gap-y-3xl sm:grid-cols-2">
+        <?php foreach ($section['blocks'] as $block): ?>
+          <?= $block ?>
+        <?php endforeach ?>
+      </div>
+    </div>
+  <?php elseif ($section['type'] === 'breakout'): ?>
     <div class="content-lg my-3xl">
       <?= $section['block'] ?>
     </div>

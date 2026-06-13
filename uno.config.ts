@@ -181,6 +181,8 @@ export default defineConfig<Theme>({
         "absolute block bg-theme-background border-2 border-primary-700 pointer-events-none",
       "editorial-title":
         "font-heading font-700 leading-none text-[clamp(var(--un-text-3xl),5vw,4rem)] text-primary-700",
+      "label-caps":
+        "font-medium text-xs uppercase tracking-wide text-primary-500",
     },
   ],
   safelist: [
