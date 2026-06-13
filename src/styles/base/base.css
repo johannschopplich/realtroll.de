@@ -82,17 +82,8 @@
         var(--un-fluid-bp)
     );
     background-color: var(--un-color-background);
-    background-image: radial-gradient(
-      var(--un-color-primary-100) 0.75px,
-      var(--un-color-background) 0.75px
-    );
-    background-size: 50px 50px;
     overflow-x: hidden;
     overflow-y: scroll;
-
-    @media (prefers-reduced-motion: no-preference) {
-      scroll-behavior: smooth;
-    }
   }
 
   body {
