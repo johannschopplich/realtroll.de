@@ -361,8 +361,9 @@
       canvas.addEventListener("mouseenter", () => canvas.focus());
       canvas.addEventListener("click", () => canvas.focus());
 
-      // iOS Safari only supports fullscreen on video elements, so hide the
-      // button where element fullscreen is unavailable
+      // iPhone Safari only fullscreens <video>, not arbitrary elements
+      // (iPad and desktop Safari do), so feature-detect and hide the button
+      // where element fullscreen is unavailable
       const fullscreenButton = document.getElementById("controls-fullscreen");
       if (document.fullscreenEnabled) {
         // One-way: `#controls` lives outside `#viewport`, so the button is
