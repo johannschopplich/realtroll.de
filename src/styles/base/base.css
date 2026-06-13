@@ -22,6 +22,7 @@
 
     --un-fluid-min-font-size: 16;
     --un-fluid-max-font-size: 18;
+    --un-prose-space-y: 1rem;
 
     --un-decoration-thickness: max(2px, 0.1em);
     --un-decoration-offset: max(2px, 0.1em);

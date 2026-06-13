@@ -26,7 +26,7 @@ $scale = $file && $file->width() <= 48 ? 3 : 1;
       <?php endif ?>
     </div>
   </div>
-  <div class="mt-lg space-y-4 text-sm">
+  <div class="mt-lg space-y-$un-prose-space-y text-sm">
     <?= $block->text() ?>
   </div>
 </article>

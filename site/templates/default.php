@@ -70,10 +70,10 @@ snippet('layouts/default', slots: true);
               <span class="game-chip-bevel-base font-heading"><?= $chapter['number'] ?></span>
               <h2 class="flex-1 my-0 font-heading font-normal text-base leading-heading text-primary-700"><?= esc($chapter['label']) ?></h2>
               <span class="font-heading text-xl text-primary-700 group-open:hidden" aria-hidden="true">+</span>
-              <span class="hidden font-heading text-xl text-primary-700 group-open:inline" aria-hidden="true">&ndash;</span>
+              <span class="hidden font-heading text-xl text-primary-700 group-open:inline" aria-hidden="true">−</span>
             </summary>
             <div class="px-lg pt-lg pb-xl border-t-2 border-primary-700">
-              <div class="prose">
+              <div class="prose text-sm">
                 <?php foreach ($chapter['blocks'] as $block): ?>
                   <?= $block->toHtml() ?>
                 <?php endforeach ?>
