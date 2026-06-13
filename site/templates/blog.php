@@ -7,7 +7,7 @@ snippet('layouts/default', slots: true)
 ?>
 
 <div class="content-lg mb-7xl text-center">
-  <h1 class="editorial-title"><?= $page->title()->escape() ?></h1>
+  <h1 class="display-title"><?= $page->title()->escape() ?></h1>
 </div>
 
 <div class="content-prose">

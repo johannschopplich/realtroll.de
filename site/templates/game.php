@@ -14,7 +14,7 @@ $logo = $page->logo()->toFile();
     <?php endif ?>
     <div class="absolute inset-0 bg-primary-950/75" aria-hidden="true"></div>
     <div class="relative py-8xl px-3xl text-center md:py-9xl">
-      <h1 class="<?= $logo ? 'sr-only' : 'editorial-title hyphenate' ?>"><?= $page->title()->escape() ?></h1>
+      <h1 class="<?= $logo ? 'sr-only' : 'display-title hyphenate' ?>"><?= $page->title()->escape() ?></h1>
       <?php if ($logo): ?>
         <img
           class="pixelated mx-auto max-w-full h-auto"

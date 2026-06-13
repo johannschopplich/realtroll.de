@@ -32,9 +32,9 @@ snippet('layouts/default', slots: true);
 
 <div class="content-lg text-center">
   <?php if ($parent = $page->parent()): ?>
-    <p class="mb-lg text-sm font-medium tracking-tight uppercase text-primary-700"><?= $parent->title()->escape() ?></p>
+    <p class="label-caps mb-lg text-sm text-primary-700"><?= $parent->title()->escape() ?></p>
   <?php endif ?>
-  <h1 class="editorial-title"><?= $page->title()->escape() ?></h1>
+  <h1 class="display-title"><?= $page->title()->escape() ?></h1>
 </div>
 
 <?php if (!$hasChapterLayout): ?>
@@ -67,7 +67,7 @@ snippet('layouts/default', slots: true);
         <li>
           <details id="<?= $chapter['id'] ?>" class="group relative bg-theme-background border-2 border-primary-700 open:shadow-[4px_4px_0_var(--un-color-primary-700)]">
             <summary class="flex items-center gap-lg px-lg py-sm list-none cursor-pointer select-none [&::-webkit-details-marker]:hidden">
-              <span class="game-chip-bevel-base font-heading"><?= $chapter['number'] ?></span>
+              <span class="chip-bevel-base font-heading"><?= $chapter['number'] ?></span>
               <h2 class="flex-1 my-0 font-heading font-normal text-base leading-heading text-primary-700"><?= esc($chapter['label']) ?></h2>
               <span class="font-heading text-xl text-primary-700 group-open:hidden" aria-hidden="true">+</span>
               <span class="hidden font-heading text-xl text-primary-700 group-open:inline" aria-hidden="true">−</span>

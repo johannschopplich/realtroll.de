@@ -13,7 +13,7 @@ snippet('layouts/default', slots: true)
         <?= $page->date()->toDate('d.m.Y') ?>
       </time>
     </p>
-    <h1 class="editorial-title hyphenate"><?= $page->title()->escape() ?></h1>
+    <h1 class="display-title hyphenate"><?= $page->title()->escape() ?></h1>
   </header>
 
   <?php if ($cover = $page->cover()->toFile()): ?>

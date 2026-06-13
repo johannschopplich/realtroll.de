@@ -40,51 +40,8 @@
 </head>
 <body class="overflow-x-clip min-h-dvh" data-template="<?= $page->intendedTemplate()->name() ?>">
 
-  <?php
-  $blog = page('blog');
-  $games = page('spiele');
-  $onGames = $page->isHomePage() || ($games && ($page->is($games) || $page->parents()->has($games)));
-  $onBlog = $blog && ($page->is($blog) || $page->parents()->has($blog));
-  $navLink = 'decoration-[length:var(--un-decoration-thickness)] underline-offset-4 text-primary-700 hover:underline aria-[current]:underline';
-  ?>
-
   <div class="relative z-1 min-h-dvh bg-polka-grid border-b-2 border-primary-700">
-    <nav
-      id="main-nav"
-      data-scrolled="false"
-      class="group sticky top-0 z-10 flex items-center justify-between px-lg h-14 border-b-2 border-transparent transition-colors duration-200 data-[scrolled=true]:bg-theme-background data-[scrolled=true]:border-primary-700 md:px-5xl"
-      aria-label="Hauptnavigation"
-    >
-      <span class="corner-square -bottom-px left-0 size-2 -translate-x-1/2 translate-y-1/2 opacity-0 transition-opacity duration-200 group-data-[scrolled=true]:opacity-100" aria-hidden="true"></span>
-      <span class="corner-square -bottom-px right-0 size-2 translate-x-1/2 translate-y-1/2 opacity-0 transition-opacity duration-200 group-data-[scrolled=true]:opacity-100" aria-hidden="true"></span>
-      <a
-        href="<?= $site->homePage()->url() ?>"
-        class="flex items-center gap-2 text-sm font-medium tracking-tight text-primary-700"
-        <?php e($page->isHomePage(), 'aria-current="page"') ?>
-        aria-label="Startseite"
-      >
-        <img class="pixelated" src="/assets/img/icons/favicon-32x32.png" width="24" height="24" alt="">
-        real Troll
-      </a>
-      <div class="flex items-center gap-lg text-sm font-medium tracking-tight">
-        <a <?= attr([
-          'href' => $site->homePage()->url(),
-          'class' => $navLink,
-          'aria-current' => $onGames ? 'page' : null,
-        ]) ?>>
-          Spiele
-        </a>
-        <?php if ($blog): ?>
-          <a <?= attr([
-            'href' => $blog->url(),
-            'class' => $navLink,
-            'aria-current' => $onBlog ? 'page' : null,
-          ]) ?>>
-            Blog
-          </a>
-        <?php endif ?>
-      </div>
-    </nav>
+    <?php snippet('components/navbar') ?>
 
     <?php if ($page->isHomePage()): ?>
       <header
@@ -120,9 +77,6 @@
       </div>
       <img class="pixelated mx-auto mb-lg" src="<?= asset('assets/img/real-troll-avatar.gif')->url() ?>" alt="Avatar von real Troll">
       <nav class="flex gap-lg justify-center flex-wrap text-sm">
-        <?php if ($blog): ?>
-          <a href="<?= $blog->url() ?>">Blog</a>
-        <?php endif ?>
         <a href="<?= url('impressum') ?>">Impressum</a>
         <a href="<?= url('datenschutzerklaerung') ?>">Datenschutzerklärung</a>
       </nav>

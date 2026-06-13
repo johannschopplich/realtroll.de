@@ -22,12 +22,17 @@ return [
         ]
     ],
 
+    'routes' => require __DIR__ . '/routes.php',
+
     'johannschopplich.helpers' => [
         'robots' => [
             'enabled' => true
         ],
         'sitemap' => [
-            'enabled' => true
+            'enabled' => true,
+            'exclude' => [
+                'pages' => ['spiele']
+            ]
         ]
     ]
 
