@@ -364,9 +364,6 @@
       // Element fullscreen is unavailable in some browsers, e.g. iPhone Safari
       const fullscreenButton = document.getElementById("controls-fullscreen");
       if (document.fullscreenEnabled) {
-        // One-way: `#controls` lives outside `#viewport`, so the button is
-        // not painted in fullscreen and can't toggle it back off – leave is
-        // via Escape or a system gesture
         fullscreenButton.addEventListener("click", () =>
           viewport.requestFullscreen(),
         );
