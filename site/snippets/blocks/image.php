@@ -11,15 +11,13 @@ if (!$src) {
 
 ?>
 <figure>
-  <img
-    class="pixelated mx-auto"
-    src="<?= $src ?>"
-    <?php if ($file): ?>
-      width="<?= $file->width() ?>"
-      height="<?= $file->height() ?>"
-    <?php endif ?>
-    alt="<?= $block->alt()->escape() ?>"
-  >
+  <img <?= attr([
+    'class' => trim('mx-auto ' . ($block->pixelated()->or(true)->isTrue() ? 'pixelated' : '')),
+    'src' => $src,
+    'width' => $file?->width(),
+    'height' => $file?->height(),
+    'alt' => $block->alt()->escape(),
+  ]) ?>>
   <?php if ($block->caption()->isNotEmpty()): ?>
     <figcaption><?= $block->caption() ?></figcaption>
   <?php endif ?>
