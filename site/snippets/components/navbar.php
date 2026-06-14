@@ -61,7 +61,7 @@ $navItems = [
               </summary>
               <ul
                 data-subpage-panel
-                class="absolute left-0 top-full z-20 flex flex-col min-w-[9rem] p-1 list-none bg-theme-background border-2 border-primary-700 shadow-[4px_4px_0_var(--un-color-primary-700)]"
+                class="absolute left-0 top-full z-20 flex flex-col min-w-[9rem] p-1 list-none bg-theme-background border-2 border-primary-700 shadow-solid"
               >
                 <?php foreach ($subpages as $subpage): ?>
                   <li>

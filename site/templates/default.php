@@ -65,7 +65,7 @@ snippet('layouts/default', slots: true);
     <ol class="ps-0 list-none space-y-xl">
       <?php foreach ($chapters as $chapter): ?>
         <li>
-          <details id="<?= $chapter['id'] ?>" class="group relative bg-theme-background border-2 border-primary-700 open:shadow-[4px_4px_0_var(--un-color-primary-700)]">
+          <details id="<?= $chapter['id'] ?>" class="group relative bg-theme-background border-2 border-primary-700 open:shadow-solid">
             <summary class="flex items-center gap-lg px-lg py-sm list-none cursor-pointer select-none [&::-webkit-details-marker]:hidden">
               <span class="chip-bevel-base font-heading"><?= $chapter['number'] ?></span>
               <h2 class="flex-1 my-0 font-heading font-normal text-base leading-heading text-primary-700"><?= esc($chapter['label']) ?></h2>

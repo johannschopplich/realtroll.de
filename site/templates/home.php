@@ -15,7 +15,7 @@ snippet('layouts/default', slots: true);
 
 <figure
   id="screenshot-showcase"
-  class="fixed bottom-[var(--spacing-lg)] right-[var(--spacing-lg)] z-50 m-0 p-2 bg-white border-2 border-primary-700 shadow-[6px_6px_0_var(--un-color-primary-700)] pointer-events-none invisible opacity-0 translate-y-4 transition-[opacity,transform,visibility] duration-250 ease-out motion-reduce:transition-none"
+  class="fixed bottom-[var(--spacing-lg)] right-[var(--spacing-lg)] z-50 m-0 p-2 bg-white border-2 border-primary-700 shadow-float pointer-events-none invisible opacity-0 translate-y-4 transition-[opacity,transform,visibility] duration-250 ease-out motion-reduce:transition-none"
   aria-hidden="true"
 >
   <img class="pixelated block max-w-[calc(100vw-3rem)] h-auto" alt="">

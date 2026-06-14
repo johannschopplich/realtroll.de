@@ -40,6 +40,14 @@ export default defineConfig<Theme>({
     radius: {
       DEFAULT: "0",
     },
+    shadow: {
+      solid: "4px 4px 0 var(--un-color-primary-700)",
+      float: [
+        "4px 4px 0 var(--un-color-primary-700)",
+        "0 16px 32px -12px oklch(18% 0.035 52 / 0.42)",
+        "0 6px 14px -6px oklch(18% 0.035 52 / 0.3)",
+      ],
+    },
     text: {
       xs: { fontSize: "0.75rem", lineHeight: "var(--un-line-height-normal)" },
       sm: { fontSize: "0.875rem", lineHeight: "var(--un-line-height-normal)" },
@@ -136,8 +144,7 @@ export default defineConfig<Theme>({
         }
 
         const elevatedStyles = [
-          `border-2 border-${color}-700`,
-          `shadow-[4px_4px_0_var(--un-color-${color}-700)]`,
+          `border-2 border-${color}-700 shadow-solid`,
           "active:translate-[4px] active:shadow-none",
           `focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-${color}`,
         ].join(" ");
