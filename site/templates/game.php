@@ -58,13 +58,6 @@ $logo = $page->logo()->toFile();
 <?php snippet('components/section-divider') ?>
 
 <div class="columns gap-lg items-center justify-center text-center">
-  <?php foreach ($page->children()->listed() as $subpage): ?>
-    <div class="column-narrow">
-      <a href="<?= $subpage->url() ?>" class="button-primary-outlined">
-        <?= $subpage->title()->escape() ?>
-      </a>
-    </div>
-  <?php endforeach ?>
   <div class="column-narrow">
     <a href="<?= url() ?>" class="button-primary">
       Zurück zur Spieleliste
