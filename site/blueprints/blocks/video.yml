@@ -1,0 +1,27 @@
+name: Video
+icon: video
+preview: fields
+fields:
+  url:
+    label: URL
+    type: url
+    placeholder: https://www.youtube.com/watch?v=...
+  title:
+    label: Titel
+    type: text
+    help: Erscheint über dem Vorschaubild und als Bezeichnung für Screenreader.
+  caption:
+    label: Bildunterschrift
+    type: writer
+    inline: true
+  ratio:
+    label: Seitenverhältnis
+    type: text
+    placeholder: 16/9
+  thumbnail:
+    label: Vorschaubild
+    type: files
+    query: page.files.template('image')
+    uploads:
+      template: image
+    multiple: false
