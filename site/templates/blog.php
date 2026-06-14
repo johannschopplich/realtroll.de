@@ -21,7 +21,7 @@ snippet('layouts/default', slots: true)
 
       <header class="mb-xl">
         <h2 class="mb-xs scroll-mt-8xl font-heading text-xl leading-none text-primary-700">
-          <a href="<?= $article->url() ?>" class="no-underline decoration-[length:var(--un-decoration-thickness)] hover:underline">
+          <a href="<?= $article->url() ?>" class="link-default">
             <?= $article->title()->escape() ?>
           </a>
         </h2>

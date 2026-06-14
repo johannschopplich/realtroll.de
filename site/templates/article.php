@@ -33,7 +33,7 @@ snippet('layouts/default', slots: true)
 
 <nav class="content-prose flex justify-between gap-lg mt-9xl text-sm" aria-label="Artikel-Navigation">
   <?php if ($prev = $page->prevListed()): ?>
-    <a href="<?= $prev->url() ?>" class="decoration-[length:var(--un-decoration-thickness)] text-primary-700 hover:underline">
+    <a href="<?= $prev->url() ?>" class="link-default text-primary-700">
       &larr; <?= $prev->title()->escape() ?>
     </a>
   <?php else: ?>
@@ -41,7 +41,7 @@ snippet('layouts/default', slots: true)
   <?php endif ?>
 
   <?php if ($next = $page->nextListed()): ?>
-    <a href="<?= $next->url() ?>" class="decoration-[length:var(--un-decoration-thickness)] text-primary-700 hover:underline">
+    <a href="<?= $next->url() ?>" class="link-default text-primary-700">
       <?= $next->title()->escape() ?> &rarr;
     </a>
   <?php endif ?>

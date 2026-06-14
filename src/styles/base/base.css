@@ -106,7 +106,8 @@
     text-decoration-thickness: var(--un-decoration-thickness);
     text-underline-offset: var(--un-decoration-offset);
 
-    &:hover {
+    &:hover,
+    &[aria-current] {
       text-decoration-color: currentcolor;
     }
   }
