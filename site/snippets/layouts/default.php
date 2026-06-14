@@ -35,8 +35,6 @@
     'assets/fonts/IosevkaSlab.css'
   ]) ?>
 
-  <script async defer data-domain="realtroll.de" src="https://plausible.io/js/plausible.js"></script>
-
 </head>
 <body class="overflow-x-clip min-h-dvh" data-template="<?= $page->intendedTemplate()->name() ?>">
 
