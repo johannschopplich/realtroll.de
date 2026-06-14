@@ -35,14 +35,16 @@ $logo = $page->logo()->toFile();
   <div class="columns gap-lg items-center justify-center">
     <?php if ($page->gameFolder()->isNotEmpty()): ?>
       <div class="column-narrow">
-        <a href="/play/?game=<?= $page->gameFolder() ?>" class="button-primary" target="_blank">
+        <a href="/play/?game=<?= $page->gameFolder() ?>" class="button-primary gap-2" target="_blank">
+          <span class="i-dinkie-icons-video-game-filled" aria-hidden="true"></span>
           Im Browser starten
         </a>
       </div>
     <?php endif ?>
     <div class="column-narrow">
-      <a href="<?= $page->downloadLink() ?>" class="<?= $page->gameFolder()->isNotEmpty() ? 'button-primary-outlined' : 'button-primary' ?>">
-        Download (Windows)
+      <a href="<?= $page->downloadLink() ?>" class="<?= $page->gameFolder()->isNotEmpty() ? 'button-primary-outlined' : 'button-primary' ?> gap-2">
+        <span class="i-dinkie-icons-windows-alt" aria-hidden="true"></span>
+        Download
       </a>
     </div>
   </div>
@@ -59,7 +61,8 @@ $logo = $page->logo()->toFile();
 
 <div class="columns gap-lg items-center justify-center text-center">
   <div class="column-narrow">
-    <a href="<?= url() ?>" class="button-primary">
+    <a href="<?= url() ?>" class="button-primary gap-2">
+      <span class="i-dinkie-icons-white-left-backhand-index" aria-hidden="true"></span>
       Zurück zur Spieleliste
     </a>
   </div>

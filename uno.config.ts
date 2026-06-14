@@ -1,4 +1,5 @@
 import type { Theme } from "@unocss/preset-wind4";
+import presetIcons from "@unocss/preset-icons";
 import { defineConfig, presetWind4, transformerDirectives } from "unocss";
 
 export default defineConfig<Theme>({
@@ -173,7 +174,7 @@ export default defineConfig<Theme>({
         const surface =
           appearance === "bevel"
             ? "text-primary-800 bg-primary-100 border-t-primary-50 border-l-primary-50 border-b-primary-400 border-r-primary-400"
-            : "text-primary-50 bg-white/10 border-t-white/30 border-l-white/30 border-b-primary-950/60 border-r-primary-950/60";
+            : "text-primary-50 bg-white/10 backdrop-blur-[1px] border-t-white/30 border-l-white/30 border-b-primary-950/60 border-r-primary-950/60";
         return `${
           size === "lg"
             ? "px-2.5 py-1.5"
@@ -206,6 +207,14 @@ export default defineConfig<Theme>({
     presetWind4({
       preflights: {
         reset: true,
+      },
+    }),
+    presetIcons({
+      extraProperties: {
+        display: "inline-block",
+        width: "1.1em",
+        height: "1.1em",
+        "vertical-align": "text-bottom",
       },
     }),
   ],

@@ -14,9 +14,11 @@
   "devDependencies": {
     "@antfu/eslint-config": "^9.0.0",
     "@csstools/postcss-global-data": "^4.0.0",
+    "@iconify-json/dinkie-icons": "^1.2.0",
     "@types/node": "^25.9.3",
     "@unocss/cli": "^66.7.0",
     "@unocss/core": "^66.7.0",
+    "@unocss/preset-icons": "^66.7.0",
     "@unocss/preset-wind4": "^66.7.0",
     "eslint": "^10.4.1",
     "mprocs": "^0.9.6",

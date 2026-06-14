@@ -37,8 +37,12 @@ if (!$items || $items->count() === 0) return;
           <div class="prose hyphenate">
             <?php snippet('components/game-chips', ['game' => $game]) ?>
             <p class="mb-lg text-balance font-stretch-normal"><?= $game->description() ?></p>
-            <a href="<?= $game->url() ?>" class="button-primary">
-              Mehr zum Spiel…
+            <a
+              href="<?= $game->url() ?>"
+              class="inline-flex items-center gap-2 font-medium text-primary-700"
+              aria-label="<?= $game->title()->escape() ?> ansehen"
+            >
+              Zum Spiel <span class="i-dinkie-icons-white-right-backhand-index" aria-hidden="true"></span>
             </a>
           </div>
         </div>
@@ -63,8 +67,12 @@ if (!$items || $items->count() === 0) return;
           <div class="prose hyphenate">
             <p class="mb-lg text-balance font-stretch-normal"><?= $game->description() ?></p>
 
-            <a href="<?= $game->url() ?>" class="button-primary">
-              Mehr zum Spiel…
+            <a
+              href="<?= $game->url() ?>"
+              class="inline-flex items-center gap-2 font-medium text-primary-700"
+              aria-label="<?= $game->title()->escape() ?> ansehen"
+            >
+              Zum Spiel <span class="i-dinkie-icons-white-right-backhand-index" aria-hidden="true"></span>
             </a>
           </div>
         </div>

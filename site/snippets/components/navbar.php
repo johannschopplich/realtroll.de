@@ -48,16 +48,14 @@ $navItems = [
     <?php if ($onGameTree): ?>
       <nav class="flex items-center gap-2 min-w-0 text-sm font-medium tracking-tight text-primary-700/70" aria-label="Brotkrumen">
         <?php foreach ($crumbs as $crumb): ?>
-          <span class="shrink-0 text-primary-700/40" aria-hidden="true">&rsaquo;</span>
+          <span class="shrink-0 text-primary-700/40" aria-hidden="true">/</span>
           <?php if ($crumb['url']): ?>
             <a href="<?= $crumb['url'] ?>" class="link-default shrink-0 underline-offset-4 hover:text-primary-700"><?= esc($crumb['label']) ?></a>
           <?php elseif ($subpages?->isNotEmpty()): ?>
             <details class="relative shrink-0" data-subpage-menu>
               <summary class="flex items-center gap-1 min-h-6 cursor-pointer list-none text-primary-700 [&::-webkit-details-marker]:hidden">
                 <?= esc($crumb['label']) ?>
-                <svg class="size-3 motion-safe:transition-transform motion-safe:duration-200 [details[open]_&]:rotate-180" viewBox="0 0 12 12" fill="none" focusable="false" aria-hidden="true">
-                  <path d="M2.5 4.5 6 8l3.5-3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"></path>
-                </svg>
+                <span class="inline-block text-[1.2em] leading-none motion-safe:transition-transform motion-safe:duration-200 [details[open]_&]:rotate-180" aria-hidden="true">&#x25BE;</span>
               </summary>
               <ul
                 data-subpage-panel
