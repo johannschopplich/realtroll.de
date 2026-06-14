@@ -2,25 +2,28 @@
 
 /** @var \Kirby\Cms\Page $page */
 
+use Kirby\Toolkit\Obj;
 use Kirby\Toolkit\Str;
 
 $introBlocks = [];
 $chapters = [];
+$currentChapter = null;
 
 foreach ($page->text()->toBlocks() as $block) {
   if ($block->type() === 'heading' && $block->level()->value() === 'h2') {
     $title = trim(strip_tags($block->text()->value()));
     preg_match('/^(\d{1,2})\.\s*(.+)$/su', $title, $matches);
-    $chapters[] = [
+    $currentChapter = new Obj([
       'id' => Str::slug($title),
       'number' => (int)($matches[1] ?? count($chapters) + 1),
       'label' => $matches[2] ?? $title,
       'blocks' => [],
-    ];
-  } elseif ($chapters === []) {
+    ]);
+    $chapters[] = $currentChapter;
+  } elseif ($currentChapter === null) {
     $introBlocks[] = $block;
   } else {
-    $chapters[array_key_last($chapters)]['blocks'][] = $block;
+    $currentChapter->blocks[] = $block;
   }
 }
 
@@ -65,16 +68,16 @@ snippet('layouts/default', slots: true);
     <ol class="ps-0 list-none space-y-xl">
       <?php foreach ($chapters as $chapter): ?>
         <li>
-          <details id="<?= $chapter['id'] ?>" class="group relative bg-theme-background border-2 border-primary-700 open:shadow-solid">
+          <details id="<?= $chapter->id ?>" class="group relative bg-theme-background border-2 border-primary-700 open:shadow-solid">
             <summary class="flex items-center gap-lg px-lg py-sm list-none cursor-pointer select-none [&::-webkit-details-marker]:hidden">
-              <span class="chip-bevel-base font-heading"><?= $chapter['number'] ?></span>
-              <h2 class="flex-1 my-0 font-heading font-normal text-base leading-heading text-primary-700"><?= esc($chapter['label']) ?></h2>
+              <span class="chip-bevel-base font-heading"><?= $chapter->number ?></span>
+              <h2 class="flex-1 my-0 font-heading font-normal text-base leading-heading text-primary-700"><?= esc($chapter->label) ?></h2>
               <span class="font-heading text-xl text-primary-700 group-open:hidden" aria-hidden="true">+</span>
               <span class="hidden font-heading text-xl text-primary-700 group-open:inline" aria-hidden="true">−</span>
             </summary>
             <div class="px-lg pt-lg pb-xl border-t-2 border-primary-700">
               <div class="prose text-sm">
-                <?php foreach ($chapter['blocks'] as $block): ?>
+                <?php foreach ($chapter->blocks as $block): ?>
                   <?= $block->toHtml() ?>
                 <?php endforeach ?>
               </div>

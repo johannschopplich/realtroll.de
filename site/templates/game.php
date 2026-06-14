@@ -36,7 +36,7 @@ $logo = $page->logo()->toFile();
     <?php if ($page->gameFolder()->isNotEmpty()): ?>
       <div class="column-narrow">
         <a href="/play/?game=<?= $page->gameFolder() ?>" class="button-primary" target="_blank">
-          Online spielen!
+          Im Browser starten
         </a>
       </div>
     <?php endif ?>

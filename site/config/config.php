@@ -1,6 +1,8 @@
 <?php
 
+use Kirby\Cms\App;
 use Kirby\Cms\Page;
+use Kirby\Cms\Site;
 use Kirby\Query\Runners\DefaultRunner;
 
 return [
@@ -42,6 +44,27 @@ return [
             'exclude' => [
                 'pages' => ['spiele']
             ]
+        ],
+        'meta' => [
+            'defaults' => function (App $kirby, Site $site, Page $page) {
+                $jsonld = [];
+
+                if ($page->isHomePage()) {
+                    $jsonld['WebSite'] = [
+                        'name' => $site->title()->value(),
+                        'url' => $site->url(),
+                        'inLanguage' => 'de',
+                        'publisher' => [
+                            '@type' => 'Person',
+                            '@id' => $site->url() . '/#person-operator',
+                            'name' => 'Johann Schopplich',
+                            'url' => 'https://johannschopplich.com',
+                        ],
+                    ];
+                }
+
+                return ['jsonld' => $jsonld];
+            }
         ]
     ]
 
