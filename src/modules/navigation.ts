@@ -19,29 +19,36 @@ function setupSubpageMenu(nav: HTMLElement) {
   const summary = details?.querySelector<HTMLElement>("summary");
   if (!details || !summary) return;
 
+  const close = () => {
+    details.open = false;
+  };
+
   details.addEventListener("keydown", (event) => {
     if (event.key === "Escape" && details.open) {
-      details.open = false;
+      close();
       summary.focus();
     }
   });
 
+  // Guard against closing before a tapped link navigates (touch taps don't focus)
   details.addEventListener("focusout", (event) => {
-    if (!details.contains(event.relatedTarget as Node | null)) {
-      details.open = false;
+    if (event.relatedTarget && !details.contains(event.relatedTarget as Node)) {
+      close();
     }
   });
 
   document.addEventListener("click", (event) => {
-    if (!details.contains(event.target as Node)) details.open = false;
+    if (!details.contains(event.target as Node)) close();
   });
 
   if (matchMedia("(hover: hover) and (pointer: fine)").matches) {
+    // Hover owns open/close here; don't let a pointer click toggle fight it
+    summary.addEventListener("click", (event) => {
+      if (event.detail > 0) event.preventDefault();
+    });
     details.addEventListener("pointerenter", () => {
       details.open = true;
     });
-    details.addEventListener("pointerleave", () => {
-      details.open = false;
-    });
+    details.addEventListener("pointerleave", close);
   }
 }
