@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f1d1504ccf335fdf0ee948e6d97cdb32",
+    "content-hash": "fd5b8820bed8d0043415dd1f2667b386",
     "packages": [
         {
             "name": "christian-riesen/base32",
@@ -477,20 +477,21 @@
         },
         {
             "name": "johannschopplich/kirby-helpers",
-            "version": "6.7.1",
+            "version": "7.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/johannschopplich/kirby-helpers.git",
-                "reference": "9ec486a5e2d9fb4846d7f4ea00e07620fc243604"
+                "reference": "22f5c0e7c91f8803303faabc95b6197641a01887"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/johannschopplich/kirby-helpers/zipball/9ec486a5e2d9fb4846d7f4ea00e07620fc243604",
-                "reference": "9ec486a5e2d9fb4846d7f4ea00e07620fc243604",
+                "url": "https://api.github.com/repos/johannschopplich/kirby-helpers/zipball/22f5c0e7c91f8803303faabc95b6197641a01887",
+                "reference": "22f5c0e7c91f8803303faabc95b6197641a01887",
                 "shasum": ""
             },
             "require": {
                 "getkirby/composer-installer": "^1",
+                "php": ">=8.3",
                 "vlucas/phpdotenv": "^5"
             },
             "require-dev": {
@@ -535,9 +536,9 @@
             ],
             "support": {
                 "issues": "https://github.com/johannschopplich/kirby-helpers/issues",
-                "source": "https://github.com/johannschopplich/kirby-helpers/tree/v6.7.1"
+                "source": "https://github.com/johannschopplich/kirby-helpers/tree/v7.0.0"
             },
-            "time": "2026-01-31T12:08:44+00:00"
+            "time": "2026-06-14T20:19:27+00:00"
         },
         {
             "name": "laminas/laminas-escaper",
