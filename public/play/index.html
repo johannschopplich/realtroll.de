@@ -71,14 +71,21 @@
         background: transparent;
         border: 0;
         cursor: pointer;
+        opacity: 0.7;
+        transition: opacity 80ms ease;
       }
 
       #controls button[hidden] {
         display: none;
       }
 
-      #controls button[aria-pressed="false"] {
-        opacity: 0.55;
+      #controls button:focus-visible {
+        opacity: 1;
+      }
+
+      body[data-scaling="integer"] #controls-scaling .icon-fit,
+      body:not([data-scaling="integer"]) #controls-scaling .icon-integer {
+        display: none;
       }
 
       #canvas {
@@ -219,6 +226,10 @@
         #dpad {
           display: none;
         }
+
+        #controls button:hover {
+          opacity: 1;
+        }
       }
     </style>
   </head>
@@ -228,9 +239,11 @@
         id="controls-scaling"
         type="button"
         aria-label="Pixel-perfect scaling"
+        title="Pixel-perfect scaling"
         aria-pressed="false"
       >
         <svg
+          class="icon-fit"
           viewBox="0 0 15 15"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -238,7 +251,20 @@
           height="25"
         >
           <path
-            d="M7 4.5H8M10 7.5H11M7 7.5H8M7 10.5H8M4 7.5H5M1.5 1.5H13.5V13.5H1.5V1.5Z"
+            d="M3.5 0V15M11.5 0V15M0 3.5H15M0 11.5H15"
+            stroke="currentColor"
+          ></path>
+        </svg>
+        <svg
+          class="icon-integer"
+          viewBox="0 0 15 15"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          width="25"
+          height="25"
+        >
+          <path
+            d="M0 1.5H15M0 5.5H15M0 9.5H15M0 13.5H15M1.5 0V15M5.5 0V15M9.5 0V15M13.5 0V15"
             stroke="currentColor"
           ></path>
         </svg>
@@ -247,6 +273,7 @@
         id="controls-fullscreen"
         type="button"
         aria-label="Enter fullscreen"
+        title="Enter fullscreen"
       >
         <svg
           viewBox="0 0 15 15"
@@ -376,7 +403,7 @@
       const scalingButton = document.getElementById("controls-scaling");
       const scalingStorageKey = "easyrpg-player-scaling";
       scalingButton.addEventListener("click", () => {
-        setIntegerScaling(document.body.dataset.scaling !== "integer");
+        setIntegerScaling(document.body.dataset.scaling !== "integer", true);
       });
       window.addEventListener("resize", applyIntegerScale);
 
@@ -384,10 +411,16 @@
       try {
         storedScalingMode = localStorage.getItem(scalingStorageKey);
       } catch {
-        // Storage can be unavailable (e.g. blocked cookies); start in
-        // fit mode
+        // Storage can be unavailable (e.g. blocked cookies)
       }
-      setIntegerScaling(storedScalingMode === "integer");
+
+      // Pixel-perfect on standalone desktop; fit on touch and when embedded,
+      // where integer scaling often leaves the small frame mostly black
+      const isEmbedded = window.self !== window.top;
+      const enableIntegerScaling = storedScalingMode
+        ? storedScalingMode === "integer"
+        : !hasTouchscreen && !isEmbedded;
+      setIntegerScaling(enableIntegerScaling, false);
 
       // Bind all elements providing a `data-key` attribute with the
       // given key on touch-based devices
@@ -528,11 +561,13 @@
       }
 
       /**
-       * Toggle pixel-perfect scaling and persist the choice
+       * Toggle pixel-perfect scaling and reflect it on the button
        *
        * @param {boolean} isEnabled Whether to snap to integer multiples
+       * @param {boolean} shouldPersist Save the choice; only explicit toggles
+       *   persist, not the device default
        */
-      function setIntegerScaling(isEnabled) {
+      function setIntegerScaling(isEnabled, shouldPersist) {
         if (isEnabled) {
           document.body.dataset.scaling = "integer";
         } else {
@@ -540,13 +575,15 @@
         }
         scalingButton.setAttribute("aria-pressed", String(isEnabled));
 
-        try {
-          localStorage.setItem(
-            scalingStorageKey,
-            isEnabled ? "integer" : "fit",
-          );
-        } catch {
-          // The toggle still works without persistence
+        if (shouldPersist) {
+          try {
+            localStorage.setItem(
+              scalingStorageKey,
+              isEnabled ? "integer" : "fit",
+            );
+          } catch {
+            // The toggle still works without persistence
+          }
         }
 
         applyIntegerScale();
