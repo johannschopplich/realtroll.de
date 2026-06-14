@@ -42,7 +42,8 @@ if (!$items || $items->count() === 0) return;
               class="inline-flex items-center gap-2 font-medium text-primary-700"
               aria-label="<?= $game->title()->escape() ?> ansehen"
             >
-              Zum Spiel <span class="i-dinkie-icons-white-right-backhand-index" aria-hidden="true"></span>
+              <span class="link-default [--un-decoration-color:transparent] group-hover:decoration-current">Zum Spiel</span>
+              <span class="i-dinkie-icons-white-right-backhand-index" aria-hidden="true"></span>
             </a>
           </div>
         </div>
@@ -72,7 +73,8 @@ if (!$items || $items->count() === 0) return;
               class="inline-flex items-center gap-2 font-medium text-primary-700"
               aria-label="<?= $game->title()->escape() ?> ansehen"
             >
-              Zum Spiel <span class="i-dinkie-icons-white-right-backhand-index" aria-hidden="true"></span>
+              <span class="link-default [--un-decoration-color:transparent] group-hover:decoration-current">Zum Spiel</span>
+              <span class="i-dinkie-icons-white-right-backhand-index" aria-hidden="true"></span>
             </a>
           </div>
         </div>

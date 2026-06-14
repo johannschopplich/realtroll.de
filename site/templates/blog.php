@@ -2,16 +2,22 @@
 
 /** @var \Kirby\Cms\Page $page */
 
-snippet('layouts/default', slots: true)
+snippet('layouts/default', [
+  'header' => [
+    'image' => asset('assets/img/neues.gif'),
+    'alt' => 'Neues',
+    'width' => 120,
+    'text' => 'Devlog &amp; Notizen aus der Werkstatt'
+  ]
+], slots: true);
+
+$articles = $page->children()->listed()->sortBy('date', 'desc')->paginate(20);
 
 ?>
 
-<div class="content-lg mb-7xl text-center">
-  <h1 class="display-title"><?= $page->title()->escape() ?></h1>
-</div>
+<h1 class="sr-only"><?= $page->title()->escape() ?></h1>
 
 <div class="content-prose">
-  <?php $articles = $page->children()->listed()->sortBy('date', 'desc') ?>
   <?php foreach ($articles as $article): ?>
     <article
       id="<?= \Kirby\Toolkit\Str::slug($article->date()->toDate('Y-m-d') . '-' . $article->slug()) ?>"
@@ -32,14 +38,34 @@ snippet('layouts/default', slots: true)
         </p>
       </header>
 
-      <div class="prose">
+      <div class="prose text-sm">
         <?= $article->text()->toBlocks() ?>
       </div>
     </article>
   <?php endforeach ?>
 
-  <?php if ($articles->count() === 0): ?>
+  <?php if ($articles->pagination()->total() === 0): ?>
     <p class="text-center text-contrast-medium">Noch keine Einträge.</p>
+  <?php endif ?>
+
+  <?php if ($articles->pagination()->hasPages()): ?>
+    <nav class="flex justify-between gap-lg mt-9xl text-sm" aria-label="Seitennavigation">
+      <?php if ($prevUrl = $articles->pagination()->prevPageURL()): ?>
+        <a href="<?= $prevUrl ?>" class="link-default text-primary-700" rel="prev">&larr; Neuere</a>
+      <?php else: ?>
+        <span></span>
+      <?php endif ?>
+
+      <span class="text-contrast-medium">
+        Seite <?= $articles->pagination()->page() ?> / <?= $articles->pagination()->pages() ?>
+      </span>
+
+      <?php if ($nextUrl = $articles->pagination()->nextPageURL()): ?>
+        <a href="<?= $nextUrl ?>" class="link-default text-primary-700" rel="next">Ältere &rarr;</a>
+      <?php else: ?>
+        <span></span>
+      <?php endif ?>
+    </nav>
   <?php endif ?>
 </div>
 

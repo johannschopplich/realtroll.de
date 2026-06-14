@@ -3,7 +3,8 @@
 /** @var \Kirby\Cms\App $kirby */
 /** @var \Kirby\Cms\Site $site */
 /** @var \Kirby\Cms\Page $page */
-/** @var mixed $slot */
+/** @var array|null $header */
+/** @var \Kirby\Template\Slot|null $slot */
 
 ?>
 <!doctype html>
@@ -41,26 +42,11 @@
   <div class="relative z-1 min-h-dvh bg-polka-grid border-b-2 border-primary-700">
     <?php snippet('components/navbar') ?>
 
-    <?php if ($page->isHomePage()): ?>
-      <header
-        class="pixelated relative flex items-center justify-center pt-6xl pb-8xl md:pt-7xl md:pb-[calc(var(--spacing-9xl)+var(--spacing-xl))]"
-        style="background: url('<?= asset('assets/img/bg-pattern.svg')->url() ?>') center repeat fixed"
-      >
-        <div class="flex flex-col items-center">
-          <img class="pixelated md:scale-[1.5]" src="<?= asset('assets/img/willkommen.gif')->url() ?>" alt="Willkommen auf realtroll.de">
-          <p class="mt-3xl px-3xl max-w-prose font-medium text-center text-balance tracking-tight md:mt-5xl"><?= $page->text()->kti() ?></p>
-        </div>
-        <img
-          class="pixelated absolute bottom-0 left-1/2 z-1 max-w-none -translate-x-1/2 -translate-y-[2px] origin-bottom scale-[1.5] md:scale-[2]"
-          src="<?= asset('assets/img/editorial-gesichter.png')->url() ?>"
-          width="207"
-          height="42"
-          alt=""
-        >
-      </header>
+    <?php if ($header ?? null): ?>
+      <?php snippet('components/page-header', $header) ?>
     <?php endif ?>
 
-    <main id="main" class="<?php e(!$page->isHomePage(), 'mt-5xl') ?>">
+    <main id="main" class="<?php e(!($header ?? null), 'mt-5xl') ?>">
       <?= $slot ?>
     </main>
 

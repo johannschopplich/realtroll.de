@@ -3,7 +3,14 @@
 /** @var \Kirby\Cms\Site $site */
 /** @var \Kirby\Cms\Page $page */
 
-snippet('layouts/default', slots: true);
+snippet('layouts/default', [
+  'header' => [
+    'image' => asset('assets/img/willkommen.gif'),
+    'alt' => 'Willkommen auf realtroll.de',
+    'text' => $page->text()->kti(),
+    'showFaces' => true
+  ]
+], slots: true);
 
 ?>
 
