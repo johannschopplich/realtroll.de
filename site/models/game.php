@@ -60,7 +60,26 @@ class GamePage extends Page
         return [
             'jsonld' => [
                 'VideoGame' => $videoGame,
+                'BreadcrumbList' => $this->breadcrumbList()
             ]
         ];
+    }
+
+    private function breadcrumbList(): array
+    {
+        $crumbs = [$this->site()->homePage(), ...$this->parents()->flip()->values(), $this];
+
+        $items = [];
+        $position = 1;
+        foreach ($crumbs as $crumb) {
+            $items[] = [
+                '@type' => 'ListItem',
+                'position' => $position++,
+                'name' => $crumb->title()->value(),
+                'item' => $crumb->url()
+            ];
+        }
+
+        return ['itemListElement' => $items];
     }
 }
