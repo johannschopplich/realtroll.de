@@ -1,10 +1,19 @@
 <?php
 
 use Kirby\Cms\Page;
+use Kirby\Query\Runners\DefaultRunner;
 
 return [
 
     'debug' => env('KIRBY_DEBUG', false),
+
+    'yaml' => [
+        'handler' => 'symfony'
+    ],
+
+    'query' => [
+        'runner' => DefaultRunner::class
+    ],
 
     'panel' => [
         'install' => env('KIRBY_PANEL_INSTALL', false),
