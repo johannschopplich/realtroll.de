@@ -1,0 +1,26 @@
+name: field.blocks.image.name
+icon: image
+preview: image
+fields:
+  image:
+    label: field.blocks.image.name
+    type: files
+    multiple: false
+    image:
+      back: black
+    uploads:
+      template: image
+  pixelated:
+    label: Pixel-Look
+    type: toggle
+    default: true
+    help: An für Screenshots, aus für gemalte Bilder/Fan-Art.
+  alt:
+    label: field.blocks.image.alt
+    type: text
+    icon: title
+  caption:
+    label: field.blocks.image.caption
+    type: writer
+    icon: text
+    inline: true
