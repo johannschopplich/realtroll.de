@@ -56,7 +56,6 @@ return [
                         'inLanguage' => 'de',
                         'publisher' => [
                             '@type' => 'Person',
-                            '@id' => $site->url() . '/#person-operator',
                             'name' => 'Johann Schopplich',
                             'url' => 'https://johannschopplich.com',
                         ],

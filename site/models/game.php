@@ -6,8 +6,6 @@ class GamePage extends Page
 {
     public function metadata(): array
     {
-        $site = $this->site();
-
         $videoGame = [
             'name' => $this->title()->value(),
             'url' => $this->url(),
@@ -18,7 +16,6 @@ class GamePage extends Page
                 : 'Windows',
             'author' => [
                 '@type' => 'Person',
-                '@id' => $site->url() . '/#person-realtroll',
                 'name' => 'real Troll',
                 'url' => 'https://realtroll.hpage.com',
                 'sameAs' => [
