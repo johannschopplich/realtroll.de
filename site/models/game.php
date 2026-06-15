@@ -14,16 +14,7 @@ class GamePage extends Page
             'operatingSystem' => $this->gameFolder()->isNotEmpty()
                 ? ['Windows', 'Web browser']
                 : 'Windows',
-            'author' => [
-                '@type' => 'Person',
-                'name' => 'real Troll',
-                'url' => 'https://realtroll.hpage.com',
-                'sameAs' => [
-                    'https://realtroll.hpage.com',
-                    'https://www.instagram.com/der_real_troll/',
-                    'https://www.youtube.com/user/realtroll'
-                ]
-            ],
+            'author' => $this->site()->realTroll(),
             'offers' => [
                 '@type' => 'Offer',
                 'price' => '0',
@@ -60,23 +51,5 @@ class GamePage extends Page
                 'BreadcrumbList' => $this->breadcrumbList()
             ]
         ];
-    }
-
-    private function breadcrumbList(): array
-    {
-        $crumbs = [$this->site()->homePage(), ...$this->parents()->flip()->values(), $this];
-
-        $items = [];
-        $position = 1;
-        foreach ($crumbs as $crumb) {
-            $items[] = [
-                '@type' => 'ListItem',
-                'position' => $position++,
-                'name' => $crumb->title()->value(),
-                'item' => $crumb->url()
-            ];
-        }
-
-        return ['itemListElement' => $items];
     }
 }

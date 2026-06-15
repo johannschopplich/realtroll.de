@@ -25,6 +25,7 @@ site/config/.license
 site/plugins/*
 !site/plugins/.gitkeep
 !site/plugins/easyrpg
+!site/plugins/realtroll
 
 # Build assets
 public/assets/dev

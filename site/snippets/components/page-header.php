@@ -10,7 +10,7 @@
 
 $width ??= $image->width();
 $text ??= null;
-$showFaces ??= true;
+$showFaces ??= false;
 
 ?>
 <header

@@ -16,16 +16,6 @@ snippet('layouts/default', slots: true)
     <h1 class="display-title hyphenate"><?= $page->title()->escape() ?></h1>
   </header>
 
-  <?php if ($cover = $page->cover()->toFile()): ?>
-    <figure class="mb-5xl">
-      <img
-        class="w-full <?= $cover->width() <= 640 ? 'pixelated' : '' ?>"
-        src="<?= $cover->url() ?>"
-        alt="<?= $cover->alt()->or($page->title()) ?>"
-      >
-    </figure>
-  <?php endif ?>
-
   <div class="prose">
     <?= $page->text()->toBlocks() ?>
   </div>

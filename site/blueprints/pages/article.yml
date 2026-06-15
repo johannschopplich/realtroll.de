@@ -5,42 +5,28 @@ icon: text
 options:
   changeTemplate: false
 
-tabs:
-  content:
-    label: Inhalt
-    icon: draft
-    columns:
-      main:
-        width: 2/3
-        fields:
-          date:
-            label: Datum
-            type: date
-            default: today
-            time: false
-            required: true
-          text:
-            label: Inhalt
-            type: blocks
-            fieldsets:
-              - heading
-              - text
-              - list
-              - quote
-              - image
-              - line
+columns:
+  main:
+    width: 2/3
+    fields:
+      date:
+        label: Datum
+        type: date
+        default: today
+        time: false
+        required: true
+      text:
+        label: Inhalt
+        type: blocks
+        fieldsets:
+          - heading
+          - text
+          - list
+          - quote
+          - image
+          - line
 
-      sidebar:
-        width: 1/3
-        sections:
-          cover:
-            type: files
-            label: Cover
-            layout: cards
-            info: "{{ file.dimensions }}"
-            image:
-              cover: true
-            max: 1
-            template: image
-
-  seo: tabs/seo
+  sidebar:
+    width: 1/3
+    sections:
+      images: sections/images
