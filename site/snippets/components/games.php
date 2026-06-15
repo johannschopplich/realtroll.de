@@ -39,11 +39,11 @@ if (!$items || $items->count() === 0) return;
             <p class="mb-lg text-balance font-stretch-normal"><?= $game->description() ?></p>
             <a
               href="<?= $game->url() ?>"
-              class="inline-flex items-center gap-2 font-medium text-primary-700"
+              class="relative inline-flex items-center font-medium text-primary-700"
               aria-label="<?= $game->title()->escape() ?> ansehen"
             >
               <span class="link-default [--un-decoration-color:transparent] group-hover:decoration-current">Zum Spiel</span>
-              <span class="i-dinkie-icons-white-right-backhand-index" aria-hidden="true"></span>
+              <span class="i-dinkie-icons-white-right-backhand-index absolute left-full top-1/2 ml-1 opacity-0 -translate-y-1/2 transition-[opacity,margin] duration-200 group-hover:opacity-100 group-hover:ml-2 motion-reduce:transition-none" aria-hidden="true"></span>
             </a>
           </div>
         </div>
@@ -70,11 +70,12 @@ if (!$items || $items->count() === 0) return;
 
             <a
               href="<?= $game->url() ?>"
-              class="inline-flex items-center gap-2 font-medium text-primary-700"
+              class="relative inline-flex items-center font-medium text-primary-700"
               aria-label="<?= $game->title()->escape() ?> ansehen"
             >
               <span class="link-default [--un-decoration-color:transparent] group-hover:decoration-current">Zum Spiel</span>
-              <span class="i-dinkie-icons-white-right-backhand-index" aria-hidden="true"></span>
+              <?php /* Hand erscheint erst beim Hover und "läuft" Richtung Spiel; absolut positioniert → kein Layout-Shift */ ?>
+              <span class="i-dinkie-icons-white-right-backhand-index absolute left-full top-1/2 ml-1 opacity-0 -translate-y-1/2 transition-[opacity,margin] duration-200 group-hover:opacity-100 group-hover:ml-3 motion-reduce:transition-none" aria-hidden="true"></span>
             </a>
           </div>
         </div>
