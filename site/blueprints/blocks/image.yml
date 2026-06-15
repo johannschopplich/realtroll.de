@@ -11,13 +11,12 @@ fields:
     uploads:
       template: image
   pixelated:
-    label: Pixel-Look
+    label: Kantenscharf
     type: toggle
     default: true
     width: 1/2
-    help: An für Screenshots, aus für gemalte Bilder/Fan-Art.
   scale:
-    label: Pixelgenaues Hochskalieren
+    label: Vergrößerung
     type: toggles
     default: "1"
     options:
