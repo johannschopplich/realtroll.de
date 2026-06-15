@@ -1,8 +1,8 @@
 <?php
 
 /**
- * @var array $corners e.g. ['top-left','top-right','bottom-left','bottom-right']
- * @var int $size edge length in spacing units (1 unit = 0.25rem)
+ * @var array $corners Corners to display, possible values: `top-left`, `top-right`, `bottom-left`, `bottom-right`
+ * @var int $size Edge length in spacing units (1 unit = 0.25rem)
  */
 
 $corners ??= ['top-left', 'top-right', 'bottom-left', 'bottom-right'];
