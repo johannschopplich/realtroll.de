@@ -51,13 +51,18 @@
     </main>
 
     <div class="pt-9xl"></div>
-    <?php snippet('components/corner-squares', ['corners' => ['bottom-left', 'bottom-right'], 'size' => 2]) ?>
+    <?php snippet('components/corner-squares', [
+      'corners' => ['bottom-left', 'bottom-right'],
+      'size' => 2
+    ]) ?>
   </div>
 
   <footer class="sticky bottom-0 z-0 bg-theme-background">
     <div class="relative pt-9xl pb-xl text-center bg-graph-paper">
       <div class="absolute inset-0 overflow-hidden pointer-events-none select-none" aria-hidden="true">
-        <p class="absolute inset-x-0 bottom-0 font-heading text-[18vw] leading-none whitespace-nowrap text-center text-primary-700 translate-y-1/5 opacity-5">real Troll</p>
+        <svg class="absolute inset-x-0 bottom-0 mx-auto w-full max-w-screen-lg opacity-5" viewBox="40 0 3880 760" focusable="false" aria-hidden="true">
+          <text x="0" y="760" font-size="1000" text-anchor="start" class="font-heading font-bold fill-primary-700">real Troll</text>
+        </svg>
       </div>
       <img class="pixelated mx-auto mb-lg" src="<?= asset('assets/img/real-troll-avatar.gif')->url() ?>" alt="Avatar von real Troll">
       <nav class="flex gap-lg justify-center flex-wrap text-sm">

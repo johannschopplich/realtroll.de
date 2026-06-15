@@ -1,7 +1,16 @@
 name: Screenshots
-icon: image
-preview: fields
+icon: folder
+preview: gallery
 fields:
-  info:
-    type: info
-    text: Zeigt die ausgewählten Screenshots an dieser Stelle im Text. Volle Breite, pixelgenau.
+  images:
+    label: field.blocks.gallery.images.label
+    type: files
+    query: model.images
+    multiple: true
+    layout: cards
+    size: small
+    empty: field.blocks.gallery.images.empty
+    uploads:
+      template: image
+    image:
+      ratio: 1/1

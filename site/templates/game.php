@@ -9,7 +9,7 @@ $logo = $page->logo()->toFile();
 ?>
 <div class="md:content-lg">
   <div class="relative overflow-hidden md:border-2 md:border-primary-700">
-    <?php if ($heroScreenshot = ($page->heroScreenshot()->toFile() ?? $page->screenshots()->toFiles()->first())): ?>
+    <?php if ($heroScreenshot = ($page->heroScreenshot()->toFile() ?? $page->screenshots()->first())): ?>
       <img class="pixelated absolute inset-0 size-full object-cover" src="<?= $heroScreenshot->url() ?>" alt="" aria-hidden="true">
     <?php endif ?>
     <div class="absolute inset-0 bg-primary-950/75" aria-hidden="true"></div>
@@ -36,14 +36,14 @@ $logo = $page->logo()->toFile();
     <?php if ($page->gameFolder()->isNotEmpty()): ?>
       <div class="column-narrow">
         <a href="/play/?game=<?= $page->gameFolder() ?>" class="button-primary gap-2" target="_blank">
-          <span class="i-dinkie-icons-video-game-filled" aria-hidden="true"></span>
+          <span class="i-dinkie-icons-video-game-filled translate-y-[-1px]" aria-hidden="true"></span>
           Im Browser starten
         </a>
       </div>
     <?php endif ?>
     <div class="column-narrow">
       <a href="<?= $page->downloadLink() ?>" class="<?= $page->gameFolder()->isNotEmpty() ? 'button-primary-outlined' : 'button-primary' ?> gap-2">
-        <span class="i-dinkie-icons-windows-alt" aria-hidden="true"></span>
+        <span class="i-dinkie-icons-windows-alt translate-y-[-1px]" aria-hidden="true"></span>
         Download
       </a>
     </div>

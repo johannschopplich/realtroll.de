@@ -2,17 +2,16 @@
 
 /** @var \Kirby\Cms\Block $block */
 
-/** @var \Kirby\Cms\Page */
-$parent = $block->parent();
-$screenshots = $parent->screenshots()->toFiles();
+/** @var \Kirby\Cms\Files */
+$images = $block->images()->toFiles();
 
-if ($screenshots->isEmpty()) {
+if ($images->isEmpty()) {
   return;
 }
 
 ?>
 <div class="grid grid-cols-minmax-320px gap-lg">
-  <?php foreach ($screenshots as $file): ?>
+  <?php foreach ($images as $file): ?>
     <figure class="text-center">
       <img class="pixelated w-full h-auto" src="<?= $file->url() ?>" alt="<?= $file->caption()->or($file->alt()) ?>">
       <?php if ($file->caption()->isNotEmpty()): ?>

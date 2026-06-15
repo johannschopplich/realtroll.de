@@ -10,19 +10,6 @@ tabs:
       main:
         width: 2/3
         sections:
-          gallery:
-            type: fields
-            fields:
-              screenshots:
-                label: Screenshots
-                type: files
-                layout: cards
-                query: page.files.template('image')
-                uploads: image
-                image:
-                  cover: true
-                  ratio: 4/3
-                  back: white
           text:
             type: fields
             fields:
@@ -63,7 +50,7 @@ tabs:
                 label: Titelbild
                 type: files
                 multiple: false
-                query: page.screenshots.toFiles
+                query: page.screenshots
                 uploads: false
                 width: 1/2
                 help: Wenn leer, wird der erste Screenshot verwendet.

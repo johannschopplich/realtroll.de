@@ -10,7 +10,7 @@ if (!$items || $items->count() === 0) return;
     <?php
     $isFeatured = $i === 0;
     $logo = $game->logo()->toFile();
-    $screenshots = $game->screenshots()->toFiles()->map(fn ($i) => $i->url())->values();
+    $screenshots = $game->screenshots()->map(fn ($i) => $i->url())->values();
     ?>
 
     <li

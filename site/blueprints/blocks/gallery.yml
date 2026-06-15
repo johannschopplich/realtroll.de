@@ -1,15 +1,16 @@
-name: Galerie
+name: field.blocks.gallery.name
 icon: dashboard
+preview: gallery
 fields:
   images:
-    label: Bilder
+    label: field.blocks.gallery.images.label
     type: files
-    layout: cards
-    query: page.files.template('image')
-    uploads: image
+    query: model.images
     multiple: true
+    layout: cards
+    size: small
+    empty: field.blocks.gallery.images.empty
+    uploads:
+      template: image
     image:
-      cover: true
-      ratio: 4/3
-      back: white
-    help: Fan-Art und Dev-Skizzen. Volle Breite, ohne Pixel-Look.
+      ratio: 1/1

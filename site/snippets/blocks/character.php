@@ -7,7 +7,11 @@ $scale = $file && $file->width() <= 48 ? 3 : 1;
 
 ?>
 <article>
-  <div class="flex items-end gap-xs border-b-2 border-primary-700">
+  <div class="relative flex items-end gap-xs border-b-2 border-primary-700">
+    <?php snippet('components/corner-squares', [
+      'corners' => ['bottom-right'],
+      'size' => 2,
+    ]) ?>
     <?php if ($file): ?>
       <div class="flex flex-none items-end justify-center mb-[-2px] size-24 bg-theme-background">
         <img

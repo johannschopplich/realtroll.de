@@ -45,8 +45,8 @@ export default defineConfig<Theme>({
       solid: "4px 4px 0 var(--un-color-primary-700)",
       float: [
         "4px 4px 0 var(--un-color-primary-700)",
-        "0 16px 32px -12px oklch(18% 0.035 52 / 0.6)",
-        "0 6px 14px -6px oklch(18% 0.035 52 / 0.4)",
+        "0 16px 32px -12px oklch(10% 0.035 52 / 0.6)",
+        "0 6px 14px -6px oklch(10% 0.035 52 / 0.4)",
       ],
     },
     text: {

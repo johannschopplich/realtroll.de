@@ -1,5 +1,6 @@
 name: Video
 icon: video
+wysiwyg: true
 preview: fields
 fields:
   url:

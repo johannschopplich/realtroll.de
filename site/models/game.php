@@ -1,5 +1,6 @@
 <?php
 
+use Kirby\Cms\Files;
 use Kirby\Cms\Page;
 
 class GamePage extends Page
@@ -32,7 +33,7 @@ class GamePage extends Page
             $videoGame['datePublished'] = $this->published()->toDate('Y-m-d');
         }
 
-        $screenshots = $this->screenshots()->toFiles()->map(fn ($file) => $file->url())->values();
+        $screenshots = $this->screenshots()->map(fn ($file) => $file->url())->values();
         if (!empty($screenshots)) {
             $videoGame['image'] = $screenshots;
         }
@@ -51,5 +52,16 @@ class GamePage extends Page
                 'BreadcrumbList' => $this->breadcrumbList()
             ]
         ];
+    }
+
+    public function screenshots(): Files
+    {
+        $files = new Files();
+
+        foreach ($this->text()->toBlocks()->filterBy('type', 'screenshots') as $block) {
+            $files->add($block->images()->toFiles());
+        }
+
+        return $files;
     }
 }
