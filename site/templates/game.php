@@ -62,7 +62,7 @@ $logo = $page->logo()->toFile();
 <div class="columns gap-lg items-center justify-center text-center">
   <div class="column-narrow">
     <a href="<?= url() ?>" class="button-primary gap-2">
-      <span class="i-dinkie-icons-white-left-backhand-index" aria-hidden="true"></span>
+      <span class="i-dinkie-icons-white-left-backhand-index translate-y-[-1px]" aria-hidden="true"></span>
       Zurück zur Spieleliste
     </a>
   </div>
