@@ -14,7 +14,22 @@ fields:
     label: Pixel-Look
     type: toggle
     default: true
+    width: 1/2
     help: An für Screenshots, aus für gemalte Bilder/Fan-Art.
+  scale:
+    label: Pixelgenaues Hochskalieren
+    type: toggles
+    default: "1"
+    options:
+      - value: "1"
+        text: Original
+      - value: "2"
+        text: 2×
+      - value: "3"
+        text: 3×
+    width: 1/2
+    when:
+      pixelated: true
   alt:
     label: field.blocks.image.alt
     type: text
