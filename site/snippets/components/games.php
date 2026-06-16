@@ -39,7 +39,7 @@ if (!$items || $items->count() === 0) return;
             <p class="mb-lg text-balance font-stretch-normal"><?= $game->description() ?></p>
             <a
               href="<?= $game->url() ?>"
-              class="relative inline-flex items-center font-medium text-primary-700"
+              class="link-primary"
               aria-label="<?= $game->title()->escape() ?> ansehen"
             >
               <span class="link-default [--un-decoration-color:transparent] group-hover:decoration-current">Zum Spiel</span>
@@ -70,7 +70,7 @@ if (!$items || $items->count() === 0) return;
 
             <a
               href="<?= $game->url() ?>"
-              class="relative inline-flex items-center font-medium text-primary-700"
+              class="link-primary"
               aria-label="<?= $game->title()->escape() ?> ansehen"
             >
               <span class="link-default [--un-decoration-color:transparent] group-hover:decoration-current">Zum Spiel</span>

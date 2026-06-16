@@ -112,6 +112,15 @@
     }
   }
 
+  .link-primary {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-weight: 500;
+    color: var(--un-color-primary-700);
+  }
+
   svg:not([fill]) {
     fill: currentColor;
   }

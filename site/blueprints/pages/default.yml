@@ -17,6 +17,14 @@ tabs:
       sidebar:
         width: 1/3
         sections:
+          options:
+            type: fields
+            fields:
+              chapterLayout:
+                label: Kapitel-Akkordeon
+                type: toggle
+                default: false
+                help: Jede H2-Überschrift wird ein aufklappbares Kapitel. Für Lösungen und Referenzseiten.
           images: sections/images
 
   seo: tabs/seo
