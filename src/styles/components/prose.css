@@ -35,6 +35,14 @@
     & :where(figure) {
       text-align: center;
       margin-inline: 0;
+
+      &:not(:first-child) {
+        margin-top: calc(2 * var(--un-prose-space-y));
+      }
+
+      &:not(:last-child) {
+        margin-bottom: calc(2 * var(--un-prose-space-y));
+      }
     }
 
     & :where(figcaption) {
