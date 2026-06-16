@@ -340,6 +340,11 @@
     <script src="index.js?v=20260615" async></script>
 
     <script type="module">
+      // JS and WASM are one atomic artifact; a stale cached WASM won't link against fresh JS
+      const assetVersion = new URL(
+        document.querySelector('script[src*="index.js"]').src,
+      ).searchParams.get("v");
+
       const gameId = new URLSearchParams(location.search).get("game");
       if (gameId) {
         document.title = `${gameId} – EasyRPG Player`;
@@ -387,6 +392,10 @@
         const player = await createEasyRpgPlayer({
           game: undefined,
           saveFs: undefined,
+          locateFile: (path, prefix) =>
+            assetVersion && path.endsWith(".wasm")
+              ? `${prefix}${path}?v=${assetVersion}`
+              : prefix + path,
         });
         player.initApi();
         canvas.focus();
