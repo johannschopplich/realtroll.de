@@ -36,7 +36,7 @@ tabs:
             label: Unterseiten
             templates:
               - default
-            help: Z. B. die Lösung des Spiels. Veröffentlichte Unterseiten werden auf der Spieleseite verlinkt.
+            help: Veröffentlichte Unterseiten erscheinen im Navigationsmenü als Dropdown neben dem Spieltitel.
           sidebar:
             type: fields
             fields:
