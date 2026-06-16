@@ -16,13 +16,13 @@ $logo = $page->logo()->toFile();
     <div class="relative py-8xl px-3xl text-center md:py-9xl">
       <h1 class="<?= $logo ? 'sr-only' : 'display-title hyphenate' ?>"><?= $page->title()->escape() ?></h1>
       <?php if ($logo): ?>
-        <img
-          class="pixelated mx-auto max-w-full h-auto"
-          src="<?= $logo->url() ?>"
-          width="<?= $logo->width() * 2 ?>"
-          height="<?= $logo->height() * 2 ?>"
-          alt=""
-        >
+        <img <?= attr([
+          'class' => trim('pixelated mx-auto max-w-full h-auto' . ($page->darkLogo()->isTrue() ? ' brightness-0 invert' : '')),
+          'src' => $logo->url(),
+          'width' => $logo->width() * 2,
+          'height' => $logo->height() * 2,
+          'alt' => ''
+        ]) ?>>
       <?php endif ?>
       <div class="mt-xl">
         <?php snippet('components/game-chips', ['game' => $page, 'classes' => 'justify-center', 'appearance' => 'glass', 'size' => 'lg']) ?>

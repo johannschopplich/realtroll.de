@@ -46,6 +46,11 @@ tabs:
                 multiple: false
                 query: page.files.template('image')
                 uploads: image
+              darkLogo:
+                label: Dunkles Logo
+                type: toggle
+                default: false
+                help: Nur bei dunkler Schrift aktivieren.
               heroScreenshot:
                 label: Titelbild
                 type: files
