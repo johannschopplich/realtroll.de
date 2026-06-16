@@ -111,6 +111,14 @@
         height: var(--canvas-height, 100%) !important;
       }
 
+      /* Fit mode: `!important` likewise beats SDL's inline size, which
+         shrinks the canvas when it measures a zero-height body */
+      body:not([data-scaling="integer"]) #canvas {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: contain !important;
+      }
+
       @media (hover: none), (pointer: coarse) {
         #viewport {
           position: fixed;
@@ -372,6 +380,7 @@
       /** @type {Set<number>} */
       const connectedGamepads = new Set();
       let controlsIdleTimeoutId;
+      let scaleFrameId = 0;
 
       // Launch the Player; it reads the game from the query string itself
       window.addEventListener("load", async () => {
@@ -389,6 +398,15 @@
       canvas.addEventListener("mouseenter", () => canvas.focus());
       canvas.addEventListener("click", () => canvas.focus());
 
+      // Buttons grab focus when clicked and would swallow the arrow keys;
+      // hand it back so keyboard input keeps reaching the game
+      document
+        .getElementById("controls")
+        .addEventListener("click", () => canvas.focus({ preventScroll: true }));
+      document.addEventListener("fullscreenchange", () =>
+        canvas.focus({ preventScroll: true }),
+      );
+
       // Element fullscreen is unavailable in some browsers, e.g. iPhone Safari
       const fullscreenButton = document.getElementById("controls-fullscreen");
       if (document.fullscreenEnabled) {
@@ -405,7 +423,10 @@
       scalingButton.addEventListener("click", () => {
         setIntegerScaling(document.body.dataset.scaling !== "integer", true);
       });
-      window.addEventListener("resize", applyIntegerScale);
+      // `resize` fires before the grid reflows on orientation change, so
+      // observe the viewport to recompute once its box has settled
+      window.addEventListener("resize", scheduleIntegerScale);
+      new ResizeObserver(scheduleIntegerScale).observe(viewport);
 
       let storedScalingMode = null;
       try {
@@ -619,6 +640,15 @@
           "--canvas-height",
           `${nativeGameHeight * scale}px`,
         );
+      }
+
+      /**
+       * Coalesce a burst of resize/observer callbacks into a single
+       * recompute on the next frame, once layout has settled
+       */
+      function scheduleIntegerScale() {
+        cancelAnimationFrame(scaleFrameId);
+        scaleFrameId = requestAnimationFrame(applyIntegerScale);
       }
 
       /**
