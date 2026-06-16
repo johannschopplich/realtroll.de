@@ -15,7 +15,7 @@ $scale = $file && $file->width() <= 48 ? 3 : 1;
     <?php if ($file): ?>
       <div class="flex flex-none items-end justify-center mb-[-2px] size-24 bg-theme-background">
         <img
-          class="pixelated translate-y-[2px]"
+          class="pixelated"
           src="<?= $file->url() ?>"
           width="<?= $file->width() * $scale ?>"
           height="<?= $file->height() * $scale ?>"
