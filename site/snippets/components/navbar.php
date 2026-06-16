@@ -5,19 +5,18 @@
 
 $blog = page('blog');
 $games = page('spiele');
-$navLink = 'link-default underline-offset-4 text-primary-700';
 
 $onGameTree = $games?->isAncestorOf($page);
 $crumbs = [];
 if ($onGameTree) {
   foreach ($page->parents()->flip() as $ancestor) {
     if ($ancestor->is($games)) continue;
-    $crumbs[] = ['label' => $ancestor->title()->value(), 'url' => $ancestor->url()];
+    $crumbs[] = $ancestor;
   }
-  $crumbs[] = ['label' => $page->title()->value(), 'url' => null];
+  $crumbs[] = $page;
 }
 
-$subpages = $onGameTree ? $page->children()->listed() : null;
+$sections = $onGameTree ? $crumbs[0]->children()->listed() : null;
 
 $navItems = [
   ['label' => 'Spiele', 'url' => $site->homePage()->url(), 'current' => $page->isHomePage() || $games?->isOpen()],
@@ -49,27 +48,31 @@ $navItems = [
       <nav class="flex items-center gap-2 min-w-0 text-sm font-medium tracking-tight text-primary-700/70" aria-label="Brotkrumen">
         <?php foreach ($crumbs as $crumb): ?>
           <span class="shrink-0 text-primary-700/40" aria-hidden="true">/</span>
-          <?php if ($crumb['url']): ?>
-            <a href="<?= $crumb['url'] ?>" class="link-default shrink-0 underline-offset-4 hover:text-primary-700"><?= esc($crumb['label']) ?></a>
-          <?php elseif ($subpages?->isNotEmpty()): ?>
+          <?php if (!$crumb->is($page)): ?>
+            <a href="<?= $crumb->url() ?>" class="link-default shrink-0 underline-offset-4 hover:text-primary-700"><?= esc($crumb->title()) ?></a>
+          <?php elseif ($sections?->isNotEmpty()): ?>
             <details class="relative shrink-0" data-subpage-menu>
               <summary class="flex items-center gap-1 min-h-6 cursor-pointer list-none text-primary-700 [&::-webkit-details-marker]:hidden">
-                <?= esc($crumb['label']) ?>
+                <?= esc($crumb->title()) ?>
                 <span class="inline-block text-[1.2em] leading-none motion-safe:transition-transform motion-safe:duration-200 [details[open]_&]:rotate-180" aria-hidden="true">&#x25BE;</span>
               </summary>
               <ul
                 data-subpage-panel
-                class="absolute left-0 top-full z-20 flex flex-col min-w-[9rem] p-1 list-none bg-theme-background border-2 border-primary-700 shadow-solid"
+                class="absolute left-0 top-full z-20 flex flex-col gap-1 p-1 min-w-[9rem] list-none bg-theme-background border-2 border-primary-700 shadow-solid"
               >
-                <?php foreach ($subpages as $subpage): ?>
+                <?php foreach ($sections as $section): ?>
                   <li>
-                    <a href="<?= $subpage->url() ?>" class="link-default block px-2 py-1 text-sm font-medium underline-offset-4 text-primary-700/80 hover:text-primary-700"><?= esc($subpage->title()) ?></a>
+                    <a
+                      href="<?= $section->url() ?>"
+                      class="link-default [--un-decoration-offset:2px] block px-2 py-0.5 text-sm font-medium leading-tight text-primary-700/80 hover:text-primary-700"
+                      <?php e($section->is($page), 'aria-current="page"') ?>
+                    ><?= esc($section->title()) ?></a>
                   </li>
                 <?php endforeach ?>
               </ul>
             </details>
           <?php else: ?>
-            <span class="truncate text-primary-700" aria-current="page"><?= esc($crumb['label']) ?></span>
+            <span class="truncate text-primary-700" aria-current="page"><?= esc($crumb->title()) ?></span>
           <?php endif ?>
         <?php endforeach ?>
       </nav>
@@ -79,7 +82,7 @@ $navItems = [
     <?php foreach ($navItems as $item): ?>
       <a <?= attr([
         'href' => $item['url'],
-        'class' => $navLink,
+        'class' => 'link-default underline-offset-4 text-primary-700',
         'aria-current' => $item['current'] ? 'page' : null,
       ]) ?>>
         <?= esc($item['label']) ?>
