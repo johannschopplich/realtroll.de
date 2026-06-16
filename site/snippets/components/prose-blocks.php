@@ -48,7 +48,7 @@ if ($proseBlocks) {
 <?php foreach ($sections as $section): ?>
   <?php if ($section['type'] === 'characters'): ?>
     <div class="content-prose my-3xl">
-      <div class="grid gap-x-2xl gap-y-3xl sm:grid-cols-2">
+      <div class="<?= trim('grid gap-x-2xl gap-y-3xl' . (count($section['blocks']) > 1 ? ' sm:grid-cols-2' : '')) ?>">
         <?php foreach ($section['blocks'] as $block): ?>
           <?= $block ?>
         <?php endforeach ?>
