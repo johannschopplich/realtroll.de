@@ -1,0 +1,19 @@
+@layer components {
+  .article-dropcap > p:first-of-type::first-letter {
+    font-family: var(--un-font-family-heading);
+    color: var(--un-color-primary-700);
+    -webkit-initial-letter: 3;
+    initial-letter: 3;
+    padding-right: 0.5em;
+  }
+
+  @supports (not (initial-letter: 3)) and (not (-webkit-initial-letter: 3)) {
+    .article-dropcap > p:first-of-type::first-letter {
+      float: left;
+      margin: 0.125em 0.05em 0 0;
+      padding-right: 0;
+      font-size: 3.4em;
+      line-height: 1;
+    }
+  }
+}

@@ -5,4 +5,5 @@
 @import "base/base.css";
 @import "base/prose.css";
 @import "components/prose.css";
+@import "components/article.css";
 @import "components/lite-youtube.css";

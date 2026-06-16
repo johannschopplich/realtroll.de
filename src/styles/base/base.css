@@ -116,7 +116,7 @@
     position: relative;
     display: inline-flex;
     align-items: center;
-    gap: 0.25rem;
+    gap: calc(var(--spacing) * 2);
     font-weight: 500;
     color: var(--un-color-primary-700);
   }
