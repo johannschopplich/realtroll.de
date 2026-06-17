@@ -20,9 +20,7 @@ $videoIdPattern =
     $%x';
 
 $id = preg_match($videoIdPattern, $block->url()->value(), $matches) ? $matches[1] : null;
-if (!$id) {
-  return;
-}
+if (!$id) return;
 
 /** @var \Kirby\Cms\File */
 $image = $block->thumbnail()->toFile();

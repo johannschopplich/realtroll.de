@@ -4,10 +4,7 @@
 
 $file = $block->image()->toFile();
 $src = $file?->url() ?? $block->src()->value();
-
-if (!$src) {
-  return;
-}
+if (!$src) return;
 
 $isPixelated = $block->pixelated()->or(true)->isTrue();
 $scale = $isPixelated ? max(1, $block->scale()->or(1)->toInt()) : 1;

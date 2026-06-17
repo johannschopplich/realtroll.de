@@ -14,3 +14,8 @@ fields:
       template: image
     image:
       ratio: 1/1
+  pixelated:
+    label: Kantenscharf
+    type: toggle
+    default: false
+    help: Für Pixelgrafiken – verhindert weiches Hochskalieren.

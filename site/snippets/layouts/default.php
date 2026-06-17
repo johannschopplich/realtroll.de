@@ -51,11 +51,13 @@
     </main>
 
     <div class="pt-7xl"></div>
-    <div class="absolute bottom-0 left-1/2 flex items-center justify-center px-xs text-primary-700 bg-theme-background -translate-x-1/2 translate-y-1/2" aria-hidden="true">
-      <svg width="14" height="14" viewBox="0 0 14 14" shape-rendering="crispEdges" fill="currentColor">
-        <path d="M6 0h2v2h2v2h2v2h2v2h-2v2h-2v2h-2v2H6v-2H4v-2H2v-2H0V6h2V4h2V2h2z"/>
-      </svg>
-    </div>
+    <?php if ($hasFooter ?? true): ?>
+      <div class="absolute bottom-0 left-1/2 flex items-center justify-center px-xs text-primary-700 bg-theme-background -translate-x-1/2 translate-y-1/2" aria-hidden="true">
+        <svg width="14" height="14" viewBox="0 0 14 14" shape-rendering="crispEdges" fill="currentColor">
+          <path d="M6 0h2v2h2v2h2v2h2v2h-2v2h-2v2h-2v2H6v-2H4v-2H2v-2H0V6h2V4h2V2h2z"/>
+        </svg>
+      </div>
+    <?php endif ?>
     <?php snippet('components/corner-squares', [
       'corners' => ['bottom-left', 'bottom-right'],
       'size' => 2

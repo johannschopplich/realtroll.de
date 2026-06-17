@@ -15,6 +15,7 @@ fields:
     type: toggle
     default: true
     width: 1/2
+    help: Für Pixelgrafiken – verhindert weiches Hochskalieren.
   scale:
     label: Vergrößerung
     type: toggles
@@ -27,6 +28,7 @@ fields:
       - value: "3"
         text: 3×
     width: 1/2
+    help: Vergrößert kleine Pixelgrafiken in ganzen Stufen.
     when:
       pixelated: true
   alt:
