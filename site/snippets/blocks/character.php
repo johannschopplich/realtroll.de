@@ -14,13 +14,10 @@ $scale = $file && $file->width() <= 48 ? 3 : 1;
     ]) ?>
     <?php if ($file): ?>
       <div class="flex flex-none items-end justify-center mb-[-2px] size-24 bg-theme-background">
-        <img
-          class="pixelated"
-          src="<?= $file->url() ?>"
-          width="<?= $file->width() * $scale ?>"
-          height="<?= $file->height() * $scale ?>"
-          alt=""
-        >
+        <?php snippet('components/pixel-image', [
+          'file' => $file,
+          'scale' => $scale
+        ]) ?>
       </div>
     <?php endif ?>
     <div class="pb-2">

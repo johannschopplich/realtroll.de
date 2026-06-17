@@ -15,7 +15,5 @@ fields:
     image:
       ratio: 1/1
   pixelated:
-    label: Kantenscharf
-    type: toggle
+    extends: fields/pixelated
     default: false
-    help: Für Pixelgrafiken – verhindert weiches Hochskalieren.

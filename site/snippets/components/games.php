@@ -22,13 +22,12 @@ if (!$items || $items->count() === 0) return;
         <div class="relative z-0 p-3xl bg-white border-2 border-primary-700 transition-[transform,z-index] duration-200 md:grid md:grid-cols-2 md:items-center md:gap-5xl md:p-5xl md:group-hover:translate-[-4px] md:group-hover:z-2 md:group-active:translate-0">
           <?php if ($logo): ?>
             <figure class="flex items-center justify-center mb-4xl md:mb-0">
-              <img
-                class="pixelated max-w-full h-auto"
-                src="<?= $logo->url() ?>"
-                width="<?= $logo->width() * 2 ?>"
-                height="<?= $logo->height() * 2 ?>"
-                alt="<?= $game->title()->escape() ?>"
-              >
+              <?php snippet('components/pixel-image', [
+                'file' => $logo,
+                'scale' => 2,
+                'class' => 'max-w-full h-auto',
+                'alt' => $game->title()
+              ]) ?>
             </figure>
           <?php endif ?>
 
@@ -51,13 +50,12 @@ if (!$items || $items->count() === 0) return;
         <div class="relative grid grid-rows-[1fr_auto] p-3xl h-full bg-white border-2 border-primary-700 transition-transform duration-200 md:p-5xl md:group-hover:translate-[-4px] md:group-active:translate-0">
           <?php if ($logo): ?>
             <figure class="mb-4xl">
-              <img
-                class="pixelated mx-auto"
-                src="<?= $logo->url() ?>"
-                width="<?= $logo->width() * 2 ?>"
-                height="<?= $logo->height() * 2 ?>"
-                alt="<?= $game->title()->escape() ?>"
-              >
+              <?php snippet('components/pixel-image', [
+                'file' => $logo,
+                'scale' => 2,
+                'class' => 'mx-auto',
+                'alt' => $game->title()
+              ]) ?>
             </figure>
           <?php else: ?>
             <p class="flex items-center justify-center">(Kein Logo)</p>

@@ -11,11 +11,9 @@ fields:
     uploads:
       template: image
   pixelated:
-    label: Kantenscharf
-    type: toggle
+    extends: fields/pixelated
     default: true
     width: 1/2
-    help: Für Pixelgrafiken – verhindert weiches Hochskalieren.
   scale:
     label: Vergrößerung
     type: toggles
