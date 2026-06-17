@@ -3,9 +3,12 @@
 /** @var \Kirby\Cms\Block $block */
 
 $pixelated = $block->pixelated()->isTrue();
+$images = $block->images()->toFiles();
 
 snippet('components/image-grid', [
-  'images' => $block->images()->toFiles(),
+  'images' => $images,
   'pixelated' => $pixelated,
-  'intrinsic' => $pixelated
+  'layout' => $pixelated
+    ? 'intrinsic'
+    : ($images->count() <= 2 ? 'centered' : 'grid')
 ]);

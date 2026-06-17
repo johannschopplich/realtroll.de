@@ -5,4 +5,5 @@
 snippet('components/image-grid', [
   'images' => $block->images()->toFiles(),
   'pixelated' => true,
+  'layout' => 'grid'
 ]);
