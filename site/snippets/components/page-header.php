@@ -21,13 +21,13 @@ $showFaces ??= false;
   style="background: url('<?= asset('assets/img/bg-pattern.svg')->url() ?>') center top repeat fixed"
 >
   <div class="flex flex-col items-center">
-    <img
-      class="pixelated md:scale-[1.5]"
-      src="<?= $image->url() ?>"
-      width="<?= $width ?>"
-      height="<?= (int) round($width / $image->ratio()) ?>"
-      alt="<?= $alt ?>"
-    >
+    <img <?= attr([
+      'class' => 'pixelated md:scale-[1.5]',
+      'src' => $image->url(),
+      'width' => $width,
+      'height' => (int) round($width / $image->ratio()),
+      'alt' => $alt
+    ]) ?>>
     <?php if ($text): ?>
       <p class="mt-3xl px-3xl max-w-prose font-medium text-center text-balance tracking-tight md:mt-5xl"><?= $text ?></p>
     <?php endif ?>

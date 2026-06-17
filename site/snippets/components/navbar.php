@@ -83,7 +83,7 @@ $navItems = [
       <a <?= attr([
         'href' => $item['url'],
         'class' => 'link-default underline-offset-4 text-primary-700',
-        'aria-current' => $item['current'] ? 'page' : null,
+        'aria-current' => $item['current'] ? 'page' : null
       ]) ?>>
         <?= esc($item['label']) ?>
       </a>

@@ -85,14 +85,15 @@ $window = array_values(array_filter(
               aria-current="page"
             ><?= $n ?></span>
           <?php else: ?>
-            <a
-              href="<?= $pagination->pageUrl($n) ?>"
-              class="inline-flex items-center justify-center min-w-9 h-9 px-2 font-heading leading-none text-primary-700 bg-white border-2 border-primary-700 transition hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-solid"
-              <?php if ($n === $currentPage - 1): ?>
-                rel="prev"<?php elseif ($n === $currentPage + 1): ?>
-                rel="next"
-              <?php endif ?>
-            ><?= $n ?></a>
+            <a <?= attr([
+              'href' => $pagination->pageUrl($n),
+              'class' => 'inline-flex items-center justify-center min-w-9 h-9 px-2 font-heading leading-none text-primary-700 bg-white border-2 border-primary-700 transition hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-solid',
+              'rel' => match (true) {
+                $n === $currentPage - 1 => 'prev',
+                $n === $currentPage + 1 => 'next',
+                default => null
+              }
+            ]) ?>><?= $n ?></a>
           <?php endif ?>
           <?php $previous = $n ?>
         <?php endforeach ?>
