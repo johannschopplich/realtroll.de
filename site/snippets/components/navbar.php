@@ -58,13 +58,13 @@ $navItems = [
               </summary>
               <ul
                 data-subpage-panel
-                class="absolute left-0 top-full z-20 flex flex-col gap-1 p-1 min-w-[9rem] list-none bg-theme-background border-2 border-primary-700 shadow-solid"
+                class="absolute left-0 top-full z-20 flex flex-col gap-0.5 p-1 min-w-[9rem] list-none bg-theme-background border-2 border-primary-700 shadow-solid"
               >
                 <?php foreach ($sections as $section): ?>
                   <li>
                     <a
                       href="<?= $section->url() ?>"
-                      class="link-default [--un-decoration-offset:2px] block px-2 py-0.5 text-sm font-medium leading-tight text-primary-700/80 hover:text-primary-700"
+                      class="link-default [--un-decoration-offset:2px] block px-2 py-1 text-sm font-medium leading-tight text-primary-700/80 hover:text-primary-700"
                       <?php e($section->is($page), 'aria-current="page"') ?>
                     ><?= esc($section->title()) ?></a>
                   </li>
