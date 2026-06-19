@@ -41,6 +41,11 @@ export default defineConfig<Theme>({
     radius: {
       DEFAULT: "0",
     },
+    default: {
+      transition: {
+        duration: "200ms",
+      },
+    },
     shadow: {
       solid: "4px 4px 0 var(--un-color-primary-700)",
       float: [
@@ -116,7 +121,7 @@ export default defineConfig<Theme>({
         }`,
     ],
     [
-      /^content-(.+)$/,
+      /^content-([a-z0-9]+)$/,
       ([, bp], { theme }) => {
         const maxWidth = bp === "prose" ? `max-w-${bp}` : `max-w-screen-${bp}`;
         return `relative mx-auto ${maxWidth} w-[calc(100%-2*${(theme as Theme)?.spacing?.lg})]`;
