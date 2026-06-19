@@ -4,7 +4,10 @@
 /** @var \Kirby\Cms\Site $site */
 /** @var \Kirby\Cms\Page $page */
 /** @var array|null $header */
+/** @var bool|null $hasFooter */
 /** @var \Kirby\Template\Slot|null $slot */
+
+$hasFooter ??= true;
 
 ?>
 <!doctype html>
@@ -39,7 +42,7 @@
 </head>
 <body class="overflow-x-clip min-h-dvh" data-template="<?= $page->intendedTemplate()->name() ?>">
 
-  <div class="relative z-1 min-h-dvh bg-polka-grid border-b-2 border-primary-700">
+  <div class="relative z-1 min-h-dvh bg-polka-grid <?php e(!$hasFooter, 'border-b-2 border-primary-700') ?>">
     <?php snippet('components/navbar') ?>
 
     <?php if ($header ?? null): ?>
@@ -51,15 +54,11 @@
     </main>
 
     <div class="pt-7xl"></div>
-    <?php if ($hasFooter ?? true): ?>
-      <div class="absolute bottom-0 left-1/2 flex items-center justify-center px-xs text-primary-700 bg-theme-background -translate-x-1/2 translate-y-1/2" aria-hidden="true">
-        <?= svg('assets/img/diamond.svg') ?>
+    <?php if ($hasFooter): ?>
+      <div class="absolute inset-x-0 bottom-0 translate-y-1/2">
+        <?php snippet('components/diamond-divider') ?>
       </div>
     <?php endif ?>
-    <?php snippet('components/corner-squares', [
-      'corners' => ['bottom-left', 'bottom-right'],
-      'size' => 2
-    ]) ?>
   </div>
 
   <?php snippet('components/footer') ?>

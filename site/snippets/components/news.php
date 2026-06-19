@@ -32,7 +32,7 @@ $dateFormatter = new IntlDateFormatter('de_DE', IntlDateFormatter::LONG, IntlDat
           <p class="label-caps mb-1 text-xs text-contrast-medium">
             <time datetime="<?= $post->date()->toDate('c') ?>"><?= $post->date()->toDate($dateFormatter) ?></time>
           </p>
-          <h3 class="mb-2 font-heading text-lg leading-tight text-primary-700 hyphenate"><?= $post->title()->escape() ?></h3>
+          <h3 class="hyphenate mb-2 font-heading text-lg leading-tight text-primary-700"><?= $post->title()->escape() ?></h3>
           <?php if ($lead): ?>
             <p class="text-sm text-contrast-medium line-clamp-3"><?= esc($lead) ?></p>
           <?php endif ?>

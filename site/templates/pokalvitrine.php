@@ -44,7 +44,7 @@ snippet('layouts/default', ['hasFooter' => true], slots: true);
 
     <div class="grid grid-cols-[2rem_1fr] gap-x-lg md:grid-cols-[3rem_1fr]">
       <div class="relative">
-        <span class="absolute left-1/2 top-0 bottom-0 w-0.5 -translate-x-1/2 bg-contrast-lower" aria-hidden="true"></span>
+        <span class="absolute left-1/2 top-0 bottom-0 w-0.5 bg-contrast-lower -translate-x-1/2" aria-hidden="true"></span>
       </div>
 
       <div class="grid items-start gap-x-4xl gap-y-lg py-3xl md:grid-cols-[10rem_1fr]">

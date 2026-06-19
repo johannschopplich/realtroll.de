@@ -32,7 +32,7 @@ $columnCount = 1 + $columns->count() + ($socialLinks->isNotEmpty() ? 1 : 0);
 
         <?php foreach ($columns as $column): ?>
           <nav class="flex flex-col items-center md:items-start" aria-label="<?= $column->heading()->escape() ?>">
-            <p class="label-caps text-xs text-contrast-medium mb-2"><?= $column->heading()->escape() ?></p>
+            <p class="label-caps mb-2 text-xs text-contrast-medium"><?= $column->heading()->escape() ?></p>
             <?php foreach ($column->links()->toPages() as $linkPage): ?>
               <a href="<?= $linkPage->url() ?>" class="link-default text-sm"><?= $linkPage->title()->escape() ?></a>
             <?php endforeach ?>
@@ -41,7 +41,7 @@ $columnCount = 1 + $columns->count() + ($socialLinks->isNotEmpty() ? 1 : 0);
 
         <?php if ($socialLinks->isNotEmpty()): ?>
           <nav class="flex flex-col items-center md:items-start" aria-label="Folgen">
-            <p class="label-caps text-xs text-contrast-medium mb-2">Folgen</p>
+            <p class="label-caps mb-2 text-xs text-contrast-medium">Folgen</p>
             <ul class="group flex items-center gap-3" role="list">
               <?php foreach ($socialLinks as $link): ?>
                 <?php $social = $socials[$link->platform()->value()] ?>
