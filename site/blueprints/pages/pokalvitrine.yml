@@ -1,0 +1,66 @@
+title: Pokalvitrine
+
+icon: 🏆
+
+options:
+  changeTemplate: false
+
+tabs:
+  content:
+    label: Inhalt
+    icon: draft
+    columns:
+      main:
+        width: 1/1
+        fields:
+          intro:
+            label: Einleitung
+            type: writer
+            inline: true
+          awards:
+            label: Auszeichnungen & Presse
+            type: structure
+            columns:
+              year:
+                width: 1/12
+              label:
+                width: 8/12
+              games:
+                width: 3/12
+            fields:
+              year:
+                label: Jahr
+                type: number
+                width: 1/6
+                required: true
+              type:
+                label: Art
+                type: select
+                width: 1/6
+                default: award
+                options:
+                  award: Auszeichnung
+                  press: Presse
+              label:
+                label: Titel
+                type: text
+                width: 4/6
+              games:
+                label: Spiele
+                type: pages
+                query: site.find("spiele").children
+                image:
+                  back: white
+              badges:
+                label: Abzeichen
+                type: files
+                query: page.images
+                uploads:
+                  template: image
+                image:
+                  back: white
+              caption:
+                label: Text
+                type: writer
+
+  seo: tabs/seo

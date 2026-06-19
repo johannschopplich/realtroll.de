@@ -21,7 +21,7 @@ tabs:
 
   pages:
     label: Seiten
-    icon: settings
+    icon: page
     sections:
       pages:
         type: pages
@@ -29,6 +29,46 @@ tabs:
         create: default
         image:
           back: white
+      footerFields:
+        type: fields
+        fields:
+          footerHeadline:
+            label: Footer
+            type: headline
+          footerColumns:
+            label: Spalten
+            type: structure
+            text: "{{ heading }}"
+            empty: Noch keine Spalten angelegt.
+            help: Jede Zeile wird zu einer Footer-Spalte – mit Überschrift und den darunter verlinkten Seiten. Reihenfolge frei sortierbar.
+            fields:
+              heading:
+                label: Überschrift
+                type: text
+                required: true
+              links:
+                label: Seiten
+                type: pages
+                query: site.index.filterBy("template", "!=", "article")
+                image:
+                  back: white
+          social:
+            label: Social-Media
+            type: structure
+            text: "{{ platform }}"
+            empty: Noch keine Profile verlinkt.
+            fields:
+              platform:
+                label: Plattform
+                type: select
+                width: 1/3
+                options:
+                  instagram: Instagram
+                  youtube: YouTube
+              url:
+                label: URL
+                type: url
+                width: 2/3
 
   seo:
     label: SEO

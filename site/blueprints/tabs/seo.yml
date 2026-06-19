@@ -4,9 +4,15 @@ columns:
   main:
     width: 2/3
     sections:
-      seoFields:
+      metadata:
         type: fields
         fields:
           customTitle: fields/customTitle
           description: fields/description
+  sidebar:
+    width: 1/3
+    sections:
+      preview:
+        type: fields
+        fields:
           thumbnail: fields/thumbnail
