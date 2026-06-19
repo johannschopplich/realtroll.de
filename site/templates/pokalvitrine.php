@@ -1,32 +1,21 @@
 <?php
 
-/**
- * Pokalvitrine – chronological showcase of awards & press for real Troll's
- * games. A vertical timeline: a continuous rail with year nodes, each entry's
- * badges and caption hanging to the right. Entries come from the page's
- * `awards` structure (games -> pages, badges -> page files).
- *
- * @var \Kirby\Cms\Page $page
- */
+/** @var \Kirby\Cms\Page $page */
 
-// Newest first; the sort is stable, so the editor's manual order is preserved
-// within a year and each year node is emitted once as the year changes.
 $entries = $page->awards()->toStructure()->sortBy('year', 'desc');
 
-// Badges span 16×16 pixel stars to 300×115 banners to tall 140×188 trophies.
-// Portrait images are bound by height so they don't tower; clearly horizontal
-// banners are bound by width so they fill the badge column – a height-only rule
-// shrank low-ratio banners (pdm-*, r≈1.8) far below the wider Deji ones (r≈2.6)
-// and let the widest (cbs, r≈3.2) overflow. Small squares upscale by height.
+// Clearly-landscape banners bind to the column width; everything else binds to
+// height. A height-only rule sized each banner by its ratio, so narrow ones
+// shrank below the wide ones and the widest overflowed the column.
 $badgeClass = function ($file) {
   $ratio = $file ? max(0.01, $file->ratio()) : 1;
   if ($ratio <= 0.85) {
-    return 'w-auto h-28 md:h-32'; // portrait trophies
+    return 'w-auto h-28 md:h-32'; // Portrait trophies
   }
   if ($ratio >= 1.7) {
-    return 'h-auto w-32 md:w-40'; // horizontal banners fill the column
+    return 'h-auto w-32 md:w-40'; // Horizontal banners fill the column
   }
-  return 'w-auto h-14 md:h-16'; // square-ish icons & near-square badges
+  return 'w-auto h-14 md:h-16'; // Square-ish icons & near-square badges
 };
 
 snippet('layouts/default', ['hasFooter' => true], slots: true);

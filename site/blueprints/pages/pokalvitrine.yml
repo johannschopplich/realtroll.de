@@ -58,7 +58,7 @@ tabs:
                 uploads:
                   template: image
                 image:
-                  back: white
+                  back: black
               caption:
                 label: Text
                 type: writer
