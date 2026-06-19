@@ -21,12 +21,16 @@ $pagination = $articles->pagination();
 $currentPage = $pagination->page();
 $pages = $pagination->pages();
 
+// Pagination splits by count, not by year, so a year link also needs an anchor –
+// the page alone would land in the previous year's tail.
 $yearPage = [];
+$yearAnchor = [];
 $index = 0;
 foreach ($all as $entry) {
   $year = (int) $entry->date()->toDate('Y');
   if (!isset($yearPage[$year])) {
     $yearPage[$year] = intdiv($index, $perPage) + 1;
+    $yearAnchor[$year] = $entry->slug();
   }
   $index++;
 }
@@ -35,8 +39,15 @@ $maxYear = $years ? max($years) : (int) date('Y');
 $minYear = $years ? min($years) : $maxYear;
 $span = max(1, $maxYear - $minYear);
 
-$currentYear = $articles->first() ? (int) $articles->first()->date()->toDate('Y') : $maxYear;
-$playheadPos = ($maxYear - $currentYear) / $span * 100;
+// Playhead follows real dates, not the even year grid, so it never snaps to a tick.
+$datePos = function ($entry) use ($maxYear, $span) {
+  $year = (int) $entry->date()->toDate('Y');
+  $yearValue = $year + (int) $entry->date()->toDate('z') / 366;
+  return ($maxYear - $yearValue) / $span * 100;
+};
+$playheadPos = $articles->count()
+  ? max(0, min(100, ($datePos($articles->first()) + $datePos($articles->last())) / 2))
+  : 0;
 
 $window = array_values(array_filter(
   range(1, $pages),
@@ -50,7 +61,7 @@ $window = array_values(array_filter(
 <?php if ($pagination->total() === 0): ?>
   <p class="content-prose text-center text-contrast-medium">Noch keine Einträge.</p>
 <?php else: ?>
-  <div class="bg-starfield pb-4xl">
+  <div class="pb-4xl bg-starfield">
     <div class="content-lg">
       <?php foreach ($articles as $article): ?>
         <article id="<?= $article->slug() ?>" class="blog-card relative scroll-mt-8xl p-3xl mb-5xl max-w-[min(var(--container-prose),90%)] bg-white border-2 border-primary-700 [&:nth-child(odd)]:mr-auto [&:nth-child(even)]:ml-auto last:mb-0 md:p-5xl">
@@ -113,16 +124,15 @@ $window = array_values(array_filter(
             $isLustrum = $year % 5 === 0;
             $isEnd = $year === $maxYear || $year === $minYear;
             $isMajor = $isLustrum || $isEnd;
-            $isCurrent = $year === $currentYear;
             $isMobileMark = $isEnd || ($isLustrum && abs($year - $maxYear) > 2 && abs($year - $minYear) > 2);
             ?>
             <a
-              href="<?= $pagination->pageUrl($yearPage[$year]) ?>"
+              href="<?= $pagination->pageUrl($yearPage[$year]) ?>#<?= $yearAnchor[$year] ?>"
               class="group absolute bottom-0 block w-6 h-9 text-primary-700 -translate-x-1/2 pointer-events-auto max-md:w-11 <?= $isMobileMark ? '' : 'max-md:hidden' ?>"
               style="left: <?= round($pos, 2) ?>%"
               aria-label="Zu <?= $year ?>"
             >
-              <span class="absolute bottom-0 left-1/2 bg-current -translate-x-1/2 translate-y-1/2 <?= $isLustrum ? 'w-2.5 h-2.5' : 'w-1.5 h-1.5' ?><?= $isCurrent ? ' hidden' : '' ?>"></span>
+              <span class="absolute bottom-0 left-1/2 bg-current -translate-x-1/2 translate-y-1/2 <?= $isLustrum ? 'w-2.5 h-2.5' : 'w-1.5 h-1.5' ?>"></span>
               <span class="absolute bottom-3 left-1/2 font-heading text-xs leading-none whitespace-nowrap -translate-x-1/2 <?= $isMajor ? 'opacity-100' : 'opacity-0 transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100' ?>"><?= $year ?></span>
             </a>
           <?php endforeach ?>
