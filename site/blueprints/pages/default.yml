@@ -13,6 +13,29 @@ tabs:
           text:
             label: Text
             type: blocks
+            fieldsets:
+              text:
+                label: Text
+                type: group
+                fieldsets:
+                  - heading
+                  - text
+                  - list
+                  - quote
+              media:
+                label: Medien
+                type: group
+                fieldsets:
+                  - image
+                  - gallery
+                  - video
+              more:
+                label: Mehr
+                type: group
+                fieldsets:
+                  - code
+                  - markdown
+                  - line
 
       sidebar:
         width: 1/3

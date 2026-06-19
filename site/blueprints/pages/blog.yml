@@ -10,6 +10,12 @@ tabs:
     label: Artikel
     icon: text
     sections:
+      header:
+        type: fields
+        fields:
+          headertext:
+            label: Header-Text
+            type: text
       articles:
         type: pages
         label: Artikel

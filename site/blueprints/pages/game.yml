@@ -17,16 +17,32 @@ tabs:
                 label: Text
                 type: blocks
                 fieldsets:
-                  - heading
-                  - text
-                  - list
-                  - character
-                  - image
-                  - video
-                  - quote
-                  - line
-                  - screenshots
-                  - gallery
+                  text:
+                    label: Text
+                    type: group
+                    fieldsets:
+                      - heading
+                      - text
+                      - list
+                      - quote
+                  media:
+                    label: Medien
+                    type: group
+                    fieldsets:
+                      - image
+                      - video
+                      - gallery
+                  game:
+                    label: Spiel
+                    type: group
+                    fieldsets:
+                      - character
+                      - screenshots
+                  more:
+                    label: Mehr
+                    type: group
+                    fieldsets:
+                      - line
 
       sidebar:
         width: 1/3

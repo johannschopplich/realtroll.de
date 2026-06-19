@@ -12,8 +12,7 @@ tabs:
         fields:
           text:
             label: Text
-            type: textarea
-            buttons: false
+            type: text
 
       sidebar:
         width: 1/3
