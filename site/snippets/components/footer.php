@@ -1,0 +1,60 @@
+<?php
+
+$socials = [
+  'instagram' => ['icon' => 'i-dinkie-icons-instagram', 'label' => 'Instagram'],
+  'youtube' => ['icon' => 'i-dinkie-icons-television-filled', 'label' => 'YouTube']
+];
+
+$socialLinks = site()->social()->toStructure()->filter(
+  fn ($entry) => $entry->url()->isNotEmpty() && isset($socials[$entry->platform()->value()])
+);
+
+$columns = site()->footerColumns()->toStructure()->filter(
+  fn ($column) => $column->heading()->isNotEmpty() && $column->links()->toPages()->isNotEmpty()
+);
+
+$columnCount = 1 + $columns->count() + ($socialLinks->isNotEmpty() ? 1 : 0);
+
+?>
+<footer class="sticky bottom-0 z-0 bg-theme-background">
+  <div class="relative pt-9xl pb-xl bg-graph-paper">
+    <div class="absolute inset-0 overflow-hidden pointer-events-none select-none" aria-hidden="true">
+      <svg class="absolute inset-x-0 bottom-0 mx-auto w-full max-w-screen-lg opacity-5" viewBox="40 0 3880 760" focusable="false">
+        <text x="0" y="760" font-size="1000" text-anchor="start" class="font-heading font-bold fill-primary-700">real Troll</text>
+      </svg>
+    </div>
+
+    <div class="content-lg">
+      <div class="grid gap-x-5xl gap-y-4xl text-center md:grid-cols-[repeat(var(--footer-cols),minmax(0,1fr))] md:items-start md:text-left" style="--footer-cols: <?= $columnCount ?>">
+        <div class="relative flex justify-center md:block md:self-stretch">
+          <img class="pixelated md:absolute md:bottom-0 md:left-0" src="<?= asset('assets/img/real-troll-avatar.gif')->url() ?>" width="48" height="96" alt="Avatar von real Troll">
+        </div>
+
+        <?php foreach ($columns as $column): ?>
+          <nav class="flex flex-col items-center md:items-start" aria-label="<?= $column->heading()->escape() ?>">
+            <p class="label-caps text-xs text-contrast-medium mb-2"><?= $column->heading()->escape() ?></p>
+            <?php foreach ($column->links()->toPages() as $linkPage): ?>
+              <a href="<?= $linkPage->url() ?>" class="link-default text-sm"><?= $linkPage->title()->escape() ?></a>
+            <?php endforeach ?>
+          </nav>
+        <?php endforeach ?>
+
+        <?php if ($socialLinks->isNotEmpty()): ?>
+          <nav class="flex flex-col items-center md:items-start" aria-label="Folgen">
+            <p class="label-caps text-xs text-contrast-medium mb-2">Folgen</p>
+            <ul class="group flex items-center gap-3" role="list">
+              <?php foreach ($socialLinks as $link): ?>
+                <?php $social = $socials[$link->platform()->value()] ?>
+                <li>
+                  <a href="<?= $link->url()->escape() ?>" class="inline-flex text-xl transition-opacity group-hover:not-hover:opacity-60 group-has-[:focus-visible]:not-focus-visible:opacity-60" target="_blank" rel="noopener" aria-label="<?= $social['label'] ?>">
+                    <span class="<?= $social['icon'] ?>" aria-hidden="true"></span>
+                  </a>
+                </li>
+              <?php endforeach ?>
+            </ul>
+          </nav>
+        <?php endif ?>
+      </div>
+    </div>
+  </div>
+</footer>

@@ -5,16 +5,18 @@ use Kirby\Cms\App;
 App::plugin('realtroll/website', [
     'siteMethods' => [
         'realTroll' => function (): array {
+            $sameAs = ['https://realtroll.de', 'https://realtroll.hpage.com'];
+            foreach ($this->social()->toStructure() as $entry) {
+                if ($entry->url()->isNotEmpty()) {
+                    $sameAs[] = $entry->url()->value();
+                }
+            }
+
             return [
                 '@type' => 'Person',
                 'name' => 'real Troll',
                 'url' => 'https://realtroll.de',
-                'sameAs' => [
-                    'https://realtroll.de',
-                    'https://realtroll.hpage.com',
-                    'https://www.instagram.com/der_real_troll/',
-                    'https://www.youtube.com/user/realtroll'
-                ]
+                'sameAs' => $sameAs
             ];
         }
     ],

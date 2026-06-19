@@ -7,7 +7,7 @@ $scale = $file && $file->width() <= 48 ? 3 : 1;
 
 ?>
 <article>
-  <div class="relative flex items-end gap-xs border-b-2 border-primary-700">
+  <div class="relative flex items-end gap-3 border-b-2 border-primary-700">
     <?php snippet('components/corner-squares', [
       'corners' => ['bottom-right'],
       'size' => 2,
