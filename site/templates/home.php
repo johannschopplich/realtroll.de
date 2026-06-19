@@ -20,6 +20,8 @@ snippet('layouts/default', [
   <?php snippet('components/games') ?>
 </div>
 
+<?php snippet('components/news') ?>
+
 <figure
   id="screenshot-showcase"
   class="fixed bottom-[var(--spacing-lg)] right-[var(--spacing-lg)] z-50 m-0 p-2 bg-white border-2 border-primary-700 shadow-float pointer-events-none invisible opacity-0 translate-y-4 transition-[opacity,transform,visibility] duration-250 ease-out motion-reduce:transition-none"

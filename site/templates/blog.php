@@ -53,7 +53,7 @@ $window = array_values(array_filter(
   <div class="bg-starfield pb-4xl">
     <div class="content-lg">
       <?php foreach ($articles as $article): ?>
-        <article class="blog-card relative p-3xl mb-5xl max-w-[min(var(--container-prose),90%)] bg-white border-2 border-primary-700 [&:nth-child(odd)]:mr-auto [&:nth-child(even)]:ml-auto last:mb-0 md:p-5xl">
+        <article id="<?= $article->slug() ?>" class="blog-card relative scroll-mt-8xl p-3xl mb-5xl max-w-[min(var(--container-prose),90%)] bg-white border-2 border-primary-700 [&:nth-child(odd)]:mr-auto [&:nth-child(even)]:ml-auto last:mb-0 md:p-5xl">
           <?php snippet('components/corner-squares', ['size' => 3]) ?>
 
           <header class="mb-xl">
