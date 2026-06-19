@@ -25,9 +25,9 @@ $columnCount = 1 + $columns->count() + ($socialLinks->isNotEmpty() ? 1 : 0);
     </div>
 
     <div class="content-lg">
-      <div class="grid gap-x-5xl gap-y-4xl text-center md:grid-cols-[repeat(var(--footer-cols),minmax(0,1fr))] md:items-start md:text-left" style="--footer-cols: <?= $columnCount ?>">
-        <div class="relative flex justify-center md:block md:self-stretch">
-          <img class="pixelated md:absolute md:bottom-0 md:left-0" src="<?= asset('assets/img/real-troll-avatar.gif')->url() ?>" width="48" height="96" alt="Avatar von real Troll">
+      <div class="grid gap-x-7xl gap-y-4xl text-center md:grid-cols-[repeat(var(--footer-cols),auto)] md:justify-center md:items-start md:text-left" style="--footer-cols: <?= $columnCount ?>">
+        <div class="relative flex justify-center md:block md:w-12 md:self-stretch">
+          <img class="pixelated md:absolute md:bottom-[0.25em] md:left-0" src="<?= asset('assets/img/real-troll-avatar.gif')->url() ?>" width="48" height="96" alt="Avatar von real Troll">
         </div>
 
         <?php foreach ($columns as $column): ?>
