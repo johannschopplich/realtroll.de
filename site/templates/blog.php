@@ -38,16 +38,8 @@ $years = array_keys($yearPage);
 $maxYear = $years ? max($years) : (int) date('Y');
 $minYear = $years ? min($years) : $maxYear;
 $span = max(1, $maxYear - $minYear);
-
-// Playhead follows real dates, not the even year grid, so it never snaps to a tick.
-$datePos = function ($entry) use ($maxYear, $span) {
-  $year = (int) $entry->date()->toDate('Y');
-  $yearValue = $year + (int) $entry->date()->toDate('z') / 366;
-  return ($maxYear - $yearValue) / $span * 100;
-};
-$playheadPos = $articles->count()
-  ? max(0, min(100, ($datePos($articles->first()) + $datePos($articles->last())) / 2))
-  : 0;
+// Newest article on the current page marks the active year on the timeline.
+$currentYear = $articles->first() ? (int) $articles->first()->date()->toDate('Y') : $maxYear;
 
 $window = array_values(array_filter(
   range(1, $pages),
@@ -121,6 +113,7 @@ $window = array_values(array_filter(
           <?php foreach ($years as $year): ?>
             <?php
             $pos = ($maxYear - $year) / $span * 100;
+            $isActive = $year === $currentYear;
             $isLustrum = $year % 5 === 0;
             $isEnd = $year === $maxYear || $year === $minYear;
             $isMajor = $isLustrum || $isEnd;
@@ -132,13 +125,18 @@ $window = array_values(array_filter(
               style="left: <?= round($pos, 2) ?>%"
               aria-label="Zu <?= $year ?>"
             >
-              <span class="absolute bottom-0 left-1/2 bg-current -translate-x-1/2 translate-y-1/2 <?= $isLustrum ? 'w-2.5 h-2.5' : 'w-1.5 h-1.5' ?>"></span>
-              <span class="absolute bottom-3 left-1/2 font-heading text-xs leading-none whitespace-nowrap -translate-x-1/2 <?= $isMajor ? 'opacity-100' : 'opacity-0 transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100' ?>"><?= $year ?></span>
+              <span class="absolute bottom-0 left-1/2 h-9 w-8 -translate-x-1/2 translate-y-1/2"></span>
+              <?php if ($isActive): ?>
+                <span class="absolute bottom-0 left-1/2 flex items-center px-1 -translate-x-1/2 translate-y-1/2">
+                  <span class="absolute inset-x-0 top-1/2 h-0.5 bg-theme-background -translate-y-1/2"></span>
+                  <span class="relative"><?= svg('assets/img/diamond.svg') ?></span>
+                </span>
+              <?php else: ?>
+                <span class="absolute bottom-0 left-1/2 bg-current -translate-x-1/2 translate-y-1/2 <?= $isLustrum ? 'w-2.5 h-2.5' : 'w-1.5 h-1.5' ?>"></span>
+              <?php endif ?>
+              <span class="absolute bottom-3 left-1/2 font-heading text-xs leading-none whitespace-nowrap -translate-x-1/2 <?= $isMajor || $isActive ? 'opacity-100' : 'opacity-0 transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100' ?>"><?= $year ?></span>
             </a>
           <?php endforeach ?>
-          <span class="absolute bottom-0 z-2 flex items-center px-xs text-primary-700 bg-theme-background -translate-x-1/2 translate-y-1/2" style="left: <?= round($playheadPos, 2) ?>%" aria-hidden="true">
-            <?= svg('assets/img/diamond.svg') ?>
-          </span>
         </div>
       </nav>
     </div>
