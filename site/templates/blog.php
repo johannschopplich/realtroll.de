@@ -121,11 +121,10 @@ $window = array_values(array_filter(
             ?>
             <a
               href="<?= $pagination->pageUrl($yearPage[$year]) ?>#<?= $yearAnchor[$year] ?>"
-              class="group absolute bottom-0 block w-6 h-9 text-primary-700 -translate-x-1/2 pointer-events-auto max-md:w-11 <?= $isMobileMark ? '' : 'max-md:hidden' ?>"
+              class="group absolute bottom-0 w-8 h-9 text-primary-700 -translate-x-1/2 pointer-events-auto max-md:w-11 <?= $isMobileMark ? '' : 'max-md:hidden' ?>"
               style="left: <?= round($pos, 2) ?>%"
               aria-label="Zu <?= $year ?>"
             >
-              <span class="absolute bottom-0 left-1/2 h-9 w-8 -translate-x-1/2 translate-y-1/2"></span>
               <?php if ($isActive): ?>
                 <span class="absolute bottom-0 left-1/2 flex items-center px-1 -translate-x-1/2 translate-y-1/2">
                   <span class="absolute inset-x-0 top-1/2 h-0.5 bg-theme-background -translate-y-1/2"></span>

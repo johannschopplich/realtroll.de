@@ -17,7 +17,7 @@ $columnCount = 1 + $columns->count() + ($socialLinks->isNotEmpty() ? 1 : 0);
 
 ?>
 <footer class="sticky bottom-0 z-0 bg-theme-background">
-  <div class="relative pt-9xl pb-xl bg-graph-paper">
+  <div class="relative pt-9xl pb-3xl bg-graph-paper">
     <div class="absolute inset-0 overflow-hidden pointer-events-none select-none" aria-hidden="true">
       <svg class="absolute inset-x-0 bottom-0 mx-auto w-full max-w-screen-lg opacity-5" viewBox="40 0 3880 760" focusable="false">
         <text x="0" y="760" font-size="1000" text-anchor="start" class="font-heading font-bold fill-primary-700">real Troll</text>
