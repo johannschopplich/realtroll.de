@@ -27,11 +27,11 @@ snippet('layouts/default', slots: true);
 
 ?>
 
-<div class="content-lg text-center">
-  <?php if ($parent = $page->parent()): ?>
-    <p class="label-caps mb-lg text-sm text-contrast-medium"><?= $parent->title()->escape() ?></p>
-  <?php endif ?>
-  <h1 class="display-title"><?= $page->title()->escape() ?></h1>
+<div class="content-lg">
+  <?php snippet('components/page-title', [
+    'eyebrow' => $page->parent()?->title()?->escape(),
+    'title' => $page->title()->value()
+  ]) ?>
 </div>
 
 <?php if ($chapters === []): ?>

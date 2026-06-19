@@ -29,11 +29,11 @@ $navItems = [
 <nav
   id="main-nav"
   data-scrolled="false"
-  class="group sticky top-0 z-10 flex items-center justify-between gap-xl px-lg h-14 border-b-2 border-transparent transition-colors duration-200 data-[scrolled=true]:bg-theme-background data-[scrolled=true]:border-primary-700 md:px-5xl"
+  class="group sticky top-0 z-10 flex items-center justify-between gap-xl px-lg h-14 border-b-2 border-transparent transition-colors data-[scrolled=true]:bg-theme-background data-[scrolled=true]:border-primary-700 md:px-5xl"
   aria-label="Hauptnavigation"
 >
-  <span class="corner-square -bottom-px left-0 size-2 -translate-x-1/2 translate-y-1/2 opacity-0 transition-opacity duration-200 group-data-[scrolled=true]:opacity-100" aria-hidden="true"></span>
-  <span class="corner-square -bottom-px right-0 size-2 translate-x-1/2 translate-y-1/2 opacity-0 transition-opacity duration-200 group-data-[scrolled=true]:opacity-100" aria-hidden="true"></span>
+  <span class="corner-square -bottom-px left-0 size-2 -translate-x-1/2 translate-y-1/2 opacity-0 transition-opacity group-data-[scrolled=true]:opacity-100" aria-hidden="true"></span>
+  <span class="corner-square -bottom-px right-0 size-2 translate-x-1/2 translate-y-1/2 opacity-0 transition-opacity group-data-[scrolled=true]:opacity-100" aria-hidden="true"></span>
   <div class="flex items-center gap-2 min-w-0">
     <a
       href="<?= $site->homePage()->url() ?>"
@@ -45,16 +45,16 @@ $navItems = [
       <span class="<?php e($onGameTree, 'hidden sm:inline') ?>">real Troll</span>
     </a>
     <?php if ($onGameTree): ?>
-      <nav class="flex items-center gap-2 min-w-0 text-sm font-medium tracking-tight text-primary-700/70" aria-label="Brotkrumen">
+      <nav class="flex items-center gap-2 min-w-0 text-sm font-medium tracking-tight text-primary-700" aria-label="Brotkrumen">
         <?php foreach ($crumbs as $crumb): ?>
           <span class="shrink-0 text-primary-700/40" aria-hidden="true">/</span>
           <?php if (!$crumb->is($page)): ?>
-            <a href="<?= $crumb->url() ?>" class="link-default shrink-0 underline-offset-4 hover:text-primary-700"><?= esc($crumb->title()) ?></a>
+            <a href="<?= $crumb->url() ?>" class="link-default shrink-0 underline-offset-4"><?= esc($crumb->title()) ?></a>
           <?php elseif ($sections?->isNotEmpty()): ?>
             <details class="relative shrink-0" data-subpage-menu>
               <summary class="flex items-center gap-1 min-h-6 cursor-pointer list-none text-primary-700 [&::-webkit-details-marker]:hidden">
                 <?= esc($crumb->title()) ?>
-                <span class="inline-block text-[1.2em] leading-none motion-safe:transition-transform motion-safe:duration-200 [details[open]_&]:rotate-180" aria-hidden="true">&#x25BE;</span>
+                <span class="inline-block text-[1.2em] leading-none motion-safe:transition-transform [details[open]_&]:rotate-180" aria-hidden="true">&#x25BE;</span>
               </summary>
               <ul
                 data-subpage-panel
@@ -64,7 +64,7 @@ $navItems = [
                   <li>
                     <a
                       href="<?= $section->url() ?>"
-                      class="link-default [--un-decoration-offset:2px] block px-2 py-1 text-sm font-medium leading-tight text-primary-700/80 hover:text-primary-700"
+                      class="link-default [--un-decoration-offset:2px] block px-2 py-1 text-sm font-medium leading-tight text-primary-700"
                       <?php e($section->is($page), 'aria-current="page"') ?>
                     ><?= esc($section->title()) ?></a>
                   </li>

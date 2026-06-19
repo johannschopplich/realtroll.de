@@ -19,7 +19,7 @@ if (!$items || $items->count() === 0) return;
     >
       <?php if ($isFeatured): ?>
         <?php /* z-0 → group-hover:z-2 lifts the card above the header faces (z-1) */ ?>
-        <div class="relative z-0 p-3xl bg-white border-2 border-primary-700 transition-[transform,z-index] duration-200 md:grid md:grid-cols-2 md:items-center md:gap-5xl md:p-5xl md:group-hover:translate-[-4px] md:group-hover:z-2 md:group-active:translate-0">
+        <div class="relative z-0 p-3xl bg-white border-2 border-primary-700 transition-[transform,z-index] md:grid md:grid-cols-2 md:items-center md:gap-5xl md:p-5xl md:group-hover:translate-[-4px] md:group-hover:z-2 md:group-active:translate-0">
           <?php if ($logo): ?>
             <figure class="flex items-center justify-center mb-4xl md:mb-0">
               <?php snippet('components/pixel-image', [
@@ -42,12 +42,12 @@ if (!$items || $items->count() === 0) return;
               aria-label="<?= $game->title()->escape() ?> ansehen"
             >
               <span class="link-default [--un-decoration-color:transparent] group-hover:decoration-current">Zum Spiel</span>
-              <span class="i-dinkie-icons-white-right-backhand-index absolute left-full top-1/2 ml-1 opacity-0 -translate-y-1/2 transition-[opacity,margin] duration-200 group-hover:opacity-100 group-hover:ml-2 motion-reduce:transition-none" aria-hidden="true"></span>
+              <span class="i-dinkie-icons-white-right-backhand-index absolute left-full top-1/2 ml-1 opacity-0 -translate-y-1/2 transition-[opacity,margin] group-hover:opacity-100 group-hover:ml-2 motion-reduce:transition-none" aria-hidden="true"></span>
             </a>
           </div>
         </div>
       <?php else: ?>
-        <div class="relative grid grid-rows-[1fr_auto] p-3xl h-full bg-white border-2 border-primary-700 transition-transform duration-200 md:p-5xl md:group-hover:translate-[-4px] md:group-active:translate-0">
+        <div class="relative grid grid-rows-[1fr_auto] p-3xl h-full bg-white border-2 border-primary-700 transition-transform md:p-5xl md:group-hover:translate-[-4px] md:group-active:translate-0">
           <?php if ($logo): ?>
             <figure class="mb-4xl">
               <?php snippet('components/pixel-image', [
@@ -73,7 +73,7 @@ if (!$items || $items->count() === 0) return;
             >
               <span class="link-default [--un-decoration-color:transparent] group-hover:decoration-current">Zum Spiel</span>
               <?php /* Hand erscheint erst beim Hover und "läuft" Richtung Spiel; absolut positioniert → kein Layout-Shift */ ?>
-              <span class="i-dinkie-icons-white-right-backhand-index absolute left-full top-1/2 ml-1 opacity-0 -translate-y-1/2 transition-[opacity,margin] duration-200 group-hover:opacity-100 group-hover:ml-3 motion-reduce:transition-none" aria-hidden="true"></span>
+              <span class="i-dinkie-icons-white-right-backhand-index absolute left-full top-1/2 ml-1 opacity-0 -translate-y-1/2 transition-[opacity,margin] group-hover:opacity-100 group-hover:ml-3 motion-reduce:transition-none" aria-hidden="true"></span>
             </a>
           </div>
         </div>

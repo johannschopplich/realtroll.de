@@ -56,7 +56,7 @@ $window = array_values(array_filter(
         <?php snippet('components/corner-squares', ['size' => 3]) ?>
 
         <header class="mb-xl">
-          <p class="label-caps mb-xs text-sm text-contrast-medium">
+          <p class="label-caps mb-1 text-sm text-contrast-medium">
             <time datetime="<?= $article->date()->toDate('c') ?>"><?= $article->date()->toDate($dateFormatter) ?></time>
           </p>
           <h2 class="font-heading text-xl leading-none text-primary-700">
@@ -87,23 +87,23 @@ $window = array_values(array_filter(
           <?php else: ?>
             <a <?= attr([
               'href' => $pagination->pageUrl($n),
-              'class' => 'inline-flex items-center justify-center min-w-9 h-9 px-2 font-heading leading-none text-primary-700 bg-white border-2 border-primary-700 transition hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-solid',
+              'class' => 'group inline-flex',
               'rel' => match (true) {
                 $n === $currentPage - 1 => 'prev',
                 $n === $currentPage + 1 => 'next',
                 default => null
               }
-            ]) ?>><?= $n ?></a>
+            ]) ?>>
+              <span class="inline-flex items-center justify-center min-w-9 h-9 px-2 font-heading leading-none text-primary-700 bg-white border-2 border-primary-700 transition-[transform,box-shadow] group-hover:-translate-x-0.5 group-hover:-translate-y-0.5 group-hover:shadow-solid group-focus-visible:-translate-x-0.5 group-focus-visible:-translate-y-0.5 group-focus-visible:shadow-solid motion-reduce:transition-none"><?= $n ?></span>
+            </a>
           <?php endif ?>
           <?php $previous = $n ?>
         <?php endforeach ?>
       </nav>
     </div>
 
-    <?php /* Outside content-*: anchors to the wrapper in layouts/default.php whose border-b is the footer line. */ ?>
     <div class="absolute inset-x-0 -bottom-px z-1 h-12 pointer-events-none">
       <nav class="mx-auto h-full max-w-3xl px-2xl" aria-label="Zeitachse – zu Jahr springen">
-        <?php /* Own positioning context so the percent-positioned ticks inset into the padding – otherwise clipped on mobile. */ ?>
         <div class="relative h-full">
           <?php foreach ($years as $year): ?>
             <?php
@@ -121,13 +121,11 @@ $window = array_values(array_filter(
               aria-label="Zu <?= $year ?>"
             >
               <span class="absolute bottom-0 left-1/2 bg-current -translate-x-1/2 translate-y-1/2 <?= $isLustrum ? 'w-2.5 h-2.5' : 'w-1.5 h-1.5' ?><?= $isCurrent ? ' hidden' : '' ?>"></span>
-              <span class="absolute bottom-3 left-1/2 font-heading text-xs leading-none whitespace-nowrap -translate-x-1/2 <?= $isMajor ? 'opacity-100' : 'opacity-0 transition-opacity duration-150 group-hover:opacity-100 group-focus-visible:opacity-100' ?>"><?= $year ?></span>
+              <span class="absolute bottom-3 left-1/2 font-heading text-xs leading-none whitespace-nowrap -translate-x-1/2 <?= $isMajor ? 'opacity-100' : 'opacity-0 transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100' ?>"><?= $year ?></span>
             </a>
           <?php endforeach ?>
           <span class="absolute bottom-0 z-2 flex items-center px-xs text-primary-700 bg-theme-background -translate-x-1/2 translate-y-1/2" style="left: <?= round($playheadPos, 2) ?>%" aria-hidden="true">
-            <svg width="14" height="14" viewBox="0 0 14 14" shape-rendering="crispEdges" fill="currentColor">
-              <path d="M6 0h2v2h2v2h2v2h2v2h-2v2h-2v2h-2v2H6v-2H4v-2H2v-2H0V6h2V4h2V2h2z"/>
-            </svg>
+            <?= svg('assets/img/diamond.svg') ?>
           </span>
         </div>
       </nav>
