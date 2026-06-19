@@ -13,7 +13,7 @@ tabs:
       header:
         type: fields
         fields:
-          headertext:
+          headerText:
             label: Header-Text
             type: text
       articles:

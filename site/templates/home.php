@@ -7,7 +7,7 @@ snippet('layouts/default', [
   'header' => [
     'image' => asset('assets/img/willkommen.gif'),
     'alt' => 'Willkommen auf realtroll.de',
-    'text' => $page->text()->kti(),
+    'text' => $page->text()->escape(),
     'showFaces' => true
   ]
 ], slots: true);

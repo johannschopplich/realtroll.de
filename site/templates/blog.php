@@ -7,7 +7,7 @@ snippet('layouts/default', [
     'image' => asset('assets/img/neues.gif'),
     'alt' => 'Neues',
     'width' => 120,
-    'text' => 'Devlog &amp; Notizen aus der Werkstatt'
+    'text' => $page->headerText()->escape()
   ],
   'hasFooter' => false
 ], slots: true);
