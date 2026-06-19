@@ -50,30 +50,32 @@ $window = array_values(array_filter(
 <?php if ($pagination->total() === 0): ?>
   <p class="content-prose text-center text-contrast-medium">Noch keine Einträge.</p>
 <?php else: ?>
-  <div class="content-lg">
-    <?php foreach ($articles as $article): ?>
-      <article class="blog-card relative p-3xl mb-5xl max-w-[min(var(--container-prose),90%)] bg-white border-2 border-primary-700 [&:nth-child(odd)]:mr-auto [&:nth-child(even)]:ml-auto md:p-5xl">
-        <?php snippet('components/corner-squares', ['size' => 3]) ?>
+  <div class="bg-starfield pb-4xl">
+    <div class="content-lg">
+      <?php foreach ($articles as $article): ?>
+        <article class="blog-card relative p-3xl mb-5xl max-w-[min(var(--container-prose),90%)] bg-white border-2 border-primary-700 [&:nth-child(odd)]:mr-auto [&:nth-child(even)]:ml-auto last:mb-0 md:p-5xl">
+          <?php snippet('components/corner-squares', ['size' => 3]) ?>
 
-        <header class="mb-xl">
-          <p class="label-caps mb-1 text-sm text-contrast-medium">
-            <time datetime="<?= $article->date()->toDate('c') ?>"><?= $article->date()->toDate($dateFormatter) ?></time>
-          </p>
-          <h2 class="font-heading text-xl leading-none text-primary-700">
-            <a href="<?= $article->url() ?>" class="link-default"><?= $article->title()->escape() ?></a>
-          </h2>
-        </header>
+          <header class="mb-xl">
+            <p class="label-caps mb-1 text-sm text-contrast-medium">
+              <time datetime="<?= $article->date()->toDate('c') ?>"><?= $article->date()->toDate($dateFormatter) ?></time>
+            </p>
+            <h2 class="font-heading text-xl leading-none text-primary-700">
+              <a href="<?= $article->url() ?>" class="link-default"><?= $article->title()->escape() ?></a>
+            </h2>
+          </header>
 
-        <div class="prose text-sm">
-          <?= $article->text()->toBlocks() ?>
-        </div>
-      </article>
-    <?php endforeach ?>
+          <div class="prose text-sm">
+            <?= $article->text()->toBlocks() ?>
+          </div>
+        </article>
+      <?php endforeach ?>
+    </div>
   </div>
 
   <?php if ($pagination->hasPages()): ?>
     <div class="content-prose">
-      <nav class="flex flex-wrap items-center justify-center gap-2 mt-8xl" aria-label="Seitennavigation">
+      <nav class="flex flex-wrap items-center justify-center gap-2 mt-4xl" aria-label="Seitennavigation">
         <?php $previous = null ?>
         <?php foreach ($window as $n): ?>
           <?php if ($previous !== null && $n - $previous > 1): ?>

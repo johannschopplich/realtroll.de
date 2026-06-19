@@ -158,4 +158,8 @@
       linear-gradient(90deg, var(--un-color-primary-100) 1px, transparent 1px);
     background-size: 12px 12px;
   }
+
+  .bg-starfield {
+    background: url("/assets/img/bg-pattern.svg") center top repeat fixed;
+  }
 }

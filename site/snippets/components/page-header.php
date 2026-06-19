@@ -15,10 +15,9 @@ $showFaces ??= false;
 ?>
 <header
   class="<?= trim(implode(' ', [
-    'pixelated relative flex items-center justify-center pt-6xl md:pt-7xl',
+    'pixelated relative flex items-center justify-center pt-6xl bg-starfield md:pt-7xl',
     $showFaces ? 'pb-8xl md:pb-[calc(var(--spacing-9xl)+var(--spacing-xl))]' : 'pb-6xl md:pb-7xl'
   ]), ' ') ?>"
-  style="background: url('<?= asset('assets/img/bg-pattern.svg')->url() ?>') center top repeat fixed"
 >
   <div class="flex flex-col items-center">
     <img <?= attr([
