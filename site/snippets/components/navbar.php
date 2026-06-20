@@ -51,7 +51,7 @@ $navItems = [
           <?php if (!$crumb->is($page)): ?>
             <a href="<?= $crumb->url() ?>" class="link-default min-w-0 truncate underline-offset-4"><?= esc($crumb->title()) ?></a>
           <?php elseif ($sections?->isNotEmpty()): ?>
-            <details class="relative shrink-[9999] min-w-0" data-subpage-menu>
+            <details class="relative shrink-[100] min-w-0" data-subpage-menu>
               <summary class="flex items-center gap-1 min-w-0 min-h-6 cursor-pointer list-none text-primary-700 [&::-webkit-details-marker]:hidden">
                 <span class="min-w-0 truncate"><?= esc($crumb->title()) ?></span>
                 <span class="inline-block shrink-0 text-[1.2em] leading-none motion-safe:transition-transform [details[open]_&]:rotate-180" aria-hidden="true">&#x25BE;</span>
