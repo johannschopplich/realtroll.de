@@ -160,6 +160,6 @@
   }
 
   .bg-starfield {
-    background: url("/assets/img/bg-pattern.svg") center top repeat fixed;
+    background: url("/assets/img/bg-pattern.svg?v2") center top repeat fixed;
   }
 }
