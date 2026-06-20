@@ -49,12 +49,12 @@ $navItems = [
         <?php foreach ($crumbs as $crumb): ?>
           <span class="shrink-0 text-primary-700/40" aria-hidden="true">/</span>
           <?php if (!$crumb->is($page)): ?>
-            <a href="<?= $crumb->url() ?>" class="link-default shrink-0 underline-offset-4"><?= esc($crumb->title()) ?></a>
+            <a href="<?= $crumb->url() ?>" class="link-default min-w-0 truncate underline-offset-4"><?= esc($crumb->title()) ?></a>
           <?php elseif ($sections?->isNotEmpty()): ?>
-            <details class="relative shrink-0" data-subpage-menu>
-              <summary class="flex items-center gap-1 min-h-6 cursor-pointer list-none text-primary-700 [&::-webkit-details-marker]:hidden">
-                <?= esc($crumb->title()) ?>
-                <span class="inline-block text-[1.2em] leading-none motion-safe:transition-transform [details[open]_&]:rotate-180" aria-hidden="true">&#x25BE;</span>
+            <details class="relative shrink-[9999] min-w-0" data-subpage-menu>
+              <summary class="flex items-center gap-1 min-w-0 min-h-6 cursor-pointer list-none text-primary-700 [&::-webkit-details-marker]:hidden">
+                <span class="min-w-0 truncate"><?= esc($crumb->title()) ?></span>
+                <span class="inline-block shrink-0 text-[1.2em] leading-none motion-safe:transition-transform [details[open]_&]:rotate-180" aria-hidden="true">&#x25BE;</span>
               </summary>
               <ul
                 data-subpage-panel
@@ -72,7 +72,7 @@ $navItems = [
               </ul>
             </details>
           <?php else: ?>
-            <span class="truncate text-primary-700" aria-current="page"><?= esc($crumb->title()) ?></span>
+            <span class="min-w-0 truncate text-primary-700" aria-current="page"><?= esc($crumb->title()) ?></span>
           <?php endif ?>
         <?php endforeach ?>
       </nav>
