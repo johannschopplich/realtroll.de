@@ -2,16 +2,6 @@
 
 /** @var \Kirby\Cms\Page $page */
 
-snippet('layouts/default', [
-  'header' => [
-    'image' => asset('assets/img/neues.gif'),
-    'alt' => 'Neues',
-    'width' => 120,
-    'text' => $page->headerText()->escape()
-  ],
-  'hasFooter' => false
-], slots: true);
-
 $dateFormatter = new IntlDateFormatter('de_DE', IntlDateFormatter::LONG, IntlDateFormatter::NONE);
 
 $perPage = 20;
@@ -45,6 +35,16 @@ $window = array_values(array_filter(
   range(1, $pages),
   fn ($n) => $n === 1 || $n === $pages || abs($n - $currentPage) <= 1
 ));
+
+snippet('layouts/default', [
+  'header' => [
+    'image' => asset('assets/img/neues.gif'),
+    'alt' => 'Neues',
+    'width' => 120,
+    'text' => $page->headerText()->escape()
+  ],
+  'bottomEdge' => $pagination->hasPages() ? 'none' : 'border'
+], slots: true);
 
 ?>
 
@@ -121,13 +121,14 @@ $window = array_values(array_filter(
             ?>
             <a
               href="<?= $pagination->pageUrl($yearPage[$year]) ?>#<?= $yearAnchor[$year] ?>"
-              class="group absolute bottom-0 w-8 h-9 text-primary-700 -translate-x-1/2 pointer-events-auto max-md:w-11 <?= $isMobileMark ? '' : 'max-md:hidden' ?>"
+              class="group absolute bottom-0 w-8 h-9 text-primary-700 -translate-x-1/2 pointer-events-auto max-md:w-11 <?= $isMobileMark || $isActive ? '' : 'max-md:hidden' ?>"
               style="left: <?= round($pos, 2) ?>%"
               aria-label="Zu <?= $year ?>"
             >
               <?php if ($isActive): ?>
                 <span class="absolute bottom-0 left-1/2 flex items-center px-1 -translate-x-1/2 translate-y-1/2">
-                  <span class="absolute inset-x-0 top-1/2 h-0.5 bg-theme-background -translate-y-1/2"></span>
+                  <span class="absolute right-full top-1/2 w-screen h-0.5 bg-primary-700 -translate-y-1/2"></span>
+                  <span class="absolute left-full top-1/2 w-screen h-0.5 bg-primary-700 -translate-y-1/2"></span>
                   <span class="relative"><?= svg('assets/img/diamond.svg') ?></span>
                 </span>
               <?php else: ?>

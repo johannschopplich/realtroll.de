@@ -18,7 +18,7 @@ $badgeClass = function ($file) {
   return 'w-auto h-14 md:h-16'; // Square-ish icons & near-square badges
 };
 
-snippet('layouts/default', ['hasFooter' => true], slots: true);
+snippet('layouts/default', slots: true);
 
 ?>
 <div class="content-prose">

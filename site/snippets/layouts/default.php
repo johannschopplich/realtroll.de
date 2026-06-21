@@ -4,10 +4,10 @@
 /** @var \Kirby\Cms\Site $site */
 /** @var \Kirby\Cms\Page $page */
 /** @var array|null $header */
-/** @var bool|null $hasFooter */
+/** @var string|null $bottomEdge `divider` | `border` | `none` */
 /** @var \Kirby\Template\Slot|null $slot */
 
-$hasFooter ??= true;
+$bottomEdge ??= 'divider';
 
 ?>
 <!doctype html>
@@ -42,7 +42,7 @@ $hasFooter ??= true;
 </head>
 <body class="overflow-x-clip min-h-dvh" data-template="<?= $page->intendedTemplate()->name() ?>">
 
-  <div class="relative z-1 min-h-dvh bg-polka-grid <?php e(!$hasFooter, 'border-b-2 border-primary-700') ?>">
+  <div class="relative z-1 min-h-dvh bg-polka-grid <?php e($bottomEdge === 'border', 'border-b-2 border-primary-700') ?>">
     <?php snippet('components/navbar') ?>
 
     <?php if ($header ?? null): ?>
@@ -54,7 +54,7 @@ $hasFooter ??= true;
     </main>
 
     <div class="pt-7xl"></div>
-    <?php if ($hasFooter): ?>
+    <?php if ($bottomEdge === 'divider'): ?>
       <div class="absolute inset-x-0 bottom-0 translate-y-1/2">
         <?php snippet('components/diamond-divider') ?>
       </div>
