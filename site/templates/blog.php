@@ -68,9 +68,51 @@ snippet('layouts/default', [
             </h2>
           </header>
 
-          <div class="prose text-sm">
+          <div
+            id="entry-<?= $article->slug() ?>"
+            class="
+              prose text-sm
+              max-md:[--blog-clamp:18rem]
+              max-md:data-[overflowing]:max-h-[var(--blog-clamp)]
+              max-md:data-[overflowing]:overflow-clip
+              max-md:data-[overflowing]:[mask-image:linear-gradient(to_bottom,black_65%,transparent)]
+            "
+            data-clampable
+          >
             <?= $article->text()->toBlocks() ?>
           </div>
+          <button
+            type="button"
+            class="group link-primary mt-lg py-2 text-sm md:hidden"
+            aria-expanded="false"
+            aria-controls="entry-<?= $article->slug() ?>"
+            data-clamp-toggle
+            hidden
+          >
+            <span
+              class="
+                link-default [--un-decoration-color:transparent]
+                group-hover:decoration-current group-focus-visible:decoration-current
+              "
+            >
+              <span class="group-aria-expanded:hidden">Weiterlesen</span>
+              <span class="hidden group-aria-expanded:inline">Weniger anzeigen</span>
+            </span>
+            <span
+              class="
+                i-dinkie-icons-white-down-backhand-index
+                transition-transform group-hover:translate-y-0.5 group-aria-expanded:hidden motion-reduce:transition-none
+              "
+              aria-hidden="true"
+            ></span>
+            <span
+              class="
+                i-dinkie-icons-white-up-backhand-index
+                hidden transition-transform group-hover:-translate-y-0.5 group-aria-expanded:inline-block motion-reduce:transition-none
+              "
+              aria-hidden="true"
+            ></span>
+          </button>
         </article>
       <?php endforeach ?>
     </div>
