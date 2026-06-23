@@ -103,7 +103,7 @@ snippet('layouts/default', [
             >Weiterlesen</span>
             <span
               class="
-                i-dinkie-icons-white-down-backhand-index
+                i-dinkie-icons-right-then-curving-down-arrow
                 transition-transform group-hover:translate-y-0.5 motion-reduce:transition-none
               "
               aria-hidden="true"
