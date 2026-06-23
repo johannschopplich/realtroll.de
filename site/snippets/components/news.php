@@ -28,7 +28,15 @@ $dateFormatter = new IntlDateFormatter('de_DE', IntlDateFormatter::LONG, IntlDat
       }
       ?>
       <li class="group">
-        <a href="<?= $blog->url() ?>#<?= $post->slug() ?>" class="flex flex-col h-full p-2xl bg-white border-2 border-primary-700 transition-[transform,box-shadow] md:p-3xl md:group-hover:translate-[-4px] md:group-hover:shadow-solid md:group-active:translate-0">
+        <a
+          href="<?= $blog->url() ?>#<?= $post->slug() ?>"
+          class="
+            flex flex-col h-full p-2xl
+            bg-white border-2 border-primary-700
+            transition-[transform,box-shadow]
+            md:p-3xl md:group-hover:translate-[-4px] md:group-hover:shadow-solid md:group-active:translate-0
+          "
+        >
           <p class="label-caps mb-1 text-xs text-contrast-medium">
             <time datetime="<?= $post->date()->toDate('c') ?>"><?= $post->date()->toDate($dateFormatter) ?></time>
           </p>

@@ -33,7 +33,12 @@ $showFaces ??= false;
   </div>
   <?php if ($showFaces): ?>
     <img
-      class="pixelated absolute bottom-0 left-1/2 z-1 max-w-none origin-bottom -translate-x-1/2 -translate-y-[2px] scale-[1.5] md:scale-[2]"
+      class="
+        pixelated absolute bottom-0 left-1/2 z-1
+        max-w-none
+        origin-bottom -translate-x-1/2 -translate-y-[2px] scale-[1.5]
+        md:scale-[2]
+      "
       src="<?= asset('assets/img/editorial-gesichter.png')->url() ?>"
       width="207"
       height="42"

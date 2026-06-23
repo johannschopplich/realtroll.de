@@ -29,11 +29,34 @@ $navItems = [
 <nav
   id="main-nav"
   data-scrolled="false"
-  class="group sticky top-0 z-10 flex items-center justify-between gap-xl px-lg h-14 border-b-2 border-transparent transition-colors data-[scrolled=true]:bg-theme-background data-[scrolled=true]:border-primary-700 md:px-5xl"
+  class="
+    group sticky top-0 z-10 flex items-center justify-between gap-xl
+    px-lg h-14
+    border-b-2 border-transparent
+    transition-colors
+    data-[scrolled=true]:bg-theme-background data-[scrolled=true]:border-primary-700
+    md:px-5xl
+  "
   aria-label="Hauptnavigation"
 >
-  <span class="corner-square -bottom-px left-0 size-2 -translate-x-1/2 translate-y-1/2 opacity-0 transition-opacity group-data-[scrolled=true]:opacity-100" aria-hidden="true"></span>
-  <span class="corner-square -bottom-px right-0 size-2 translate-x-1/2 translate-y-1/2 opacity-0 transition-opacity group-data-[scrolled=true]:opacity-100" aria-hidden="true"></span>
+  <span
+    class="
+      corner-square
+      -bottom-px left-0 size-2
+      -translate-x-1/2 translate-y-1/2 opacity-0 transition-opacity
+      group-data-[scrolled=true]:opacity-100
+    "
+    aria-hidden="true"
+  ></span>
+  <span
+    class="
+      corner-square
+      -bottom-px right-0 size-2
+      translate-x-1/2 translate-y-1/2 opacity-0 transition-opacity
+      group-data-[scrolled=true]:opacity-100
+    "
+    aria-hidden="true"
+  ></span>
   <div class="flex items-center gap-2 min-w-0">
     <a
       href="<?= $site->homePage()->url() ?>"
@@ -58,7 +81,11 @@ $navItems = [
               </summary>
               <ul
                 data-subpage-panel
-                class="absolute left-0 top-full z-20 flex flex-col gap-0.5 p-1 min-w-[9rem] list-none bg-theme-background border-2 border-primary-700 shadow-solid"
+                class="
+                  absolute left-0 top-full z-20 flex flex-col gap-0.5
+                  p-1 min-w-[9rem]
+                  list-none bg-theme-background border-2 border-primary-700 shadow-solid
+                "
               >
                 <?php foreach ($sections as $section): ?>
                   <li>

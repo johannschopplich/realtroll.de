@@ -25,7 +25,14 @@ $columnCount = 1 + $columns->count() + ($socialLinks->isNotEmpty() ? 1 : 0);
     </div>
 
     <div class="content-lg">
-      <div class="grid gap-x-7xl gap-y-4xl text-center md:grid-cols-[repeat(var(--footer-cols),auto)] md:justify-center md:items-start md:text-left" style="--footer-cols: <?= $columnCount ?>">
+      <div
+        class="
+          grid gap-x-7xl gap-y-4xl
+          text-center
+          md:grid-cols-[repeat(var(--footer-cols),auto)] md:justify-center md:items-start md:text-left
+        "
+        style="--footer-cols: <?= $columnCount ?>"
+      >
         <div class="relative flex justify-center md:block md:w-12 md:self-stretch">
           <img class="pixelated md:absolute md:bottom-[0.25em] md:left-0" src="<?= asset('assets/img/real-troll-avatar.gif')->url() ?>" width="48" height="96" alt="Avatar von real Troll">
         </div>
@@ -46,7 +53,18 @@ $columnCount = 1 + $columns->count() + ($socialLinks->isNotEmpty() ? 1 : 0);
               <?php foreach ($socialLinks as $link): ?>
                 <?php $social = $socials[$link->platform()->value()] ?>
                 <li>
-                  <a href="<?= $link->url()->escape() ?>" class="inline-flex text-xl transition-opacity group-hover:not-hover:opacity-60 group-has-[:focus-visible]:not-focus-visible:opacity-60" target="_blank" rel="noopener" aria-label="<?= $social['label'] ?>">
+                  <a
+                    href="<?= $link->url()->escape() ?>"
+                    class="
+                      inline-flex
+                      text-xl
+                      transition-opacity
+                      group-hover:not-hover:opacity-60 group-has-[:focus-visible]:not-focus-visible:opacity-60
+                    "
+                    target="_blank"
+                    rel="noopener"
+                    aria-label="<?= $social['label'] ?>"
+                  >
                     <span class="<?= $social['icon'] ?>" aria-hidden="true"></span>
                   </a>
                 </li>
