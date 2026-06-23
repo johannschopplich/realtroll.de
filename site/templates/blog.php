@@ -56,7 +56,16 @@ snippet('layouts/default', [
   <div class="pb-4xl bg-starfield">
     <div class="content-lg">
       <?php foreach ($articles as $article): ?>
-        <article id="<?= $article->slug() ?>" class="blog-card relative scroll-mt-8xl p-3xl mb-5xl max-w-[min(var(--container-prose),90%)] bg-white border-2 border-primary-700 [&:nth-child(odd)]:mr-auto [&:nth-child(even)]:ml-auto last:mb-0 md:p-5xl">
+        <article
+          id="<?= $article->slug() ?>"
+          class="
+            blog-card relative scroll-mt-8xl
+            p-3xl mb-5xl max-w-[min(var(--container-prose),90%)]
+            bg-white border-2 border-primary-700
+            [&:nth-child(odd)]:mr-auto [&:nth-child(even)]:ml-auto last:mb-0
+            md:p-5xl
+          "
+        >
           <?php snippet('components/corner-squares', ['size' => 3]) ?>
 
           <header class="mb-xl">
@@ -69,7 +78,6 @@ snippet('layouts/default', [
           </header>
 
           <div
-            id="entry-<?= $article->slug() ?>"
             class="
               prose text-sm
               max-md:[--blog-clamp:18rem]
@@ -84,8 +92,6 @@ snippet('layouts/default', [
           <button
             type="button"
             class="group link-primary mt-lg py-2 text-sm md:hidden"
-            aria-expanded="false"
-            aria-controls="entry-<?= $article->slug() ?>"
             data-clamp-toggle
             hidden
           >
@@ -94,21 +100,11 @@ snippet('layouts/default', [
                 link-default [--un-decoration-color:transparent]
                 group-hover:decoration-current group-focus-visible:decoration-current
               "
-            >
-              <span class="group-aria-expanded:hidden">Weiterlesen</span>
-              <span class="hidden group-aria-expanded:inline">Weniger anzeigen</span>
-            </span>
+            >Weiterlesen</span>
             <span
               class="
                 i-dinkie-icons-white-down-backhand-index
-                transition-transform group-hover:translate-y-0.5 group-aria-expanded:hidden motion-reduce:transition-none
-              "
-              aria-hidden="true"
-            ></span>
-            <span
-              class="
-                i-dinkie-icons-white-up-backhand-index
-                hidden transition-transform group-hover:-translate-y-0.5 group-aria-expanded:inline-block motion-reduce:transition-none
+                transition-transform group-hover:translate-y-0.5 motion-reduce:transition-none
               "
               aria-hidden="true"
             ></span>
@@ -128,7 +124,12 @@ snippet('layouts/default', [
           <?php endif ?>
           <?php if ($n === $currentPage): ?>
             <span
-              class="inline-flex items-center justify-center min-w-9 h-9 px-2 font-heading leading-none text-white bg-primary-700 border-2 border-primary-700"
+              class="
+                inline-flex items-center justify-center
+                min-w-9 h-9 px-2
+                font-heading leading-none text-white bg-primary-700
+                border-2 border-primary-700
+              "
               aria-current="page"
             ><?= $n ?></span>
           <?php else: ?>
@@ -141,7 +142,18 @@ snippet('layouts/default', [
                 default => null
               }
             ]) ?>>
-              <span class="inline-flex items-center justify-center min-w-9 h-9 px-2 font-heading leading-none text-primary-700 bg-white border-2 border-primary-700 transition-[transform,box-shadow] group-hover:-translate-x-0.5 group-hover:-translate-y-0.5 group-hover:shadow-solid group-focus-visible:-translate-x-0.5 group-focus-visible:-translate-y-0.5 group-focus-visible:shadow-solid motion-reduce:transition-none"><?= $n ?></span>
+              <span
+                class="
+                  inline-flex items-center justify-center
+                  min-w-9 h-9 px-2
+                  font-heading leading-none text-primary-700 bg-white
+                  border-2 border-primary-700
+                  transition-[transform,box-shadow]
+                  group-hover:-translate-x-0.5 group-hover:-translate-y-0.5 group-hover:shadow-solid
+                  group-focus-visible:-translate-x-0.5 group-focus-visible:-translate-y-0.5 group-focus-visible:shadow-solid
+                  motion-reduce:transition-none
+                "
+              ><?= $n ?></span>
             </a>
           <?php endif ?>
           <?php $previous = $n ?>

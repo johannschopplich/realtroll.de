@@ -13,10 +13,10 @@ export default function () {
   });
 
   for (const { body, toggle } of controls) {
+    // One-way reveal: lift the clamp for good and retire the button
     toggle.addEventListener("click", () => {
-      const expanded = toggle.getAttribute("aria-expanded") !== "true";
-      toggle.setAttribute("aria-expanded", String(expanded));
-      body.toggleAttribute("data-overflowing", !expanded);
+      body.removeAttribute("data-overflowing");
+      toggle.remove();
     });
   }
 
@@ -26,7 +26,7 @@ export default function () {
       16;
 
     for (const { body, toggle } of controls) {
-      if (toggle.getAttribute("aria-expanded") === "true") continue;
+      if (!toggle.isConnected) continue;
 
       const clampPx =
         Number.parseFloat(
