@@ -17,7 +17,7 @@ $bottomEdge ??= 'divider';
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title><?= $page->customTitle()->or($page->title() . ' – ' . $site->title()) ?></title>
+  <title><?= $page->customTitle()->or($page->title() . ' [' . $site->title() . ']') ?></title>
 
   <?php $meta = $page->meta() ?>
   <?= $meta->robots() ?>
