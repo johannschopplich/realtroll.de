@@ -111,6 +111,18 @@ export default defineConfig<Theme>({
       },
     ],
     ["pixelated", { "image-rendering": "pixelated" }],
+    [
+      "crt-overlay",
+      {
+        "pointer-events": "none",
+        background: [
+          "radial-gradient(75% 55% at 50% 34%, rgb(255 255 255 / 0.12), transparent 60%)",
+          "radial-gradient(130% 130% at 50% 50%, transparent 42%, rgb(0 0 0 / 0.6) 100%)",
+          "repeating-linear-gradient(rgb(0 0 0 / 0.26) 0 1px, transparent 1px 3px)",
+        ].join(", "),
+        "box-shadow": "inset 0 0 4rem rgb(0 0 0 / 0.7)",
+      },
+    ],
   ],
   shortcuts: [
     [

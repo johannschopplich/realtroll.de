@@ -8,12 +8,13 @@ $logo = $page->logo()->toFile();
 
 ?>
 <div class="md:content-lg">
-  <div class="relative overflow-hidden md:border-2 md:border-primary-700">
+  <div class="relative overflow-hidden md:flex md:flex-col md:justify-center md:aspect-[2/1] md:rounded-[var(--spacing-sm)/var(--spacing-2xl)] md:border-2 md:border-primary-700">
     <?php if ($heroScreenshot = ($page->heroScreenshot()->toFile() ?? $page->screenshots()->first())): ?>
       <img class="pixelated absolute inset-0 size-full object-cover" src="<?= $heroScreenshot->url() ?>" alt="" aria-hidden="true">
     <?php endif ?>
-    <div class="absolute inset-0 bg-primary-950/75" aria-hidden="true"></div>
-    <div class="relative py-8xl px-3xl text-center md:py-9xl">
+    <div class="absolute inset-0 bg-primary-950/65" aria-hidden="true"></div>
+    <div class="crt-overlay absolute inset-0" aria-hidden="true"></div>
+    <div class="relative py-8xl px-3xl text-center">
       <h1 class="<?= $logo ? 'sr-only' : 'display-title hyphenate' ?>"><?= $page->title()->escape() ?></h1>
       <?php if ($logo): ?>
         <img <?= attr([
