@@ -17,7 +17,7 @@ $citation = $block->citation();
       <?= $text ?>
     </blockquote>
     <?php if ($citation->isNotEmpty()): ?>
-      <figcaption class="mt-1 text-sm text-contrast-medium">– <?= $citation ?></figcaption>
+      <figcaption class="mt-1 text-sm font-medium text-contrast-medium">– <?= $citation ?></figcaption>
     <?php endif ?>
   </div>
 
