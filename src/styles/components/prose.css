@@ -32,7 +32,7 @@
       font-size: var(--un-text-lg);
     }
 
-    & :where(figure) {
+    & :where(figure):not(:where(.not-prose, .not-prose *)) {
       text-align: center;
       margin-inline: 0;
 
@@ -45,7 +45,7 @@
       }
     }
 
-    & :where(figcaption) {
+    & :where(figcaption):not(:where(.not-prose, .not-prose *)) {
       margin-top: 0.5rem;
     }
   }
