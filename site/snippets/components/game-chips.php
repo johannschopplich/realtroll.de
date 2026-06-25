@@ -18,18 +18,27 @@ $releaseStatusLabels = [
   'in-progress' => 'In Arbeit',
 ];
 
-$chips = array_filter([
-  $releaseStatusLabels[$game->releaseStatus()->value()] ?? null,
-  $game->published()->isNotEmpty() ? $game->published()->toDate('Y') : null,
-  !$page->isHomePage() && $game->engine()->isNotEmpty() ? $game->engine()->value() : null
-]);
+$chips = [];
+
+if ($status = $releaseStatusLabels[$game->releaseStatus()->value()] ?? null) {
+  $chips[] = ['label' => $status];
+}
+if ($game->published()->isNotEmpty()) {
+  $chips[] = ['label' => $game->published()->toDate('Y')];
+}
+if (!$page->isHomePage() && $game->engine()->isNotEmpty()) {
+  $chips[] = ['label' => $game->engine()->value(), 'icon' => 'i-dinkie-icons-wrench-filled'];
+}
 
 if ($chips === []) return;
 ?>
 <ul class="chip-row-<?= $size ?> ps-0 list-none <?= $classes ?>">
   <?php foreach ($chips as $chip): ?>
-    <li class="chip-<?= $appearance ?>-<?= $size ?>">
-      <?= esc($chip) ?>
+    <li class="chip-<?= $appearance ?>-<?= $size ?><?php e($chip['icon'] ?? null, ' inline-flex items-center gap-2') ?>">
+      <?php if ($chip['icon'] ?? null): ?>
+        <span class="<?= $chip['icon'] ?> translate-y-[-1px]" aria-hidden="true"></span>
+      <?php endif ?>
+      <?= esc($chip['label']) ?>
     </li>
   <?php endforeach ?>
 </ul>
