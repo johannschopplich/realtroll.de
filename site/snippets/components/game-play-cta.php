@@ -14,7 +14,7 @@ $aria = $game->title()->escape() . ($isPlayable ? ' spielen' : ' herunterladen')
   class="
     relative flex items-center justify-center
     -mx-3xl -mb-3xl mt-3xl gap-2 px-3xl py-3
-    leading-none font-medium
+    text-sm leading-none font-medium
     text-primary-700 border-t border-contrast-low
     hover:bg-primary-500 hover:text-white
     md:-mx-5xl md:-mb-5xl md:px-5xl
