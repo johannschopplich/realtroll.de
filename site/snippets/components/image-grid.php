@@ -14,7 +14,7 @@ $isCentered = $layout === 'centered';
 $isFlex = $isIntrinsic || $isCentered;
 
 ?>
-<div class="<?= $isFlex ? 'flex flex-wrap items-start justify-center gap-lg' : 'grid grid-cols-minmax-320px gap-lg' ?>">
+<div class="<?php e($isFlex, 'flex flex-wrap items-start justify-center gap-lg', 'grid grid-cols-minmax-320px gap-lg') ?>">
   <?php foreach ($images as $file): ?>
     <figure class="<?= trim(($isCentered ? 'basis-[24rem] min-w-0 max-w-full ' : '') . 'text-center') ?>">
       <img <?= attr([

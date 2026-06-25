@@ -153,14 +153,6 @@ export default defineConfig<Theme>({
         return `relative mx-auto ${maxWidth} w-[calc(100%-2*${(theme as Theme)?.spacing?.lg})]`;
       },
     ],
-    [/^column-(\d+)$/, ([, d]) => `flex-none w-${d}/12`],
-    {
-      columns: "flex flex-wrap",
-      column: "block flex-1",
-      "column-narrow": "block flex-[0_0_auto] w-auto",
-      "column-auto": "block flex-1 w-auto",
-      "column-full": "block flex-none w-full",
-    },
     [
       /^button-(primary|text)(?:-?(outlined))?$/,
       ([, color, outlined]) => {

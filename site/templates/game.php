@@ -8,14 +8,21 @@ $logo = $page->logo()->toFile();
 
 ?>
 <div class="md:content-lg">
-  <div class="relative overflow-hidden md:flex md:flex-col md:justify-center md:aspect-[2/1] md:rounded-[var(--spacing-sm)/var(--spacing-2xl)] md:border-2 md:border-primary-700">
+  <div
+    class="
+      relative overflow-hidden
+      md:flex md:flex-col md:justify-center
+      md:aspect-[2/1] md:rounded-[var(--spacing-sm)/var(--spacing-2xl)]
+      md:border-2 md:border-primary-700
+    "
+  >
     <?php if ($heroScreenshot = ($page->heroScreenshot()->toFile() ?? $page->screenshots()->first())): ?>
       <img class="pixelated absolute inset-0 size-full object-cover" src="<?= $heroScreenshot->url() ?>" alt="" aria-hidden="true">
     <?php endif ?>
     <div class="absolute inset-0 bg-primary-950/65" aria-hidden="true"></div>
     <div class="crt-overlay absolute inset-0" aria-hidden="true"></div>
     <div class="relative py-8xl px-3xl text-center">
-      <h1 class="<?= $logo ? 'sr-only' : 'display-title hyphenate' ?>"><?= $page->title()->escape() ?></h1>
+      <h1 class="<?php e($logo, 'sr-only', 'display-title hyphenate') ?>"><?= $page->title()->escape() ?></h1>
       <?php if ($logo): ?>
         <img <?= attr([
           'class' => trim('pixelated mx-auto max-w-full h-auto' . ($page->darkLogo()->isTrue() ? ' brightness-0 invert' : '')),
@@ -33,21 +40,17 @@ $logo = $page->logo()->toFile();
 </div>
 
 <div class="content-lg mt-5xl text-center">
-  <div class="columns gap-lg items-center justify-center">
+  <div class="flex flex-wrap items-center justify-center gap-lg">
     <?php if ($page->gameFolder()->isNotEmpty()): ?>
-      <div class="column-narrow">
-        <a href="/play/?game=<?= $page->gameFolder() ?>" class="button-primary gap-2" target="_blank">
-          <span class="i-dinkie-icons-video-game-filled translate-y-[-1px]" aria-hidden="true"></span>
-          Im Browser starten
-        </a>
-      </div>
-    <?php endif ?>
-    <div class="column-narrow">
-      <a href="<?= $page->downloadLink() ?>" class="<?= $page->gameFolder()->isNotEmpty() ? 'button-primary-outlined' : 'button-primary' ?> gap-2">
-        <span class="i-dinkie-icons-windows-alt translate-y-[-1px]" aria-hidden="true"></span>
-        Download
+      <a href="/play/?game=<?= $page->gameFolder() ?>" class="button-primary gap-2" target="_blank">
+        <span class="i-dinkie-icons-right-black-triangle-filled translate-y-[-1px]" aria-hidden="true"></span>
+        Im Browser starten
       </a>
-    </div>
+    <?php endif ?>
+    <a href="<?= $page->downloadLink() ?>" class="<?php e($page->gameFolder()->isNotEmpty(), 'button-primary-outlined', 'button-primary') ?> gap-2">
+      <span class="i-dinkie-icons-windows-alt translate-y-[-1px]" aria-hidden="true"></span>
+      Download
+    </a>
   </div>
   <?php if ($page->downloadNote()->isNotEmpty()): ?>
     <p class="mt-lg mx-auto max-w-prose text-sm text-balance"><?= $page->downloadNote() ?></p>
@@ -60,13 +63,11 @@ $logo = $page->logo()->toFile();
 
 <?php snippet('components/section-divider') ?>
 
-<div class="columns gap-lg items-center justify-center text-center">
-  <div class="column-narrow">
-    <a href="<?= url() ?>" class="button-primary gap-2">
-      <span class="i-dinkie-icons-white-left-backhand-index translate-y-[-1px]" aria-hidden="true"></span>
-      Zurück zur Spieleliste
-    </a>
-  </div>
+<div class="flex justify-center">
+  <a href="<?= url() ?>" class="button-primary gap-2">
+    <span class="i-dinkie-icons-white-left-backhand-index translate-y-[-1px]" aria-hidden="true"></span>
+    Zurück zur Spieleliste
+  </a>
 </div>
 
 <?php endsnippet() ?>
