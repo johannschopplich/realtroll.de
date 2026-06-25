@@ -12,7 +12,8 @@ $href = $blog->url() . '#' . $post->slug();
     <span class="inline-block size-2 bg-primary-700 motion-safe:animate-devlog-blink" aria-hidden="true"></span>
     Neues
   </span>
+  <time class="hidden shrink-0 text-contrast-medium sm:inline" datetime="<?= $post->date()->toDate('c') ?>"><?= $post->date()->toDate('d.m.Y') ?></time>
   <a href="<?= $href ?>" class="link-primary static min-w-0 text-sm after:absolute after:inset-0 after:content-['']">
-    <span class="link-default [--un-decoration-color:transparent] min-w-0 max-w-[28rem] truncate group-hover:decoration-current"><?= $post->title()->escape() ?></span>
+    <span class="link-default [--un-decoration-color:transparent] min-w-0 max-w-[20rem] truncate group-hover:decoration-current"><?= $post->title()->escape() ?></span>
   </a>
 </p>
