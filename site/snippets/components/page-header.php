@@ -6,11 +6,13 @@
  * @var int|null $width
  * @var string|null $text
  * @var bool $showFaces
+ * @var bool $showDevlog
  */
 
 $width ??= $image->width();
 $text ??= null;
 $showFaces ??= false;
+$showDevlog ??= false;
 
 ?>
 <header
@@ -29,6 +31,9 @@ $showFaces ??= false;
     ]) ?>>
     <?php if ($text): ?>
       <p class="mt-3xl px-3xl max-w-prose font-medium text-center text-balance tracking-tight md:mt-5xl"><?= $text ?></p>
+    <?php endif ?>
+    <?php if ($showDevlog): ?>
+      <?php snippet('components/devlog') ?>
     <?php endif ?>
   </div>
   <?php if ($showFaces): ?>

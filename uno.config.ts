@@ -90,6 +90,20 @@ export default defineConfig<Theme>({
     container: {
       prose: "75ch",
     },
+    animation: {
+      keyframes: {
+        "devlog-blink": "{50%{opacity:0}}",
+      },
+      durations: {
+        "devlog-blink": "1.125s",
+      },
+      timingFns: {
+        "devlog-blink": "steps(1)",
+      },
+      counts: {
+        "devlog-blink": "infinite",
+      },
+    },
   },
   rules: [
     [
