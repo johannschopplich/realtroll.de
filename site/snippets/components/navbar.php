@@ -64,7 +64,7 @@ $navItems = [
       <?php e($page->isHomePage(), 'aria-current="page"') ?>
       aria-label="Startseite"
     >
-      <img class="pixelated" src="/assets/img/icons/favicon-32x32.png" width="24" height="24" alt="">
+      <img class="pixelated" src="/assets/img/icons/favicon.svg" width="24" height="24" alt="">
       <span class="<?php e($onGameTree, 'hidden sm:inline') ?>">real Troll</span>
     </a>
     <?php if ($onGameTree): ?>

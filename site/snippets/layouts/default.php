@@ -24,8 +24,7 @@ $bottomEdge ??= 'divider';
   <?= $meta->jsonld() ?>
   <?= $meta->social() ?>
 
-  <link rel="icon" href="/assets/img/icons/favicon-32x32.png" sizes="32x32" type="image/png">
-  <link rel="icon" href="/assets/img/icons/favicon-16x16.png" sizes="16x16" type="image/png">
+  <link rel="icon" href="/assets/img/icons/favicon.svg" type="image/svg+xml">
 
   <?php if (vite()->isDev()): ?>
     <?= css('assets/dev/index.css?v=' . time(), ['id' => 'vite-dev-css']) ?>
