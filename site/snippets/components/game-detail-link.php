@@ -15,7 +15,7 @@
       absolute left-full top-1/2
       ml-1
       opacity-0 -translate-y-1/2 transition-[opacity,margin]
-      group-hover:opacity-100 group-hover:ml-2 group-has-[[data-play]:hover]:opacity-0! motion-reduce:transition-none
+      group-hover:opacity-100 group-hover:ml-2 group-has-[[data-play]:hover]:opacity-[0] motion-reduce:transition-none
     "
     aria-hidden="true"
   ></span>
