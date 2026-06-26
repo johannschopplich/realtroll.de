@@ -848,7 +848,7 @@
       /**
        * Simulate a keyboard event on the Emscripten canvas
        *
-       * @param {string} eventType Type of the keyboard event
+       * @param {string} eventType "keydown" or "keyup"
        * @param {string} code Physical key code to simulate (e.g. "ArrowUp")
        */
       function simulateKeyboardEvent(eventType, code) {
@@ -858,10 +858,10 @@
       }
 
       /**
-       * Bind an element by a specific key to simulate on touch
+       * Bind a touch control element to the key it simulates
        *
-       * @param {HTMLElement} element The element to bind a key to
-       * @param {string} key Key to simulate
+       * @param {HTMLElement} element
+       * @param {string} key Key code to dispatch, e.g. "ArrowUp"
        */
       function bindKey(element, key) {
         keyByControlId.set(element.id, key);
@@ -1123,7 +1123,7 @@
       const iconDownload = `<svg width="18" height="18" aria-hidden="true"><use href="#icon-download"/></svg>`;
       const iconUpload = `<svg width="18" height="18" aria-hidden="true"><use href="#icon-upload"/></svg>`;
       /**
-       * Save slots present when polling began, to spot a later write against
+       * Save slots captured at the first poll – the baseline a later write is compared against
        * @type {Map<number, number> | undefined}
        */
       let saveSlotBaseline;
