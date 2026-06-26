@@ -720,6 +720,7 @@
       const saveDialog = document.getElementById("save-dialog");
       const nativeGameWidth = 320;
       const nativeGameHeight = 240;
+      const screenshotUpscaleFactor = 4;
       /** @type {Set<number>} */
       const connectedGamepads = new Set();
       let controlsIdleTimeoutId;
@@ -737,6 +738,7 @@
               : prefix + path,
         });
         player.initApi();
+        upscaleScreenshotDownloads();
         setupSaveManager();
         canvas.focus();
         document.getElementById("boot").classList.add("done");
@@ -1030,6 +1032,89 @@
         try {
           await navigator.wakeLock?.request("screen");
         } catch {}
+      }
+
+      /**
+       * Wrap the engine's download hook so downloaded screenshots stay crisp.
+       * They are saved at the native 320×240, and the `image-rendering:
+       * pixelated` that keeps the live canvas sharp doesn't travel with the
+       * file – viewers upscale the tiny PNG into a blur. Re-emit it enlarged
+       * with nearest-neighbor instead; savegame downloads (.lsd) and anything
+       * else pass through.
+       */
+      function upscaleScreenshotDownloads() {
+        const originalDownload = player.api_private.download_js;
+
+        player.api_private.download_js = (buffer, size, filenamePointer) => {
+          const heap = player.HEAPU8;
+          let nameEnd = filenamePointer;
+          while (heap[nameEnd]) nameEnd++;
+          const filename = new TextDecoder().decode(
+            heap.subarray(filenamePointer, nameEnd),
+          );
+
+          if (!filename.toLowerCase().endsWith(".png")) {
+            originalDownload(buffer, size, filenamePointer);
+            return;
+          }
+
+          // The pointer is valid only during this call, and the heap view
+          // detaches on a later memory growth, so slice the bytes out now
+          const sourceBlob = new Blob([heap.slice(buffer, buffer + size)], {
+            type: "image/png",
+          });
+          upscaleAndSave(sourceBlob, filename, screenshotUpscaleFactor);
+        };
+      }
+
+      /**
+       * Redraw a PNG blob enlarged with nearest-neighbor, then save it under
+       * the original name. Falls back to the source blob if it cannot be
+       * decoded or re-encoded, so a screenshot is never lost.
+       *
+       * @param {Blob} sourceBlob Original PNG from the engine
+       * @param {string} filename Name to save under, e.g. "screenshot_0.png"
+       * @param {number} scale Whole-number factor to enlarge by
+       */
+      function upscaleAndSave(sourceBlob, filename, scale) {
+        const sourceUrl = URL.createObjectURL(sourceBlob);
+        const image = new Image();
+
+        image.addEventListener("load", () => {
+          URL.revokeObjectURL(sourceUrl);
+          try {
+            const canvas = document.createElement("canvas");
+            canvas.width = image.naturalWidth * scale;
+            canvas.height = image.naturalHeight * scale;
+            const context = canvas.getContext("2d");
+            context.imageSmoothingEnabled = false;
+            context.drawImage(image, 0, 0, canvas.width, canvas.height);
+            canvas.toBlob((upscaledBlob) => {
+              saveBlob(upscaledBlob ?? sourceBlob, filename);
+            }, "image/png");
+          } catch {
+            saveBlob(sourceBlob, filename);
+          }
+        });
+
+        image.addEventListener("error", () => {
+          URL.revokeObjectURL(sourceUrl);
+          saveBlob(sourceBlob, filename);
+        });
+
+        image.src = sourceUrl;
+      }
+
+      /**
+       * Trigger a browser download of a blob under the given filename
+       */
+      function saveBlob(blob, filename) {
+        const link = document.createElement("a");
+        link.href = URL.createObjectURL(blob);
+        link.download = filename;
+        link.click();
+        link.remove();
+        setTimeout(() => URL.revokeObjectURL(link.href), 0);
       }
 
       // RPG Maker 2000/2003 caps save games at 15 slots (Save01..Save15.lsd)
