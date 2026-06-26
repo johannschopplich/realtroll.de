@@ -1,58 +1,69 @@
+<div align="center">
+  <img src="./public/assets/img/icons/favicon.svg" alt="real Troll logo" width="120">
+
 # realtroll.de
 
-> [!NOTE]
-> Forked from [kirby-vite-unocss-kit](https://github.com/johannschopplich/kirby-vite-unocss-kit#readme). Head over to its repository to find out more about it.
+Home for real Troll's RPG Maker games.
 
-A powerful and performant integration of [Vite](https://vitejs.dev), [UnoCSS](https://github.com/antfu/unocss) and [Kirby](https://getkirby.com). This project seeks to provide a best practice that combines these three solutions while focusing on the developer experience.
+[Website](https://realtroll.de) •
+[Blog](https://realtroll.de/blog)
 
-## Installation
+</div>
 
-1. Duplicate the [`.env.development.example`](./.env.development.example) as `.env`:
+## Why
 
-```bash
-cp .env.development.example .env
-```
+real Troll has been building RPG Maker games for nearly two decades – Endzeit, Wolfenhain, El Dorado, and now Nachbarlicht. The old home, a [hpage](https://realtroll.hpage.com) frameset, carried a download for every game and a devlog reaching back to 2007, but the platform had run its course.
 
-1. Install the required npm dependencies:
+This rebuild replaces it. Every game is playable right in the browser, the 447-post devlog (January 2007 – June 2026) has moved into Kirby, and the design sits between two worlds: the pixel art of the games and a quiet site around it.
 
-```bash
-pnpm install
-```
+## How It's Built
 
-1. Install the required Composer dependencies:
+- [Kirby 5](https://getkirby.com) – flat-file CMS, content as folders and text files
+- [UnoCSS](https://unocss.dev) (preset-wind4) + [Vite](https://vite.dev) + TypeScript – styling and frontend build
+- [EasyRPG Player](https://easyrpg.org) (WebAssembly) – runs the games in the browser
+- [kirby-helpers](https://github.com/johannschopplich/kirby-helpers) – metadata, redirects, and env helpers
 
-```bash
-composer install
-```
+## Playing in the Browser
 
-## Usage
+Each game's files live under `public/play/games/<folder>`; the EasyRPG Player web port (WebAssembly) boots a game via `/play/?game=<folder>`. Games without bundled files fall back to a download link.
 
-### Development
+The web build needs two things the desktop player doesn't, both provided on demand by the `easyrpg` plugin (`site/plugins/easyrpg`):
 
-1. Start the Vite development server and watch for file changes accordingly:
+- **A file index.** The route `play/games/<folder>/index.json` generates the file map the player requires – a PHP port of EasyRPG's [`gencache`](https://github.com/EasyRPG/Tools/tree/master/gencache) tool – and caches it.
+- **An ExFont bitmap.** It extracts the per-game ExFont embedded in `RPG_RT.exe` into `ExFont.bmp`, because the Emscripten build can't read it from the executable like the desktop build does – otherwise custom glyphs silently vanish.
 
-```bash
-pnpm run dev
-```
+## Development
 
-1. Run the PHP built-in web server or use a development web server of your choice (like Laravel Valet).
+1. Create your `.env` from the example:
 
-```bash
-composer start
-```
+   ```bash
+   cp .env.development.example .env
+   ```
 
-### Production
+2. Install dependencies:
 
-Build the frontend assets:
+   ```bash
+   pnpm install
+   composer install
+   ```
 
-```bash
-pnpm run build
-```
+3. Start the frontend watchers (Vite + UnoCSS, via mprocs):
 
-### Deployment
+   ```bash
+   pnpm run dev
+   ```
 
-> [!NOTE]
-> See [deploy.ploi.sh](./scripts/deploy.ploi.sh) for deployment instructions.
+4. Run the PHP server in a second shell – or use a dev server of your choice (e.g. Laravel Valet):
+
+   ```bash
+   composer start
+   ```
+
+Build the production assets with `pnpm run build`. Deployment runs through [`scripts/ploi-deploy.sh`](./scripts/ploi-deploy.sh) on [ploi.io](https://ploi.io).
+
+## Content & Copyright
+
+This repository holds the site's code; the games, artwork, and writing it renders are real Troll's own and are not part of this license.
 
 ## License
 
