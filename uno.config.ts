@@ -221,6 +221,19 @@ export default defineConfig<Theme>({
       "label-caps": "font-medium uppercase tracking-wider",
     },
   ],
+  variants: [
+    (matcher) => {
+      if (!matcher.startsWith("hidpi:")) return matcher;
+      return {
+        matcher: matcher.slice("hidpi:".length),
+        handle: (input, next) =>
+          next({
+            ...input,
+            parent: `${input.parent ? `${input.parent} $$ ` : ""}@media (min-resolution: 2x), (-webkit-min-device-pixel-ratio: 2)`,
+          }),
+      };
+    },
+  ],
   safelist: [
     "sr-only",
     "invisible",
