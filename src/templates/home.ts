@@ -10,32 +10,26 @@ export default function () {
   const titleElement = panel?.querySelector<HTMLElement>(
     "[data-showcase-title]",
   );
-  const dotsElement = panel?.querySelector<HTMLElement>("[data-showcase-dots]");
-  if (!panel || !image || !titleElement || !dotsElement) return;
-
-  // Screenshots are 320px wide; scale to whole device pixels to keep the
-  // pixel art crisp (e.g. retina DPR 2 → 3 device pixels per game pixel)
-  image.style.width = `${
-    320 * (Number.isInteger(devicePixelRatio * 1.5) ? 1.5 : 2)
-  }px`;
+  const tilesElement = panel?.querySelector<HTMLElement>(
+    "[data-showcase-tiles]",
+  );
+  if (!panel || !image || !titleElement || !tilesElement) return;
 
   const preloadImage = new Image();
   let lastElement: HTMLElement | undefined;
   let timerId: ReturnType<typeof setInterval> | undefined;
 
-  function renderDots(count: number, activeIndex: number) {
-    dotsElement!.replaceChildren(
-      ...Array.from({ length: count }, (_, dotIndex) => {
-        const dot = document.createElement("span");
-        Object.assign(dot.style, {
-          width: "0.5rem",
-          height: "0.5rem",
+  function renderTiles(count: number, activeIndex: number) {
+    tilesElement!.replaceChildren(
+      ...Array.from({ length: count }, (_, tileIndex) => {
+        const tile = document.createElement("span");
+        Object.assign(tile.style, {
+          width: "0.375rem",
+          height: "0.375rem",
           background:
-            dotIndex === activeIndex
-              ? "var(--un-color-primary-700)"
-              : "var(--un-color-primary-200)",
+            tileIndex === activeIndex ? "#fff" : "rgb(255 255 255 / 0.4)",
         });
-        return dot;
+        return tile;
       }),
     );
   }
@@ -51,7 +45,7 @@ export default function () {
 
     let index = 0;
     image!.src = sources[0]!;
-    renderDots(sources.length, 0);
+    renderTiles(sources.length, 0);
     if (sources[1]) preloadImage.src = sources[1];
 
     // Auto-advancing the slideshow is motion, too
@@ -59,7 +53,7 @@ export default function () {
       timerId = setInterval(() => {
         index = (index + 1) % sources.length;
         image!.src = sources[index]!;
-        renderDots(sources.length, index);
+        renderTiles(sources.length, index);
         preloadImage.src = sources[(index + 1) % sources.length]!;
       }, CYCLE_INTERVAL);
     }

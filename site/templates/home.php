@@ -26,19 +26,28 @@ snippet('layouts/default', [
 <figure
   id="screenshot-showcase"
   class="
-    fixed bottom-[var(--spacing-lg)] right-[var(--spacing-lg)] z-50
-    m-0 p-2
-    bg-white border-2 border-primary-700
-    shadow-float pointer-events-none invisible opacity-0 translate-y-4
+    fixed bottom-[var(--spacing-lg)] right-[var(--spacing-lg)] z-50 overflow-hidden
+    m-0 w-[480px] max-w-[calc(100vw-2*var(--spacing-lg))] aspect-[4/3]
+    rounded-[6px/12px] shadow-float
+    pointer-events-none invisible opacity-0 translate-y-4
     transition-[opacity,transform,visibility] duration-250 ease-out
     motion-reduce:transition-none
   "
   aria-hidden="true"
 >
-  <img class="pixelated block max-w-[calc(100vw-3rem)] h-auto" alt="">
-  <figcaption class="flex items-center justify-between gap-lg mt-2 text-xs font-medium text-primary-700">
-    <span data-showcase-title></span>
-    <span class="flex gap-1" data-showcase-dots></span>
+  <img class="pixelated absolute inset-0 size-full object-cover" alt="">
+  <span class="recess-overlay absolute inset-0" aria-hidden="true"></span>
+  <figcaption
+    class="
+      absolute inset-x-0 bottom-0
+      flex items-center justify-between gap-lg
+      px-2.5 pt-5xl pb-2
+      text-xs font-medium text-white
+      bg-[linear-gradient(to_top,rgb(0_0_0_/_0.82),transparent)]
+    "
+  >
+    <span class="min-w-0 truncate" data-showcase-title></span>
+    <span class="flex gap-1 shrink-0" data-showcase-tiles></span>
   </figcaption>
 </figure>
 

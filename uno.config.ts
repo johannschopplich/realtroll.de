@@ -49,9 +49,8 @@ export default defineConfig<Theme>({
     shadow: {
       solid: "4px 4px 0 var(--un-color-primary-700)",
       float: [
-        "4px 4px 0 var(--un-color-primary-700)",
-        "0 16px 32px -12px oklch(10% 0.035 52 / 0.6)",
-        "0 6px 14px -6px oklch(10% 0.035 52 / 0.4)",
+        "0 16px 26px oklch(10% 0.035 52 / 0.42)",
+        "0 5px 10px oklch(10% 0.035 52 / 0.32)",
       ],
     },
     text: {
@@ -135,6 +134,13 @@ export default defineConfig<Theme>({
           "repeating-linear-gradient(rgb(0 0 0 / 0.26) 0 1px, transparent 1px 3px)",
         ].join(", "),
         "box-shadow": "inset 0 0 4rem rgb(0 0 0 / 0.7)",
+      },
+    ],
+    [
+      "recess-overlay",
+      {
+        "box-shadow":
+          "inset 0 8px 14px -7px rgb(0 0 0 / 0.65), inset 0 0 0 1px rgb(0 0 0 / 0.15)",
       },
     ],
   ],
