@@ -28,7 +28,7 @@ snippet('layouts/default', [
   class="
     fixed bottom-[var(--spacing-lg)] right-[var(--spacing-lg)] z-50 overflow-hidden
     m-0 w-[640px] max-w-[calc(100vw-2*var(--spacing-lg))] aspect-[4/3]
-    rounded-[6px/12px] shadow-float
+    bg-theme-background border-2 border-primary-700 shadow-float
     pointer-events-none invisible opacity-0 translate-y-4
     transition-[opacity,transform,visibility] duration-250 ease-out
     motion-reduce:transition-none hidpi:w-[480px]
