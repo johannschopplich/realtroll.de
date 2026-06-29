@@ -31,7 +31,7 @@ snippet('layouts/default', [
     bg-theme-background rounded-[2px] shadow-float
     pointer-events-none invisible opacity-0 translate-y-4
     transition-[opacity,transform,visibility] duration-250 ease-out
-    motion-reduce:transition-none hidpi:w-[480px]
+    motion-reduce:transition-none max-2xl:hidpi:w-[480px]
   "
   aria-hidden="true"
 >
