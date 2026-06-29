@@ -34,14 +34,24 @@ $navItems = [
     w-[calc(100%-2*var(--spacing-lg))] max-w-screen-lg h-14
     border-b-2 border-transparent
     transition-colors
-    data-[scrolled=true]:bg-theme-background data-[scrolled=true]:border-primary-700
+    data-[scrolled=true]:border-primary-700
   "
   aria-label="Hauptnavigation"
 >
   <span
     class="
+      absolute inset-y-0 left-1/2 -z-10 w-screen
+      -translate-x-1/2
+      transition-colors
+      group-data-[scrolled=true]:bg-theme-background
+      md:w-[calc(100%+1rem)]
+    "
+    aria-hidden="true"
+  ></span>
+  <span
+    class="
       corner-square
-      -bottom-px left-0 size-2
+      -bottom-px left-px size-2
       -translate-x-1/2 translate-y-1/2 opacity-0 transition-opacity
       group-data-[scrolled=true]:opacity-100
     "
@@ -50,7 +60,7 @@ $navItems = [
   <span
     class="
       corner-square
-      -bottom-px right-0 size-2
+      -bottom-px right-px size-2
       translate-x-1/2 translate-y-1/2 opacity-0 transition-opacity
       group-data-[scrolled=true]:opacity-100
     "
