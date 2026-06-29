@@ -46,7 +46,7 @@ return [
             ]
         ],
         'meta' => [
-            'defaults' => function (App $kirby, Site $site, Page $page) {
+            'defaults' => function (App $kirby, Site $site, Page $page): array {
                 $jsonld = [];
 
                 if ($page->isHomePage()) {
