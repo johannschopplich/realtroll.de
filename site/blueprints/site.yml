@@ -11,7 +11,9 @@ tabs:
         parent: site.find("blog")
         template: article
         sortBy: date desc
+        search: true
         layout: table
+        image: false
         info: "{{ page.date.toDate('d.m.Y') }}"
 
   games:
