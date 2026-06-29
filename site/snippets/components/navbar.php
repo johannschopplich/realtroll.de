@@ -30,12 +30,11 @@ $navItems = [
   id="main-nav"
   data-scrolled="false"
   class="
-    group sticky top-0 z-10 flex items-center justify-between gap-xl
-    px-lg h-14
+    group sticky top-0 z-10 mx-auto flex items-center justify-between gap-xl
+    w-[calc(100%-2*var(--spacing-lg))] max-w-screen-lg h-14
     border-b-2 border-transparent
     transition-colors
     data-[scrolled=true]:bg-theme-background data-[scrolled=true]:border-primary-700
-    md:px-5xl
   "
   aria-label="Hauptnavigation"
 >
