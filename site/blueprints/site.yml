@@ -1,12 +1,6 @@
 title: Übersicht
 
 tabs:
-  content:
-    label: Spiele
-    icon: dashboard
-    sections:
-      games: sections/games
-
   blog:
     label: Blog
     icon: text
@@ -17,7 +11,14 @@ tabs:
         parent: site.find("blog")
         template: article
         sortBy: date desc
+        layout: table
         info: "{{ page.date.toDate('d.m.Y') }}"
+
+  games:
+    label: Spiele
+    icon: dashboard
+    sections:
+      games: sections/games
 
   pages:
     label: Seiten
