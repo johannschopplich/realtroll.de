@@ -1,6 +1,6 @@
 import type { Theme } from "@unocss/preset-wind4";
 import presetIcons from "@unocss/preset-icons";
-import { defineConfig, presetWind4, transformerDirectives } from "unocss";
+import { defineConfig, presetWind4 } from "unocss";
 
 export default defineConfig<Theme>({
   cli: {
@@ -246,7 +246,6 @@ export default defineConfig<Theme>({
     ]),
   ],
   outputToCssLayers: true,
-  transformers: [transformerDirectives()],
   presets: [
     presetWind4({
       preflights: {
