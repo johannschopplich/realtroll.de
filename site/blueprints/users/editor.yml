@@ -1,11 +1,13 @@
 title: Redakteur
 
-description: Kann Beiträge veröffentlichen und verwalten.
+description: Kann alle Inhalte verwalten und veröffentlichen.
 
 permissions:
   access:
-    settings: false
+    languages: false
+    system: false
     users: false
+  languages: false
   user:
     changeRole: false
     delete: false
