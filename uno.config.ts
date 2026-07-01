@@ -173,17 +173,17 @@ export default defineConfig<Theme>({
           return `${buttonBase} text-theme-base bg-transparent active:scale-97 hover:underline hover:decoration-[length:var(--un-decoration-thickness)] focus-visible:underline focus-visible:decoration-[length:var(--un-decoration-thickness)]`;
         }
 
-        const elevatedStyles = [
+        const sharedStyles = [
           `border-2 border-${color}-700 shadow-solid`,
           "active:translate-[4px] active:shadow-none",
           `focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-${color}`,
         ].join(" ");
 
         if (outlined) {
-          return `${buttonBase} ${elevatedStyles} text-${color} bg-theme-background ring ring-inset ring-${color}`;
+          return `${buttonBase} ${sharedStyles} text-${color} bg-theme-background ring ring-inset ring-${color}`;
         }
 
-        return `${buttonBase} ${elevatedStyles} text-white bg-${color}`;
+        return `${buttonBase} ${sharedStyles} text-white bg-${color}`;
       },
     ],
     [
