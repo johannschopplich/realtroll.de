@@ -5,8 +5,8 @@
 $dateFormatter = new IntlDateFormatter('de_DE', IntlDateFormatter::LONG, IntlDateFormatter::NONE);
 
 $perPage = 20;
-$all = $page->children()->listed()->sortBy('date', 'desc');
-$articles = $all->paginate($perPage);
+$allArticles = collection('articles');
+$articles = $allArticles->paginate($perPage);
 $pagination = $articles->pagination();
 $currentPage = $pagination->page();
 $pages = $pagination->pages();
@@ -16,7 +16,7 @@ $pages = $pagination->pages();
 $yearPage = [];
 $yearAnchor = [];
 $index = 0;
-foreach ($all as $entry) {
+foreach ($allArticles as $entry) {
   $year = (int) $entry->date()->toDate('Y');
   if (!isset($yearPage[$year])) {
     $yearPage[$year] = intdiv($index, $perPage) + 1;

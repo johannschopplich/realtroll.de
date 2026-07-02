@@ -24,6 +24,8 @@ if (!$file) return;
 ?>
 <img <?= attr([
   'class' => trim(($pixelated ? 'pixelated ' : '') . $class),
+  // Keeps pixel art crisp in contexts without the site's CSS, e.g. feed readers
+  'style' => $pixelated ? 'image-rendering: pixelated' : null,
   'src' => $file->url(),
   'width' => $file->width() ? $file->width() * $scale : null,
   'height' => $file->height() ? $file->height() * $scale : null,

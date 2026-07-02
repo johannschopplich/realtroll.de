@@ -68,10 +68,12 @@ tabs:
                 options:
                   instagram: Instagram
                   youtube: YouTube
+                  rss: RSS-Feed
               url:
                 label: URL
                 type: url
                 width: 2/3
+                help: Beim RSS-Feed bleibt die URL leer – sie wird automatisch gesetzt.
 
   seo:
     label: SEO

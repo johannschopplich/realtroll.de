@@ -26,6 +26,9 @@ $bottomEdge ??= 'divider';
 
   <link rel="icon" href="/assets/img/icons/favicon.svg" type="image/svg+xml">
 
+  <link rel="alternate" type="application/rss+xml" title="Trollspiele aus dem RPG Maker" href="<?= url('feeds/rss') ?>">
+  <link rel="alternate" type="application/json" title="Trollspiele aus dem RPG Maker" href="<?= url('feeds/json') ?>">
+
   <?php if (vite()->isDev()): ?>
     <?= css('assets/dev/index.css?v=' . time(), ['id' => 'vite-dev-css']) ?>
   <?php endif ?>

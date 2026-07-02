@@ -2,12 +2,14 @@
 
 $socials = [
   'instagram' => ['icon' => 'i-dinkie-icons-instagram', 'label' => 'Instagram'],
-  'youtube' => ['icon' => 'i-dinkie-icons-television-filled', 'label' => 'YouTube']
+  'youtube' => ['icon' => 'i-dinkie-icons-television-filled', 'label' => 'YouTube'],
+  'rss' => ['icon' => 'i-dinkie-icons-satellite-antenna', 'label' => 'RSS-Feed', 'url' => url('feeds/rss')]
 ];
 
-$socialLinks = site()->social()->toStructure()->filter(
-  fn ($entry) => $entry->url()->isNotEmpty() && isset($socials[$entry->platform()->value()])
-);
+$socialLinks = site()->social()->toStructure()->filter(function ($entry) use ($socials) {
+  $social = $socials[$entry->platform()->value()] ?? null;
+  return $social && (isset($social['url']) || $entry->url()->isNotEmpty());
+});
 
 $columns = site()->footerColumns()->toStructure()->filter(
   fn ($column) => $column->heading()->isNotEmpty() && $column->links()->toPages()->isNotEmpty()
@@ -54,7 +56,7 @@ $columnCount = 1 + $columns->count() + ($socialLinks->isNotEmpty() ? 1 : 0);
                 <?php $social = $socials[$link->platform()->value()] ?>
                 <li>
                   <a
-                    href="<?= $link->url()->escape() ?>"
+                    href="<?= $social['url'] ?? $link->url()->escape() ?>"
                     class="
                       inline-flex
                       text-xl
