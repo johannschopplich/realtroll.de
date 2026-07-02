@@ -3,7 +3,7 @@
 $socials = [
   'instagram' => ['icon' => 'i-dinkie-icons-instagram', 'label' => 'Instagram'],
   'youtube' => ['icon' => 'i-dinkie-icons-television-filled', 'label' => 'YouTube'],
-  'rss' => ['icon' => 'i-dinkie-icons-satellite-antenna', 'label' => 'RSS-Feed', 'url' => url('feeds/rss')]
+  'rss' => ['icon' => 'i-dinkie-icons-wireless', 'label' => 'RSS-Feed', 'url' => url('feeds/rss')]
 ];
 
 $socialLinks = site()->social()->toStructure()->filter(function ($entry) use ($socials) {
