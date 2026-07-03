@@ -5,20 +5,20 @@
  * @var string $alt
  * @var int|null $width
  * @var string|null $text
- * @var bool $showFaces
+ * @var \Kirby\Cms\File|null $faces
  * @var bool $showDevlog
  */
 
 $width ??= $image->width();
 $text ??= null;
-$showFaces ??= false;
+$faces ??= null;
 $showDevlog ??= false;
 
 ?>
 <header
   class="<?= trim(implode(' ', [
     'pixelated relative flex items-center justify-center pt-6xl bg-starfield md:pt-7xl',
-    $showFaces ? 'pb-9xl md:pb-[calc(var(--spacing-9xl)+var(--spacing-xl))]' : 'pb-6xl md:pb-7xl'
+    $faces ? 'pb-9xl md:pb-[calc(var(--spacing-9xl)+var(--spacing-xl))]' : 'pb-6xl md:pb-7xl'
   ]), ' ') ?>"
 >
   <div class="flex flex-col items-center">
@@ -36,7 +36,7 @@ $showDevlog ??= false;
       <?php snippet('components/devlog') ?>
     <?php endif ?>
   </div>
-  <?php if ($showFaces): ?>
+  <?php if ($faces): ?>
     <img
       class="
         pixelated absolute bottom-0 left-1/2 z-1
@@ -44,9 +44,9 @@ $showDevlog ??= false;
         origin-bottom -translate-x-1/2 -translate-y-[2px] scale-[1.5]
         md:scale-[2]
       "
-      src="<?= asset('assets/img/editorial-gesichter.png')->url() ?>"
-      width="207"
-      height="42"
+      src="<?= $faces->url() ?>"
+      width="<?= $faces->width() ?>"
+      height="<?= $faces->height() ?>"
       alt=""
     >
   <?php endif ?>
