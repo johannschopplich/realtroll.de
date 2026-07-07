@@ -69,14 +69,8 @@ snippet('layouts/default', [
           <?php snippet('components/corner-squares', ['size' => 3]) ?>
 
           <header class="mb-xl">
-            <?php // Looks like an N+1, but $perPage caps it and the page cache absorbs it for visitors. ?>
-            <?php $commentCount = $article->comments()->count() ?>
             <p class="label-caps mb-1 text-sm text-contrast-medium">
               <time datetime="<?= $article->date()->toDate('c') ?>"><?= $article->date()->toDate($dateFormatter) ?></time>
-              <?php if ($commentCount > 0): ?>
-                <span aria-hidden="true">·</span>
-                <a href="<?= $article->url() ?>#kommentare" class="link-default"><?= $commentCount ?> <?= $commentCount === 1 ? 'Kommentar' : 'Kommentare' ?></a>
-              <?php endif ?>
             </p>
             <h2 class="font-heading text-xl leading-none text-primary-700">
               <a href="<?= $article->url() ?>" class="link-default"><?= $article->title()->escape() ?></a>
@@ -115,6 +109,19 @@ snippet('layouts/default', [
               aria-hidden="true"
             ></span>
           </button>
+
+          <?php $commentCount = $article->comments()->count() ?>
+          <?php if ($commentCount > 0 || $article->acceptsComments()): ?>
+            <a href="<?= $article->url() ?>#kommentare" class="group link-primary mt-xl text-sm">
+              <span class="i-dinkie-icons-speech-balloon-small shrink-0" aria-hidden="true"></span>
+              <span
+                class="
+                  link-default [--un-decoration-color:transparent]
+                  group-hover:decoration-current group-focus-visible:decoration-current
+                "
+              ><?= $commentCount > 0 ? $commentCount . ' ' . ($commentCount === 1 ? 'Kommentar' : 'Kommentare') : 'Schreib den ersten Kommentar' ?></span>
+            </a>
+          <?php endif ?>
         </article>
       <?php endforeach ?>
     </div>
