@@ -19,7 +19,7 @@ foreach ($comments as $comment) {
 
 ?>
 <?php if ($topLevel === []): ?>
-  <p class="mb-7xl text-contrast-medium">Noch nichts hier. Schreib den ersten Kommentar.</p>
+  <p class="mb-5xl text-contrast-medium">Noch nichts hier. Schreib den ersten Kommentar.</p>
 <?php else: ?>
   <ol class="flex flex-col gap-4xl mb-7xl list-none">
     <?php foreach ($topLevel as $comment): ?>
