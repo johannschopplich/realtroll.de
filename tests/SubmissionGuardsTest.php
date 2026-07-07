@@ -207,15 +207,6 @@ final class SubmissionGuardsTest extends TestCase
         $this->assertFalse($verdict->accepted);
     }
 
-    /**
-     * @return iterable<string, array{string}>
-     */
-    public static function badCsrfProvider(): iterable
-    {
-        yield 'a tampered token' => ['tampered'];
-        yield 'a missing token' => [''];
-    }
-
     #[Test]
     #[DataProvider('badCsrfProvider')]
     public function rejects_a_bad_csrf_token(string $csrf): void
@@ -228,27 +219,31 @@ final class SubmissionGuardsTest extends TestCase
         $this->assertSame('csrf', $verdict->code);
     }
 
-    /**
-     * Name and text rejections share one V::invalid pass. The whitespace and
-     * zero-width cases also prove clean() runs before the length check – the
-     * value collapses to empty and fails `required`, never stored as blank.
-     *
-     * @return iterable<string, array{array<string, string>, string}>
-     */
-    public static function invalidFieldProvider(): iterable
+    #[Test]
+    #[DataProvider('missingFieldProvider')]
+    public function rejects_a_missing_field(array $body, string $field): void
     {
-        yield 'a missing name' => [['name' => ''], 'name'];
-        yield 'an overlong name' => [['name' => str_repeat('a', 61)], 'name'];
-        yield 'a whitespace-only name' => [['name' => "  \t  "], 'name'];
-        yield 'a missing text' => [['text' => ''], 'text'];
-        yield 'an overlong text' => [['text' => str_repeat('a', 4001)], 'text'];
-        yield 'a whitespace-only text' => [['text' => "  \n\t  "], 'text'];
-        yield 'a zero-width-only text' => [['text' => "\u{200B}\u{FEFF}\u{2060}"], 'text'];
+        $verdict = $this->guards()->evaluate($this->request($body));
+
+        $this->assertFalse($verdict->accepted);
+        $this->assertSame($field, $verdict->field);
+        $this->assertSame('validation', $verdict->code);
     }
 
     #[Test]
-    #[DataProvider('invalidFieldProvider')]
-    public function rejects_invalid_field_input(array $body, string $field): void
+    #[DataProvider('overlongFieldProvider')]
+    public function rejects_an_overlong_field(array $body, string $field): void
+    {
+        $verdict = $this->guards()->evaluate($this->request($body));
+
+        $this->assertFalse($verdict->accepted);
+        $this->assertSame($field, $verdict->field);
+        $this->assertSame('validation', $verdict->code);
+    }
+
+    #[Test]
+    #[DataProvider('blankAfterCleanProvider')]
+    public function rejects_a_field_that_cleans_to_empty(array $body, string $field): void
     {
         $verdict = $this->guards()->evaluate($this->request($body));
 
@@ -421,5 +416,44 @@ final class SubmissionGuardsTest extends TestCase
 
         $this->assertTrue($verdict->accepted);
         $this->assertSame('page://c-level2-orphan', $verdict->parentId);
+    }
+
+    /**
+     * Fail-closed on both a tampered and an absent token.
+     *
+     * @return iterable<string, array{string}>
+     */
+    public static function badCsrfProvider(): iterable
+    {
+        yield 'a tampered token' => ['tampered'];
+        yield 'a missing token' => [''];
+    }
+
+    /**
+     * @return iterable<string, array{array<string, string>, string}>
+     */
+    public static function missingFieldProvider(): iterable
+    {
+        yield 'name' => [['name' => ''], 'name'];
+        yield 'text' => [['text' => ''], 'text'];
+    }
+
+    /**
+     * @return iterable<string, array{array<string, string>, string}>
+     */
+    public static function overlongFieldProvider(): iterable
+    {
+        yield 'name' => [['name' => str_repeat('a', 61)], 'name'];
+        yield 'text' => [['text' => str_repeat('a', 4001)], 'text'];
+    }
+
+    /**
+     * @return iterable<string, array{array<string, string>, string}>
+     */
+    public static function blankAfterCleanProvider(): iterable
+    {
+        yield 'a whitespace name' => [['name' => "  \t  "], 'name'];
+        yield 'a whitespace text' => [['text' => "  \n\t  "], 'text'];
+        yield 'a zero-width text' => [['text' => "\u{200B}\u{FEFF}\u{2060}"], 'text'];
     }
 }

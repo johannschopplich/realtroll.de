@@ -11,9 +11,6 @@ use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use RealTroll\Comments\CommentNotification;
 
-// The notification reads its recipients through the global `env()` of the
-// kirby-helpers plugin, which the isolated in-memory App below does not boot.
-// A minimal stand-in over `$_SERVER` keeps the test decoupled from Dotenv.
 if (function_exists('env') === false) {
     function env(string $key, mixed $default = null): mixed
     {
@@ -21,10 +18,6 @@ if (function_exists('env') === false) {
     }
 }
 
-/**
- * Captures the props the mail component would send, so the rendered body can be
- * asserted without SMTP.
- */
 final class MailSpy
 {
     public static array|null $props = null;
