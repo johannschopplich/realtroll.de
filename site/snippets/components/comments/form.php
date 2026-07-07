@@ -23,7 +23,7 @@ $turnstileSitekey = kirby()->option('realtroll.comments.turnstile.sitekey');
         bg-white border-2 border-b-0 border-[color:var(--frame)]
         shadow-[inset_3px_3px_0_var(--tw-color-stone-200)]
       "
-    >Sprich, werter Internetanonymer!</h3>
+    >Vorsicht, Troll liest mit!</h3>
   </div>
   <form
     data-comment-form
