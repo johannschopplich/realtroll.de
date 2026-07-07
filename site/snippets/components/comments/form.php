@@ -3,13 +3,39 @@
 $turnstileSitekey = kirby()->option('realtroll.comments.turnstile.sitekey');
 
 ?>
-<div class="[--frame:var(--tw-color-stone-400)]">
-  <div class="flex items-stretch after:content-[''] after:flex-1 after:self-stretch after:border-b-2 after:border-[color:var(--frame)]">
-    <h3 class="px-3 py-2 font-heading text-lg leading-none text-primary-700 bg-white border-2 border-b-0 border-[color:var(--frame)] shadow-[inset_3px_3px_0_var(--tw-color-stone-200)]">Sprich, werter Internetanonymer!</h3>
+<div
+  class="
+    [--frame:var(--tw-color-stone-400)]
+    max-md:mx-[calc(-2*var(--spacing-lg))] max-md:w-[calc(100%+4*var(--spacing-lg))]
+  "
+>
+  <div
+    class="
+      flex items-stretch
+      after:content-[''] after:flex-1 after:self-stretch after:border-b-2 after:border-[color:var(--frame)]
+      max-md:before:content-[''] max-md:before:w-[calc(2*var(--spacing-lg))] max-md:before:self-stretch max-md:before:border-b-2 max-md:before:border-[color:var(--frame)]
+    "
+  >
+    <h3
+      class="
+        px-3 py-2
+        font-heading text-lg leading-none text-primary-700
+        bg-white border-2 border-b-0 border-[color:var(--frame)]
+        shadow-[inset_3px_3px_0_var(--tw-color-stone-200)]
+      "
+    >Sprich, werter Internetanonymer!</h3>
   </div>
-  <form data-comment-form class="relative flex flex-col gap-lg p-lg bg-white border-2 border-t-0 border-[color:var(--frame)] shadow-[inset_3px_0_0_var(--tw-color-stone-200)] md:p-xl" novalidate>
-    <!-- Reply target: the TS reveals this chip and fills the hidden `parentId` when
-         replying to a top-level comment; the cancel button clears both. -->
+  <form
+    data-comment-form
+    class="
+      relative flex flex-col
+      gap-lg px-[calc(2*var(--spacing-lg))] py-lg
+      bg-white border-b-2 border-[color:var(--frame)]
+      md:p-xl md:border-x-2 md:shadow-[inset_3px_0_0_var(--tw-color-stone-200)]
+    "
+    novalidate
+  >
+    <!-- Reply target -->
     <input type="hidden" name="parentId" value="" data-reply-input>
     <div
       data-reply-chip
@@ -27,8 +53,7 @@ $turnstileSitekey = kirby()->option('realtroll.comments.turnstile.sitekey');
       </button>
     </div>
 
-    <!-- Operator mode: the token route reports a logged-in author, the TS hides
-         the name field (its value is set to the author name) and this note shows. -->
+    <!-- Operator mode: the token route reports a logged-in author -->
     <p data-author-note class="text-sm text-contrast-medium" hidden>
       Angemeldet als <strong data-author-name></strong> – deine Antwort erscheint unter diesem Namen.
     </p>
@@ -74,8 +99,7 @@ $turnstileSitekey = kirby()->option('realtroll.comments.turnstile.sitekey');
     <?php endif ?>
 
     <div class="flex flex-col">
-      <!-- aria-live region for `field: 'form'` rejects; stays rendered so the
-           announcement fires when a message lands. -->
+      <!-- aria-live region for `field: 'form'` rejects -->
       <p data-form-status role="status" aria-live="polite" class="text-sm text-red-700 [&:not(:empty)]:mb-lg"></p>
       <button type="submit" data-comment-submit class="button-primary self-start">Kommentar absenden</button>
     </div>
