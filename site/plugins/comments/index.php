@@ -89,7 +89,12 @@ App::plugin('realtroll/comments', [
                 }
 
                 return Response::json([
-                    'redirect' => $comment->parent()->url() . '#kommentar-' . $comment->slug(),
+                    'html' => snippet('components/comments/thread', [
+                        'comments'        => $article->comments()->sortBy('date', 'asc'),
+                        'dateFormatter'   => new IntlDateFormatter('de_DE', IntlDateFormatter::MEDIUM, IntlDateFormatter::SHORT),
+                        'acceptsComments' => $article->acceptsComments(),
+                    ], true),
+                    'anchor' => 'kommentar-' . $comment->slug(),
                 ]);
             },
         ],

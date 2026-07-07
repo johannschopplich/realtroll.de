@@ -99,8 +99,10 @@ $turnstileSitekey = kirby()->option('realtroll.comments.turnstile.sitekey');
     <?php endif ?>
 
     <div class="flex flex-col">
-      <!-- aria-live region for `field: 'form'` rejects -->
+      <!-- aria-live regions: rejects speak through status (red), the accept
+           confirmation through success (primary) – only one is ever set. -->
       <p data-form-status role="status" aria-live="polite" class="text-sm text-red-700 [&:not(:empty)]:mb-lg"></p>
+      <p data-form-success role="status" aria-live="polite" class="text-sm text-primary-700 [&:not(:empty)]:mb-lg"></p>
       <button type="submit" data-comment-submit class="button-primary self-start">Kommentar absenden</button>
     </div>
   </form>

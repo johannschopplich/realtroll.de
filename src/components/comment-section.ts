@@ -11,7 +11,8 @@ interface TokenResponse {
 
 interface SubmitResult {
   ok: boolean;
-  redirect?: string;
+  html?: string;
+  anchor?: string;
   field?: string;
   code?: string;
   message?: string;
@@ -46,7 +47,9 @@ export class CommentSection extends HTMLElement {
   #textArea!: HTMLTextAreaElement;
   #parentInput: HTMLInputElement | null = null;
   #submitButton: HTMLButtonElement | null = null;
+  #submitLabel = "";
   #statusEl: HTMLElement | null = null;
+  #successEl: HTMLElement | null = null;
   #nameRow: HTMLElement | null = null;
   #authorNote: HTMLElement | null = null;
   #authorNameEl: HTMLElement | null = null;
@@ -58,8 +61,6 @@ export class CommentSection extends HTMLElement {
   #turnstileRetryCount = 0;
 
   connectedCallback() {
-    // Runs before the missing-form early return below: a comments-disabled
-    // article still renders the list, so its timestamps and anchors must work.
     upgradeRelativeTimestamps(this);
 
     // On reload the browser restores the scroll offset instead of resolving
@@ -81,7 +82,9 @@ export class CommentSection extends HTMLElement {
     this.#textArea = textArea;
     this.#parentInput = form.querySelector("[data-reply-input]");
     this.#submitButton = form.querySelector("[data-comment-submit]");
+    this.#submitLabel = this.#submitButton?.textContent?.trim() ?? "";
     this.#statusEl = form.querySelector("[data-form-status]");
+    this.#successEl = form.querySelector("[data-form-success]");
     this.#nameRow = form.querySelector("[data-name-row]");
     this.#authorNote = form.querySelector("[data-author-note]");
     this.#authorNameEl = form.querySelector("[data-author-name]");
@@ -193,8 +196,8 @@ export class CommentSection extends HTMLElement {
   }
 
   async #handleSubmit() {
-    this.#clearErrors();
-    if (this.#submitButton) this.#submitButton.disabled = true;
+    this.#resetFeedback();
+    this.#setPending(true);
 
     try {
       if (!this.#csrf) {
@@ -213,27 +216,49 @@ export class CommentSection extends HTMLElement {
         result = await this.#send();
       }
 
-      if (result.ok && result.redirect) {
-        // The redirect differs from the current URL only by fragment – a
-        // same-document navigation that never re-fetches – so force the reload.
-        location.href = result.redirect;
-        location.reload();
+      if (result.ok && result.html) {
+        this.#applySuccess(result.html, result.anchor);
         return;
       }
 
       this.#showReject(result);
     } finally {
-      if (this.#submitButton) this.#submitButton.disabled = false;
+      this.#setPending(false);
+    }
+  }
+
+  #setPending(isPending: boolean) {
+    if (!this.#submitButton) return;
+    this.#submitButton.disabled = isPending;
+    this.#submitButton.textContent = isPending
+      ? "Wird gesendet …"
+      : this.#submitLabel;
+  }
+
+  // Swap the re-rendered thread in place of the current one, then confirm and
+  // scroll to the new comment.
+  #applySuccess(html: string, anchor?: string) {
+    replaceThread(this, html);
+
+    upgradeRelativeTimestamps(this);
+
+    this.#textArea.value = "";
+    this.#onReplyCancel();
+    window.turnstile?.reset(this.#turnstileWidgetId);
+    if (this.#successEl)
+      this.#successEl.textContent = "Danke! Dein Kommentar ist jetzt online.";
+
+    if (anchor) {
+      document.getElementById(anchor)?.scrollIntoView({ behavior: "smooth" });
     }
   }
 
   async #send(): Promise<SubmitResult> {
-    const body = new URLSearchParams();
-    for (const [key, value] of new FormData(this.#form)) {
-      body.append(key, typeof value === "string" ? value : "");
-    }
-    body.set("pageUuid", this.dataset.pageUuid ?? "");
-    body.set("csrf", this.#csrf ?? "");
+    const body = toUrlEncoded(this.#form, {
+      pageUuid: this.dataset.pageUuid ?? "",
+      csrf: this.#csrf ?? "",
+    });
+    // Fall back to the widget's token only if the form didn't already carry one.
     if (!body.get("cf-turnstile-response")) {
       body.set(
         "cf-turnstile-response",
@@ -252,8 +277,9 @@ export class CommentSection extends HTMLElement {
         },
       );
       const data = response._data ?? ({} as SubmitResult);
+
       return response.ok
-        ? { ok: true, redirect: data.redirect }
+        ? { ok: true, html: data.html, anchor: data.anchor }
         : {
             ok: false,
             field: data.field,
@@ -304,8 +330,9 @@ export class CommentSection extends HTMLElement {
       window.turnstile?.reset(this.#turnstileWidgetId);
   }
 
-  #clearErrors() {
+  #resetFeedback() {
     if (this.#statusEl) this.#statusEl.textContent = "";
+    if (this.#successEl) this.#successEl.textContent = "";
     for (const input of this.#form.querySelectorAll("[aria-invalid]")) {
       input.removeAttribute("aria-invalid");
     }
@@ -316,6 +343,36 @@ export class CommentSection extends HTMLElement {
       errorEl.hidden = true;
     }
   }
+}
+
+function toUrlEncoded(
+  form: HTMLFormElement,
+  overrides: Record<string, string>,
+): URLSearchParams {
+  const body = new URLSearchParams();
+
+  for (const [key, value] of new FormData(form)) {
+    body.append(key, typeof value === "string" ? value : "");
+  }
+
+  for (const [key, value] of Object.entries(overrides)) {
+    body.set(key, value);
+  }
+
+  return body;
+}
+
+// Replace the current comment thread with a server-rendered one. The snippet
+// recomputes reply nesting server-side, so swapping the whole thread keeps
+// threading and the count correct where inserting a single node would not.
+function replaceThread(root: ParentNode, html: string) {
+  const current = root.querySelector("[data-comment-thread]");
+  const next = document
+    .createRange()
+    .createContextualFragment(html)
+    .querySelector("[data-comment-thread]");
+
+  if (current && next) current.replaceWith(next);
 }
 
 export function setup() {
