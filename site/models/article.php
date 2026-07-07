@@ -1,9 +1,22 @@
 <?php
 
 use Kirby\Cms\Page;
+use Kirby\Cms\Pages;
 
 class ArticlePage extends Page
 {
+    private Pages|null $comments = null;
+
+    public function comments(): Pages
+    {
+        return $this->comments ??= $this->children()->template('comment')->unlisted();
+    }
+
+    public function acceptsComments(): bool
+    {
+        return $this->commentsEnabled()->toBool(true);
+    }
+
     public function metadata(): array
     {
         $description = $this->text()->toBlocks()->excerpt(140);
@@ -16,7 +29,9 @@ class ArticlePage extends Page
             'datePublished' => $this->date()->toDate('Y-m-d'),
             'dateModified' => $this->modified('Y-m-d'),
             'author' => $this->site()->realTroll(),
-            'publisher' => $this->site()->realTroll()
+            'publisher' => $this->site()->realTroll(),
+            // No commenter names in the JSON-LD – just the visible count
+            'commentCount' => $this->comments()->count()
         ];
 
         return [

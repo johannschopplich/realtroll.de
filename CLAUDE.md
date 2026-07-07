@@ -11,8 +11,6 @@ UnoCSS preset-wind4, Vite, TypeScript. Package manager: pnpm.
   very end of the string: `max-*` first, then ascending `sm:` → `md:` → `lg:` →
   `xl:`; within one breakpoint loosely follow the base group order, with
   breakpoint+state combos at the end of that run. Loose ordering within groups.
-- The UnoCSS scanner only sees `site/{snippets,templates}/**/*` – classes that
-  exist only in TS need inline styles or a safelist.
 - Vertical section-gaps by role: navbar → first content (headerless pages)
   `5xl`; title/header → body `7xl` (hero pages like `game` keep `8xl`);
   trailing nav (section-divider, back-link, pagination) `8xl`.

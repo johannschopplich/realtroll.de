@@ -35,6 +35,27 @@ return [
 
     'routes' => require __DIR__ . '/routes.php',
 
+    'email' => [
+        'transport' => [
+            'type' => 'smtp',
+            'host' => 'smtp.resend.com',
+            'port' => 465,
+            'security' => 'ssl',
+            'auth' => true,
+            'username' => 'resend',
+            'password' => env('RESEND_API_KEY')
+        ]
+    ],
+
+    'realtroll.comments' => [
+        'turnstile' => [
+            'sitekey' => env('TURNSTILE_SITE_KEY'),
+            'secret' => env('TURNSTILE_SECRET_KEY'),
+            'hostname' => env('TURNSTILE_HOSTNAME') ?: null,
+            'action' => env('TURNSTILE_ACTION') ?: null
+        ]
+    ],
+
     'johannschopplich.helpers' => [
         'robots' => [
             'enabled' => true
@@ -42,6 +63,7 @@ return [
         'sitemap' => [
             'enabled' => true,
             'exclude' => [
+                'templates' => ['comment'],
                 'pages' => ['spiele']
             ]
         ],

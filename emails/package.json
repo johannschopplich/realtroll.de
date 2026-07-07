@@ -1,0 +1,21 @@
+{
+  "name": "@realtroll/emails",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "email dev --dir templates",
+    "precompile": "tsx --tsconfig ./tsconfig.json scripts/precompile.tsx"
+  },
+  "devDependencies": {
+    "@react-email/components": "^1.0.11",
+    "@react-email/render": "^2.0.10",
+    "@react-email/ui": "^6.6.6",
+    "@types/node": "^26.1.0",
+    "@types/react": "^19.2.17",
+    "@types/react-dom": "^19.2.3",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7",
+    "react-email": "^6.6.6",
+    "tsx": "^4.23.0"
+  }
+}

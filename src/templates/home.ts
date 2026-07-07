@@ -1,10 +1,9 @@
-import { prefersReducedMotion } from "../utils/index.ts";
-
 const CYCLE_INTERVAL = 1250;
 
 export default function () {
   if (!matchMedia("(hover: hover)").matches) return;
 
+  const prefersReducedMotion = matchMedia("(prefers-reduced-motion: reduce)");
   const panel = document.querySelector<HTMLElement>("#screenshot-showcase");
   const image = panel?.querySelector("img");
   const titleElement = panel?.querySelector<HTMLElement>(

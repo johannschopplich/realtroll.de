@@ -1,5 +1,11 @@
 allowBuilds:
   esbuild: true
+  sharp: true
 
 shellEmulator: true
 trustPolicy: no-downgrade
+trustPolicyExclude:
+  - chokidar@4.0.3
+
+packages:
+  - emails

@@ -5,7 +5,12 @@ import { defineConfig, presetWind4 } from "unocss";
 export default defineConfig<Theme>({
   cli: {
     entry: {
-      patterns: ["site/{snippets,templates}/**/*"],
+      patterns: [
+        "site/{snippets,templates}/**/*",
+        // Only TS files: Scanned CSS gets inlined into `uno.css` by the CLI,
+        // and main.css's `@import "uno.css"` then self-imports.
+        "src/**/*.ts",
+      ],
       outFile: "src/styles/uno.css",
     },
   },

@@ -15,6 +15,18 @@ tabs:
         layout: table
         image: false
         info: "{{ page.date.toDate('d.m.Y') }}"
+      comments:
+        type: pages
+        label: Neueste Kommentare
+        query: page("blog").index(true).filterBy("intendedTemplate", "comment").sortBy("date", "desc")
+        template: comment
+        # Draft inclusion comes from index(true), not status – kept as intent documentation
+        status: all
+        create: false
+        layout: table
+        image: false
+        info: "{{ page.parent.title }}"
+        empty: Noch keine Kommentare
 
   games:
     label: Spiele

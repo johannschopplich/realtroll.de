@@ -2,6 +2,8 @@ title: Redakteur
 
 description: Kann alle Inhalte verwalten und veröffentlichen.
 
+# Die Rolle darf changeStatus/delete für Seiten nie verlieren –
+# das ist der Moderationshebel für Kommentare (ausblenden/löschen).
 permissions:
   access:
     languages: false

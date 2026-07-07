@@ -7,7 +7,10 @@
     "start": [
       "Composer\\Config::disableProcessTimeout",
       "@php -S localhost:8000 -t public vendor/getkirby/cms/router.php"
-    ]
+    ],
+    "test": "phpunit",
+    "fix": "php-cs-fixer fix",
+    "lint": "php-cs-fixer fix --dry-run --diff"
   },
   "config": {
     "optimize-autoloader": true,
@@ -17,5 +20,14 @@
   },
   "extra": {
     "kirby-cms-path": false
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "RealTroll\\Comments\\": "site/plugins/comments/classes/"
+    }
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^12",
+    "friendsofphp/php-cs-fixer": "^3.95"
   }
 }

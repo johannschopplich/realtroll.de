@@ -23,6 +23,10 @@ $dateFormatter = new IntlDateFormatter('de_DE', IntlDateFormatter::LONG, IntlDat
     </div>
   </article>
 
+  <div class="content-prose mt-8xl">
+    <?php snippet('components/comments/section') ?>
+  </div>
+
   <?php if ($page->nextListed()): ?>
     <a
       href="<?= $page->nextListed()->url() ?>"

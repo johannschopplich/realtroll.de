@@ -1,3 +1,1 @@
-export const prefersReducedMotion = matchMedia(
-  "(prefers-reduced-motion: reduce)",
-);
+export * from "./timestamps.ts";

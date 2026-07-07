@@ -4,6 +4,8 @@ node_modules
 .env
 mprocs.log
 docs
+.phpunit.cache
+.php-cs-fixer.cache
 
 # Kirby
 .lock
@@ -25,6 +27,7 @@ site/config/.kirby-tools-licenses
 # Plugins
 site/plugins/*
 !site/plugins/.gitkeep
+!site/plugins/comments
 !site/plugins/easyrpg
 !site/plugins/realtroll
 

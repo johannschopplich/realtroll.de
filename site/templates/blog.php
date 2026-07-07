@@ -69,8 +69,14 @@ snippet('layouts/default', [
           <?php snippet('components/corner-squares', ['size' => 3]) ?>
 
           <header class="mb-xl">
+            <?php // Looks like an N+1, but $perPage caps it and the page cache absorbs it for visitors. ?>
+            <?php $commentCount = $article->comments()->count() ?>
             <p class="label-caps mb-1 text-sm text-contrast-medium">
               <time datetime="<?= $article->date()->toDate('c') ?>"><?= $article->date()->toDate($dateFormatter) ?></time>
+              <?php if ($commentCount > 0): ?>
+                <span aria-hidden="true">·</span>
+                <a href="<?= $article->url() ?>#kommentare" class="link-default"><?= $commentCount ?> <?= $commentCount === 1 ? 'Kommentar' : 'Kommentare' ?></a>
+              <?php endif ?>
             </p>
             <h2 class="font-heading text-xl leading-none text-primary-700">
               <a href="<?= $article->url() ?>" class="link-default"><?= $article->title()->escape() ?></a>
