@@ -48,8 +48,8 @@ foreach ($comments as $comment) {
                 };
               ?>
               <li class="relative">
-                <span class="absolute <?= $isFirstReply ? '-top-5' : 'top-0' ?> -left-3 <?= $trunkExtentClass ?> w-0.5 bg-contrast-lower md:-left-5" aria-hidden="true"></span>
-                <span class="absolute -left-3 <?= $isDeveloperReply ? 'top-3' : 'top-2.5' ?> h-0.5 w-2 bg-contrast-lower md:-left-5 md:w-4" aria-hidden="true"></span>
+                <span class="absolute <?= $isFirstReply ? '-top-5' : 'top-0' ?> -left-3 <?= $trunkExtentClass ?> w-px bg-primary-300 md:-left-5" aria-hidden="true"></span>
+                <span class="absolute -left-3 <?= $isDeveloperReply ? 'top-3' : 'top-2.5' ?> h-px w-2 bg-primary-300 md:-left-5 md:w-4" aria-hidden="true"></span>
                 <?php snippet('components/comments/item', [
                   'comment' => $reply,
                   'dateFormatter' => $dateFormatter,
