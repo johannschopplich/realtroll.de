@@ -188,7 +188,10 @@ snippet('layouts/default', [
             ?>
             <a
               href="<?= $pagination->pageUrl($yearPage[$year]) ?>#<?= $yearAnchor[$year] ?>"
-              class="group absolute bottom-0 w-8 h-9 text-primary-700 -translate-x-1/2 pointer-events-auto max-md:w-11 <?php e(!$isMobileMark && !$isActive, 'max-md:hidden') ?>"
+              class="
+                group absolute bottom-0 w-8 h-9 text-primary-700 -translate-x-1/2 pointer-events-auto
+                max-md:w-11 <?php e(!$isMobileMark && !$isActive, 'max-md:hidden') ?>
+              "
               style="left: <?= round($pos, 2) ?>%"
               aria-label="Zu <?= $year ?>"
             >
@@ -199,9 +202,19 @@ snippet('layouts/default', [
                   <span class="relative"><?= svg('assets/img/diamond.svg') ?></span>
                 </span>
               <?php else: ?>
-                <span class="absolute bottom-0 left-1/2 bg-current -translate-x-1/2 translate-y-1/2 <?php e($isLustrum, 'w-2.5 h-2.5', 'w-1.5 h-1.5') ?>"></span>
+                <span
+                  class="
+                    absolute bottom-0 left-1/2 bg-current -translate-x-1/2 translate-y-1/2
+                    <?php e($isLustrum, 'w-2.5 h-2.5', 'w-1.5 h-1.5') ?>
+                  "
+                ></span>
               <?php endif ?>
-              <span class="absolute bottom-3 left-1/2 font-heading text-xs leading-none whitespace-nowrap -translate-x-1/2 <?php e($isMajor || $isActive, 'opacity-100', 'opacity-0 transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100') ?>"><?= $year ?></span>
+              <span
+                class="
+                  absolute bottom-3 left-1/2 font-heading text-xs leading-none whitespace-nowrap -translate-x-1/2
+                  <?php e($isMajor || $isActive, 'opacity-100', 'opacity-0 transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100') ?>
+                "
+              ><?= $year ?></span>
             </a>
           <?php endforeach ?>
         </div>

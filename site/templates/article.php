@@ -31,7 +31,10 @@ $dateFormatter = new IntlDateFormatter('de_DE', IntlDateFormatter::LONG, IntlDat
 <?php if ($page->nextListed()): ?>
   <a
     href="<?= $page->nextListed()->url() ?>"
-    class="group fixed top-1/2 left-[--spacing-lg] z-20 hidden items-center text-primary-700 -translate-y-1/2 lg:flex"
+    class="
+      group fixed top-1/2 left-[--spacing-lg] z-20 hidden items-center text-primary-700 -translate-y-1/2
+      lg:flex
+    "
     aria-label="Neuer: <?= $page->nextListed()->title()->escape() ?>"
   >
     <span
@@ -59,7 +62,10 @@ $dateFormatter = new IntlDateFormatter('de_DE', IntlDateFormatter::LONG, IntlDat
 <?php if ($page->prevListed()): ?>
   <a
     href="<?= $page->prevListed()->url() ?>"
-    class="group fixed top-1/2 right-[--spacing-lg] z-20 hidden items-center text-primary-700 -translate-y-1/2 lg:flex"
+    class="
+      group fixed top-1/2 right-[--spacing-lg] z-20 hidden items-center text-primary-700 -translate-y-1/2
+      lg:flex
+    "
     aria-label="Älter: <?= $page->prevListed()->title()->escape() ?>"
   >
     <span

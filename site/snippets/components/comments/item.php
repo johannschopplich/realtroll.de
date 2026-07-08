@@ -18,7 +18,12 @@ $hasReplyButton = $isReply === false && ($withReply ?? true) === true;
 <article id="kommentar-<?= $comment->slug() ?>" class="scroll-mt-8xl">
   <div class="flex flex-wrap items-baseline gap-x-2 gap-y-1 mb-2">
     <?php if ($developer !== null): ?>
-      <span class="px-2 py-1 font-medium text-sm leading-none text-white bg-primary-700 border-2 border-primary-700"><?= esc($displayName) ?><span class="sr-only"> (Entwickler)</span></span>
+      <span
+        class="
+          px-2 py-1 font-medium text-sm leading-none
+          text-white bg-primary-700 border-2 border-primary-700
+        "
+      ><?= esc($displayName) ?><span class="sr-only"> (Entwickler)</span></span>
     <?php else: ?>
       <span class="font-medium text-sm text-primary-700"><?= esc($displayName) ?></span>
     <?php endif ?>

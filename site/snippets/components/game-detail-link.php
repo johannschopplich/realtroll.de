@@ -8,7 +8,12 @@
   class="link-primary not-prose"
   aria-label="Steckbrief von <?= $game->title()->escape() ?>"
 >
-  <span class="link-default [--un-decoration-color:transparent] group-hover:decoration-current group-has-[[data-play]:hover]:decoration-transparent">Steckbrief</span>
+  <span
+    class="
+      link-default [--un-decoration-color:transparent]
+      group-hover:decoration-current group-has-[[data-play]:hover]:decoration-transparent
+    "
+  >Steckbrief</span>
   <span
     class="
       i-dinkie-icons-white-right-backhand-index

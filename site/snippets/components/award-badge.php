@@ -11,7 +11,12 @@ $alt ??= '';
 
 ?>
 <?php if (!$file): ?>
-  <span class="inline-flex items-center px-2 py-1 font-mono text-xs leading-tight text-contrast-medium border border-dashed border-primary-700/40"><?= esc($alt ?: 'Bild fehlt') ?></span>
+  <span
+    class="
+      inline-flex items-center px-2 py-1 font-mono text-xs leading-tight
+      text-contrast-medium border border-dashed border-primary-700/40
+    "
+  ><?= esc($alt ?: 'Bild fehlt') ?></span>
 <?php else: ?>
   <img
     class="pixelated <?= $class ?>"

@@ -12,7 +12,13 @@ $dateFormatter = new IntlDateFormatter('de_DE', IntlDateFormatter::LONG, IntlDat
     <h2 class="font-heading text-2xl leading-none text-primary-700">Aus der Werkstatt</h2>
     <a href="<?= $blog->url() ?>" class="group link-primary shrink-0 text-sm">
       <span class="link-default [--un-decoration-color:transparent] group-hover:decoration-current">Alle Neuigkeiten</span>
-      <span class="i-dinkie-icons-right-arrow-circled transition-transform group-hover:translate-x-1 motion-reduce:transition-none" aria-hidden="true"></span>
+      <span
+        class="
+          i-dinkie-icons-right-arrow-circled transition-transform
+          group-hover:translate-x-1 motion-reduce:transition-none
+        "
+        aria-hidden="true"
+      ></span>
     </a>
   </header>
 

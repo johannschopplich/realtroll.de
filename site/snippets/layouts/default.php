@@ -44,7 +44,12 @@ $bottomEdge ??= 'divider';
 </head>
 <body class="overflow-x-clip min-h-dvh" data-template="<?= $page->intendedTemplate()->name() ?>">
 
-  <div class="relative z-1 min-h-dvh bg-polka-grid <?php e($bottomEdge === 'border', 'border-b-2 border-primary-700') ?>">
+  <div
+    class="
+      relative z-1 min-h-dvh bg-polka-grid
+      <?php e($bottomEdge === 'border', 'border-b-2 border-primary-700') ?>
+    "
+  >
     <?php snippet('components/navbar') ?>
 
     <?php if ($header ?? null): ?>

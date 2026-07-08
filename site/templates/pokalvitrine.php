@@ -34,7 +34,12 @@ snippet('layouts/default', slots: true);
   <?php foreach ($entries as $entry): ?>
     <?php $year = $entry->year()->value() ?>
     <?php if ($year !== $lastYear): $lastYear = $year ?>
-      <div class="sticky top-14 z-2 grid grid-cols-[2rem_1fr] items-center gap-x-lg bg-theme-background md:grid-cols-[3rem_1fr]">
+      <div
+        class="
+          sticky top-14 z-2 grid grid-cols-[2rem_1fr] items-center gap-x-lg bg-theme-background
+          md:grid-cols-[3rem_1fr]
+        "
+      >
         <span class="flex justify-center text-primary-700">
           <?= svg('assets/img/diamond.svg') ?>
         </span>
