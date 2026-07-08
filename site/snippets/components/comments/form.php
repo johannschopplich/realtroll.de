@@ -6,14 +6,14 @@ $turnstileSitekey = kirby()->option('realtroll.comments.turnstile.sitekey');
 <div
   class="
     [--frame:var(--tw-color-stone-400)]
-    max-md:mx-[calc(-2*var(--spacing-lg))] max-md:w-[calc(100%+4*var(--spacing-lg))]
+    max-md:-mx-lg max-md:w-[calc(100%+2*var(--spacing-lg))]
   "
 >
   <div
     class="
       flex items-stretch
       after:content-[''] after:flex-1 after:self-stretch after:border-b-2 after:border-[color:var(--frame)]
-      max-md:before:content-[''] max-md:before:w-[calc(2*var(--spacing-lg))] max-md:before:self-stretch max-md:before:border-b-2 max-md:before:border-[color:var(--frame)]
+      max-md:before:content-[''] max-md:before:w-[var(--spacing-lg)] max-md:before:self-stretch max-md:before:border-b-2 max-md:before:border-[color:var(--frame)]
     "
   >
     <h3
@@ -29,7 +29,7 @@ $turnstileSitekey = kirby()->option('realtroll.comments.turnstile.sitekey');
     data-comment-form
     class="
       relative flex flex-col
-      gap-lg px-[calc(2*var(--spacing-lg))] py-lg
+      gap-lg px-lg py-lg
       bg-white border-b-2 border-[color:var(--frame)]
       md:p-xl md:border-x-2 md:shadow-[inset_3px_0_0_var(--tw-color-stone-200)]
     "
