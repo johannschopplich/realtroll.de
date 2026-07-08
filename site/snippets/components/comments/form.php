@@ -10,7 +10,7 @@ $author = $user?->name()->isNotEmpty() === true ? $user->name()->value() : null;
 ?>
 <div
   class="
-    [--frame:var(--tw-color-stone-400)]
+    [--frame:var(--tw-color-stone-300)]
     max-md:-mx-lg max-md:w-[calc(100%+2*var(--spacing-lg))]
   "
 >
@@ -26,7 +26,7 @@ $author = $user?->name()->isNotEmpty() === true ? $user->name()->value() : null;
         px-3 py-2
         font-heading text-lg leading-none text-primary-700
         bg-white border-2 border-b-0 border-[color:var(--frame)]
-        shadow-[inset_3px_3px_0_var(--tw-color-stone-200)]
+        shadow-[inset_3px_3px_0_var(--tw-color-stone-100)]
       "
     >Vorsicht, Troll liest mit!</h3>
   </div>
@@ -36,7 +36,7 @@ $author = $user?->name()->isNotEmpty() === true ? $user->name()->value() : null;
       relative flex flex-col
       gap-lg px-lg py-lg
       bg-white border-b-2 border-[color:var(--frame)]
-      md:p-xl md:border-x-2 md:shadow-[inset_3px_0_0_var(--tw-color-stone-200)]
+      md:p-xl md:border-x-2 md:shadow-[inset_3px_0_0_var(--tw-color-stone-100)]
     "
     novalidate
   >
@@ -87,7 +87,7 @@ $author = $user?->name()->isNotEmpty() === true ? $user->name()->value() : null;
         value="<?= esc($author ?? '') ?>"
         aria-describedby="comment-name-error"
         class="
-          px-2 py-1.5 max-w-xs bg-white border-2 border-[color:var(--frame)] transition-colors
+          px-2 py-1.5 max-w-xs bg-white border-2 border-[color:var(--tw-color-stone-400)] transition-colors
           focus-visible:border-primary-700 focus-visible:outline-hidden aria-[invalid]:border-red-600 aria-[invalid]:focus-visible:border-red-600
         "
       >
@@ -105,7 +105,7 @@ $author = $user?->name()->isNotEmpty() === true ? $user->name()->value() : null;
         rows="4"
         aria-describedby="comment-text-error"
         class="
-          px-2 py-1.5 resize-y bg-white border-2 border-[color:var(--frame)] transition-colors
+          px-2 py-1.5 resize-y bg-white border-2 border-[color:var(--tw-color-stone-400)] transition-colors
           focus-visible:border-primary-700 focus-visible:outline-hidden aria-[invalid]:border-red-600 aria-[invalid]:focus-visible:border-red-600
         "
       ></textarea>
