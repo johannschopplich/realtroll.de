@@ -2,6 +2,11 @@
 
 $turnstileSitekey = kirby()->option('realtroll.comments.turnstile.sitekey');
 
+// Author state is server-owned. A logged-in operator always gets an uncached
+// render (`cache.pages.ignore` in config.php excludes them).
+$user = kirby()->user();
+$author = $user?->name()->isNotEmpty() === true ? $user->name()->value() : null;
+
 ?>
 <div
   class="
@@ -56,12 +61,20 @@ $turnstileSitekey = kirby()->option('realtroll.comments.turnstile.sitekey');
       </button>
     </div>
 
-    <!-- Operator mode: the token route reports a logged-in author -->
-    <p data-author-note class="text-sm text-contrast-medium" hidden>
-      Angemeldet als <strong data-author-name></strong> – deine Antwort erscheint unter diesem Namen.
-    </p>
+    <?php if ($author !== null): ?>
+      <!-- Operator mode, rendered server-side for the logged-in author. -->
+      <p class="text-sm text-contrast-medium">
+        Angemeldet als <strong><?= esc($author) ?></strong> – deine Antwort erscheint unter diesem Namen.
+      </p>
+    <?php endif ?>
 
-    <div data-name-row class="flex flex-col gap-1">
+    <!-- The guard chain validates a non-empty `name` in the POST even for the
+         operator, so the (hidden) row still carries it. -->
+    <div <?= attr([
+      'data-name-row' => true,
+      'class' => 'flex flex-col gap-1',
+      'hidden' => $author !== null
+    ]) ?>>
       <label for="comment-name" class="text-sm font-medium">Name</label>
       <input
         id="comment-name"
@@ -71,6 +84,7 @@ $turnstileSitekey = kirby()->option('realtroll.comments.turnstile.sitekey');
         aria-required="true"
         maxlength="60"
         autocomplete="nickname"
+        value="<?= esc($author ?? '') ?>"
         aria-describedby="comment-name-error"
         class="
           px-2 py-1.5 max-w-xs bg-white border-2 border-[color:var(--frame)] transition-colors
@@ -103,7 +117,7 @@ $turnstileSitekey = kirby()->option('realtroll.comments.turnstile.sitekey');
       <input id="hp_referrer" name="hp_referrer" type="text" tabindex="-1" autocomplete="off">
     </div>
 
-    <?php if ($turnstileSitekey): ?>
+    <?php if ($turnstileSitekey && $author === null): ?>
       <div data-turnstile-mount data-sitekey="<?= esc($turnstileSitekey) ?>"></div>
     <?php endif ?>
 

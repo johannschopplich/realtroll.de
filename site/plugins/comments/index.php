@@ -137,10 +137,7 @@ App::plugin('realtroll/comments', [
                 $kirby = App::instance();
 
                 return Response::json(
-                    [
-                        'csrf'   => $kirby->csrf(),
-                        'author' => $kirby->user()?->name()->value(),
-                    ],
+                    ['csrf' => $kirby->csrf()],
                     200,
                     null,
                     ['Cache-Control' => 'no-store']

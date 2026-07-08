@@ -6,7 +6,6 @@ const TURNSTILE_SCRIPT =
 
 interface TokenResponse {
   csrf: string;
-  author: string | null;
 }
 
 interface SubmitResult {
@@ -43,7 +42,6 @@ declare global {
 
 export class CommentSection extends HTMLElement {
   #form!: HTMLFormElement;
-  #nameInput!: HTMLInputElement;
   #textArea!: HTMLTextAreaElement;
   #parentInput: HTMLInputElement | null = null;
   #submitButton: HTMLButtonElement | null = null;
@@ -51,8 +49,6 @@ export class CommentSection extends HTMLElement {
   #statusEl: HTMLElement | null = null;
   #successEl: HTMLElement | null = null;
   #nameRow: HTMLElement | null = null;
-  #authorNote: HTMLElement | null = null;
-  #authorNameEl: HTMLElement | null = null;
   #replyChip: HTMLElement | null = null;
   #replyNameEl: HTMLElement | null = null;
   #csrf: string | undefined;
@@ -78,7 +74,6 @@ export class CommentSection extends HTMLElement {
     if (!form || !nameInput || !textArea) return;
 
     this.#form = form;
-    this.#nameInput = nameInput;
     this.#textArea = textArea;
     this.#parentInput = form.querySelector("[data-reply-input]");
     this.#submitButton = form.querySelector("[data-comment-submit]");
@@ -86,8 +81,6 @@ export class CommentSection extends HTMLElement {
     this.#statusEl = form.querySelector("[data-form-status]");
     this.#successEl = form.querySelector("[data-form-success]");
     this.#nameRow = form.querySelector("[data-name-row]");
-    this.#authorNote = form.querySelector("[data-author-note]");
-    this.#authorNameEl = form.querySelector("[data-author-name]");
     this.#replyChip = form.querySelector("[data-reply-chip]");
     this.#replyNameEl = form.querySelector("[data-reply-name]");
 
@@ -107,11 +100,7 @@ export class CommentSection extends HTMLElement {
   #onFirstInteraction = () => {
     void this.#fetchToken().then((token) => {
       if (token) this.#csrf = token.csrf;
-      if (token?.author) {
-        this.#applyAuthorMode(token.author);
-      } else {
-        this.#loadTurnstile();
-      }
+      this.#loadTurnstile();
     });
   };
 
@@ -140,16 +129,6 @@ export class CommentSection extends HTMLElement {
         headers: { Accept: "application/json" },
       });
     } catch {}
-  }
-
-  #applyAuthorMode(author: string) {
-    // The name field is required by the guard chain even for the operator, so
-    // carry the author name in the (now hidden) input rather than dropping it.
-    this.#nameInput.value = author;
-    this.#nameRow?.setAttribute("hidden", "");
-    this.#form.querySelector("[data-turnstile-mount]")?.remove();
-    if (this.#authorNameEl) this.#authorNameEl.textContent = author;
-    if (this.#authorNote) this.#authorNote.hidden = false;
   }
 
   // Explicit rendering captures the widget id for getResponse/reset; the
