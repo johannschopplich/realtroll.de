@@ -13,12 +13,6 @@ use Throwable;
 
 /**
  * The single per-comment notification – the load-bearing moderation trigger.
- *
- * It is deliberately terse (fixed subject + a short preview, never the full
- * body): the channel is a single Yahoo address with no redundancy, so its
- * deliverability is precious and a full HTML body of arbitrary visitor text is
- * the most spam-filterable payload. `send()` is self-contained and must NEVER
- * throw out – a broken mail may never break the write path that called it.
  */
 final class CommentNotification
 {
@@ -35,10 +29,15 @@ final class CommentNotification
             // The name is a stored-XSS sink: the templates esc() it, but it is
             // also collapsed to a single line here so the subject header can
             // never carry an injected newline.
-            $name       = self::singleLine((string)$comment->name()->value());
-            $preview    = Str::excerpt((string)$comment->text()->value(), self::PREVIEW_CHARS);
-            $panelUrl   = $comment->panel()->url();
-            $articleUrl = $article->url() . '#kommentar-' . $comment->slug();
+            $name    = self::singleLine((string)$comment->name()->value());
+            $preview = Str::excerpt((string)$comment->text()->value(), self::PREVIEW_CHARS);
+
+            // moderateUrl → the comment's Panel page (edit/hide/delete).
+            // viewUrl → a Panel bounce that redirects to the frontend anchor
+            // only after login, so the author lands on the thread with a live
+            // session and his reply carries the developer badge.
+            $moderateUrl = $comment->panel()->url();
+            $viewUrl     = $kirby->url('panel') . '/kommentar/' . $article->uuid()->id() . '/' . $comment->slug();
 
             [$parentName, $parentExcerpt] = self::resolveParent($comment);
 
@@ -53,8 +52,8 @@ final class CommentNotification
                     'article'       => $article,
                     'name'          => $name,
                     'preview'       => $preview,
-                    'panelUrl'      => $panelUrl,
-                    'articleUrl'    => $articleUrl,
+                    'moderateUrl'   => $moderateUrl,
+                    'viewUrl'       => $viewUrl,
                     'parentName'    => $parentName,
                     'parentExcerpt' => $parentExcerpt,
                 ],

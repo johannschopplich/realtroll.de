@@ -19,12 +19,10 @@ final class CommentHtml extends Html
         'ul' => false, 'ol' => false, 'li' => false,
         'p'  => false, 'br' => false, 'hr' => false,      // hr must be listed, or the unwrap pass drops thematic breaks (---)
         'blockquote' => false, 'code' => false, 'pre' => false,
-        // h1–h6 MUST be listed: the unwrap pass runs BEFORE the elementCallback;
-        // unlisted, Dom would unwrap them and discard their text nodes before the
-        // callback can rewrite them to <strong>.
+        // h1–h6 must be listed: Dom would unwrap them and discard their text
+        // nodes before the callback can rewrite them to <strong>.
         'h1' => false, 'h2' => false, 'h3' => false, 'h4' => false, 'h5' => false, 'h6' => false,
-        // NO table tags: table parsing is already off in CommentParsedown, so no
-        // table/tr/td arises that could unwrap (and swallow text) here.
+        // No table tags: table parsing is already off in `CommentParsedown`.
     ];
     public static array $disallowedTags = ['script', 'style', 'iframe', 'object', 'meta'];
     public static array $urlAttrs = ['href'];

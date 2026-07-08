@@ -8,8 +8,8 @@
  * @var \Kirby\Cms\Page $article
  * @var string $name
  * @var string $preview
- * @var string $panelUrl
- * @var string $articleUrl
+ * @var string $moderateUrl
+ * @var string $viewUrl
  * @var string|null $parentName
  * @var string|null $parentExcerpt
  */
@@ -33,8 +33,8 @@ Kommentar:
 
 
 Im Artikel ansehen:
-<?= $articleUrl ?>
+<?= $viewUrl ?>
 
 
 Im Panel moderieren:
-<?= $panelUrl ?>
+<?= $moderateUrl ?>

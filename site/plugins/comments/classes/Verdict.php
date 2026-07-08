@@ -7,11 +7,7 @@ namespace RealTroll\Comments;
 use Kirby\Cms\Page;
 
 /**
- * Immutable accept/reject result of the admission policy. `accept` carries the
- * whole write payload (article, cleaned name/text, author, parentId) so the
- * route never re-resolves or re-cleans and drifts from what was validated;
- * `reject` carries the offending field, a stable machine `code` the client
- * branches on, and a human-readable message.
+ * Immutable accept/reject result of the admission policy.
  */
 final class Verdict
 {

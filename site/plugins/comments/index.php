@@ -1,8 +1,12 @@
 <?php
 
 use Kirby\Cms\App;
+use Kirby\Cms\Page;
 use Kirby\Http\Response;
+use Kirby\Panel\Panel;
+use Kirby\Panel\Redirect;
 use Kirby\Toolkit\Str;
+use Kirby\Uuid\Uuid;
 use RealTroll\Comments\CommentNotification;
 use RealTroll\Comments\CommentPage;
 use RealTroll\Comments\SubmissionGuards;
@@ -27,6 +31,36 @@ App::plugin('realtroll/comments', [
     ],
     'templates' => [
         'comment' => __DIR__ . '/templates/comment.php',
+    ],
+    'areas' => [
+        // Redirect-only Panel view (menu-hidden): the notification's "Im Artikel
+        // ansehen" link lands here so Kirby's login gate runs first, then bounces
+        // to the article – the author arrives with a session (developer reply).
+        'comments' => fn () => [
+            'menu'  => false,
+            'views' => [
+                [
+                    'pattern' => 'kommentar/(:any)/(:any)',
+                    'action'  => function (string $articleUuid, string $commentSlug) {
+                        try {
+                            $article = Uuid::for('page://' . $articleUuid)?->model();
+                        } catch (Throwable) {
+                            $article = null;
+                        }
+
+                        // Target built from the resolved article, never the
+                        // request, so this can't become an open redirect. Throw
+                        // Redirect (not Panel::go) so Panel::url() doesn't prefix
+                        // the Panel slug onto the frontend URL.
+                        if ($article instanceof Page && $article->intendedTemplate()->name() === 'article') {
+                            throw new Redirect($article->url() . '#kommentar-' . $commentSlug);
+                        }
+
+                        Panel::go('site');
+                    },
+                ],
+            ],
+        ],
     ],
     'routes' => [
         [
@@ -74,8 +108,6 @@ App::plugin('realtroll/comments', [
                         ])->changeStatus('unlisted')
                     );
                 } catch (\Throwable) {
-                    // A failed write must surface as an announceable form error,
-                    // not a bare 500 that reads like a network failure.
                     return Response::json([
                         'field'   => 'form',
                         'code'    => 'store',

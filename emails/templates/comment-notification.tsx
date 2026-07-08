@@ -24,8 +24,8 @@ export const CommentNotificationEmailProps = [
   "articleTitle",
   "time",
   "preview",
-  "panelUrl",
-  "articleUrl",
+  "moderateUrl",
+  "viewUrl",
   "parentName",
   "parentExcerpt",
 ] as const;
@@ -37,8 +37,8 @@ export function CommentNotificationEmail({
   articleTitle,
   time,
   preview,
-  panelUrl,
-  articleUrl,
+  moderateUrl,
+  viewUrl,
   parentName,
   parentExcerpt,
 }: Props) {
@@ -140,12 +140,9 @@ export function CommentNotificationEmail({
             </Text>
           </Section>
 
-          {/* Article first: comments auto-publish, so replying in context is the
-              common act and moderation the exception. The button's border and fill
-              degrade to a plain colored link in Outlook desktop – intended. */}
           <Section style={{ marginTop: "24px" }}>
             <Button
-              href={articleUrl}
+              href={viewUrl}
               style={{
                 padding: "10px 16px",
                 backgroundColor: "#bd3900",
@@ -168,12 +165,16 @@ export function CommentNotificationEmail({
             <span style={{ whiteSpace: "nowrap", verticalAlign: "middle" }}>
               <span
                 aria-hidden="true"
-                style={{ padding: "0 10px", fontSize: "14px", color: "#a6a09b" }}
+                style={{
+                  padding: "0 10px",
+                  fontSize: "14px",
+                  color: "#a6a09b",
+                }}
               >
                 ·
               </span>
               <Link
-                href={panelUrl}
+                href={moderateUrl}
                 style={{
                   fontSize: "14px",
                   color: "#57534d",
@@ -196,8 +197,9 @@ CommentNotificationEmail.PreviewProps = {
   time: "05.07.2026 14:32",
   preview:
     "Ich hänge gerade am Gerätepuzzle im Maschinenraum der Amaltheia – die Bauteile lassen sich partout nicht in die richtige Reihenfolge schieben. Übersehe ich einen Hinweis, oder braucht es einen bestimmten Kniff? Ansonsten: Der kompakte Einstieg zieht einen sofort rein, großartig!",
-  panelUrl: "https://realtroll.de/panel/pages/blog+nachbarlicht-demo",
-  articleUrl: "https://realtroll.de/blog/nachbarlicht-demo#kommentar-7f3a2c",
+  moderateUrl: "https://realtroll.de/panel/pages/blog+nachbarlicht-demo",
+  viewUrl:
+    "https://realtroll.de/panel/kommentar/pR3aXtsq7mF2/comment-7f3a2c9b1e4d8a60",
   parentName: "Kelven",
   parentExcerpt:
     "Die Abstimmung zwischen Geschichte und Spielmechanik ist dir wieder sehr gelungen – besonders die Schiebeaufgaben, um etwas zusammenzubauen.",

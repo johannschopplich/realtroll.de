@@ -29,10 +29,7 @@ final class CommentParsedown extends Parsedown
             }
         }
 
-        // Images are unsupported (comments never load external image URLs). Drop
-        // the Image inline type so `![alt](url)` keeps its alt text as a normal
-        // link instead of an <img> the sanitizer would unwrap – discarding the
-        // alt text with it.
+        // Images are unsupported (comments never load external image URLs).
         if (isset($this->InlineTypes['!'])) {
             $this->InlineTypes['!'] = array_values(array_filter(
                 $this->InlineTypes['!'],

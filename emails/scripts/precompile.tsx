@@ -35,8 +35,8 @@ const replacements: [string, string][] = [
     "<?= esc((string)($comment->date()->toDate('d.m.Y H:i') ?? '')) ?>",
   ],
   ["{preview}", "<?= esc($preview) ?>"],
-  ["{panelUrl}", "<?= esc($panelUrl) ?>"],
-  ["{articleUrl}", "<?= esc($articleUrl) ?>"],
+  ["{moderateUrl}", "<?= esc($moderateUrl) ?>"],
+  ["{viewUrl}", "<?= esc($viewUrl) ?>"],
   ["{parentName}", "<?= esc($parentName) ?>"],
   ["{parentExcerpt}", "<?= esc((string)$parentExcerpt) ?>"],
 ];
@@ -60,8 +60,8 @@ const header = `
  * @var \\Kirby\\Cms\\Page $article
  * @var string $name
  * @var string $preview
- * @var string $panelUrl
- * @var string $articleUrl
+ * @var string $moderateUrl
+ * @var string $viewUrl
  * @var string|null $parentName
  * @var string|null $parentExcerpt
  */
