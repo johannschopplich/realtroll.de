@@ -69,7 +69,7 @@ $turnstileSitekey = kirby()->option('realtroll.comments.turnstile.sitekey');
         maxlength="60"
         autocomplete="nickname"
         aria-describedby="comment-name-error"
-        class="px-2 py-1.5 max-w-xs bg-white border-2 border-primary-700 aria-[invalid]:border-red-600"
+        class="px-2 py-1.5 max-w-xs bg-white border-2 border-[color:var(--frame)] transition-colors focus-visible:border-primary-700 focus-visible:outline-hidden aria-[invalid]:border-red-600 aria-[invalid]:focus-visible:border-red-600"
       >
       <p id="comment-name-error" data-error-for="name" class="text-sm text-red-700" hidden></p>
     </div>
@@ -84,7 +84,7 @@ $turnstileSitekey = kirby()->option('realtroll.comments.turnstile.sitekey');
         maxlength="4000"
         rows="4"
         aria-describedby="comment-text-error"
-        class="px-2 py-1.5 resize-y bg-white border-2 border-primary-700 aria-[invalid]:border-red-600"
+        class="px-2 py-1.5 resize-y bg-white border-2 border-[color:var(--frame)] transition-colors focus-visible:border-primary-700 focus-visible:outline-hidden aria-[invalid]:border-red-600 aria-[invalid]:focus-visible:border-red-600"
       ></textarea>
       <p id="comment-text-error" data-error-for="text" class="text-sm text-red-700" hidden></p>
     </div>
