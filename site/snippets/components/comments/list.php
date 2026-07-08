@@ -39,17 +39,16 @@ foreach ($comments as $comment) {
               <?php
                 $isFirstReply = $replyIndex === 0;
                 $isLastReply = $replyIndex === $lastReplyIndex;
-                $isDeveloperReply = $reply->developer() !== null;
 
                 $trunkExtentClass = match (true) {
                   $isLastReply === false => '-bottom-6',
-                  $isFirstReply === true => $isDeveloperReply ? 'h-8' : 'h-7.5',
-                  default => $isDeveloperReply ? 'h-3' : 'h-2.5'
+                  $isFirstReply === true => 'h-8',
+                  default => 'h-2.5'
                 };
               ?>
               <li class="relative">
-                <span class="absolute <?= $isFirstReply ? '-top-5' : 'top-0' ?> -left-3 <?= $trunkExtentClass ?> w-px bg-primary-300 md:-left-5" aria-hidden="true"></span>
-                <span class="absolute -left-3 <?= $isDeveloperReply ? 'top-3' : 'top-2.5' ?> h-px w-2 bg-primary-300 md:-left-5 md:w-4" aria-hidden="true"></span>
+                <span class="absolute <?= $isFirstReply ? 'top-[calc((var(--spacing-2xl)*-1)+4px)]' : 'top-0' ?> -left-3 <?= $trunkExtentClass ?> w-[2px] bg-primary-500 md:-left-5" aria-hidden="true"></span>
+                <span class="absolute -left-3 top-2.5 h-[2px] w-2 bg-primary-500 md:-left-5 md:w-4" aria-hidden="true"></span>
                 <?php snippet('components/comments/item', [
                   'comment' => $reply,
                   'dateFormatter' => $dateFormatter,
