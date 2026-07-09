@@ -41,9 +41,6 @@ final class SubmissionGuards
         }
 
         if ($this->guardEnabled($kirby, 'toggle')) {
-            // The blueprint default (on) only applies to new Panel saves; the 446
-            // legacy articles carry no `commentsEnabled`, so absent must read as
-            // enabled – toBool's default – and only an explicit false rejects.
             if (!$article->commentsEnabled()->toBool(true)) {
                 return Verdict::reject('form', 'disabled', 'Für diesen Artikel sind Kommentare derzeit deaktiviert.');
             }

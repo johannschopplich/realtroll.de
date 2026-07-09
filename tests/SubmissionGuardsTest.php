@@ -106,7 +106,7 @@ final class SubmissionGuardsTest extends TestCase
                                 'content'  => ['uuid' => 'article-locked', 'title' => 'Gesperrt', 'commentsEnabled' => 'false'],
                             ],
                             [
-                                // Legacy article without the toggle field – absent means enabled.
+                                // Fixture with no toggle field, to exercise the absent-means-enabled branch.
                                 'slug'     => 'artikel-ohne-feld',
                                 'template' => 'article',
                                 'content'  => ['uuid' => 'article-nofield', 'title' => 'Ohne Feld'],
@@ -185,7 +185,6 @@ final class SubmissionGuardsTest extends TestCase
     #[Test]
     public function accepts_when_the_toggle_field_is_absent(): void
     {
-        // Legacy articles have no `commentsEnabled` field; absent means enabled.
         $verdict = $this->guards()->evaluate($this->request(['pageUuid' => 'page://article-nofield']));
 
         $this->assertTrue($verdict->accepted);
@@ -305,8 +304,6 @@ final class SubmissionGuardsTest extends TestCase
     {
         $this->kirby->impersonate('troll@realtroll.de');
 
-        // Failing Turnstile, filled honeypot and a duplicate text – all skipped
-        // for the trusted operator.
         $verdict = $this->guards(turnstileOk: false)->evaluate($this->request([
             'text'                           => 'Doppelter Kommentar',
             SubmissionGuards::HONEYPOT_FIELD => 'filled',
