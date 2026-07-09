@@ -2,7 +2,7 @@
 
 /** @var \Kirby\Cms\Page $page */
 
-$dateFormatter = new IntlDateFormatter('de_DE', IntlDateFormatter::LONG, IntlDateFormatter::NONE);
+$dateFormatter = dateFormatter();
 
 $perPage = 20;
 $allArticles = collection('articles');

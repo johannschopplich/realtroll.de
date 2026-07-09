@@ -4,7 +4,7 @@
 
 snippet('layouts/default', slots: true);
 
-$dateFormatter = new IntlDateFormatter('de_DE', IntlDateFormatter::LONG, IntlDateFormatter::NONE);
+$dateFormatter = dateFormatter();
 
 ?>
 

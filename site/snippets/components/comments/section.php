@@ -7,7 +7,7 @@ $acceptsComments = $page->acceptsComments();
 
 if ($acceptsComments === false && $comments->count() === 0) return;
 
-$dateFormatter = new IntlDateFormatter('de_DE', IntlDateFormatter::MEDIUM, IntlDateFormatter::SHORT);
+$dateFormatter = dateFormatter(IntlDateFormatter::MEDIUM, IntlDateFormatter::SHORT);
 
 ?>
 <comment-section

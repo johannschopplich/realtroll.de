@@ -4,7 +4,7 @@ $blog = page('blog');
 $posts = $blog?->children()->listed()->sortBy('date', 'desc')->limit(3);
 if (!$posts || $posts->count() === 0) return;
 
-$dateFormatter = new IntlDateFormatter('de_DE', IntlDateFormatter::LONG, IntlDateFormatter::NONE);
+$dateFormatter = dateFormatter();
 
 ?>
 <section class="content-lg mt-8xl">

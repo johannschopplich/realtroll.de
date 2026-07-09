@@ -2,6 +2,18 @@
 
 use Kirby\Cms\App;
 
+if (!function_exists('dateFormatter')) {
+    function dateFormatter(
+        int $dateType = IntlDateFormatter::LONG,
+        int $timeType = IntlDateFormatter::NONE
+    ): IntlDateFormatter {
+        static $formatters = [];
+        $locale = App::instance()->languageCode() ?? 'de';
+        $key = "{$locale}:{$dateType}:{$timeType}";
+        return $formatters[$key] ??= IntlDateFormatter::create($locale, $dateType, $timeType);
+    }
+}
+
 App::plugin('realtroll/website', [
     'siteMethods' => [
         'realTroll' => function (): array {
