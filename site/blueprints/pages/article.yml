@@ -2,7 +2,7 @@ title: Artikel
 
 icon: 📝
 
-num: date
+num: '{{ page.date.toDate("Ymd") }}'
 
 options:
   changeTemplate: false
@@ -37,6 +37,7 @@ columns:
                 type: group
                 fieldsets:
                   - image
+                  - video
               more:
                 label: Mehr
                 type: group
@@ -49,7 +50,7 @@ columns:
         status: all
         sortBy: date desc
         create: false
-        info: "{{ page.date.toDate('d.m.Y H:i') }}"
+        info: '{{ page.date.toDate("d.m.Y H:i") }}'
         empty: Noch keine Kommentare
 
   sidebar:

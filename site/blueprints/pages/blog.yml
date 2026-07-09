@@ -21,6 +21,6 @@ tabs:
         label: Artikel
         template: article
         sortBy: date desc
-        info: "{{ page.date.toDate('d.m.Y') }}"
+        info: '{{ page.date.toDate("d.m.Y") }}'
 
   seo: tabs/seo

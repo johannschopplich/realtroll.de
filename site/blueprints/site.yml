@@ -14,11 +14,11 @@ tabs:
         search: true
         layout: table
         image: false
-        info: "{{ page.date.toDate('d.m.Y') }}"
+        info: '{{ page.date.toDate("d.m.Y") }}'
       comments:
         type: pages
         label: Neueste Kommentare
-        query: page("blog").index(true).filterBy("intendedTemplate", "comment").sortBy("date", "desc")
+        query: kirby.page("blog").index(true).filterBy("intendedTemplate", "comment").sortBy("date", "desc")
         template: comment
         # Draft inclusion comes from index(true), not status – kept as intent documentation
         status: all
@@ -99,7 +99,7 @@ tabs:
             help: Eine kurze Beschreibung der Website. Wird für Seiten ohne eigene Beschreibung verwendet.
           thumbnail:
             extends: fields/thumbnail
-            query: site.files.template('image')
+            query: site.files.template("image")
             help: Wird für Seiten ohne eigenes Vorschaubild verwendet.
 
   images: tabs/images

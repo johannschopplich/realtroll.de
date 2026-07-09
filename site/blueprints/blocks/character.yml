@@ -6,7 +6,7 @@ fields:
   image:
     label: Face-Icon
     type: files
-    query: page.files.template('image')
+    query: page.files.template("image")
     uploads: image
     multiple: false
     width: 1/3

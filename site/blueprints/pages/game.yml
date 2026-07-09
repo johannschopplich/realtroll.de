@@ -60,7 +60,7 @@ tabs:
                 label: Logo
                 type: files
                 multiple: false
-                query: page.files.template('image')
+                query: page.files.template("image")
                 uploads: image
               darkLogo:
                 label: Dunkles Logo

@@ -1,28 +1,27 @@
-name: Video
+name: field.blocks.video.name
 icon: video
 wysiwyg: true
 preview: fields
 fields:
   url:
-    label: URL
+    label: field.blocks.video.url.label
     type: url
-    placeholder: https://www.youtube.com/watch?v=...
+    placeholder: field.blocks.video.url.placeholder
   title:
     label: Titel
     type: text
-    help: Erscheint über dem Vorschaubild und als Bezeichnung für Screenreader.
   caption:
-    label: Bildunterschrift
+    label: field.blocks.video.caption
     type: writer
     inline: true
   ratio:
-    label: Seitenverhältnis
+    label: field.blocks.image.ratio
     type: text
     placeholder: 16/9
   thumbnail:
     label: Vorschaubild
     type: files
-    query: page.files.template('image')
+    query: page.files.template("image")
     uploads:
       template: image
     multiple: false
