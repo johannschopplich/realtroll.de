@@ -110,6 +110,36 @@ $author = $user?->name()->isNotEmpty() === true ? $user->name()->value() : null;
         "
       ></textarea>
       <p id="comment-text-error" data-error-for="text" class="text-sm text-red-700" hidden></p>
+
+      <details>
+        <summary
+          class="
+            flex items-center gap-1 w-fit min-h-6
+            text-xs font-medium text-contrast-medium cursor-pointer select-none
+            list-none [&::-webkit-details-marker]:hidden
+          "
+        >
+          <span
+            class="inline-block shrink-0 text-[1.2em] leading-none motion-safe:transition-transform [details[open]_&]:rotate-90"
+            aria-hidden="true"
+          >&#x25B8;</span>
+          Formatier-Spickzettel
+        </summary>
+        <dl class="grid grid-cols-[auto_1fr] items-baseline gap-x-4 gap-y-1 mt-2 text-sm">
+          <dt class="font-mono text-xs whitespace-nowrap text-contrast-medium">**fett**</dt>
+          <dd><strong>fett</strong></dd>
+          <dt class="font-mono text-xs whitespace-nowrap text-contrast-medium">*kursiv*</dt>
+          <dd><em>kursiv</em></dd>
+          <dt class="font-mono text-xs whitespace-nowrap text-contrast-medium">~~quatsch~~</dt>
+          <dd><del class="line-through">quatsch</del></dd>
+          <dt class="font-mono text-xs whitespace-nowrap text-contrast-medium">[Text](URL)</dt>
+          <dd><span class="text-primary-700 underline">Link</span></dd>
+          <dt class="font-mono text-xs whitespace-nowrap text-contrast-medium">- Punkt</dt>
+          <dd>&bull;&nbsp;Liste</dd>
+          <dt class="font-mono text-xs whitespace-nowrap text-contrast-medium">&gt; Zitat</dt>
+          <dd class="ps-2 text-contrast-medium border-s-2 border-[color:var(--tw-color-stone-300)]">Zitat</dd>
+        </dl>
+      </details>
     </div>
 
     <div class="absolute -left-[9999px] h-0 w-0 overflow-hidden" aria-hidden="true">
