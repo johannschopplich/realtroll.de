@@ -46,6 +46,7 @@ columns:
         help: Verknüpft den Kommentar mit deinem Panel-Konto und zeigt das Entwickler-Abzeichen. Nur für eigene Antworten setzen.
       parentId:
         label: Antwort auf
-        type: text
+        type: pages
+        image: false
         disabled: true
         help: Interne Referenz auf den übergeordneten Kommentar. Wird automatisch gesetzt.
