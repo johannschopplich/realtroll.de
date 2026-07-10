@@ -70,6 +70,25 @@ final class CommentRendererTest extends TestCase
     }
 
     #[Test]
+    public function renders_unordered_list_items(): void
+    {
+        $html = CommentRenderer::render("- eins\n- zwei");
+
+        $this->assertStringContainsString('<ul>', $html);
+        $this->assertStringContainsString('<li>eins</li>', $html);
+        $this->assertStringContainsString('<li>zwei</li>', $html);
+    }
+
+    #[Test]
+    public function renders_blockquote(): void
+    {
+        $html = CommentRenderer::render('> zitiert');
+
+        $this->assertStringContainsString('<blockquote>', $html);
+        $this->assertStringContainsString('zitiert', $html);
+    }
+
+    #[Test]
     public function strips_data_uri_images_and_links(): void
     {
         $html = CommentRenderer::render(
