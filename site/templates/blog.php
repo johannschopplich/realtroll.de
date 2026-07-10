@@ -60,10 +60,11 @@ snippet('layouts/default', [
           id="<?= $article->slug() ?>"
           class="
             blog-card relative scroll-mt-8xl
-            p-3xl mb-5xl max-w-[min(var(--container-prose),90%)]
+            p-3xl mb-5xl
             bg-white border-2 border-primary-700
-            [&:nth-child(odd)]:mr-auto [&:nth-child(even)]:ml-auto last:mb-0
-            md:p-5xl
+            last:mb-0
+            md:p-5xl md:max-w-[min(var(--container-prose),90%)]
+            md:[&:nth-child(odd)]:mr-auto md:[&:nth-child(even)]:ml-auto
           "
         >
           <?php snippet('components/corner-squares', ['size' => 3]) ?>
@@ -91,7 +92,7 @@ snippet('layouts/default', [
           </div>
           <button
             type="button"
-            class="group link-primary mt-lg py-2 text-sm md:hidden"
+            class="group link-primary flex w-fit mt-lg py-2 text-sm md:hidden"
             data-clamp-toggle
             hidden
           >
@@ -112,7 +113,7 @@ snippet('layouts/default', [
 
           <?php $commentCount = $article->comments()->count() ?>
           <?php if ($commentCount > 0 || $article->acceptsComments()): ?>
-            <a href="<?= $article->url() ?>#kommentare" class="group link-primary mt-xl text-sm">
+            <a href="<?= $article->url() ?>#kommentare" class="group link-primary flex w-fit mt-xl text-sm">
               <span class="i-dinkie-icons-speech-balloon-small shrink-0" aria-hidden="true"></span>
               <span
                 class="
