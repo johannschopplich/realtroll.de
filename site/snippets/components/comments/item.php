@@ -24,7 +24,7 @@ $hasReplyButton = $isReply === false && ($withReply ?? true) === true;
           px-2 py-1 font-medium text-sm leading-none
           text-white bg-primary-700 border-2 border-primary-700
         "
-      ><?= esc($displayName) ?><span class="i-dinkie-icons-checkmark-circled shrink-0" aria-hidden="true"></span><span class="sr-only"> (Entwickler)</span></span>
+      ><?= esc($displayName) ?><span class="i-dinkie-icons-checkmark-circled shrink-0 translate-y-[-1px]" aria-hidden="true"></span><span class="sr-only"> (Entwickler)</span></span>
     <?php else: ?>
       <span class="font-medium text-sm text-primary-700"><?= esc($displayName) ?></span>
     <?php endif ?>
