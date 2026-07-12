@@ -18,7 +18,7 @@ $showDevlog ??= false;
 <header
   class="<?= trim(implode(' ', [
     'pixelated relative flex items-center justify-center pt-6xl bg-starfield md:pt-7xl',
-    $faces ? 'pb-9xl md:pb-[calc(var(--spacing-9xl)+var(--spacing-xl))]' : 'pb-6xl md:pb-7xl'
+    $faces ? 'pb-9xl md:pb-[calc(var(--spacing-9xl)+var(--spacing-4xl))]' : 'pb-6xl md:pb-7xl'
   ]), ' ') ?>"
 >
   <div class="flex flex-col items-center">
