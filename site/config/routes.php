@@ -7,6 +7,17 @@ return [
         'pattern' => 'spiele',
         'action' => fn () => go(site()->homePage()->url(), 301)
     ],
+    // Serve the RSS feed's XSLT stylesheet so browsers render the feed as a
+    // human-friendly page. The `.xsl` suffix keeps it clear of the `(:alpha)`
+    // feed route below.
+    [
+        'pattern' => 'feeds/rss.xsl',
+        'method'  => 'GET',
+        'action'  => fn () => new Response(
+            snippet('feed/rss.xsl', [], true),
+            'text/xml'
+        )
+    ],
     [
         'pattern' => 'feeds/(:alpha)',
         'method' => 'GET',
@@ -39,7 +50,7 @@ return [
             );
 
             $contentType = match ($type) {
-                'rss' => 'application/rss+xml',
+                'rss' => 'application/xml',
                 'json' => 'application/json',
             };
 
