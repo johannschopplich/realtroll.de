@@ -366,32 +366,10 @@ final class SubmissionGuardsTest extends TestCase
     }
 
     #[Test]
-    public function rejects_a_reply_to_a_non_comment_page(): void
+    #[DataProvider('unresolvableParentIdProvider')]
+    public function promotes_any_reference_outside_the_articles_comments_to_top_level(string $parentId): void
     {
-        $verdict = $this->guards()->evaluate($this->request(['parentId' => 'page://article-b']));
-
-        $this->assertFalse($verdict->accepted);
-    }
-
-    #[Test]
-    public function rejects_a_reply_to_a_file_or_user_uuid(): void
-    {
-        $this->assertFalse($this->guards()->evaluate($this->request(['parentId' => 'user://troll']))->accepted);
-        $this->assertFalse($this->guards()->evaluate($this->request(['parentId' => 'file://whatever']))->accepted);
-    }
-
-    #[Test]
-    public function rejects_a_reply_to_a_comment_of_a_foreign_article(): void
-    {
-        $verdict = $this->guards()->evaluate($this->request(['parentId' => 'page://c-foreign']));
-
-        $this->assertFalse($verdict->accepted);
-    }
-
-    #[Test]
-    public function promotes_a_reply_to_a_missing_parent_to_top_level(): void
-    {
-        $verdict = $this->guards()->evaluate($this->request(['parentId' => 'page://ghost']));
+        $verdict = $this->guards()->evaluate($this->request(['parentId' => $parentId]));
 
         $this->assertTrue($verdict->accepted);
         $this->assertNull($verdict->parentId);
@@ -420,6 +398,18 @@ final class SubmissionGuardsTest extends TestCase
      *
      * @return iterable<string, array{string}>
      */
+    /**
+     * @return iterable<string, array{string}>
+     */
+    public static function unresolvableParentIdProvider(): iterable
+    {
+        yield 'a missing page' => ['page://ghost'];
+        yield 'a non-comment page' => ['page://article-b'];
+        yield 'a foreign article\'s comment' => ['page://c-foreign'];
+        yield 'a user uuid' => ['user://troll'];
+        yield 'a file uuid' => ['file://whatever'];
+    }
+
     public static function badCsrfProvider(): iterable
     {
         yield 'a tampered token' => ['tampered'];

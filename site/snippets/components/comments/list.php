@@ -58,7 +58,8 @@ foreach ($comments as $comment) {
                 <?php snippet('components/comments/item', [
                   'comment' => $reply,
                   'dateFormatter' => $dateFormatter,
-                  'isReply' => true
+                  'isReply' => true,
+                  'withReply' => $withReply ?? true
                 ]) ?>
               </li>
             <?php endforeach ?>

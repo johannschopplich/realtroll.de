@@ -44,6 +44,7 @@ $author = $user?->name()->isNotEmpty() === true ? $user->name()->value() : null;
     <input type="hidden" name="parentId" value="" data-reply-input>
     <div
       data-reply-chip
+      role="status"
       class="
         flex items-center gap-2 self-start px-2 py-1
         text-sm bg-primary-100 border-2 border-primary-700

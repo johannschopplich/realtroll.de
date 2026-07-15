@@ -134,7 +134,7 @@ final class CommentNotificationTest extends TestCase
 
         $this->assertStringContainsString('Der erste Kommentar zum Artikel.', $html);
         $this->assertStringContainsString('Im Panel moderieren', $html);
-        $this->assertStringContainsString('#kommentar-comment-top', $html);
+        $this->assertStringContainsString('/panel/kommentar/article-a/comment-top', $html);
     }
 
     #[Test]

@@ -12,7 +12,7 @@ $displayName = $developerName !== null && $developerName !== ''
   ? $developerName
   : $comment->name()->value();
 
-$hasReplyButton = $isReply === false && ($withReply ?? true) === true;
+$hasReplyButton = ($withReply ?? true) === true;
 
 ?>
 <article id="kommentar-<?= $comment->slug() ?>" class="scroll-mt-8xl">
@@ -45,6 +45,7 @@ $hasReplyButton = $isReply === false && ($withReply ?? true) === true;
         class="group link-primary mt-sm min-h-6 py-1 text-sm"
         data-reply-to="<?= esc($comment->uuid()->toString()) ?>"
         data-reply-name="<?= esc($displayName) ?>"
+        <?= $isReply === true ? 'data-reply-nested' : '' ?>
       >
         <span class="i-dinkie-icons-left-hook-arrow shrink-0" aria-hidden="true"></span>
         <span

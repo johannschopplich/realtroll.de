@@ -52,6 +52,7 @@ export class CommentSection extends HTMLElement {
   #replyChip: HTMLElement | null = null;
   #replyNameEl: HTMLElement | null = null;
   #csrf: string | undefined;
+  #mention = "";
   #turnstileRequested = false;
   #turnstileWidgetId: string | undefined;
   #turnstileRetryCount = 0;
@@ -110,18 +111,44 @@ export class CommentSection extends HTMLElement {
     );
     if (!replyButton) return;
 
+    const replyName = replyButton.dataset.replyName ?? "";
     if (this.#parentInput)
       this.#parentInput.value = replyButton.dataset.replyTo ?? "";
-    if (this.#replyNameEl)
-      this.#replyNameEl.textContent = replyButton.dataset.replyName ?? "";
     if (this.#replyChip) this.#replyChip.hidden = false;
+    if (this.#replyNameEl) this.#replyNameEl.textContent = replyName;
+
+    this.#stripMention();
+    if (replyName && replyButton.dataset.replyNested !== undefined) {
+      this.#mention = `@${replyName} `;
+      this.#textArea.value = this.#mention + this.#textArea.value;
+    }
+
+    this.#syncSubmitLabel();
     this.#textArea.focus();
+    const caret = this.#textArea.value.length;
+    this.#textArea.setSelectionRange(caret, caret);
   };
 
   #onReplyCancel = () => {
     if (this.#parentInput) this.#parentInput.value = "";
     if (this.#replyChip) this.#replyChip.hidden = true;
+    this.#stripMention();
+    this.#syncSubmitLabel();
   };
+
+  #stripMention() {
+    if (this.#mention && this.#textArea.value.startsWith(this.#mention)) {
+      this.#textArea.value = this.#textArea.value.slice(this.#mention.length);
+    }
+    this.#mention = "";
+  }
+
+  #syncSubmitLabel() {
+    if (!this.#submitButton || this.#submitButton.disabled) return;
+    this.#submitButton.textContent = this.#parentInput?.value
+      ? "Antwort absenden"
+      : this.#submitLabel;
+  }
 
   async #fetchToken(): Promise<TokenResponse | undefined> {
     try {
@@ -209,9 +236,11 @@ export class CommentSection extends HTMLElement {
   #setPending(isPending: boolean) {
     if (!this.#submitButton) return;
     this.#submitButton.disabled = isPending;
-    this.#submitButton.textContent = isPending
-      ? "Wird gesendet …"
-      : this.#submitLabel;
+    if (isPending) {
+      this.#submitButton.textContent = "Wird gesendet …";
+    } else {
+      this.#syncSubmitLabel();
+    }
   }
 
   // Swap the re-rendered thread in place of the current one, then confirm and

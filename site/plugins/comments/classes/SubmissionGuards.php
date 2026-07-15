@@ -6,9 +6,9 @@ namespace RealTroll\Comments;
 
 use Kirby\Cms\App;
 use Kirby\Cms\Page;
+use Kirby\Cms\Pages;
 use Kirby\Http\Request;
 use Kirby\Toolkit\V;
-use Kirby\Uuid\PageUuid;
 use Kirby\Uuid\Uuid;
 use Throwable;
 
@@ -85,12 +85,8 @@ final class SubmissionGuards
         }
 
         // Reply target resolution – UI-independent, applies to both branches.
-        // A bad reference is a hard reject; an unresolvable one promotes to top-level.
-        $parentResult = $this->resolveParentId($article, (string)$body->get('parentId'));
-        if ($parentResult instanceof Verdict) {
-            return $parentResult;
-        }
-        $parentId = $parentResult;
+        // Any unresolvable reference promotes to top-level (never lose a comment).
+        $parentId = $this->resolveParentId($article, (string)$body->get('parentId'));
 
         // Trusted-operator branch – gated on a display name so it agrees with the
         // frontend, which only shows operator UI to a named user. Without the gate,
@@ -122,40 +118,25 @@ final class SubmissionGuards
     /**
      * Resolves the requested reply target to a stored `parentId`, capping the
      * thread at two levels.
+     *
+     * The target is looked up in the article's own comments – bounded (never
+     * `Uuid::for()->model()`, which crawls the whole site tree on a cache miss,
+     * on this pre-Turnstile path), and membership already proves "visible
+     * comment on this article". Everything absent from that set – deleted,
+     * hidden, foreign article, malformed reference – uniformly promotes the
+     * reply to top-level, which is safe in every case.
      */
-    private function resolveParentId(Page $article, string $parentId): Verdict|string|null
+    private function resolveParentId(Page $article, string $parentId): string|null
     {
-        if ($parentId === '') {
+        if ($parentId === '' || !Uuid::is($parentId, 'page')) {
             return null;
         }
 
-        try {
-            $uuid = Uuid::for($parentId);
-        } catch (Throwable) {
-            $uuid = null;
-        }
+        $comments = $article->children()->template('comment');
 
-        // Only a page UUID can name a comment; other schemes and malformed
-        // references are rejected outright.
-        if (!($uuid instanceof PageUuid)) {
-            return $this->rejectParent();
-        }
-
-        $target = $uuid->model();
-
-        // Deleted/missing target → promote the reply to top-level (never lose it).
+        $target = $this->findComment($comments, $parentId);
         if ($target === null) {
             return null;
-        }
-
-        if (!($target instanceof Page) || $target->intendedTemplate()->name() !== 'comment') {
-            return $this->rejectParent();
-        }
-
-        // Cross-article guard: a foreign article's comment is a valid comment page,
-        // so it must be rejected explicitly rather than accepted as top-level.
-        if ($target->parent()?->id() !== $article->id()) {
-            return $this->rejectParent();
         }
 
         // Read the content field explicitly – `$target->parentId()` would hit
@@ -168,18 +149,20 @@ final class SubmissionGuards
 
         // Target is level-2 → flatten onto its top-level ancestor, unless that
         // ancestor is itself gone, then point at the target (a promoted orphan).
-        try {
-            $ancestor = Uuid::for($targetParentId)?->model();
-        } catch (Throwable) {
-            $ancestor = null;
-        }
-
-        return $ancestor !== null ? $targetParentId : $target->uuid()->toString();
+        return $this->findComment($comments, $targetParentId) !== null
+            ? $targetParentId
+            : $target->uuid()->toString();
     }
 
-    private function rejectParent(): Verdict
+    private function findComment(Pages $comments, string $uuid): Page|null
     {
-        return Verdict::reject('form', 'parent', 'Die Antwort bezieht sich auf einen ungültigen Kommentar.');
+        foreach ($comments as $comment) {
+            if ($comment->uuid()->toString() === $uuid) {
+                return $comment;
+            }
+        }
+
+        return null;
     }
 
     private function defaultTurnstile(App $kirby): Turnstile
