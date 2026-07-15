@@ -17,6 +17,7 @@ load([
     'RealTroll\\Comments\\CommentPage' => 'classes/CommentPage.php',
     'RealTroll\\Comments\\CommentParsedown' => 'classes/CommentParsedown.php',
     'RealTroll\\Comments\\CommentRenderer' => 'classes/CommentRenderer.php',
+    'RealTroll\\Comments\\CommentThread' => 'classes/CommentThread.php',
     'RealTroll\\Comments\\SubmissionGuards' => 'classes/SubmissionGuards.php',
     'RealTroll\\Comments\\Turnstile' => 'classes/Turnstile.php',
     'RealTroll\\Comments\\Verdict' => 'classes/Verdict.php',

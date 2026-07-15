@@ -63,41 +63,24 @@ final class CommentNotification
     }
 
     /**
-     * Resolves the stored reply parent to a display name and short excerpt so a
-     * reply is judgeable without opening the thread. Reads the content field
-     * explicitly – `$comment->parentId()` would hit Kirby's native
-     * Page::parentId() (the storage parent), not this field. An unresolvable
-     * reference degrades to a top-level notification (no reply line).
-     *
-     * Same bounded lookup idiom as the guards: scan the article's comments
-     * instead of `Uuid::for()->model()`, which crawls the whole site tree on
-     * a cache miss (a parent hidden or deleted before the mail sends). A
-     * hidden parent thus degrades too, matching what the site renders.
+     * The reply parent's display name and excerpt, so a reply is judgeable
+     * without opening the thread. A parent that can't be placed – hidden or
+     * deleted before the mail sends – degrades to a top-level notification.
      *
      * @return array{0: string|null, 1: string|null}
      */
     private static function resolveParent(Page $comment): array
     {
-        $parentId = (string)$comment->content()->get('parentId');
+        $parent = (new CommentThread($comment->parent()->comments()))->parentOf($comment);
 
-        if ($parentId === '') {
+        if ($parent === null) {
             return [null, null];
         }
 
-        foreach ($comment->parent()->children()->template('comment') as $sibling) {
-            if ($sibling->uuid()->toString() !== $parentId) {
-                continue;
-            }
-
-            // Casts: a hand-edited comment with an empty name/text yields null,
-            // which must degrade the reply line, not kill the whole notification.
-            return [
-                self::singleLine((string)$sibling->name()->value()),
-                Str::excerpt((string)$sibling->text()->value(), self::PARENT_EXCERPT_CHARS),
-            ];
-        }
-
-        return [null, null];
+        return [
+            self::singleLine($parent->displayName()),
+            Str::excerpt((string)$parent->text()->value(), self::PARENT_EXCERPT_CHARS),
+        ];
     }
 
     private static function singleLine(string $value): string

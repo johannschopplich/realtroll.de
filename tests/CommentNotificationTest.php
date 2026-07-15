@@ -3,6 +3,7 @@
 declare(strict_types = 1);
 
 use Kirby\Cms\App;
+use Kirby\Cms\Page;
 use Kirby\Email\PHPMailer;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\PreserveGlobalState;
@@ -10,6 +11,7 @@ use PHPUnit\Framework\Attributes\RunTestsInSeparateProcesses;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use RealTroll\Comments\CommentNotification;
+use RealTroll\Comments\CommentPage;
 
 if (function_exists('env') === false) {
     function env(string $key, mixed $default = null): mixed
@@ -36,6 +38,10 @@ final class CommentNotificationTest extends TestCase
         $_SERVER['COMMENTS_FROM']      = 'kommentare@realtroll.de';
         $_SERVER['COMMENTS_NOTIFY_TO'] = 'ops@yahoo.example';
 
+        require_once dirname(__DIR__) . '/site/models/article.php';
+        Page::$models['comment'] = CommentPage::class;
+        Page::$models['article'] = ArticlePage::class;
+
         $now = date('c');
 
         $this->kirby = new App([
@@ -44,6 +50,15 @@ final class CommentNotificationTest extends TestCase
                 'templates' => dirname(__DIR__) . '/site/templates',
             ],
             'options'    => ['url' => 'https://realtroll.de'],
+            'users'      => [
+                // A user's UUID derives from its account id, so this is `user://troll`.
+                [
+                    'id'    => 'troll',
+                    'email' => 'troll@realtroll.de',
+                    'role'  => 'admin',
+                    'name'  => 'real Troll',
+                ],
+            ],
             'components' => [
                 'email' => static function (App $kirby, array $props, bool $debug = false): PHPMailer {
                     MailSpy::$props = $props;
@@ -76,6 +91,18 @@ final class CommentNotificationTest extends TestCase
                                         'template' => 'comment',
                                         'content'  => ['uuid' => 'c-reply', 'title' => 'K', 'name' => 'Ben', 'text' => 'Meine Antwort darauf.', 'parentId' => 'page://c-top', 'date' => $now],
                                     ],
+                                    [
+                                        // Developer parent whose account was renamed after posting:
+                                        // the stored name and the live account name diverge.
+                                        'slug'     => 'comment-dev',
+                                        'template' => 'comment',
+                                        'content'  => ['uuid' => 'c-dev', 'title' => 'K', 'name' => 'Veralteter Name', 'text' => 'Eine Entwickler-Antwort.', 'parentId' => '', 'author' => 'user://troll', 'date' => $now],
+                                    ],
+                                    [
+                                        'slug'     => 'comment-reply-to-dev',
+                                        'template' => 'comment',
+                                        'content'  => ['uuid' => 'c-reply-dev', 'title' => 'K', 'name' => 'Ben', 'text' => 'Frage an den Entwickler.', 'parentId' => 'page://c-dev', 'date' => $now],
+                                    ],
                                 ],
                             ],
                         ],
@@ -88,6 +115,7 @@ final class CommentNotificationTest extends TestCase
     protected function tearDown(): void
     {
         App::destroy();
+        Page::$models = [];
     }
 
     private function comment(string $slug): Kirby\Cms\Page
@@ -147,6 +175,19 @@ final class CommentNotificationTest extends TestCase
         $this->assertStringContainsString('Antwort auf', $html);
         $this->assertStringContainsString('Anna', $html);
         $this->assertStringContainsString('Der erste Kommentar', $html);
+    }
+
+    #[Test]
+    public function the_reply_line_names_the_parent_as_the_site_renders_it(): void
+    {
+        // The badge on the site shows the developer's live account name, so the
+        // reply line must too – not the stale name stored at posting time.
+        CommentNotification::send($this->comment('comment-reply-to-dev'));
+
+        $html = MailSpy::$props['body']['html'];
+
+        $this->assertStringContainsString('real Troll', $html);
+        $this->assertStringNotContainsString('Veralteter Name', $html);
     }
 
     #[Test]

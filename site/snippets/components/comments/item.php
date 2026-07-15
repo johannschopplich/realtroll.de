@@ -5,12 +5,8 @@
 /** @var bool $isReply */
 /** @var bool $withReply */
 
-// A nameless Panel user (empty account name) falls back to the stored visitor name.
 $developer = $comment->developer();
-$developerName = $developer?->name()->value();
-$displayName = $developerName !== null && $developerName !== ''
-  ? $developerName
-  : $comment->name()->value();
+$displayName = $comment->displayName();
 
 $hasReplyButton = ($withReply ?? true) === true;
 

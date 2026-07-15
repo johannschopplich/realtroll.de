@@ -6,7 +6,6 @@ namespace RealTroll\Comments;
 
 use Kirby\Cms\App;
 use Kirby\Cms\Page;
-use Kirby\Cms\Pages;
 use Kirby\Http\Request;
 use Kirby\Toolkit\V;
 use Kirby\Uuid\Uuid;
@@ -84,9 +83,8 @@ final class SubmissionGuards
             }
         }
 
-        // Reply target resolution – UI-independent, applies to both branches.
-        // Any unresolvable reference promotes to top-level (never lose a comment).
-        $parentId = $this->resolveParentId($article, (string)$body->get('parentId'));
+        $parentId = (new CommentThread($article->comments()))
+            ->storedParentId((string)$body->get('parentId'));
 
         // Trusted-operator branch – gated on a display name so it agrees with the
         // frontend, which only shows operator UI to a named user. Without the gate,
@@ -113,56 +111,6 @@ final class SubmissionGuards
         }
 
         return Verdict::accept($article, $name, $text, null, $parentId);
-    }
-
-    /**
-     * Resolves the requested reply target to a stored `parentId`, capping the
-     * thread at two levels.
-     *
-     * The target is looked up in the article's own comments – bounded (never
-     * `Uuid::for()->model()`, which crawls the whole site tree on a cache miss,
-     * on this pre-Turnstile path), and membership already proves "visible
-     * comment on this article". Everything absent from that set – deleted,
-     * hidden, foreign article, malformed reference – uniformly promotes the
-     * reply to top-level, which is safe in every case.
-     */
-    private function resolveParentId(Page $article, string $parentId): string|null
-    {
-        if ($parentId === '' || !Uuid::is($parentId, 'page')) {
-            return null;
-        }
-
-        $comments = $article->children()->template('comment');
-
-        $target = $this->findComment($comments, $parentId);
-        if ($target === null) {
-            return null;
-        }
-
-        // Read the content field explicitly – `$target->parentId()` would hit
-        // Kirby's native Page::parentId() (the storage parent id), not this field.
-        $targetParentId = (string)$target->content()->get('parentId');
-
-        if ($targetParentId === '') {
-            return $target->uuid()->toString();
-        }
-
-        // Target is level-2 → flatten onto its top-level ancestor, unless that
-        // ancestor is itself gone, then point at the target (a promoted orphan).
-        return $this->findComment($comments, $targetParentId) !== null
-            ? $targetParentId
-            : $target->uuid()->toString();
-    }
-
-    private function findComment(Pages $comments, string $uuid): Page|null
-    {
-        foreach ($comments as $comment) {
-            if ($comment->uuid()->toString() === $uuid) {
-                return $comment;
-            }
-        }
-
-        return null;
     }
 
     private function defaultTurnstile(App $kirby): Turnstile

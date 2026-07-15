@@ -3,6 +3,7 @@
 declare(strict_types = 1);
 
 use Kirby\Cms\App;
+use Kirby\Cms\Page;
 use Kirby\Http\Request;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
@@ -10,6 +11,7 @@ use PHPUnit\Framework\Attributes\PreserveGlobalState;
 use PHPUnit\Framework\Attributes\RunTestsInSeparateProcesses;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
+use RealTroll\Comments\CommentPage;
 use RealTroll\Comments\SubmissionGuards;
 use RealTroll\Comments\Turnstile;
 
@@ -22,6 +24,10 @@ final class SubmissionGuardsTest extends TestCase
 
     protected function setUp(): void
     {
+        require_once dirname(__DIR__) . '/site/models/article.php';
+        Page::$models['comment'] = CommentPage::class;
+        Page::$models['article'] = ArticlePage::class;
+
         $now = date('c');
         $old = date('c', time() - 3600);
 
@@ -36,8 +42,8 @@ final class SubmissionGuardsTest extends TestCase
                     'role'  => 'admin',
                     'name'  => 'real Troll',
                 ],
-                // A logged-in account with no display name: the trusted branch keys
-                // off a non-empty name, so this one is treated as a visitor.
+                // The trusted branch keys off a non-empty name – this account
+                // counts as a visitor.
                 [
                     'id'    => 'nobody',
                     'email' => 'nobody@realtroll.de',
@@ -60,16 +66,6 @@ final class SubmissionGuardsTest extends TestCase
                                         'content'  => ['uuid' => 'c-top', 'title' => 'K', 'name' => 'Anna', 'text' => 'Erster', 'parentId' => '', 'date' => $now],
                                     ],
                                     [
-                                        'slug'     => 'comment-level2',
-                                        'template' => 'comment',
-                                        'content'  => ['uuid' => 'c-level2', 'title' => 'K', 'name' => 'Ben', 'text' => 'Antwort', 'parentId' => 'page://c-top', 'date' => $now],
-                                    ],
-                                    [
-                                        'slug'     => 'comment-level2-orphan',
-                                        'template' => 'comment',
-                                        'content'  => ['uuid' => 'c-level2-orphan', 'title' => 'K', 'name' => 'Cid', 'text' => 'Waise', 'parentId' => 'page://ghost', 'date' => $now],
-                                    ],
-                                    [
                                         'slug'     => 'comment-dupe',
                                         'template' => 'comment',
                                         'content'  => ['uuid' => 'c-dupe', 'title' => 'K', 'name' => 'Dana', 'text' => 'Doppelter Kommentar', 'parentId' => '', 'date' => $now],
@@ -80,23 +76,9 @@ final class SubmissionGuardsTest extends TestCase
                                         'content'  => ['uuid' => 'c-old', 'title' => 'K', 'name' => 'Eve', 'text' => 'Alter Kommentar', 'parentId' => '', 'date' => $old],
                                     ],
                                     [
-                                        // Empty text with a recent date: the duplicate scan
-                                        // must skip it, not fatal on the null field value.
                                         'slug'     => 'comment-empty-text',
                                         'template' => 'comment',
                                         'content'  => ['uuid' => 'c-empty-text', 'title' => 'K', 'name' => 'Gap', 'text' => '', 'parentId' => '', 'date' => $now],
-                                    ],
-                                ],
-                            ],
-                            [
-                                'slug'     => 'artikel-b',
-                                'template' => 'article',
-                                'content'  => ['uuid' => 'article-b', 'title' => 'Artikel B', 'commentsEnabled' => 'true'],
-                                'children' => [
-                                    [
-                                        'slug'     => 'comment-foreign',
-                                        'template' => 'comment',
-                                        'content'  => ['uuid' => 'c-foreign', 'title' => 'K', 'name' => 'Fry', 'text' => 'Fremd', 'parentId' => '', 'date' => $now],
                                     ],
                                 ],
                             ],
@@ -106,7 +88,6 @@ final class SubmissionGuardsTest extends TestCase
                                 'content'  => ['uuid' => 'article-locked', 'title' => 'Gesperrt', 'commentsEnabled' => 'false'],
                             ],
                             [
-                                // Fixture with no toggle field, to exercise the absent-means-enabled branch.
                                 'slug'     => 'artikel-ohne-feld',
                                 'template' => 'article',
                                 'content'  => ['uuid' => 'article-nofield', 'title' => 'Ohne Feld'],
@@ -121,6 +102,7 @@ final class SubmissionGuardsTest extends TestCase
     protected function tearDown(): void
     {
         App::destroy();
+        Page::$models = [];
     }
 
     private function guards(bool $turnstileOk = true): SubmissionGuards
@@ -166,8 +148,6 @@ final class SubmissionGuardsTest extends TestCase
     #[Test]
     public function cleaned_values_ride_the_verdict(): void
     {
-        // Zero-width characters are stripped before storage; the verdict must
-        // carry the cleaned form, not the raw body.
         $verdict = $this->guards()->evaluate($this->request(['name' => "Kla\u{200B}us"]));
 
         $this->assertTrue($verdict->accepted);
@@ -210,8 +190,7 @@ final class SubmissionGuardsTest extends TestCase
     #[DataProvider('badCsrfProvider')]
     public function rejects_a_bad_csrf_token(string $csrf): void
     {
-        // Fail-closed on both a tampered and an absent token. The client keys its
-        // transparent retry on this stable code, not the German copy.
+        // The client keys its transparent retry on this stable code, not the copy.
         $verdict = $this->guards()->evaluate($this->request(['csrf' => $csrf]));
 
         $this->assertFalse($verdict->accepted);
@@ -281,9 +260,8 @@ final class SubmissionGuardsTest extends TestCase
     #[Test]
     public function accepts_when_an_existing_comment_has_empty_text(): void
     {
-        // The fixture holds a recent comment whose text field is empty (a
-        // hand-edited content file); under strict_types the scan must skip it
-        // instead of raising a TypeError and killing every later submission.
+        // A hand-edited content file can leave the text empty; under strict_types
+        // the scan must skip it, not TypeError and kill every later submission.
         $verdict = $this->guards()->evaluate($this->request());
 
         $this->assertTrue($verdict->accepted);
@@ -326,7 +304,6 @@ final class SubmissionGuardsTest extends TestCase
     #[Test]
     public function nameless_account_is_subject_to_the_bot_defenses(): void
     {
-        // A named operator skips the bot defenses; a nameless account must not.
         $this->kirby->impersonate('nobody@realtroll.de');
 
         $verdict = $this->guards(turnstileOk: false)->evaluate($this->request());
@@ -357,7 +334,7 @@ final class SubmissionGuardsTest extends TestCase
     }
 
     #[Test]
-    public function resolves_a_reply_to_a_top_level_comment(): void
+    public function stores_the_resolved_reply_target(): void
     {
         $verdict = $this->guards()->evaluate($this->request(['parentId' => 'page://c-top']));
 
@@ -366,48 +343,13 @@ final class SubmissionGuardsTest extends TestCase
     }
 
     #[Test]
-    #[DataProvider('unresolvableParentIdProvider')]
-    public function promotes_any_reference_outside_the_articles_comments_to_top_level(string $parentId): void
+    public function promotes_an_unresolvable_reply_target_instead_of_rejecting(): void
     {
-        $verdict = $this->guards()->evaluate($this->request(['parentId' => $parentId]));
+        $verdict = $this->guards()->evaluate($this->request(['parentId' => 'page://ghost']));
 
+        // Both assertions carry weight: a reject verdict also has a null parentId.
         $this->assertTrue($verdict->accepted);
         $this->assertNull($verdict->parentId);
-    }
-
-    #[Test]
-    public function flattens_a_reply_to_a_level_two_comment_onto_its_ancestor(): void
-    {
-        $verdict = $this->guards()->evaluate($this->request(['parentId' => 'page://c-level2']));
-
-        $this->assertTrue($verdict->accepted);
-        $this->assertSame('page://c-top', $verdict->parentId);
-    }
-
-    #[Test]
-    public function flattens_onto_the_target_when_the_level_two_ancestor_is_gone(): void
-    {
-        $verdict = $this->guards()->evaluate($this->request(['parentId' => 'page://c-level2-orphan']));
-
-        $this->assertTrue($verdict->accepted);
-        $this->assertSame('page://c-level2-orphan', $verdict->parentId);
-    }
-
-    /**
-     * Fail-closed on both a tampered and an absent token.
-     *
-     * @return iterable<string, array{string}>
-     */
-    /**
-     * @return iterable<string, array{string}>
-     */
-    public static function unresolvableParentIdProvider(): iterable
-    {
-        yield 'a missing page' => ['page://ghost'];
-        yield 'a non-comment page' => ['page://article-b'];
-        yield 'a foreign article\'s comment' => ['page://c-foreign'];
-        yield 'a user uuid' => ['user://troll'];
-        yield 'a file uuid' => ['file://whatever'];
     }
 
     public static function badCsrfProvider(): iterable

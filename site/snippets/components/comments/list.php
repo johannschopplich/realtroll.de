@@ -4,18 +4,8 @@
 /** @var IntlDateFormatter $dateFormatter */
 /** @var bool $withReply Reply buttons off when the article no longer accepts comments */
 
-$topLevel = [];
-$repliesByParent = [];
-
-foreach ($comments as $comment) {
-  $parent = $comment->topLevelParent($comments);
-
-  if ($parent === null) {
-    $topLevel[] = $comment;
-  } else {
-    $repliesByParent[$parent->id()][] = $comment;
-  }
-}
+$thread = new \RealTroll\Comments\CommentThread($comments);
+$topLevel = $thread->topLevel();
 
 ?>
 <?php if ($topLevel === []): ?>
@@ -31,7 +21,7 @@ foreach ($comments as $comment) {
           'withReply' => $withReply ?? true
         ]) ?>
 
-        <?php $replies = $repliesByParent[$comment->id()] ?? [] ?>
+        <?php $replies = $thread->repliesTo($comment) ?>
         <?php if ($replies !== []): ?>
           <?php $lastReplyIndex = count($replies) - 1 ?>
           <ul class="flex flex-col gap-2xl mt-2xl ml-2xl list-none md:ml-4xl">
