@@ -2,7 +2,7 @@
   .prose {
     --un-prose-code: var(--un-color-contrast-higher);
     --un-prose-bg-soft: var(--un-color-contrast-lowest);
-    --un-decoration-color: var(--un-color-primary-300);
+    --un-decoration-color: var(--un-color-primary);
 
     display: flow-root;
 
