@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="de">
   <head>
     <meta charset="utf-8" />
     <meta
@@ -571,18 +571,28 @@
         <button
           id="controls-saves"
           type="button"
-          aria-label="Manage saves"
-          title="Manage saves"
+          aria-label="Spielstände verwalten"
+          title="Spielstände verwalten"
         >
           <svg width="18" height="18" aria-hidden="true">
             <use href="#icon-save" />
           </svg>
         </button>
         <button
+          id="controls-screenshot"
+          type="button"
+          aria-label="Screenshot aufnehmen"
+          title="Screenshot aufnehmen"
+        >
+          <svg width="18" height="18" aria-hidden="true">
+            <use href="#icon-screenshot" />
+          </svg>
+        </button>
+        <button
           id="controls-scaling"
           type="button"
-          aria-label="Pixel-perfect scaling"
-          title="Pixel-perfect scaling"
+          aria-label="Pixelgenaue Skalierung"
+          title="Pixelgenaue Skalierung"
           aria-pressed="false"
         >
           <svg class="icon-fit" width="18" height="18" aria-hidden="true">
@@ -595,8 +605,8 @@
         <button
           id="controls-fullscreen"
           type="button"
-          aria-label="Enter fullscreen"
-          title="Enter fullscreen"
+          aria-label="Vollbild starten"
+          title="Vollbild starten"
         >
           <svg class="icon-enter" width="18" height="18" aria-hidden="true">
             <use href="#icon-fullscreen-enter" />
@@ -611,12 +621,12 @@
 
       <dialog id="save-dialog" aria-labelledby="save-title">
         <div class="save-header">
-          <h2 id="save-title" class="save-title">Saves</h2>
+          <h2 id="save-title" class="save-title">Spielstände</h2>
           <button
             id="save-close"
             class="save-button save-button-icon"
             type="button"
-            aria-label="Close"
+            aria-label="Schließen"
           >
             <svg width="18" height="18" aria-hidden="true">
               <use href="#icon-close" />
@@ -635,18 +645,7 @@
             <svg width="18" height="18" aria-hidden="true">
               <use href="#icon-upload" />
             </svg>
-            Import save file…
-          </button>
-
-          <button
-            id="save-screenshot"
-            class="save-button save-button-block"
-            type="button"
-          >
-            <svg width="18" height="18" aria-hidden="true">
-              <use href="#icon-screenshot" />
-            </svg>
-            Save screenshot
+            Spielstand importieren…
           </button>
         </div>
       </dialog>
@@ -655,7 +654,7 @@
         <svg width="16" height="16" aria-hidden="true">
           <use href="#icon-save" />
         </svg>
-        <span>Game saved – tap to back up</span>
+        <span>Spiel gespeichert – zum Sichern tippen</span>
       </button>
 
       <div id="dpad" aria-hidden="true">
@@ -747,19 +746,25 @@
 
       // Launch the Player; it reads the game from the query string itself
       window.addEventListener("load", async () => {
-        player = await createEasyRpgPlayer({
-          game: undefined,
-          saveFs: undefined,
-          locateFile: (path, prefix) =>
-            assetVersion && path.endsWith(".wasm")
-              ? `${prefix}${path}?v=${assetVersion}`
-              : prefix + path,
-        });
-        player.initApi();
-        upscaleScreenshotDownloads();
-        setupSaveManager();
-        canvas.focus();
-        document.getElementById("boot").classList.add("done");
+        try {
+          player = await createEasyRpgPlayer({
+            game: undefined,
+            saveFs: undefined,
+            locateFile: (path, prefix) =>
+              assetVersion && path.endsWith(".wasm")
+                ? `${prefix}${path}?v=${assetVersion}`
+                : prefix + path,
+          });
+          player.initApi();
+          upscaleScreenshotDownloads();
+          setupSaveManager();
+          canvas.focus();
+          document.getElementById("boot").classList.add("done");
+        } catch (error) {
+          document.getElementById("status").textContent =
+            "Start fehlgeschlagen – bitte Seite neu laden";
+          throw error;
+        }
       });
 
       // Focus the canvas on hover/click so keyboard input reaches the game
@@ -772,6 +777,10 @@
       document
         .getElementById("controls")
         .addEventListener("click", () => canvas.focus({ preventScroll: true }));
+
+      document
+        .getElementById("controls-screenshot")
+        .addEventListener("click", () => player?.api.takeScreenshot(false));
 
       // Element fullscreen is unavailable in some browsers, e.g. iPhone Safari
       const fullscreenButton = document.getElementById("controls-fullscreen");
@@ -792,8 +801,8 @@
         // The icon swaps via the :fullscreen CSS rule; only the label, which
         // CSS cannot set, has to follow the state here
         const label = document.fullscreenElement
-          ? "Exit fullscreen"
-          : "Enter fullscreen";
+          ? "Vollbild beenden"
+          : "Vollbild starten";
         fullscreenButton.setAttribute("aria-label", label);
         fullscreenButton.title = label;
       });
@@ -864,7 +873,7 @@
       });
 
       /**
-       * Simulate a keyboard event on the Emscripten canvas
+       * Simulate a physical keyboard event on the Emscripten canvas
        *
        * @param {string} eventType "keydown" or "keyup"
        * @param {string} code Physical key code to simulate (e.g. "ArrowUp")
@@ -1147,7 +1156,7 @@
       let saveSlotBaseline;
       let saveHintPollId = 0;
       let saveWatchId = 0;
-      const relativeTimeFormatter = new Intl.RelativeTimeFormat("en", {
+      const relativeTimeFormatter = new Intl.RelativeTimeFormat("de", {
         numeric: "auto",
       });
 
@@ -1174,13 +1183,6 @@
         saveDialog.addEventListener("close", () =>
           canvas.focus({ preventScroll: true }),
         );
-
-        document
-          .getElementById("save-screenshot")
-          .addEventListener("click", () => {
-            player.api.takeScreenshot(false);
-            saveDialog.close();
-          });
 
         setupSaveHint();
       }
@@ -1235,7 +1237,7 @@
           const emptyMessage = document.createElement("p");
           emptyMessage.className = "save-empty";
           emptyMessage.textContent =
-            "No saves yet. Save inside the game first.";
+            "Noch keine Spielstände. Speichere zuerst im Spiel.";
           saveList.append(emptyMessage);
         } else {
           for (const slot of usedSlots) {
@@ -1248,8 +1250,8 @@
         importButton.disabled = freeSlot === undefined;
         importButton.title =
           freeSlot === undefined
-            ? "All 15 slots are full – replace one instead"
-            : `Import into file ${freeSlot}`;
+            ? "Alle 15 Dateien belegt – ersetze stattdessen eine"
+            : `In Datei ${freeSlot} importieren`;
         // Reassigned, not addEventListener: this runs on every open, and the
         // import button persists across renders, so listeners would stack up
         importButton.onclick =
@@ -1268,7 +1270,7 @@
 
         const name = document.createElement("span");
         name.className = "save-name";
-        name.textContent = `File ${slot}`;
+        name.textContent = `Datei ${slot}`;
 
         const age = document.createElement("span");
         age.className = "save-age";
@@ -1277,10 +1279,10 @@
 
         row.append(
           name,
-          createSaveButton(iconDownload, `Download file ${slot}`, () =>
+          createSaveButton(iconDownload, `Datei ${slot} herunterladen`, () =>
             player.api.downloadSavegame(slot),
           ),
-          createSaveButton(iconUpload, `Replace file ${slot}`, () =>
+          createSaveButton(iconUpload, `Datei ${slot} ersetzen`, () =>
             uploadToSlot(slot),
           ),
         );
@@ -1315,7 +1317,7 @@
       }
 
       /**
-       * Friendly relative age of a save, e.g. "just now" or "2 days ago".
+       * Friendly relative age of a save, e.g. "gerade eben" or "vor 2 Tagen".
        * Relies on IDBFS persisting each slot's mtime across sessions.
        *
        * @param {number} timestamp Modification time in ms
@@ -1337,7 +1339,7 @@
             );
           }
         }
-        return "just now";
+        return "gerade eben";
       }
 
       /**
@@ -1392,7 +1394,7 @@
       function setupSaveHint() {
         const toast = document.getElementById("save-toast");
         toast.querySelector("span").textContent =
-          `Game saved – ${hasTouchscreen ? "tap" : "click"} to back up`;
+          `Spiel gespeichert – zum Sichern ${hasTouchscreen ? "tippen" : "klicken"}`;
         toast.addEventListener("click", () => {
           hideSaveToast();
           openSaveDialog();
