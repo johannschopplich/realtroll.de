@@ -1073,12 +1073,13 @@
         const originalDownload = player.api_private.download_js;
 
         player.api_private.download_js = (buffer, size, filenamePointer) => {
+          // TODO: Drop the heap fallback once the bundle exports UTF8ToString
           const heap = player.HEAPU8;
-          let nameEnd = filenamePointer;
-          while (heap[nameEnd]) nameEnd++;
-          const filename = new TextDecoder().decode(
-            heap.subarray(filenamePointer, nameEnd),
-          );
+          const filename =
+            player.UTF8ToString?.(filenamePointer) ??
+            new TextDecoder().decode(
+              heap.subarray(filenamePointer, heap.indexOf(0, filenamePointer)),
+            );
 
           if (!filename.toLowerCase().endsWith(".png")) {
             originalDownload(buffer, size, filenamePointer);
