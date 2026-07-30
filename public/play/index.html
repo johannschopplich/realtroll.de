@@ -782,8 +782,8 @@
         .addEventListener("click", () => canvas.focus({ preventScroll: true }));
 
       // Opens the engine's settings scene, which has no JS API – simulate
-      // its F1 shortcut instead. The engine polls input once per frame, so
-      // the release must land a few frames after the press to register.
+      // its F1 shortcut instead. The engine samples input once per frame,
+      // so a same-frame release would be lost; delay it well past one frame.
       document
         .getElementById("controls-settings")
         .addEventListener("click", () => {
