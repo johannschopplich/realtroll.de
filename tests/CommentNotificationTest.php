@@ -30,7 +30,7 @@ final class MailSpy
 #[PreserveGlobalState(false)]
 final class CommentNotificationTest extends TestCase
 {
-    private App $kirby;
+    private App $app;
 
     protected function setUp(): void
     {
@@ -44,7 +44,7 @@ final class CommentNotificationTest extends TestCase
 
         $now = date('c');
 
-        $this->kirby = new App([
+        $this->app = new App([
             'roots' => [
                 'index'     => sys_get_temp_dir() . '/rt-mail-' . uniqid(),
                 'templates' => dirname(__DIR__) . '/site/templates',
@@ -120,7 +120,7 @@ final class CommentNotificationTest extends TestCase
 
     private function comment(string $slug): Kirby\Cms\Page
     {
-        return $this->kirby->page('blog/artikel-a/' . $slug);
+        return $this->app->page('blog/artikel-a/' . $slug);
     }
 
     #[Test]

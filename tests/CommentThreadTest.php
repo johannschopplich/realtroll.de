@@ -19,7 +19,7 @@ use RealTroll\Comments\CommentThread;
 #[PreserveGlobalState(false)]
 final class CommentThreadTest extends TestCase
 {
-    private App $kirby;
+    private App $app;
 
     protected function setUp(): void
     {
@@ -27,7 +27,7 @@ final class CommentThreadTest extends TestCase
 
         $now = date('c');
 
-        $this->kirby = new App([
+        $this->app = new App([
             'roots'   => ['index' => sys_get_temp_dir() . '/rt-thread-' . uniqid()],
             'options' => ['url' => 'https://realtroll.de'],
             'site'    => [
@@ -118,12 +118,12 @@ final class CommentThreadTest extends TestCase
 
     private function comments(): Pages
     {
-        return $this->kirby->page('blog/artikel-a')->children()->template('comment')->unlisted();
+        return $this->app->page('blog/artikel-a')->children()->template('comment')->unlisted();
     }
 
     private function comment(string $slug): Page
     {
-        return $this->kirby->page('blog/artikel-a/' . $slug);
+        return $this->app->page('blog/artikel-a/' . $slug);
     }
 
     #[Test]

@@ -16,7 +16,7 @@ use RealTroll\Comments\CommentPage;
 #[PreserveGlobalState(false)]
 final class CommentPageTest extends TestCase
 {
-    private App $kirby;
+    private App $app;
 
     protected function setUp(): void
     {
@@ -24,7 +24,7 @@ final class CommentPageTest extends TestCase
 
         $now = date('c');
 
-        $this->kirby = new App([
+        $this->app = new App([
             'roots'   => ['index' => sys_get_temp_dir() . '/rt-model-' . uniqid()],
             'options' => ['url' => 'https://realtroll.de'],
             'users'   => [
@@ -88,7 +88,7 @@ final class CommentPageTest extends TestCase
 
     private function comment(string $slug): CommentPage
     {
-        $comment = $this->kirby->page('blog/artikel-a/' . $slug);
+        $comment = $this->app->page('blog/artikel-a/' . $slug);
         assert($comment instanceof CommentPage);
 
         return $comment;

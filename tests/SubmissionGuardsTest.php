@@ -20,7 +20,7 @@ use RealTroll\Comments\Turnstile;
 #[PreserveGlobalState(false)]
 final class SubmissionGuardsTest extends TestCase
 {
-    private App $kirby;
+    private App $app;
 
     protected function setUp(): void
     {
@@ -31,7 +31,7 @@ final class SubmissionGuardsTest extends TestCase
         $now = date('c');
         $old = date('c', time() - 3600);
 
-        $this->kirby = new App([
+        $this->app = new App([
             'roots'   => ['index' => sys_get_temp_dir() . '/rt-guards-' . uniqid()],
             'options' => ['url' => 'https://realtroll.de'],
             'users'   => [
@@ -114,7 +114,7 @@ final class SubmissionGuardsTest extends TestCase
 
     private function request(array $body = []): Request
     {
-        $token = $this->kirby->csrf();
+        $token = $this->app->csrf();
 
         return new Request([
             'method' => 'POST',
@@ -140,7 +140,7 @@ final class SubmissionGuardsTest extends TestCase
         $this->assertNull($verdict->parentId);
         // The verdict carries everything the write needs – the route must never
         // re-resolve the article or re-clean the values (a second copy drifts).
-        $this->assertTrue($verdict->article->is($this->kirby->page('blog/artikel-a')));
+        $this->assertTrue($verdict->article->is($this->app->page('blog/artikel-a')));
         $this->assertSame('Klaus', $verdict->name);
         $this->assertSame('Ein netter Kommentar.', $verdict->text);
     }
@@ -280,7 +280,7 @@ final class SubmissionGuardsTest extends TestCase
     #[Test]
     public function operator_submission_is_accepted_with_author_and_skips_bot_defenses(): void
     {
-        $this->kirby->impersonate('troll@realtroll.de');
+        $this->app->impersonate('troll@realtroll.de');
 
         $verdict = $this->guards(turnstileOk: false)->evaluate($this->request([
             'text'                           => 'Doppelter Kommentar',
@@ -294,7 +294,7 @@ final class SubmissionGuardsTest extends TestCase
     #[Test]
     public function operator_still_needs_a_valid_csrf_token(): void
     {
-        $this->kirby->impersonate('troll@realtroll.de');
+        $this->app->impersonate('troll@realtroll.de');
 
         $verdict = $this->guards()->evaluate($this->request(['csrf' => 'tampered']));
 
@@ -304,7 +304,7 @@ final class SubmissionGuardsTest extends TestCase
     #[Test]
     public function nameless_account_is_subject_to_the_bot_defenses(): void
     {
-        $this->kirby->impersonate('nobody@realtroll.de');
+        $this->app->impersonate('nobody@realtroll.de');
 
         $verdict = $this->guards(turnstileOk: false)->evaluate($this->request());
 
@@ -316,7 +316,7 @@ final class SubmissionGuardsTest extends TestCase
     public function nameless_account_is_accepted_without_an_author(): void
     {
         // A nameless account gets no author, so its comment renders no badge.
-        $this->kirby->impersonate('nobody@realtroll.de');
+        $this->app->impersonate('nobody@realtroll.de');
 
         $verdict = $this->guards()->evaluate($this->request());
 
