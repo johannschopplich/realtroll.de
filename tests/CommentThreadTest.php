@@ -146,13 +146,6 @@ final class CommentThreadTest extends TestCase
         $this->assertSame('page://c-orphan', $this->thread()->storedParentId('page://c-orphan'));
     }
 
-    #[Test]
-    #[DataProvider('unresolvableReferenceProvider')]
-    public function promotes_any_unresolvable_reference_to_top_level(string $reference): void
-    {
-        $this->assertNull($this->thread()->storedParentId($reference));
-    }
-
     /**
      * @return iterable<string, array{string}>
      */
@@ -163,6 +156,13 @@ final class CommentThreadTest extends TestCase
         yield 'a missing page' => ['page://ghost'];
         yield 'a hidden draft' => ['page://c-hidden'];
         yield 'a foreign article\'s comment' => ['page://c-foreign'];
+    }
+
+    #[Test]
+    #[DataProvider('unresolvableReferenceProvider')]
+    public function promotes_any_unresolvable_reference_to_top_level(string $reference): void
+    {
+        $this->assertNull($this->thread()->storedParentId($reference));
     }
 
     #[Test]
