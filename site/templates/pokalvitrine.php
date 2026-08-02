@@ -9,13 +9,19 @@ $entries = $page->awards()->toStructure()->sortBy('year', 'desc');
 // shrank below the wide ones and the widest overflowed the column.
 $badgeClass = function ($file) {
   $ratio = $file ? max(0.01, $file->ratio()) : 1;
+
+  // Portrait trophies
   if ($ratio <= 0.85) {
-    return 'w-auto h-28 md:h-32'; // Portrait trophies
+    return 'w-auto h-28 md:h-32';
   }
+
+  // Horizontal banners fill the column
   if ($ratio >= 1.7) {
-    return 'h-auto w-32 md:w-40'; // Horizontal banners fill the column
+    return 'h-auto w-32 md:w-40';
   }
-  return 'w-auto h-14 md:h-16'; // Square-ish icons & near-square badges
+
+  // Square-ish icons and near-square badges
+  return 'w-auto h-14 md:h-16';
 };
 
 snippet('layouts/default', slots: true);

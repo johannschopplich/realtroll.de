@@ -30,8 +30,10 @@ final class ExFontExtractor
 
     /**
      * Writes the ExFont file for the given game root if the game ships an
-     * `RPG_RT.exe` and no ExFont file exists yet. Returns whether the game
-     * directory contains an ExFont file afterwards.
+     * `RPG_RT.exe` and no ExFont file exists yet.
+     *
+     * The return value reports whether the game directory holds an ExFont file
+     * afterwards, not whether this call wrote one.
      */
     public static function ensure(string $gameRoot): bool
     {
@@ -63,11 +65,12 @@ final class ExFontExtractor
     }
 
     /**
-     * Locates the ExFont inside the executable and returns it as a
-     * standalone BMP file. Stock `RPG_RT.exe` builds embed exactly one
-     * 156x48 8-bit bitmap resource – the ExFont – so matching its
-     * `BITMAPINFOHEADER` is sufficient; a full PE resource walk is not
-     * needed for this corpus.
+     * Locates the ExFont inside the executable and returns it as a standalone
+     * BMP file.
+     *
+     * Stock `RPG_RT.exe` builds embed exactly one 156x48 8-bit bitmap resource
+     * – the ExFont – so matching its `BITMAPINFOHEADER` is sufficient; a full
+     * PE resource walk is not needed for this corpus.
      */
     public static function extract(string $executable): string|null
     {
