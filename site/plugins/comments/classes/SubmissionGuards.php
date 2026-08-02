@@ -113,14 +113,28 @@ final class SubmissionGuards
         return Verdict::accept($article, $name, $text, null, $parentId);
     }
 
-    private function defaultTurnstile(App $kirby): Turnstile
+    private function resolveArticle(string $pageUuid): Page|null
     {
-        return new Turnstile(
-            (string)$kirby->option('realtroll.comments.turnstile.secret', ''),
-            null,
-            $kirby->option('realtroll.comments.turnstile.hostname'),
-            $kirby->option('realtroll.comments.turnstile.action')
-        );
+        if ($pageUuid === '') {
+            return null;
+        }
+
+        try {
+            $model = Uuid::for($pageUuid)?->model();
+        } catch (Throwable) {
+            return null;
+        }
+
+        if ($model instanceof Page && $model->intendedTemplate()->name() === 'article') {
+            return $model;
+        }
+
+        return null;
+    }
+
+    private function guardEnabled(App $kirby, string $name): bool
+    {
+        return $kirby->option('realtroll.comments.guards.' . $name, true) !== false;
     }
 
     private function isDuplicate(Page $article, string $text): bool
@@ -151,27 +165,13 @@ final class SubmissionGuards
         return md5(preg_replace('/\s+/u', ' ', $text) ?? $text);
     }
 
-    private function resolveArticle(string $pageUuid): Page|null
+    private function defaultTurnstile(App $kirby): Turnstile
     {
-        if ($pageUuid === '') {
-            return null;
-        }
-
-        try {
-            $model = Uuid::for($pageUuid)?->model();
-        } catch (Throwable) {
-            return null;
-        }
-
-        if ($model instanceof Page && $model->intendedTemplate()->name() === 'article') {
-            return $model;
-        }
-
-        return null;
-    }
-
-    private function guardEnabled(App $kirby, string $name): bool
-    {
-        return $kirby->option('realtroll.comments.guards.' . $name, true) !== false;
+        return new Turnstile(
+            (string)$kirby->option('realtroll.comments.turnstile.secret', ''),
+            null,
+            $kirby->option('realtroll.comments.turnstile.hostname'),
+            $kirby->option('realtroll.comments.turnstile.action')
+        );
     }
 }

@@ -101,22 +101,6 @@ final class CommentThread
         return $this->findByUuid($this->storedParentIdField($target)) ?? $target;
     }
 
-    private function findByUuid(string $uuid): CommentPage|null
-    {
-        if ($uuid === '' || !Uuid::is($uuid, 'page')) {
-            return null;
-        }
-
-        return $this->byUuid[$uuid] ?? null;
-    }
-
-    private function storedParentIdField(Page $comment): string
-    {
-        // The threading reference lives in the `parentId` content field –
-        // Kirby's native Page::parentId() is the storage parent id instead.
-        return (string)$comment->content()->get('parentId');
-    }
-
     /**
      * @return array{topLevel: list<CommentPage>, replies: array<string, list<CommentPage>>}
      */
@@ -140,5 +124,21 @@ final class CommentThread
         }
 
         return $this->grouping = ['topLevel' => $topLevel, 'replies' => $replies];
+    }
+
+    private function findByUuid(string $uuid): CommentPage|null
+    {
+        if ($uuid === '' || !Uuid::is($uuid, 'page')) {
+            return null;
+        }
+
+        return $this->byUuid[$uuid] ?? null;
+    }
+
+    private function storedParentIdField(Page $comment): string
+    {
+        // The threading reference lives in the `parentId` content field –
+        // Kirby's native Page::parentId() is the storage parent id instead.
+        return (string)$comment->content()->get('parentId');
     }
 }
