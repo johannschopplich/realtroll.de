@@ -62,6 +62,7 @@ return (new Config())
         'phpdoc_indent' => true,
         'phpdoc_param_order' => true,
         'phpdoc_scalar' => true,
+        'phpdoc_summary' => true,
         'phpdoc_trim' => true,
         'php_unit_fqcn_annotation' => true,
         'self_static_accessor' => true,
