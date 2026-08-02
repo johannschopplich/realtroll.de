@@ -31,8 +31,8 @@ final class CommentNotification
             $name    = self::singleLine((string)$comment->name()->value());
             $preview = Str::excerpt((string)$comment->text()->value(), self::PREVIEW_CHARS);
 
-            // moderateUrl → the comment's Panel page (edit/hide/delete).
-            // viewUrl → a Panel bounce that redirects to the frontend anchor
+            // `moderateUrl` → the comment's Panel page (edit/hide/delete).
+            // `viewUrl` → a Panel bounce that redirects to the frontend anchor
             // only after login, so the author lands on the thread with a live
             // session and his reply carries the developer badge.
             $moderateUrl = $comment->panel()->url();
@@ -63,9 +63,11 @@ final class CommentNotification
     }
 
     /**
-     * The reply parent's display name and excerpt, so a reply is judgeable
-     * without opening the thread. A parent that can't be placed – hidden or
-     * deleted before the mail sends – degrades to a top-level notification.
+     * Resolves the reply parent's display name and excerpt, so a reply is
+     * judgeable without opening the thread.
+     *
+     * A parent that can't be placed – hidden or deleted before the mail sends –
+     * degrades to a top-level notification.
      *
      * @return array{0: string|null, 1: string|null}
      */

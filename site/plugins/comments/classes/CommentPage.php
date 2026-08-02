@@ -11,7 +11,8 @@ use Kirby\Content\VersionId;
 final class CommentPage extends Page
 {
     /**
-     * Comments are never viewable on their own.
+     * Redirects to the comment's anchor in the parent article – comments are
+     * never viewable on their own.
      */
     public function render(
         array $data = [],
@@ -22,9 +23,10 @@ final class CommentPage extends Page
     }
 
     /**
-     * The stored developer reference, resolved session-free so the cached
-     * article HTML stays cache-safe. Not named author() – that would shadow
-     * the magic content-field method.
+     * Resolves the stored developer reference session-free, so the cached
+     * article HTML stays cache-safe.
+     *
+     * Not named `author()` – that would shadow the magic content-field method.
      */
     public function developer(): User|null
     {
@@ -32,9 +34,10 @@ final class CommentPage extends Page
     }
 
     /**
-     * A developer reply prefers the live account name; a missing, deleted, or
-     * nameless account falls back to the stored visitor name. Raw text –
-     * escaping stays at the HTML boundary.
+     * Prefers the live account name for a developer reply; a missing, deleted,
+     * or nameless account falls back to the stored visitor name.
+     *
+     * Raw text – escaping stays at the HTML boundary.
      */
     public function displayName(): string
     {

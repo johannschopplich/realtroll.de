@@ -1,5 +1,5 @@
-// Replace each absolute German timestamp with a relative one, keeping the
-// absolute value as the title/fallback.
+// Replaces each absolute German timestamp with a relative one, keeping the
+// absolute value as the `title` fallback.
 export function upgradeRelativeTimestamps(root: ParentNode): void {
   const formatter = new Intl.RelativeTimeFormat("de", { numeric: "auto" });
   const units: [Intl.RelativeTimeFormatUnit, number][] = [

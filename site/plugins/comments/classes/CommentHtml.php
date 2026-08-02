@@ -12,15 +12,18 @@ final class CommentHtml extends Html
     public static array $allowedAttrPrefixes = [];
     public static array $allowedAttrs = [];
     public static array $allowedTags = [
-        'html' => true, 'body' => true,                     // mandatory wrappers, stripped on serialize
+        // Mandatory wrappers, stripped on serialize
+        'html' => true, 'body' => true,
         'strong' => false, 'em' => false,
-        'del' => false, 's' => false,                       // strikethrough (~~x~~)
+        // Strikethrough (`~~x~~`)
+        'del' => false, 's' => false,
         'a'  => ['href', 'rel'],
         'ul' => false, 'ol' => false, 'li' => false,
-        'p'  => false, 'br' => false, 'hr' => false,      // hr must be listed, or the unwrap pass drops thematic breaks (---)
+        // `hr` must be listed, or the unwrap pass drops thematic breaks (`---`)
+        'p'  => false, 'br' => false, 'hr' => false,
         'blockquote' => false, 'code' => false, 'pre' => false,
-        // h1–h6 must be listed: Dom would unwrap them and discard their text
-        // nodes before the callback can rewrite them to <strong>.
+        // h1–h6 must be listed: `Dom` would unwrap them and discard their text
+        // nodes before the callback can rewrite them to `<strong>`.
         'h1' => false, 'h2' => false, 'h3' => false, 'h4' => false, 'h5' => false, 'h6' => false,
         // No table tags: table parsing is already off in `CommentParsedown`.
     ];

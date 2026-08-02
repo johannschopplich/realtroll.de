@@ -158,7 +158,7 @@ export class CommentSection extends HTMLElement {
     } catch {}
   }
 
-  // Explicit rendering captures the widget id for getResponse/reset; the
+  // Explicit rendering captures the widget id for `getResponse`/`reset`; the
   // implicit scan only works if the widget is visible when the script loads.
   #loadTurnstile() {
     if (this.#turnstileRequested) return;
@@ -243,8 +243,6 @@ export class CommentSection extends HTMLElement {
     }
   }
 
-  // Swap the re-rendered thread in place of the current one, then confirm and
-  // scroll to the new comment.
   #applySuccess(html: string, anchor?: string) {
     replaceThread(this, html);
 
@@ -370,9 +368,9 @@ function toUrlEncoded(
   return body;
 }
 
-// Replace the current comment thread with a server-rendered one. The snippet
-// recomputes reply nesting server-side, so swapping the whole thread keeps
-// threading and the count correct where inserting a single node would not.
+// The snippet recomputes reply nesting server-side, so swapping the whole
+// thread keeps threading and the count correct where inserting a single node
+// would not.
 function replaceThread(root: ParentNode, html: string) {
   const current = root.querySelector("[data-comment-thread]");
   const next = document

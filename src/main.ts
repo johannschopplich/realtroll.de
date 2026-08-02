@@ -17,7 +17,6 @@ if (import.meta.env.DEV) {
   }
 }
 
-// Auto-load modules
 for (const mod of Object.values(
   import.meta.glob<AppModule>("./modules/*.ts", {
     eager: true,
@@ -26,7 +25,6 @@ for (const mod of Object.values(
   mod.install?.();
 }
 
-// Auto-load templates
 const templates = Object.fromEntries(
   Object.entries(import.meta.glob<PageTemplate>("./templates/*.ts")).map(
     ([key, value]) => [key.slice(12, -3), value],

@@ -25,8 +25,8 @@ final class CommentThread
     private array|null $grouping = null;
 
     /**
-     * @param Pages $comments Input order carries through to topLevel() and
-     *                        repliesTo() – sorting is the caller's job.
+     * @param Pages $comments Input order carries through to `topLevel()` and
+     *                        `repliesTo()` – sorting is the caller's job.
      */
     public function __construct(Pages $comments)
     {
@@ -42,9 +42,11 @@ final class CommentThread
     }
 
     /**
-     * The `parentId` to store for a reply to the requested target, or null
-     * for top-level. An unresolvable reference promotes instead of rejecting;
-     * a resolvable one flattens onto its anchor.
+     * Resolves the `parentId` to store for a reply to the requested target, or
+     * null for top-level.
+     *
+     * An unresolvable reference promotes instead of rejecting; a resolvable one
+     * flattens onto its anchor.
      */
     public function storedParentId(string $requestedParentId): string|null
     {
@@ -56,7 +58,7 @@ final class CommentThread
     }
 
     /**
-     * Thread openers, in input order.
+     * Returns the thread openers, in input order.
      *
      * @return list<CommentPage>
      */
@@ -66,7 +68,7 @@ final class CommentThread
     }
 
     /**
-     * Replies rendered beneath $parent, in input order.
+     * Returns the replies rendered beneath `$parent`, in input order.
      *
      * @return list<CommentPage>
      */
@@ -76,9 +78,11 @@ final class CommentThread
     }
 
     /**
-     * The comment this one renders beneath, or null when it renders
-     * top-level. Only an anchor holds replies, so a hand-edited deeper chain
-     * promotes instead of nesting a third level.
+     * Returns the comment this one renders beneath, or null when it renders
+     * top-level.
+     *
+     * Only an anchor holds replies, so a hand-edited deeper chain promotes
+     * instead of nesting a third level.
      */
     public function parentOf(Page $comment): CommentPage|null
     {
@@ -93,8 +97,8 @@ final class CommentThread
     }
 
     /**
-     * Where a reply to $target renders: $target itself when its own reference
-     * is unresolvable, otherwise its ancestor – the two-level cap.
+     * Resolves where a reply to `$target` renders: `$target` itself when its
+     * own reference is unresolvable, otherwise its ancestor – the two-level cap.
      */
     private function anchorFor(CommentPage $target): CommentPage
     {

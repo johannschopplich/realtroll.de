@@ -17,9 +17,11 @@ use Throwable;
  */
 final class SubmissionGuards
 {
-    // Opaque, non-semantic name: a field called `website`/`url`/`email` is a
-    // browser autofill target and would false-positive real visitors. This one
-    // is off-screen and `autocomplete="off"`, so only a naive bot fills it.
+    /**
+     * Opaque, non-semantic name: a field called `website`/`url`/`email` is a
+     * browser autofill target and would false-positive real visitors. This one
+     * is off-screen and `autocomplete="off"`, so only a naive bot fills it.
+     */
     public const HONEYPOT_FIELD = 'hp_referrer';
 
     /** Window in seconds for the exact-duplicate flood brake. */
@@ -149,7 +151,7 @@ final class SubmissionGuards
             }
 
             // Cast: a hand-edited/empty text field yields null and must not
-            // fatal the whole scan under strict_types.
+            // fatal the whole scan under `strict_types`.
             if ($this->textHash((string)$comment->text()->value()) === $hash) {
                 return true;
             }

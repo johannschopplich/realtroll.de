@@ -13,7 +13,7 @@ use Kirby\Toolkit\Str;
  * it as `ExFont.bmp` into the game directory.
  *
  * Desktop builds of the EasyRPG Player read the ExFont from `RPG_RT.exe`
- * at runtime, but the Emscripten (web) build cannot - it requires a
+ * at runtime, but the Emscripten (web) build cannot – it requires a
  * dedicated ExFont file in the game directory and falls back to its
  * built-in glyph set otherwise, silently dropping per-game custom glyphs.
  */
@@ -65,7 +65,7 @@ final class ExFontExtractor
     /**
      * Locates the ExFont inside the executable and returns it as a
      * standalone BMP file. Stock `RPG_RT.exe` builds embed exactly one
-     * 156x48 8-bit bitmap resource - the ExFont - so matching its
+     * 156x48 8-bit bitmap resource – the ExFont – so matching its
      * `BITMAPINFOHEADER` is sufficient; a full PE resource walk is not
      * needed for this corpus.
      */
