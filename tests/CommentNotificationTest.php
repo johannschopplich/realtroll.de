@@ -132,12 +132,15 @@ final class CommentNotificationTest extends TestCase
     }
 
     #[Test]
-    public function renders_both_multipart_parts(): void
+    public function renders_a_plain_text_alternative_part(): void
     {
         CommentNotification::send($this->comment('comment-top'));
 
-        $this->assertArrayHasKey('html', MailSpy::$props['body']);
-        $this->assertArrayHasKey('text', MailSpy::$props['body']);
+        $text = MailSpy::$props['body']['text'];
+
+        // The plain-text part stays unescaped and keeps its raw, tappable URLs.
+        $this->assertStringContainsString('Der erste Kommentar zum Artikel.', $text);
+        $this->assertStringContainsString('Im Panel moderieren:', $text);
     }
 
     #[Test]

@@ -126,24 +126,23 @@ final class CommentThreadTest extends TestCase
         return $this->app->page('blog/artikel-a/' . $slug);
     }
 
-    #[Test]
-    public function stores_a_top_level_target_as_the_parent(): void
+    /**
+     * @return iterable<string, array{string, string}>
+     */
+    public static function resolvableReferenceProvider(): iterable
     {
-        $this->assertSame('page://c-top', $this->thread()->storedParentId('page://c-top'));
+        yield 'a top-level target' => ['page://c-top', 'page://c-top'];
+        yield 'a level-two target' => ['page://c-reply', 'page://c-top'];
+        // A promoted orphan renders top-level, so a reply must attach to it
+        // rather than chase the dead ancestor reference.
+        yield 'a promoted orphan' => ['page://c-orphan', 'page://c-orphan'];
     }
 
     #[Test]
-    public function flattens_a_level_two_target_onto_its_thread_opener(): void
+    #[DataProvider('resolvableReferenceProvider')]
+    public function anchors_a_resolvable_reference_to_its_thread_opener(string $reference, string $expectedParentId): void
     {
-        $this->assertSame('page://c-top', $this->thread()->storedParentId('page://c-reply'));
-    }
-
-    #[Test]
-    public function anchors_to_the_target_itself_when_its_ancestor_is_gone(): void
-    {
-        // The target is a promoted orphan – it renders top-level, so a reply
-        // must attach to it, not chase the dead ancestor reference.
-        $this->assertSame('page://c-orphan', $this->thread()->storedParentId('page://c-orphan'));
+        $this->assertSame($expectedParentId, $this->thread()->storedParentId($reference));
     }
 
     /**
