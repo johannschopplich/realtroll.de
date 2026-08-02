@@ -34,7 +34,7 @@ class GamePage extends Page
         }
 
         $screenshots = $this->screenshots()->map(fn ($file) => $file->url())->values();
-        if (!empty($screenshots)) {
+        if ($screenshots !== []) {
             $videoGame['image'] = $screenshots;
         }
 
