@@ -179,9 +179,17 @@ final class SubmissionGuardsTest extends TestCase
     }
 
     #[Test]
-    public function rejects_when_the_target_page_is_missing(): void
+    public function rejects_when_no_target_page_is_given(): void
     {
         $verdict = $this->guards()->evaluate($this->request(['pageUuid' => '']));
+
+        $this->assertFalse($verdict->accepted);
+    }
+
+    #[Test]
+    public function rejects_when_the_target_page_is_missing(): void
+    {
+        $verdict = $this->guards()->evaluate($this->request(['pageUuid' => 'page://ghost']));
 
         $this->assertFalse($verdict->accepted);
     }
@@ -334,7 +342,7 @@ final class SubmissionGuardsTest extends TestCase
     }
 
     #[Test]
-    public function stores_the_resolved_reply_target(): void
+    public function the_resolved_reply_target_rides_the_verdict(): void
     {
         $verdict = $this->guards()->evaluate($this->request(['parentId' => 'page://c-top']));
 

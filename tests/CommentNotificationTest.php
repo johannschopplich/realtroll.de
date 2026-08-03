@@ -157,7 +157,7 @@ final class CommentNotificationTest extends TestCase
     }
 
     #[Test]
-    public function includes_the_preview_and_moderation_links(): void
+    public function includes_the_excerpt_the_moderation_label_and_the_view_link(): void
     {
         CommentNotification::send($this->comment('comment-top'));
 
