@@ -131,7 +131,7 @@ final class SubmissionGuardsTest extends TestCase
     }
 
     #[Test]
-    public function accepts_a_valid_visitor_submission_without_author(): void
+    public function accepts_a_valid_visitor_submission_without_an_author(): void
     {
         $verdict = $this->guards()->evaluate($this->request());
 
