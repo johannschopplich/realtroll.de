@@ -40,7 +40,6 @@
     --un-color-primary-900: oklch(24% 0.05 52);
     --un-color-primary-950: oklch(18% 0.035 52);
 
-    /* Colors (stone-based) */
     --tw-color-stone-50: oklch(0.985 0.001 106.423);
     --tw-color-stone-100: oklch(0.97 0.001 106.424);
     --tw-color-stone-200: oklch(0.923 0.003 48.717);
@@ -53,7 +52,6 @@
     --tw-color-stone-900: oklch(0.216 0.006 56.043);
     --tw-color-stone-950: oklch(0.147 0.004 49.25);
 
-    /* Contrast scale */
     --un-color-contrast-lowest: var(--tw-color-stone-100);
     --un-color-contrast-lower: var(--tw-color-stone-200);
     --un-color-contrast-low: var(--tw-color-stone-300);
@@ -61,7 +59,6 @@
     --un-color-contrast-high: var(--tw-color-stone-800);
     --un-color-contrast-higher: var(--tw-color-stone-900);
 
-    /* Semantic colors */
     --un-color-background: hsl(38, 24%, 96%);
     --un-color-text: var(--un-color-contrast-higher);
     --un-color-link: var(--un-color-primary);

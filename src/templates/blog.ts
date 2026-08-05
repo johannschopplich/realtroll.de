@@ -1,4 +1,4 @@
-// Pixels of overflow below which the toggle isn't worth showing
+// Pixels of overflow below which the toggle isn't worth showing.
 const OVERFLOW_BUFFER = 24;
 
 export default function () {
@@ -13,7 +13,7 @@ export default function () {
   });
 
   for (const { body, toggle } of controls) {
-    // One-way reveal: lift the clamp for good and retire the button
+    // One-way reveal: lift the clamp for good and retire the button.
     toggle.addEventListener("click", () => {
       body.removeAttribute("data-overflowing");
       toggle.remove();

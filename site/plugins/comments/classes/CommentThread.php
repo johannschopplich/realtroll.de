@@ -18,7 +18,7 @@ use Kirby\Uuid\Uuid;
  */
 final class CommentThread
 {
-    /** @var array<string, CommentPage> uuid => comment, in input order. */
+    /** @var array<string, CommentPage> uuid => comment, in input order */
     private readonly array $byUuid;
 
     /** @var array{topLevel: list<CommentPage>, replies: array<string, list<CommentPage>>}|null */
@@ -142,7 +142,7 @@ final class CommentThread
     private function storedParentIdField(Page $comment): string
     {
         // The threading reference lives in the `parentId` content field –
-        // Kirby's native Page::parentId() is the storage parent id instead.
+        // Kirby's native `Page::parentId()` is the storage parent id instead.
         return (string)$comment->content()->get('parentId');
     }
 }

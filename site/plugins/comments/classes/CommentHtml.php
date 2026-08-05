@@ -19,7 +19,7 @@ final class CommentHtml extends Html
         'del' => false, 's' => false,
         'a'  => ['href', 'rel'],
         'ul' => false, 'ol' => false, 'li' => false,
-        // `hr` must be listed, or the unwrap pass drops thematic breaks (`---`)
+        // `hr` must be listed, or the unwrap pass drops thematic breaks (`---`).
         'p'  => false, 'br' => false, 'hr' => false,
         'blockquote' => false, 'code' => false, 'pre' => false,
         // h1–h6 must be listed: `Dom` would unwrap them and discard their text
@@ -35,7 +35,7 @@ final class CommentHtml extends Html
     {
         $name = strtolower($el->nodeName);
 
-        // Demote rather than strip: no outline/SEO weight, no text loss
+        // Demote rather than strip: no outline/SEO weight, no text loss.
         if (in_array($name, ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'], true)) {
             $strong = $el->ownerDocument->createElement('strong');
             while ($el->firstChild !== null) {

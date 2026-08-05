@@ -10,7 +10,7 @@ export const PrecompileContext = createContext(false);
 /**
  * Precompile: emits a `{#name}…{/name}` block the precompile rewrites into a PHP
  * conditional. Dev preview: renders the children only when `value` is truthy, so
- * the block mirrors its send-time behaviour instead of leaking the raw markers.
+ * the block mirrors its send-time behavior instead of leaking the raw markers.
  */
 export function If({
   name,

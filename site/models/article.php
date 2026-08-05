@@ -30,7 +30,7 @@ class ArticlePage extends Page
             'dateModified' => $this->modified('Y-m-d'),
             'author' => $this->site()->realTroll(),
             'publisher' => $this->site()->realTroll(),
-            // No commenter names in the JSON-LD – just the visible count
+            // No commenter names in the JSON-LD – just the visible count.
             'commentCount' => $this->comments()->count()
         ];
 

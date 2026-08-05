@@ -47,7 +47,7 @@ final class GameIndex
         }
 
         foreach (Dir::read($path) as $name) {
-            // `_dirname` is a reserved keyword
+            // `_dirname` is a reserved keyword.
             if ($name === '_dirname') {
                 continue;
             }

@@ -2,7 +2,7 @@
 
 /** @var \Kirby\Cms\Files $images */
 /** @var bool $pixelated */
-/** @var string $layout One of "grid" (fluid columns), "intrinsic" (native size, centered) or "centered" (capped width, centered). */
+/** @var string $layout One of "grid" (fluid columns), "intrinsic" (native size, centered) or "centered" (capped width, centered) */
 
 $pixelated ??= false;
 $layout ??= 'grid';

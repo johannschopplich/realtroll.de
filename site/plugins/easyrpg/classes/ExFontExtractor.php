@@ -89,7 +89,7 @@ final class ExFontExtractor
             return null;
         }
 
-        // 156 bytes per row are already a multiple of 4, so no row padding applies
+        // 156 bytes per row are already a multiple of 4, so no row padding applies.
         $dibSize = self::INFO_HEADER_SIZE + self::PALETTE_SIZE + self::BITMAP_WIDTH * self::BITMAP_HEIGHT;
         $deviceIndependentBitmap = substr($executable, $offset, $dibSize);
 

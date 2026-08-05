@@ -14,7 +14,7 @@ $screenshots = $game->screenshots()->map(fn ($i) => $i->url())->values();
   class="group mt-[-2px] bg-primary-700 <?php e($isFeatured, 'md:col-span-2') ?>"
   <?= attr(['data-screenshots' => implode('|', $screenshots), 'data-title' => $game->title()], ' ') ?>
 >
-  <?php /* Featured card lifts above the header faces: z-0 → md:group-hover:z-2 (faces are z-1) */ ?>
+  <?php /* Featured card lifts above the header faces: z-0 → md:group-hover:z-2 (faces are z-1). */ ?>
   <div
     class="
       relative <?php e($isFeatured, 'z-0 flex flex-col', 'grid grid-rows-[1fr_auto] h-full') ?>

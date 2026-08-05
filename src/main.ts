@@ -10,7 +10,7 @@ interface PageTemplate {
   default?: () => void | Promise<void>;
 }
 
-// Remove temporary stylesheet (to prevent FOUC) in development mode
+// Remove temporary stylesheet (to prevent FOUC) in development mode.
 if (import.meta.env.DEV) {
   for (const el of document.querySelectorAll(`[id*="vite-dev"]`)) {
     el.remove();

@@ -242,7 +242,7 @@ export default defineConfig<Theme>({
   safelist: [
     "sr-only",
     "invisible",
-    // Enforce `--spacing-9xl` to be generated
+    // Enforce `--spacing-9xl` to be generated.
     ...["xl", "9xl"].flatMap((size) => [`pt-${size}`]),
     ...["sm", "base", "lg"].flatMap((size) => [
       `chip-row-${size}`,

@@ -47,7 +47,7 @@ export default function () {
     renderTiles(sources.length, 0);
     if (sources[1]) preloadImage.src = sources[1];
 
-    // Auto-advancing the slideshow is motion, too
+    // Auto-advancing the slideshow is motion, too.
     if (!prefersReducedMotion.matches && sources.length > 1) {
       timerId = setInterval(() => {
         index = (index + 1) % sources.length;
@@ -58,7 +58,7 @@ export default function () {
     }
 
     // Anchor the panel to the opposite side of the hovered tile so it never
-    // covers the card the cursor is on
+    // covers the card the cursor is on.
     const rect = element.getBoundingClientRect();
     if (rect.left + rect.width / 2 > innerWidth / 2) {
       panel!.style.left = "var(--spacing-lg)";

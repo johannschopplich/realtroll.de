@@ -30,7 +30,7 @@ function setupSubpageMenu(nav: HTMLElement) {
     }
   });
 
-  // Guard against closing before a tapped link navigates (touch taps don't focus)
+  // Guard against closing before a tapped link navigates (touch taps don't focus).
   details.addEventListener("focusout", (event) => {
     if (event.relatedTarget && !details.contains(event.relatedTarget as Node)) {
       close();
@@ -42,7 +42,7 @@ function setupSubpageMenu(nav: HTMLElement) {
   });
 
   if (matchMedia("(hover: hover) and (pointer: fine)").matches) {
-    // Hover owns open/close here; don't let a pointer click toggle fight it
+    // Hover owns open/close here; don't let a pointer click toggle fight it.
     summary.addEventListener("click", (event) => {
       if (event.detail > 0) event.preventDefault();
     });

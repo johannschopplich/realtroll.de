@@ -268,7 +268,7 @@ final class SubmissionGuardsTest extends TestCase
     #[Test]
     public function accepts_when_an_existing_comment_has_empty_text(): void
     {
-        // A hand-edited content file can leave the text empty; under strict_types
+        // A hand-edited content file can leave the text empty; under `strict_types`
         // the scan must skip it, not TypeError and kill every later submission.
         $verdict = $this->guards()->evaluate($this->request());
 
