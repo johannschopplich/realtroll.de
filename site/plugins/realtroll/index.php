@@ -2,6 +2,10 @@
 
 use Kirby\Cms\App;
 
+load([
+    'RealTroll\\Website\\ResendEmail' => 'classes/ResendEmail.php',
+], __DIR__);
+
 if (!function_exists('dateFormatter')) {
     function dateFormatter(
         int $dateType = IntlDateFormatter::LONG,

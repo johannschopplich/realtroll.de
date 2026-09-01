@@ -5,6 +5,7 @@ declare(strict_types = 1);
 use Kirby\Cms\App;
 use Kirby\Cms\Page;
 use Kirby\Email\PHPMailer;
+use Kirby\Exception\Exception;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\PreserveGlobalState;
 use PHPUnit\Framework\Attributes\RunTestsInSeparateProcesses;
@@ -23,6 +24,7 @@ if (function_exists('env') === false) {
 final class MailSpy
 {
     public static array|null $props = null;
+    public static Throwable|null $exception = null;
 }
 
 #[CoversClass(CommentNotification::class)]
@@ -35,6 +37,7 @@ final class CommentNotificationTest extends TestCase
     protected function setUp(): void
     {
         MailSpy::$props = null;
+        MailSpy::$exception = null;
         $_SERVER['COMMENTS_FROM']      = 'kommentare@realtroll.de';
         $_SERVER['COMMENTS_NOTIFY_TO'] = 'ops@yahoo.example';
 
@@ -62,6 +65,11 @@ final class CommentNotificationTest extends TestCase
             'components' => [
                 'email' => static function (App $kirby, array $props, bool $debug = false): PHPMailer {
                     MailSpy::$props = $props;
+
+                    if (MailSpy::$exception !== null) {
+                        throw MailSpy::$exception;
+                    }
+
                     // Debug mode builds the message without transmitting it.
                     return new PHPMailer($props, true);
                 },
@@ -114,6 +122,10 @@ final class CommentNotificationTest extends TestCase
 
     protected function tearDown(): void
     {
+        if (file_exists($this->logFile())) {
+            unlink($this->logFile());
+        }
+
         App::destroy();
         Page::$models = [];
     }
@@ -121,6 +133,11 @@ final class CommentNotificationTest extends TestCase
     private function comment(string $slug): Kirby\Cms\Page
     {
         return $this->app->page('blog/artikel-a/' . $slug);
+    }
+
+    private function logFile(): string
+    {
+        return $this->app->root('logs') . '/comments.log';
     }
 
     #[Test]
@@ -138,7 +155,6 @@ final class CommentNotificationTest extends TestCase
 
         $text = MailSpy::$props['body']['text'];
 
-        // The plain-text part stays unescaped and keeps its raw, tappable URLs.
         $this->assertStringContainsString('Der erste Kommentar zum Artikel.', $text);
         $this->assertStringContainsString('Im Panel moderieren:', $text);
     }
@@ -146,8 +162,6 @@ final class CommentNotificationTest extends TestCase
     #[Test]
     public function escapes_the_name_in_the_html_body(): void
     {
-        // The name is a stored-XSS sink: a script payload must survive only as
-        // escaped text, never as a live tag.
         CommentNotification::send($this->comment('comment-troll'));
 
         $html = MailSpy::$props['body']['html'];
@@ -199,5 +213,26 @@ final class CommentNotificationTest extends TestCase
         CommentNotification::send($this->comment('comment-top'));
 
         $this->assertStringNotContainsString('Antwort auf', MailSpy::$props['body']['html']);
+    }
+
+    #[Test]
+    public function logs_a_failed_send_with_the_reason_the_transport_gives(): void
+    {
+        MailSpy::$exception = new Exception(message: 'Resend rejected the message (HTTP 403): domain not verified');
+
+        CommentNotification::send($this->comment('comment-top'));
+
+        $this->assertStringContainsString(
+            'Notification-Mail fehlgeschlagen: Resend rejected the message (HTTP 403): domain not verified',
+            file_get_contents($this->logFile())
+        );
+    }
+
+    #[Test]
+    public function writes_no_log_for_a_delivered_notification(): void
+    {
+        CommentNotification::send($this->comment('comment-top'));
+
+        $this->assertFileDoesNotExist($this->logFile());
     }
 }

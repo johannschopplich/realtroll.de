@@ -4,6 +4,7 @@ use Kirby\Cms\App;
 use Kirby\Cms\Page;
 use Kirby\Cms\Site;
 use Kirby\Query\Runners\DefaultRunner;
+use RealTroll\Website\ResendEmail;
 
 return [
 
@@ -35,15 +36,17 @@ return [
 
     'routes' => require __DIR__ . '/routes.php',
 
-    'email' => [
-        'transport' => [
-            'type' => 'smtp',
-            'host' => 'smtp.resend.com',
-            'port' => 465,
-            'security' => 'ssl',
-            'auth' => true,
-            'username' => 'resend',
-            'password' => env('RESEND_API_KEY')
+    'components' => [
+        'email' => fn (App $kirby, array $props, bool $debug = false): ResendEmail => new ResendEmail(
+            (string)$kirby->option('realtroll.website.resend.apiKey', ''),
+            $props,
+            $debug
+        )
+    ],
+
+    'realtroll.website' => [
+        'resend' => [
+            'apiKey' => env('RESEND_API_KEY')
         ]
     ],
 

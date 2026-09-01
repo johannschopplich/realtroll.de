@@ -23,7 +23,8 @@
   },
   "autoload-dev": {
     "psr-4": {
-      "RealTroll\\Comments\\": "site/plugins/comments/classes/"
+      "RealTroll\\Comments\\": "site/plugins/comments/classes/",
+      "RealTroll\\Website\\": "site/plugins/realtroll/classes/"
     }
   },
   "require-dev": {
