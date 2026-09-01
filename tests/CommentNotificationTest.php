@@ -70,8 +70,7 @@ final class CommentNotificationTest extends TestCase
                         throw MailSpy::$exception;
                     }
 
-                    // Debug mode builds the message without transmitting it.
-                    return new PHPMailer($props, true);
+                    return new PHPMailer($props, debug: true);
                 },
             ],
             'site' => [
@@ -100,8 +99,6 @@ final class CommentNotificationTest extends TestCase
                                         'content'  => ['uuid' => 'c-reply', 'title' => 'K', 'name' => 'Ben', 'text' => 'Meine Antwort darauf.', 'parentId' => 'page://c-top', 'date' => $now],
                                     ],
                                     [
-                                        // Developer parent whose account was renamed after posting:
-                                        // the stored name and the live account name diverge.
                                         'slug'     => 'comment-dev',
                                         'template' => 'comment',
                                         'content'  => ['uuid' => 'c-dev', 'title' => 'K', 'name' => 'Veralteter Name', 'text' => 'Eine Entwickler-Antwort.', 'parentId' => '', 'author' => 'user://troll', 'date' => $now],
@@ -197,8 +194,8 @@ final class CommentNotificationTest extends TestCase
     #[Test]
     public function the_reply_line_names_the_parent_as_the_site_renders_it(): void
     {
-        // The badge on the site shows the developer's live account name, so the
-        // reply line must too – not the stale name stored at posting time.
+        // The site renders the parent through `CommentPage::displayName()`, which
+        // prefers the live account name.
         CommentNotification::send($this->comment('comment-reply-to-dev'));
 
         $html = MailSpy::$props['body']['html'];
