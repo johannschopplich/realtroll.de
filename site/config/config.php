@@ -4,7 +4,6 @@ use Kirby\Cms\App;
 use Kirby\Cms\Page;
 use Kirby\Cms\Site;
 use Kirby\Query\Runners\DefaultRunner;
-use RealTroll\Website\ResendEmail;
 
 return [
 
@@ -35,14 +34,6 @@ return [
     ],
 
     'routes' => require __DIR__ . '/routes.php',
-
-    'components' => [
-        'email' => fn (App $kirby, array $props, bool $debug = false): ResendEmail => new ResendEmail(
-            (string)$kirby->option('realtroll.website.resend.apiKey', ''),
-            $props,
-            $debug
-        )
-    ],
 
     'realtroll.website' => [
         'resend' => [

@@ -1,6 +1,7 @@
 <?php
 
 use Kirby\Cms\App;
+use RealTroll\Website\ResendEmail;
 
 load([
     'RealTroll\\Website\\ResendEmail' => 'classes/ResendEmail.php',
@@ -19,6 +20,13 @@ if (!function_exists('dateFormatter')) {
 }
 
 App::plugin('realtroll/website', [
+    'components' => [
+        'email' => fn (App $kirby, array $props, bool $debug = false): ResendEmail => new ResendEmail(
+            (string)$kirby->option('realtroll.website.resend.apiKey', ''),
+            $props,
+            $debug
+        )
+    ],
     'siteMethods' => [
         'realTroll' => function (): array {
             $sameAs = ['https://realtroll.de', 'https://realtroll.hpage.com'];
