@@ -10,27 +10,21 @@ use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\PreserveGlobalState;
 use PHPUnit\Framework\Attributes\RunTestsInSeparateProcesses;
 use PHPUnit\Framework\Attributes\Test;
-use PHPUnit\Framework\TestCase;
-use RealTroll\Comments\CommentPage;
 use RealTroll\Comments\CommentThread;
 
 #[CoversClass(CommentThread::class)]
 #[RunTestsInSeparateProcesses]
 #[PreserveGlobalState(false)]
-final class CommentThreadTest extends TestCase
+final class CommentThreadTest extends KirbyTestCase
 {
     private App $app;
 
     protected function setUp(): void
     {
-        Page::$models['comment'] = CommentPage::class;
-
         $now = date('c');
 
-        $this->app = new App([
-            'roots'   => ['index' => sys_get_temp_dir() . '/rt-thread-' . uniqid()],
-            'options' => ['url' => 'https://realtroll.de'],
-            'site'    => [
+        $this->app = self::bootApp([
+            'site' => [
                 'children' => [
                     [
                         'slug'     => 'blog',
@@ -103,12 +97,6 @@ final class CommentThreadTest extends TestCase
                 ],
             ],
         ]);
-    }
-
-    protected function tearDown(): void
-    {
-        App::destroy();
-        Page::$models = [];
     }
 
     private function thread(): CommentThread

@@ -3,16 +3,13 @@
 declare(strict_types = 1);
 
 use Kirby\Cms\App;
-use Kirby\Cms\Page;
 use Kirby\Email\PHPMailer;
 use Kirby\Exception\Exception;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\PreserveGlobalState;
 use PHPUnit\Framework\Attributes\RunTestsInSeparateProcesses;
 use PHPUnit\Framework\Attributes\Test;
-use PHPUnit\Framework\TestCase;
 use RealTroll\Comments\CommentNotification;
-use RealTroll\Comments\CommentPage;
 
 if (function_exists('env') === false) {
     function env(string $key, mixed $default = null): mixed
@@ -30,7 +27,7 @@ final class MailSpy
 #[CoversClass(CommentNotification::class)]
 #[RunTestsInSeparateProcesses]
 #[PreserveGlobalState(false)]
-final class CommentNotificationTest extends TestCase
+final class CommentNotificationTest extends KirbyTestCase
 {
     private App $app;
 
@@ -41,18 +38,10 @@ final class CommentNotificationTest extends TestCase
         $_SERVER['COMMENTS_FROM']      = 'kommentare@realtroll.de';
         $_SERVER['COMMENTS_NOTIFY_TO'] = 'ops@yahoo.example';
 
-        require_once dirname(__DIR__) . '/site/models/article.php';
-        Page::$models['comment'] = CommentPage::class;
-        Page::$models['article'] = ArticlePage::class;
-
         $now = date('c');
 
-        $this->app = new App([
-            'roots' => [
-                'index'     => sys_get_temp_dir() . '/rt-mail-' . uniqid(),
-                'templates' => dirname(__DIR__) . '/site/templates',
-            ],
-            'options'    => ['url' => 'https://realtroll.de'],
+        $this->app = self::bootApp([
+            'roots'      => ['templates' => dirname(__DIR__) . '/site/templates'],
             'users'      => [
                 // A user's UUID derives from its account id, so this is `user://troll`.
                 [
@@ -73,7 +62,7 @@ final class CommentNotificationTest extends TestCase
                     return new PHPMailer($props, debug: true);
                 },
             ],
-            'site' => [
+            'site'       => [
                 'children' => [
                     [
                         'slug'     => 'blog',
@@ -115,16 +104,6 @@ final class CommentNotificationTest extends TestCase
                 ],
             ],
         ]);
-    }
-
-    protected function tearDown(): void
-    {
-        if (file_exists($this->logFile())) {
-            unlink($this->logFile());
-        }
-
-        App::destroy();
-        Page::$models = [];
     }
 
     private function comment(string $slug): Kirby\Cms\Page

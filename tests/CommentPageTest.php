@@ -3,31 +3,25 @@
 declare(strict_types = 1);
 
 use Kirby\Cms\App;
-use Kirby\Cms\Page;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\PreserveGlobalState;
 use PHPUnit\Framework\Attributes\RunTestsInSeparateProcesses;
 use PHPUnit\Framework\Attributes\Test;
-use PHPUnit\Framework\TestCase;
 use RealTroll\Comments\CommentPage;
 
 #[CoversClass(CommentPage::class)]
 #[RunTestsInSeparateProcesses]
 #[PreserveGlobalState(false)]
-final class CommentPageTest extends TestCase
+final class CommentPageTest extends KirbyTestCase
 {
     private App $app;
 
     protected function setUp(): void
     {
-        Page::$models['comment'] = CommentPage::class;
-
         $now = date('c');
 
-        $this->app = new App([
-            'roots'   => ['index' => sys_get_temp_dir() . '/rt-model-' . uniqid()],
-            'options' => ['url' => 'https://realtroll.de'],
-            'users'   => [
+        $this->app = self::bootApp([
+            'users' => [
                 // A user's UUID derives from its account id, so this is `user://troll`.
                 [
                     'id'    => 'troll',
@@ -41,7 +35,7 @@ final class CommentPageTest extends TestCase
                     'role'  => 'admin',
                 ],
             ],
-            'site' => [
+            'site'  => [
                 'children' => [
                     [
                         'slug'     => 'blog',
@@ -78,12 +72,6 @@ final class CommentPageTest extends TestCase
                 ],
             ],
         ]);
-    }
-
-    protected function tearDown(): void
-    {
-        App::destroy();
-        Page::$models = [];
     }
 
     private function comment(string $slug): CommentPage

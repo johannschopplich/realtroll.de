@@ -5,6 +5,7 @@ node_modules
 mprocs.log
 docs
 .phpunit.cache
+/tests/tmp
 .php-cs-fixer.cache
 
 # Kirby

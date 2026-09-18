@@ -3,38 +3,29 @@
 declare(strict_types = 1);
 
 use Kirby\Cms\App;
-use Kirby\Cms\Page;
 use Kirby\Http\Request;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\PreserveGlobalState;
 use PHPUnit\Framework\Attributes\RunTestsInSeparateProcesses;
 use PHPUnit\Framework\Attributes\Test;
-use PHPUnit\Framework\TestCase;
-use RealTroll\Comments\CommentPage;
 use RealTroll\Comments\SubmissionGuards;
 use RealTroll\Comments\Turnstile;
 
 #[CoversClass(SubmissionGuards::class)]
 #[RunTestsInSeparateProcesses]
 #[PreserveGlobalState(false)]
-final class SubmissionGuardsTest extends TestCase
+final class SubmissionGuardsTest extends KirbyTestCase
 {
     private App $app;
 
     protected function setUp(): void
     {
-        require_once dirname(__DIR__) . '/site/models/article.php';
-        Page::$models['comment'] = CommentPage::class;
-        Page::$models['article'] = ArticlePage::class;
-
         $now = date('c');
         $old = date('c', time() - 3600);
 
-        $this->app = new App([
-            'roots'   => ['index' => sys_get_temp_dir() . '/rt-guards-' . uniqid()],
-            'options' => ['url' => 'https://realtroll.de'],
-            'users'   => [
+        $this->app = self::bootApp([
+            'users' => [
                 // A user's UUID derives from its account id, so this is `user://troll`.
                 [
                     'id'    => 'troll',
@@ -50,7 +41,7 @@ final class SubmissionGuardsTest extends TestCase
                     'role'  => 'admin',
                 ],
             ],
-            'site' => [
+            'site'  => [
                 'children' => [
                     [
                         'slug'     => 'blog',
@@ -97,12 +88,6 @@ final class SubmissionGuardsTest extends TestCase
                 ],
             ],
         ]);
-    }
-
-    protected function tearDown(): void
-    {
-        App::destroy();
-        Page::$models = [];
     }
 
     private function guards(bool $turnstileOk = true): SubmissionGuards
