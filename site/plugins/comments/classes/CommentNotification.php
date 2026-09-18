@@ -30,16 +30,11 @@ final class CommentNotification
         try {
             $article = $comment->parent();
 
-            // The name is a stored-XSS sink: the templates esc() it, but it is
-            // also collapsed to a single line here so the subject header can
-            // never carry an injected newline.
+            // Collapsed to one line so the subject header can never carry an
+            // injected newline.
             $name    = self::singleLine((string)$comment->name()->value());
             $preview = Str::excerpt((string)$comment->text()->value(), self::PREVIEW_CHARS);
 
-            // `moderateUrl` → the comment's Panel page (edit/hide/delete).
-            // `viewUrl` → a Panel bounce that redirects to the frontend anchor
-            // only after login, so the author lands on the thread with a live
-            // session and his reply carries the developer badge.
             $moderateUrl = $comment->panel()->url();
             $viewUrl     = $kirby->url('panel') . '/kommentar/' . $article->uuid()->id() . '/' . $comment->slug();
 
@@ -95,10 +90,6 @@ final class CommentNotification
         return trim(preg_replace('/\s+/u', ' ', $value) ?? $value);
     }
 
-    /**
-     * Logs only a genuine send failure – a delivered mail that Yahoo later
-     * spam-folders is not one, and logs nothing.
-     */
     private static function log(App $kirby, Throwable $exception): void
     {
         try {

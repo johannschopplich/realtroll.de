@@ -32,7 +32,7 @@ final class CommentPage extends Page
 
     /**
      * Resolves the stored developer reference session-free, so the cached
-     * article HTML stays cache-safe.
+     * article HTML never depends on who is logged in.
      *
      * Not named `author()` – that would shadow the magic content-field method.
      */

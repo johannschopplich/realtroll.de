@@ -8,9 +8,6 @@ use Normalizer;
 
 /**
  * The comment text pipeline: the only genuinely security-critical boundary.
- *
- * - `render()` turns stored raw Markdown into sanitized display HTML.
- * - `clean()` is the Unicode hygiene applied to name and text before storing.
  */
 final class CommentRenderer
 {
@@ -25,6 +22,9 @@ final class CommentRenderer
      */
     private const STRIP_PATTERN = '/[\x{202A}-\x{202E}\x{2066}-\x{2069}\x{200B}\x{FEFF}\x{2060}\x{2028}\x{2029}\x{E0000}-\x{E007F}]/u';
 
+    /**
+     * Turns stored raw Markdown into sanitized display HTML.
+     */
     public static function render(string $raw): string
     {
         $html = (new CommentParsedown())->text($raw);
@@ -32,6 +32,9 @@ final class CommentRenderer
         return CommentHtml::sanitize($html);
     }
 
+    /**
+     * Applies Unicode hygiene to a name or text before it is stored.
+     */
     public static function clean(string $value): string
     {
         // Replace invalid byte sequences first: otherwise `Normalizer::normalize`

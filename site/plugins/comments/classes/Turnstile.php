@@ -11,8 +11,7 @@ use Throwable;
  * Cloudflare Turnstile siteverify adapter over `Remote::post`, fail-closed.
  *
  * The HTTP client is injectable (a callable returning the decoded JSON body,
- * throwing on transport failure) so tests never touch the network. Production
- * uses the default `Remote::post` client.
+ * throwing on transport failure) so tests never touch the network.
  */
 final class Turnstile
 {

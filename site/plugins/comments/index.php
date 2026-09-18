@@ -34,7 +34,7 @@ App::plugin('realtroll/comments', [
         'comment' => __DIR__ . '/templates/comment.php',
     ],
     'areas' => [
-        // Redirect-only Panel view (menu-hidden): the notification's "Im Artikel
+        // Redirect-only Panel view: the notification's "Im Artikel
         // ansehen" link lands here so Kirby's login gate runs first, then bounces
         // to the article – the author arrives with a session (developer reply).
         'comments' => fn () => [

@@ -7,10 +7,7 @@ namespace RealTroll\Comments;
 use Parsedown;
 
 /**
- * Markdown parser for comment bodies: safe mode on, tables disabled.
- *
- * The Table block is removed so that casual pipe input stays literal
- * instead of becoming a table.
+ * Parsedown in safe mode, without tables or images.
  */
 final class CommentParsedown extends Parsedown
 {

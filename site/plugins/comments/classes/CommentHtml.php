@@ -12,10 +12,9 @@ final class CommentHtml extends Html
     public static array $allowedAttrPrefixes = [];
     public static array $allowedAttrs = [];
     public static array $allowedTags = [
-        // Mandatory wrappers, stripped on serialize
+        // Mandatory wrappers, stripped on serialize.
         'html' => true, 'body' => true,
         'strong' => false, 'em' => false,
-        // Strikethrough (`~~x~~`)
         'del' => false, 's' => false,
         'a'  => ['href', 'rel'],
         'ul' => false, 'ol' => false, 'li' => false,
