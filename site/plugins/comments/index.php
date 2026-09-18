@@ -1,7 +1,6 @@
 <?php
 
 use Kirby\Cms\App;
-use Kirby\Cms\Page;
 use Kirby\Http\Response;
 use Kirby\Panel\Panel;
 use Kirby\Panel\Redirect;
@@ -53,11 +52,11 @@ App::plugin('realtroll/comments', [
                         // request, so this can't become an open redirect. Throw
                         // Redirect (not Panel::go) so Panel::url() doesn't prefix
                         // the Panel slug onto the frontend URL.
-                        if ($article instanceof Page && $article->intendedTemplate()->name() === 'article') {
+                        if ($article instanceof ArticlePage) {
                             // A comment hidden or deleted since the mail went out
                             // lands on the article itself.
-                            $comment = $article->comments()->find($commentSlug);
-                            $anchor  = $comment instanceof CommentPage ? '#' . $comment->anchor() : '';
+                            $comment = $article->comment($commentSlug);
+                            $anchor  = $comment !== null ? '#' . $comment->anchor() : '';
 
                             throw new Redirect($article->url() . $anchor);
                         }

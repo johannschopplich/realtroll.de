@@ -2,6 +2,7 @@
 
 use Kirby\Cms\Page;
 use Kirby\Cms\Pages;
+use RealTroll\Comments\CommentPage;
 
 class ArticlePage extends Page
 {
@@ -10,6 +11,15 @@ class ArticlePage extends Page
     public function comments(): Pages
     {
         return $this->comments ??= $this->children()->template('comment')->unlisted();
+    }
+
+    public function comment(string $slug): CommentPage|null
+    {
+        // Not `find()`: it resolves an `@uuid` shortcut site-wide, past this
+        // article's comments.
+        $comment = $this->comments()->findBy('slug', $slug);
+
+        return $comment instanceof CommentPage ? $comment : null;
     }
 
     public function acceptsComments(): bool
