@@ -46,7 +46,7 @@ final class CommentThread
      * null for top-level.
      *
      * An unresolvable reference promotes instead of rejecting; a resolvable one
-     * flattens onto its anchor.
+     * flattens onto its thread opener.
      */
     public function storedParentId(string $requestedParentId): string|null
     {
@@ -54,7 +54,7 @@ final class CommentThread
 
         return $target === null
             ? null
-            : $this->anchorFor($target)->uuid()->toString();
+            : $this->threadOpenerFor($target)->uuid()->toString();
     }
 
     /**
@@ -81,7 +81,7 @@ final class CommentThread
      * Returns the comment this one renders beneath, or null when it renders
      * top-level.
      *
-     * Only an anchor holds replies, so a hand-edited deeper chain promotes
+     * Only a thread opener holds replies, so a hand-edited deeper chain promotes
      * instead of nesting a third level.
      */
     public function parentOf(Page $comment): CommentPage|null
@@ -93,14 +93,14 @@ final class CommentThread
             return null;
         }
 
-        return $this->anchorFor($parent) === $parent ? $parent : null;
+        return $this->threadOpenerFor($parent) === $parent ? $parent : null;
     }
 
     /**
      * Resolves where a reply to `$target` renders: `$target` itself when its
      * own reference is unresolvable, otherwise its ancestor – the two-level cap.
      */
-    private function anchorFor(CommentPage $target): CommentPage
+    private function threadOpenerFor(CommentPage $target): CommentPage
     {
         return $this->findByUuid($this->storedParentIdField($target)) ?? $target;
     }
