@@ -101,7 +101,7 @@ final class CommentRendererTest extends TestCase
     }
 
     #[Test]
-    public function drops_niche_scheme_links(): void
+    public function drops_steam_irc_and_ftp_links(): void
     {
         $html = CommentRenderer::render(
             "[steam](steam://run/570)\n\n[irc](irc://irc.example.com)\n\n[ftp](ftp://files.example.com)"
@@ -113,7 +113,7 @@ final class CommentRendererTest extends TestCase
     }
 
     #[Test]
-    public function forces_nofollow_ugc_on_valid_links(): void
+    public function forces_rel_nofollow_ugc_on_https_links(): void
     {
         $html = CommentRenderer::render('[Seite](https://example.com/pfad)');
 
@@ -176,7 +176,7 @@ final class CommentRendererTest extends TestCase
     }
 
     #[Test]
-    public function clean_nfc_normalizes_decomposed_input(): void
+    public function clean_normalizes_decomposed_input_to_nfc(): void
     {
         // "e" + combining acute accent should compose to precomposed "é".
         $this->assertSame("\u{00E9}", CommentRenderer::clean("e\u{0301}"));

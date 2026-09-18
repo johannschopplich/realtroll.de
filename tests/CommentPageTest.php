@@ -95,7 +95,7 @@ final class CommentPageTest extends TestCase
     }
 
     #[Test]
-    public function a_visitor_comment_shows_the_stored_name(): void
+    public function display_name_returns_the_stored_name_for_a_visitor_comment(): void
     {
         $comment = $this->comment('comment-visitor');
 
@@ -104,13 +104,13 @@ final class CommentPageTest extends TestCase
     }
 
     #[Test]
-    public function a_developer_reply_shows_the_live_account_name(): void
+    public function display_name_prefers_the_live_account_name_for_a_developer_reply(): void
     {
         $this->assertSame('real Troll', $this->comment('comment-developer')->displayName());
     }
 
     #[Test]
-    public function a_nameless_developer_account_falls_back_to_the_stored_name(): void
+    public function display_name_falls_back_to_the_stored_name_for_a_nameless_account(): void
     {
         $comment = $this->comment('comment-nameless-developer');
 
@@ -120,7 +120,7 @@ final class CommentPageTest extends TestCase
     }
 
     #[Test]
-    public function a_deleted_developer_reference_falls_back_to_the_stored_name(): void
+    public function display_name_falls_back_to_the_stored_name_for_a_deleted_account(): void
     {
         $comment = $this->comment('comment-deleted-developer');
 

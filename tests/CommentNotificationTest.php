@@ -192,7 +192,7 @@ final class CommentNotificationTest extends TestCase
     }
 
     #[Test]
-    public function the_reply_line_names_the_parent_as_the_site_renders_it(): void
+    public function names_a_developer_parent_by_its_live_account_name(): void
     {
         // The site renders the parent through `CommentPage::displayName()`, which
         // prefers the live account name.

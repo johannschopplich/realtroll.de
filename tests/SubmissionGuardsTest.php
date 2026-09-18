@@ -146,7 +146,7 @@ final class SubmissionGuardsTest extends TestCase
     }
 
     #[Test]
-    public function cleaned_values_ride_the_verdict(): void
+    public function passes_the_cleaned_name_into_the_verdict(): void
     {
         $verdict = $this->guards()->evaluate($this->request(['name' => "Kla\u{200B}us"]));
 
@@ -155,7 +155,7 @@ final class SubmissionGuardsTest extends TestCase
     }
 
     #[Test]
-    public function rejects_when_the_toggle_is_explicitly_false(): void
+    public function rejects_an_article_with_comments_enabled_false(): void
     {
         $verdict = $this->guards()->evaluate($this->request(['pageUuid' => 'page://article-locked']));
 
@@ -163,7 +163,7 @@ final class SubmissionGuardsTest extends TestCase
     }
 
     #[Test]
-    public function accepts_when_the_toggle_field_is_absent(): void
+    public function accepts_an_article_without_a_comments_enabled_field(): void
     {
         $verdict = $this->guards()->evaluate($this->request(['pageUuid' => 'page://article-nofield']));
 
@@ -171,7 +171,7 @@ final class SubmissionGuardsTest extends TestCase
     }
 
     #[Test]
-    public function rejects_when_the_target_is_not_an_article(): void
+    public function rejects_a_page_uuid_that_is_not_an_article(): void
     {
         $verdict = $this->guards()->evaluate($this->request(['pageUuid' => 'page://c-top']));
 
@@ -179,7 +179,7 @@ final class SubmissionGuardsTest extends TestCase
     }
 
     #[Test]
-    public function rejects_when_no_target_page_is_given(): void
+    public function rejects_an_empty_page_uuid(): void
     {
         $verdict = $this->guards()->evaluate($this->request(['pageUuid' => '']));
 
@@ -187,7 +187,7 @@ final class SubmissionGuardsTest extends TestCase
     }
 
     #[Test]
-    public function rejects_when_the_target_page_is_missing(): void
+    public function rejects_a_page_uuid_of_a_missing_page(): void
     {
         $verdict = $this->guards()->evaluate($this->request(['pageUuid' => 'page://ghost']));
 
@@ -276,7 +276,7 @@ final class SubmissionGuardsTest extends TestCase
     }
 
     #[Test]
-    public function rejects_a_failed_turnstile(): void
+    public function rejects_a_failed_turnstile_verification(): void
     {
         $verdict = $this->guards(turnstileOk: false)->evaluate($this->request());
 
@@ -286,7 +286,7 @@ final class SubmissionGuardsTest extends TestCase
     }
 
     #[Test]
-    public function operator_submission_is_accepted_with_author_and_skips_bot_defenses(): void
+    public function accepts_an_operator_submission_with_its_author_and_skips_the_bot_defenses(): void
     {
         $this->app->impersonate('troll@realtroll.de');
 
@@ -300,7 +300,7 @@ final class SubmissionGuardsTest extends TestCase
     }
 
     #[Test]
-    public function operator_still_needs_a_valid_csrf_token(): void
+    public function rejects_an_operator_submission_with_a_tampered_csrf_token(): void
     {
         $this->app->impersonate('troll@realtroll.de');
 
@@ -310,7 +310,7 @@ final class SubmissionGuardsTest extends TestCase
     }
 
     #[Test]
-    public function nameless_account_is_subject_to_the_bot_defenses(): void
+    public function applies_the_bot_defenses_to_a_nameless_account(): void
     {
         $this->app->impersonate('nobody@realtroll.de');
 
@@ -321,7 +321,7 @@ final class SubmissionGuardsTest extends TestCase
     }
 
     #[Test]
-    public function nameless_account_is_accepted_without_an_author(): void
+    public function accepts_a_nameless_account_without_an_author(): void
     {
         // A nameless account gets no author, so its comment renders no badge.
         $this->app->impersonate('nobody@realtroll.de');
@@ -333,7 +333,7 @@ final class SubmissionGuardsTest extends TestCase
     }
 
     #[Test]
-    public function visitor_cannot_forge_an_author_via_the_post_body(): void
+    public function ignores_an_author_field_in_the_post_body(): void
     {
         $verdict = $this->guards()->evaluate($this->request(['author' => 'user://troll']));
 
@@ -342,7 +342,7 @@ final class SubmissionGuardsTest extends TestCase
     }
 
     #[Test]
-    public function the_resolved_reply_target_rides_the_verdict(): void
+    public function passes_the_resolved_parent_id_into_the_verdict(): void
     {
         $verdict = $this->guards()->evaluate($this->request(['parentId' => 'page://c-top']));
 
@@ -351,7 +351,7 @@ final class SubmissionGuardsTest extends TestCase
     }
 
     #[Test]
-    public function promotes_an_unresolvable_reply_target_instead_of_rejecting(): void
+    public function promotes_an_unresolvable_parent_id_instead_of_rejecting(): void
     {
         $verdict = $this->guards()->evaluate($this->request(['parentId' => 'page://ghost']));
 
