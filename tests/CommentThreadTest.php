@@ -45,6 +45,11 @@ final class CommentThreadTest extends KirbyTestCase
                                         'content'  => ['uuid' => 'c-reply', 'title' => 'K', 'name' => 'Ben', 'text' => 'Antwort', 'parentId' => 'page://c-top', 'date' => $now],
                                     ],
                                     [
+                                        'slug'     => 'comment-list-reply',
+                                        'template' => 'comment',
+                                        'content'  => ['uuid' => 'c-list-reply', 'title' => 'K', 'name' => 'Jo', 'text' => 'Antwort', 'parentId' => "- 'page://c-top'", 'date' => $now],
+                                    ],
+                                    [
                                         'slug'     => 'comment-orphan',
                                         'template' => 'comment',
                                         'content'  => ['uuid' => 'c-orphan', 'title' => 'K', 'name' => 'Cid', 'text' => 'Waise', 'parentId' => 'page://ghost', 'date' => $now],
@@ -162,6 +167,30 @@ final class CommentThreadTest extends KirbyTestCase
     }
 
     #[Test]
+    public function a_reply_nests_under_a_parent_id_stored_as_a_yaml_list(): void
+    {
+        $parent = $this->thread()->parentOf($this->comment('comment-list-reply'));
+
+        $this->assertNotNull($parent);
+        $this->assertTrue($parent->is($this->comment('comment-top')));
+    }
+
+    #[Test]
+    public function a_reply_created_with_create_child_nests_under_its_thread_opener(): void
+    {
+        $reply = $this->app->impersonate('kirby', fn () => $this->app->page('blog/artikel-a')->createChild([
+            'slug'     => 'comment-created',
+            'template' => 'comment',
+            'content'  => ['name' => 'Kai', 'text' => 'Antwort', 'parentId' => 'page://c-top', 'date' => date('c')],
+        ])->changeStatus('unlisted'));
+
+        $parent = $this->thread()->parentOf($reply);
+
+        $this->assertNotNull($parent);
+        $this->assertTrue($parent->is($this->comment('comment-top')));
+    }
+
+    #[Test]
     public function a_reply_to_a_promoted_orphan_nests_under_it(): void
     {
         $thread = $this->thread();
@@ -211,7 +240,7 @@ final class CommentThreadTest extends KirbyTestCase
             ['comment-top', 'comment-orphan', 'comment-reply-to-hidden', 'comment-cross', 'comment-deep-reply'],
             $slugs($thread->topLevel())
         );
-        $this->assertSame(['comment-reply'], $slugs($thread->repliesTo($this->comment('comment-top'))));
+        $this->assertSame(['comment-reply', 'comment-list-reply'], $slugs($thread->repliesTo($this->comment('comment-top'))));
         $this->assertSame(['comment-reply-to-orphan'], $slugs($thread->repliesTo($this->comment('comment-orphan'))));
         $this->assertSame([], $thread->repliesTo($this->comment('comment-reply')));
     }

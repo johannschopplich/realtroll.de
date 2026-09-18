@@ -36,7 +36,12 @@ columns:
       date:
         label: Datum
         type: date
-        time: true
+        # Kirby rounds a stored date to this step, and `size` defaults to 5 for
+        # any unit.
+        time:
+          step:
+            unit: second
+            size: 1
         display: DD.MM.YYYY
         required: true
       author:

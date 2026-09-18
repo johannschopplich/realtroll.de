@@ -121,4 +121,16 @@ final class CommentPageTest extends KirbyTestCase
         $this->assertNull($comment->developer());
         $this->assertSame('Alter Name', $comment->displayName());
     }
+
+    #[Test]
+    public function a_comment_created_with_create_child_keeps_the_seconds_of_its_date(): void
+    {
+        $comment = $this->app->impersonate('kirby', fn () => $this->app->page('blog/artikel-a')->createChild([
+            'slug'     => 'comment-created',
+            'template' => 'comment',
+            'content'  => ['name' => 'Kai', 'text' => 'Erster', 'date' => '2026-09-18 20:29:19'],
+        ]));
+
+        $this->assertSame('2026-09-18 20:29:19', $comment->date()->value());
+    }
 }
