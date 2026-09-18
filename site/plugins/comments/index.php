@@ -58,7 +58,9 @@ App::plugin('realtroll/comments', [
                             $comment = $article->comment($commentSlug);
                             $anchor  = $comment !== null ? '#' . $comment->anchor() : '';
 
-                            throw new Redirect($article->url() . $anchor);
+                            // A refresh, not a 302: after login the Panel loads this view
+                            // via `fetch()`, which follows a 302 and drops the fragment.
+                            throw new Redirect($article->url() . $anchor, refresh: 0);
                         }
 
                         Panel::go('site');
