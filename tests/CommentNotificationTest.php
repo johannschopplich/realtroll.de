@@ -213,6 +213,14 @@ final class CommentNotificationTest extends TestCase
     }
 
     #[Test]
+    public function sends_no_mail_for_a_developer_reply(): void
+    {
+        CommentNotification::send($this->comment('comment-dev'));
+
+        $this->assertNull(MailSpy::$props);
+    }
+
+    #[Test]
     public function logs_a_failed_send_with_the_reason_the_transport_gives(): void
     {
         MailSpy::$exception = new Exception(message: 'Resend rejected the message (HTTP 403): domain not verified');

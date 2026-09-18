@@ -20,6 +20,11 @@ final class CommentNotification
 
     public static function send(Page $comment): void
     {
+        // A developer reply needs no moderation.
+        if ($comment->content()->get('author')->isNotEmpty()) {
+            return;
+        }
+
         $kirby = $comment->kirby();
 
         try {
