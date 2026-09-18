@@ -1,6 +1,6 @@
 <?php
 
-/** @var \Kirby\Cms\Page $comment */
+/** @var \RealTroll\Comments\CommentPage $comment */
 /** @var IntlDateFormatter $dateFormatter */
 /** @var bool $isReply */
 /** @var bool $withReply */
@@ -11,7 +11,7 @@ $displayName = $comment->displayName();
 $hasReplyButton = ($withReply ?? true) === true;
 
 ?>
-<article id="kommentar-<?= $comment->slug() ?>" class="scroll-mt-8xl">
+<article id="<?= $comment->anchor() ?>" class="scroll-mt-8xl">
   <div class="flex flex-wrap items-baseline gap-x-2 gap-y-1 mb-2">
     <?php if ($developer !== null): ?>
       <span

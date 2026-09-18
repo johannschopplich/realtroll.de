@@ -95,6 +95,12 @@ final class CommentPageTest extends TestCase
     }
 
     #[Test]
+    public function anchor_swaps_the_comment_slug_prefix_for_kommentar(): void
+    {
+        $this->assertSame('kommentar-visitor', $this->comment('comment-visitor')->anchor());
+    }
+
+    #[Test]
     public function display_name_returns_the_stored_name_for_a_visitor_comment(): void
     {
         $comment = $this->comment('comment-visitor');

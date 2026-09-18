@@ -7,9 +7,12 @@ namespace RealTroll\Comments;
 use Kirby\Cms\Page;
 use Kirby\Cms\User;
 use Kirby\Content\VersionId;
+use Kirby\Toolkit\Str;
 
 final class CommentPage extends Page
 {
+    public const SLUG_PREFIX = 'comment-';
+
     /**
      * Redirects to the comment's anchor in the parent article – comments are
      * never viewable on their own.
@@ -19,7 +22,12 @@ final class CommentPage extends Page
         $contentType = 'html',
         VersionId|string|null $versionId = null
     ): string {
-        go($this->parent()->url() . '#kommentar-' . $this->slug());
+        go($this->parent()->url() . '#' . $this->anchor());
+    }
+
+    public function anchor(): string
+    {
+        return 'kommentar-' . Str::afterStart($this->slug(), self::SLUG_PREFIX);
     }
 
     /**

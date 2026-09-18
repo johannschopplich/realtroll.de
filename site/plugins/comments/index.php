@@ -54,7 +54,12 @@ App::plugin('realtroll/comments', [
                         // Redirect (not Panel::go) so Panel::url() doesn't prefix
                         // the Panel slug onto the frontend URL.
                         if ($article instanceof Page && $article->intendedTemplate()->name() === 'article') {
-                            throw new Redirect($article->url() . '#kommentar-' . $commentSlug);
+                            // A comment hidden or deleted since the mail went out
+                            // lands on the article itself.
+                            $comment = $article->comments()->find($commentSlug);
+                            $anchor  = $comment instanceof CommentPage ? '#' . $comment->anchor() : '';
+
+                            throw new Redirect($article->url() . $anchor);
                         }
 
                         Panel::go('site');
@@ -103,7 +108,7 @@ App::plugin('realtroll/comments', [
                     $comment = $kirby->impersonate(
                         'kirby',
                         fn () => $article->createChild([
-                            'slug'     => 'comment-' . Str::random(16, 'alphaNum'),
+                            'slug'     => CommentPage::SLUG_PREFIX . Str::random(16, 'alphaNum'),
                             'template' => 'comment',
                             'content'  => $content,
                         ])->changeStatus('unlisted')
@@ -127,7 +132,7 @@ App::plugin('realtroll/comments', [
                         'dateFormatter'   => dateFormatter(IntlDateFormatter::MEDIUM, IntlDateFormatter::SHORT),
                         'acceptsComments' => $article->acceptsComments(),
                     ], true),
-                    'anchor' => 'kommentar-' . $comment->slug(),
+                    'anchor' => $comment->anchor(),
                 ]);
             },
         ],
