@@ -143,8 +143,8 @@ final class CommentThread
     {
         // The threading reference lives in the `parentId` content field –
         // Kirby's native `Page::parentId()` is the storage parent id instead.
-        // `createChild()` stores it as a YAML list, older comments as a plain
-        // string; `yaml()` reads both.
+        // The value is either a YAML list, as the `pages` blueprint field
+        // stores it, or a plain string; `yaml()` reads both.
         return (string)($comment->content()->get('parentId')->yaml()[0] ?? '');
     }
 }
