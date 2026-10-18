@@ -59,7 +59,7 @@ The web build needs two things the desktop player doesn't, both provided on dema
    composer start
    ```
 
-Build the production assets with `pnpm run build`. Deployment runs through [`scripts/ploi-deploy.sh`](./scripts/ploi-deploy.sh) on [ploi.io](https://ploi.io).
+Build the production assets with `pnpm run build`. Pushes to `main` deploy through [`.github/workflows/deploy.yml`](./.github/workflows/deploy.yml).
 
 ## Content & Copyright
 
