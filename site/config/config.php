@@ -57,7 +57,7 @@ return [
         'sitemap' => [
             'enabled' => true,
             'exclude' => [
-                'templates' => ['comment'],
+                'templates' => ['comment', 'error'],
                 'pages' => ['spiele']
             ]
         ],
