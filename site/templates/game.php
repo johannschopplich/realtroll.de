@@ -53,7 +53,7 @@ $logo = $page->logo()->toFile();
     </a>
   </div>
   <?php if ($page->downloadNote()->isNotEmpty()): ?>
-    <p class="mt-lg mx-auto max-w-prose text-sm text-balance"><?= $page->downloadNote() ?></p>
+    <p class="mt-lg mx-auto max-w-prose text-sm text-balance"><?= $page->downloadNote()->permalinksToUrls() ?></p>
   <?php endif ?>
 </div>
 

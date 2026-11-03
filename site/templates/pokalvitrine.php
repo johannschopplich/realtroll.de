@@ -77,7 +77,7 @@ snippet('layouts/default', slots: true);
             </p>
           <?php endif ?>
           <h3 class="font-heading text-xl leading-none text-primary-700"><?= $entry->label()->escape() ?></h3>
-          <div class="prose mt-2 text-sm <?php e($entry->type()->value() === 'press', '[&_p]:italic') ?>"><?= $entry->caption() ?></div>
+          <div class="prose mt-2 text-sm <?php e($entry->type()->value() === 'press', '[&_p]:italic') ?>"><?= $entry->caption()->permalinksToUrls() ?></div>
         </div>
       </div>
     </div>

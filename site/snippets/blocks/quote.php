@@ -18,10 +18,10 @@ $citation = $block->citation();
 
   <div>
     <blockquote class="font-heading text-lg leading-heading text-primary-800 hyphenate md:text-xl">
-      <?= $text ?>
+      <?= $text->permalinksToUrls() ?>
     </blockquote>
     <?php if ($citation->isNotEmpty()): ?>
-      <figcaption class="mt-1 text-sm font-medium text-contrast-medium"><?= $citation ?></figcaption>
+      <figcaption class="mt-1 text-sm font-medium text-contrast-medium"><?= $citation->permalinksToUrls() ?></figcaption>
     <?php endif ?>
   </div>
 

@@ -28,6 +28,6 @@ $scale = $file && $file->width() <= 48 ? 3 : 1;
     </div>
   </div>
   <div class="prose hyphenate mt-lg text-sm">
-    <?= $block->text() ?>
+    <?= $block->text()->permalinksToUrls() ?>
   </div>
 </article>
