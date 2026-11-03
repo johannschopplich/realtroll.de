@@ -47,19 +47,7 @@ The web build needs two things the desktop player doesn't, both provided on dema
    composer install
    ```
 
-3. Start the frontend watchers (Vite + UnoCSS, via mprocs):
-
-   ```bash
-   pnpm run dev
-   ```
-
-4. Run the PHP server in a second shell – or use a dev server of your choice (e.g. Laravel Valet):
-
-   ```bash
-   composer start
-   ```
-
-Build the production assets with `pnpm run build`. Pushes to `main` deploy through [`.github/workflows/deploy.yml`](./.github/workflows/deploy.yml).
+[`AGENTS.md`](./AGENTS.md) lists the commands. Pushes to `main` deploy through [`.github/workflows/deploy.yml`](./.github/workflows/deploy.yml).
 
 ## Content & Copyright
 
