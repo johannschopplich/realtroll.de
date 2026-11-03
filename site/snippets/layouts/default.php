@@ -44,6 +44,8 @@ $bottomEdge ??= 'divider';
 </head>
 <body class="overflow-x-clip min-h-dvh" data-template="<?= $page->intendedTemplate()->name() ?>">
 
+  <a href="#main" class="skip-link">Zum Inhalt springen</a>
+
   <div
     class="
       relative z-1 min-h-dvh bg-polka-grid
@@ -56,7 +58,7 @@ $bottomEdge ??= 'divider';
       <?php snippet('components/page-header', $header) ?>
     <?php endif ?>
 
-    <main id="main" class="<?php e(!($header ?? null), 'mt-5xl') ?>">
+    <main id="main" class="<?php e(!($header ?? null), 'mt-5xl') ?>" tabindex="-1">
       <?= $slot ?>
     </main>
 
