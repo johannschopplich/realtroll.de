@@ -22,7 +22,7 @@ $isFlex = $isIntrinsic || $isCentered;
         'src' => $file->url(),
         'width' => $isIntrinsic ? $file->width() : null,
         'height' => $isIntrinsic ? $file->height() : null,
-        'alt' => $file->caption()->or($file->alt())
+        'alt' => $file->alt()
       ]) ?>>
       <?php if ($file->caption()->isNotEmpty()): ?>
         <figcaption class="<?= trim(($isIntrinsic ? 'mx-auto max-w-[16rem] ' : '') . 'mt-2 text-xs font-medium') ?>">
