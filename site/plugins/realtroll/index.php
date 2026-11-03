@@ -1,6 +1,7 @@
 <?php
 
 use Kirby\Cms\App;
+use Kirby\Cms\Page;
 use RealTroll\Website\ResendEmail;
 
 load([
@@ -46,7 +47,11 @@ App::plugin('realtroll/website', [
     ],
     'pageMethods' => [
         'breadcrumbList' => function (): array {
-            $crumbs = [$this->site()->homePage(), ...$this->parents()->flip()->values(), $this];
+            // The games page redirects to the home page, so the trail skips it.
+            $ancestors = $this->parents()->flip()->filter(
+                fn (Page $ancestor) => $ancestor->intendedTemplate()->name() !== 'games'
+            );
+            $crumbs = [$this->site()->homePage(), ...$ancestors->values(), $this];
 
             $items = [];
             $position = 1;
