@@ -13,7 +13,6 @@
   },
   "devDependencies": {
     "@antfu/eslint-config": "^9.1.0",
-    "@csstools/postcss-global-data": "^4.0.0",
     "@iconify-json/dinkie-icons": "^1.2.0",
     "@types/node": "^26.1.0",
     "@unocss/cli": "^66.7.4",
