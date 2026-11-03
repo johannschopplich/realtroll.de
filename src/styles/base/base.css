@@ -131,10 +131,6 @@
     background: var(--un-color-primary-200);
   }
 
-  :focus:not(:focus-visible) {
-    outline: none;
-  }
-
   :focus-visible {
     outline: 2px solid currentColor;
     outline-offset: 2px;
