@@ -24,15 +24,7 @@ $dateFormatter = dateFormatter();
 
   <ul class="grid gap-lg md:grid-cols-3">
     <?php foreach ($posts as $post): ?>
-      <?php
-      $lead = '';
-      foreach ($post->text()->toBlocks() as $block) {
-        if ($block->type() === 'text') {
-          $lead = \Kirby\Toolkit\Str::excerpt((string) $block->text(), 140);
-          break;
-        }
-      }
-      ?>
+      <?php $lead = $post->text()->toExcerpt(140) ?>
       <li class="group">
         <a
           href="<?= $blog->url() ?>#<?= $post->slug() ?>"

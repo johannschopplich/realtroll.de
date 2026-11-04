@@ -29,7 +29,7 @@ class ArticlePage extends Page
 
     public function metadata(): array
     {
-        $description = $this->text()->toBlocks()->excerpt(140);
+        $description = $this->text()->toExcerpt(140);
 
         $blogPosting = [
             'headline' => $this->title()->value(),
