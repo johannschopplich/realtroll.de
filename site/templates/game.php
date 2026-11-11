@@ -42,12 +42,12 @@ $logo = $page->logo()->toFile();
 <div class="content-lg mt-5xl text-center">
   <div class="flex flex-wrap items-center justify-center gap-lg">
     <?php if ($page->gameFolder()->isNotEmpty()): ?>
-      <a href="/play/?game=<?= $page->gameFolder() ?>" class="button-primary gap-2" target="_blank">
+      <a href="/play/?game=<?= $page->gameFolder() ?>" class="button-primary" target="_blank">
         <span class="i-dinkie-icons-right-black-triangle-filled translate-y-[-1px]" aria-hidden="true"></span>
         Im Browser starten
       </a>
     <?php endif ?>
-    <a href="<?= $page->downloadLink() ?>" class="<?php e($page->gameFolder()->isNotEmpty(), 'button-primary-outlined', 'button-primary') ?> gap-2">
+    <a href="<?= $page->downloadLink() ?>" class="<?php e($page->gameFolder()->isNotEmpty(), 'button-primary-outlined', 'button-primary') ?>">
       <span class="i-dinkie-icons-windows-alt translate-y-[-1px]" aria-hidden="true"></span>
       Download
     </a>
@@ -64,7 +64,7 @@ $logo = $page->logo()->toFile();
 <?php snippet('components/section-divider') ?>
 
 <div class="flex justify-center">
-  <a href="<?= url() ?>" class="button-primary gap-2">
+  <a href="<?= url() ?>" class="button-primary">
     <span class="i-dinkie-icons-white-left-backhand-index translate-y-[-1px]" aria-hidden="true"></span>
     Zurück zur Spieleliste
   </a>

@@ -174,7 +174,7 @@ export default defineConfig<Theme>({
       /^button-(primary|text)(?:-?(outlined))?$/,
       ([, color, outlined]) => {
         const buttonBase = [
-          "inline-flex items-center justify-center",
+          "inline-flex items-center justify-center gap-[0.5em]",
           "px-3 py-2 leading-none rounded select-none",
           "disabled:opacity-75 disabled:cursor-not-allowed",
           "aria-disabled:opacity-75 aria-disabled:cursor-not-allowed",
