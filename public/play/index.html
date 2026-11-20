@@ -1033,7 +1033,6 @@
        */
       let saveSlotBaseline;
       let saveHintPollId = 0;
-      let saveWatchId = 0;
       const relativeTimeFormatter = new Intl.RelativeTimeFormat("de", {
         numeric: "auto",
       });
@@ -1105,8 +1104,7 @@
         const slots = readSaveSlots();
         const saveList = document.getElementById("save-list");
         saveList.replaceChildren();
-        // TODO: Drop the fallback once the bundle exports `getMaxSaveFiles`.
-        const slotCount = easyrpgPlayer.api.getMaxSaveFiles?.() ?? 15;
+        const slotCount = easyrpgPlayer.api.getMaxSaveFiles();
         for (let slot = 1; slot <= slotCount; slot++) {
           saveList.append(createSaveRow(slot, slots.get(slot)));
         }
@@ -1189,41 +1187,18 @@
       }
 
       /**
-       * Hand a slot to the engine's upload picker, then refresh the list.
-       * The picker writes straight into the in-memory FS, but its hidden
-       * <input> is detached from the document, so no change event reaches us –
-       * poll the directory until the slot actually lands instead.
+       * Opens the engine's file picker for the slot; `success` means the file
+       * was written.
        *
        * @param {number} slot 1-based slot to write the chosen file into
        */
-      function uploadToSlot(slot) {
-        easyrpgPlayer.api.uploadSavegame(slot);
-        watchForSaveChange(slot);
-      }
-
-      /**
-       * Poll until the picked file lands, then refresh the list. Gives up after
-       * a minute or once the panel closes – the user dismissed the picker
-       * without choosing a file.
-       *
-       * @param {number} slot 1-based slot the upload writes into
-       */
-      function watchForSaveChange(slot) {
-        clearInterval(saveWatchId);
-        const slotsBeforeUpload = readSaveSlots();
-        let elapsedMs = 0;
-        saveWatchId = setInterval(() => {
-          elapsedMs += 500;
-          const uploadedAt = readSaveSlots().get(slot);
-          if (uploadedAt !== slotsBeforeUpload.get(slot)) {
-            // Moves the hint's baseline past the upload, which is not an in-game save.
-            saveSlotBaseline?.set(slot, uploadedAt);
-            renderSaveSlots();
-            clearInterval(saveWatchId);
-          } else if (elapsedMs >= 60000 || !saveDialog.open) {
-            clearInterval(saveWatchId);
-          }
-        }, 500);
+      async function uploadToSlot(slot) {
+        const success = await easyrpgPlayer.api.uploadSavegame(slot);
+        if (success) {
+          // An upload is not an in-game save, so it must not trigger the backup hint.
+          saveSlotBaseline?.set(slot, readSaveSlots().get(slot));
+          renderSaveSlots();
+        }
       }
 
       /**
