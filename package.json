@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "rm -rf public/dist && mprocs",
     "build": "unocss && vite build",
+    "build:player": "docker build scripts/player --output public/play",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "format": "prettier \"**/*.{css,html,json,md,mjs,ts,yml}\" --write",

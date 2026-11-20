@@ -32,6 +32,18 @@ The web build needs two things the desktop player doesn't, both provided on dema
 - **A file index.** The route `play/games/<folder>/index.json` generates the file map the player requires – a PHP port of EasyRPG's [`gencache`](https://github.com/EasyRPG/Tools/tree/master/gencache) tool – and caches it.
 - **An ExFont bitmap.** It extracts the per-game ExFont embedded in `RPG_RT.exe` into `ExFont.bmp`, because the Emscripten build can't read it from the executable like the desktop build does – otherwise custom glyphs silently vanish.
 
+### Building the Player
+
+`public/play/index.js` and `public/play/index.wasm` are built in Docker from [`scripts/player/Dockerfile`](scripts/player/Dockerfile), with no local toolchain:
+
+```bash
+pnpm build:player
+```
+
+This compiles the libraries from EasyRPG's [buildscripts](https://github.com/EasyRPG/buildscripts) and the Player at the commit pinned as `PLAYER_REF` in the Dockerfile – for now a fork commit with the save manager, until [EasyRPG/Player#3643](https://github.com/EasyRPG/Player/pull/3643) merges. Later runs reuse the cached library layer. To update the Player, bump `PLAYER_REF` to a full commit hash, and `LIBLCF_REF` too when the Player needs a newer liblcf; a branch name would let Docker reuse a stale cached build.
+
+Afterwards, bump the `?v=` on the `index.js` script tag in `public/play/index.html`, so browsers fetch the new `index.js` and `index.wasm` together.
+
 ## Development
 
 1. Create your `.env` from the example:
