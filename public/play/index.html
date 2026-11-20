@@ -1284,38 +1284,32 @@
        */
       function uploadToSlot(slot) {
         easyrpgPlayer.api.uploadSavegame(slot);
-        watchForSaveChange();
+        watchForSaveChange(slot);
       }
 
       /**
        * Poll until the picked file lands, then refresh the list. Gives up after
        * a minute or once the panel closes – the user dismissed the picker
        * without choosing a file.
+       *
+       * @param {number} slot 1-based slot the upload writes into
        */
-      function watchForSaveChange() {
+      function watchForSaveChange(slot) {
         clearInterval(saveWatchId);
         const slotsBeforeUpload = readSaveSlots();
         let elapsedMs = 0;
         saveWatchId = setInterval(() => {
           elapsedMs += 500;
-          if (slotsChanged(slotsBeforeUpload, readSaveSlots())) {
+          const uploadedAt = readSaveSlots().get(slot);
+          if (uploadedAt !== slotsBeforeUpload.get(slot)) {
+            // Moves the hint's baseline past the upload, which is not an in-game save.
+            saveSlotBaseline?.set(slot, uploadedAt);
             renderSaveSlots();
             clearInterval(saveWatchId);
           } else if (elapsedMs >= 60000 || !saveDialog.open) {
             clearInterval(saveWatchId);
           }
         }, 500);
-      }
-
-      /**
-       * Whether a later slot read differs – a slot appeared or was overwritten
-       */
-      function slotsChanged(previousSlots, currentSlots) {
-        if (previousSlots.size !== currentSlots.size) return true;
-        for (const [slot, mtime] of currentSlots) {
-          if (previousSlots.get(slot) !== mtime) return true;
-        }
-        return false;
       }
 
       /**
