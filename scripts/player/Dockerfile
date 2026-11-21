@@ -23,7 +23,9 @@ RUN git init -q \
   && ./2_build_toolchain.sh \
   && ./3_cleanup.sh
 
-# TODO: Point back at EasyRPG/Player once EasyRPG/Player#3643 merges.
+# TODO: Once EasyRPG/Player#3643 merges, build upstream's merge commit and rerun `pnpm build:player`:
+#   ARG PLAYER_REPO=https://github.com/EasyRPG/Player.git
+#   ARG PLAYER_REF=<full hash of the merge commit>
 ARG PLAYER_REPO=https://github.com/johannschopplich/EasyRPG-Player-fork.git
 ARG PLAYER_REF=4df327e009e27cb26ec2bc940a33f15328a28a3b
 WORKDIR /player
