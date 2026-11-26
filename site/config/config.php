@@ -73,7 +73,7 @@ return [
                         'publisher' => [
                             '@type' => 'Person',
                             'name' => 'Johann Schopplich',
-                            'url' => 'https://johannschopplich.com',
+                            'url' => 'https://johann.schopplich.com',
                         ],
                     ];
                 }
